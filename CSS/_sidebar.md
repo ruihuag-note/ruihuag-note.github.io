@@ -10,6 +10,7 @@
 * attribute
   * [animation](attribute/animation.md)
   * [background](attribute/background.md)
+  * [box-shadow](attribute/box-shadow.md)
   * [contain](attribute/contain.md)
   * [content-visibility](attribute/content-visibility.md)
   * [css-动画](attribute/css-动画.md)
@@ -49,6 +50,7 @@
     * 问题
       * [fixed失效](layout/position/问题/fixed失效.md)
   * [table](layout/table.md)
+* [plan](plan.md)
 * [templates&slots](templates&slots.md)
 * type
   * [基础](type/基础.md)

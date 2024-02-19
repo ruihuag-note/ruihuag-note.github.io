@@ -1,16 +1,21 @@
 {
-  "name": "guanruihua.github.io",
-  "version": "0.4.1",
-  "description": "博客",
+  "name": "ruihuag-note",
+  "version": "0.0.1",
+  "description": "note",
   "author": "ruihuag",
+  "main": "/",
+  "unpkg": "/",
+  "jsdelivr": "/",
   "license": "MIT",
   "scripts": {
     "git": "node config/script/git.js",
     "docs": ".\\config\\script\\push.bat",
     "docs2": "bash ./config/script/push.bat",
     "build": "node config/build/build-sidebar-lv2.js",
-    "build:lv1": "node config/build/build-sidebar-lv1.js",
+    "lv2": "node config/build/build-sidebar-lv2.js",
+    "lv1": "node config/build/build-sidebar-lv1.js",
     "update": "node config/update-module.js",
+    "pub": "npm publish",
     "dev": "nodemon config/build/build-sidebar-lv2.js"
   },
   "repository": {

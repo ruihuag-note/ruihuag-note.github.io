@@ -2,7 +2,7 @@ const fs = require('fs')
 
 const ignoreDir = [
 	'_modules_.js',
-	'.git', '.gitignore',
+	'.git', '.gitignore', '.vscode',
 	'.nojekyll', '.prettierrc',
 	'blog', 'config',
 	'index.html',

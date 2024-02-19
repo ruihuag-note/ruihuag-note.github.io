@@ -7,6 +7,7 @@
   * window
     * [getSelection](api/window/getSelection.md)
   * [特殊标记](api/特殊标记.md)
+  * [电池](api/电池.md)
 * [Class](Class/index.md)
   * [home](Class/index.md)
 * Element
@@ -55,6 +56,8 @@
   * [Reflect](对象/Reflect.md)
 * 拓展
   * [深浅拷贝](拓展/深浅拷贝.md)
+* [拖拽](拖拽/index.md)
+  * [home](拖拽/index.md)
 * 数据结构
   * [buffer](数据结构/buffer.md)
   * Map

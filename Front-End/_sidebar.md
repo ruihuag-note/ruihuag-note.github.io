@@ -205,28 +205,6 @@
   * 跨域
     * [jsonp](拓展/跨域/jsonp.md)
 * 框架
-  * vue
-    * [begin](框架/vue/begin.md)
-    * [element](框架/vue/element.md)
-    * eslint
-      * [err](框架/vue/eslint/err.md)
-    * extend
-      * [vue-expand](框架/vue/extend/vue-expand.md)
-      * [vue-question](框架/vue/extend/vue-question.md)
-      * [父子通信](框架/vue/extend/父子通信.md)
-    * [package](框架/vue/package.md)
-    * question
-      * [sockjs-node](框架/vue/question/sockjs-node.md)
-    * SSR
-      * [nuxt](框架/vue/SSR/nuxt.md)
-    * [UI组件](框架/vue/UI组件/index.md)
-      * [home](框架/vue/UI组件/index.md)
-      * [制作UI组件](框架/vue/UI组件/制作UI组件.md)
-    * [vue-basis](框架/vue/vue-basis.md)
-    * [vue-router](框架/vue/vue-router.md)
-    * [vuex](框架/vue/vuex.md)
-    * [文件相关](框架/vue/文件相关/index.md)
-      * [home](框架/vue/文件相关/index.md)
   * 微前端
     * [Garfish](框架/微前端/Garfish.md)
     * [icestark](框架/微前端/icestark.md)

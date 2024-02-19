@@ -38,40 +38,6 @@ section.content>aside.toc-nav {
   margin-right: 0;
 }
 
-div.expand-btns {
-  position: fixed;
-  left: 30px;
-  bottom: -3px;
-  padding: 5px;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-}
-
-.expand-btns>a>img,
-.expand-btns>button>img {
-  width: 20px;
-  height: 20px;
-}
-
-.expand-btns>button,
-.expand-btns>a {
-  cursor: pointer;
-  display: inline-block;
-  background: transparent;
-  text-decoration: none;
-}
-
-body.close .expand-btns>button,
-body.close .expand-btns>a {
-  display: none;
-}
-
-.expand-btns>button {
-  border: none;
-  margin: 0;
-  padding: 0;
-}
-
 div.pagination-item-title {
   margin-top: 5px;
   font-size: 1.2em;
@@ -100,8 +66,11 @@ section>aside.toc-nav {
     margin-right: 0;
   }
 }
-
+aside.sidebar{
+  display: none;
+}
 button.sidebar-toggle {
+  display: none;
   background: #6b6b6b;
   width: 90px;
   border-top-right-radius: 12px;
@@ -183,6 +152,7 @@ div.search {
 .content {
   padding-top: 5px;
   margin-top: 1rem;
+  left: 0;
 }
 
 .markdown-section>div:first-child {
