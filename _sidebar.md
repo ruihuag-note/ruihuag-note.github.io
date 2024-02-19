@@ -1,3 +1,4 @@
+* .npmignore
 * Back-End
   * C语言
     * C++
