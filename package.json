@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/guanruihua/guanruihua.github.io.git"
+    "url": "git://github.com/ruihuag-note/ruihuag-note.github.io.git"
   },
   "files": [
     "package.json",
@@ -29,9 +29,9 @@
     "index.js"
   ],
   "bugs": {
-    "url": "https://github.com/guanruihua/guanruihua.github.io/issues"
+    "url": "https://github.com/ruihuag-note/ruihuag-note.github.io/issues"
   },
-  "homepage": "https://github.com/guanruihua/guanruihua.github.io",
+  "homepage": "https://github.com/ruihuag-note/ruihuag-note.github.io",
   "keywords": [
     "note"
   ],
