@@ -45,5 +45,5 @@ const data = {
   reg: 'https://ruihuag-note.github.io/{root}/index.html#{path}',
   path: genJSON('./', 0),
 }
-fs.writeFileSync('./_sidebar.json', JSON.stringify(data))
+fs.writeFileSync('./sidebar.json', JSON.stringify(data))
 // fs.writeFileSync('./_sidebar.json', JSON.stringify(data, null, 2))
