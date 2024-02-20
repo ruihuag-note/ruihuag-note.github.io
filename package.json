@@ -1,6 +1,6 @@
 {
   "name": "ruihuag-note",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "note",
   "author": "ruihuag",
   "main": "/",
@@ -27,7 +27,8 @@
     "README.md",
     "LICENSE",
     "index.js",
-    "sidebar.json"
+    "sidebar.json",
+    "sidebar.all.json"
   ],
   "bugs": {
     "url": "https://github.com/ruihuag-note/ruihuag-note.github.io/issues"

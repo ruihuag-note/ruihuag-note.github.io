@@ -1,4 +1,3 @@
-* .npmignore
 * Back-End
   * C语言
     * C++
@@ -918,4 +917,3 @@
       * [基础使用](/vue/语法糖/slot/基础使用.md)
     * [依赖注入](/vue/语法糖/依赖注入.md)
     * [监听](/vue/语法糖/监听.md)
-* _sidebar.json

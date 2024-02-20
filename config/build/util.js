@@ -1,13 +1,14 @@
 const fs = require('fs')
 
 const ignoreDir = [
-	'_modules_.js',
+	'_modules_.js','.npmignore',
 	'.git', '.gitignore', '.vscode',
-	'.nojekyll', '.prettierrc',
+	'.nojekyll', '.prettierrc', 'sidebar.all.json',
 	'blog', 'config',
 	'index.html',
 	'home.html',
 	'package.json',
+	'sidebar.json',
 	'Pending.md','log.md',
 	'push.bat', 'README.md',
 	'temp-note.md', '_sidebar.md',
