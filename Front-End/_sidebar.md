@@ -19,7 +19,7 @@
     * [接收参数](Node/基础/接收参数.md)
     * [模块化](Node/基础/模块化.md)
   * [读取git信息](Node/读取git信息.md)
-* Package
+,* Package
   * [dumi](Package/dumi/index.md)
     * [home](Package/dumi/index.md)
   * dva
@@ -31,28 +31,6 @@
   * 全屏
     * [react-flip-toolkit](Package/全屏/react-flip-toolkit.md)
   * [兼容性](Package/兼容性.md)
-  * 可视化
-    * [cesium](Package/可视化/cesium.md)
-    * [D3](Package/可视化/D3.md)
-    * [echart](Package/可视化/echart/index.md)
-      * [home](Package/可视化/echart/index.md)
-    * [HighEchart](Package/可视化/HighEchart.md)
-    * threejs
-      * API
-        * [PerspectiveCamera](Package/可视化/threejs/API/PerspectiveCamera.md)
-        * [WebGLRenderer](Package/可视化/threejs/API/WebGLRenderer.md)
-        * 几何体
-          * [BoxGeometry](Package/可视化/threejs/API/几何体/BoxGeometry.md)
-          * [CircleGeometry](Package/可视化/threejs/API/几何体/CircleGeometry.md)
-          * [DodecahedronGeometry](Package/可视化/threejs/API/几何体/DodecahedronGeometry.md)
-        * 材质
-          * [LineBasicMaterial](Package/可视化/threejs/API/材质/LineBasicMaterial.md)
-          * [LineDashedMaterial](Package/可视化/threejs/API/材质/LineDashedMaterial.md)
-          * [MeshMatcapMaterial](Package/可视化/threejs/API/材质/MeshMatcapMaterial.md)
-        * 渲染器
-          * [CSS3DRenderer](Package/可视化/threejs/API/渲染器/CSS3DRenderer.md)
-      * [three](Package/可视化/threejs/three.md)
-      * [threejs](Package/可视化/threejs/threejs.md)
   * [国际化](Package/国际化.md)
   * 工具包
     * jquery
@@ -76,18 +54,18 @@
       * [ts](Package/测试/jest/ts.md)
   * 虚拟列表
     * [react-window](Package/虚拟列表/react-window.md)
-* UI
+,* UI
   * antd
     * [antd2](UI/antd/antd2.md)
     * [antd4](UI/antd/antd4.md)
   * [elemnt-UI](UI/elemnt-UI.md)
   * [Swiper](UI/Swiper.md)
-* 代码片段
+,* 代码片段
   * [获取鼠标选中内容](代码片段/获取鼠标选中内容.md)
-* 其他
+,* 其他
   * [伦敦CSS-2020](其他/伦敦CSS-2020.md)
   * [待整理代码](其他/待整理代码.md)
-* 包管理器
+,* 包管理器
   * [cnpm](包管理器/cnpm.md)
   * npm
     * [npm-cli](包管理器/npm/npm-cli.md)
@@ -155,7 +133,32 @@
       * [config](包管理器/package/脚本配置/config.md)
       * [script](包管理器/package/脚本配置/script.md)
   * [使用script命令触发bat命令](包管理器/使用script命令触发bat命令.md)
-* 多端
+,* 可视化
+  * [cesium](可视化/cesium.md)
+  * [D3](可视化/D3.md)
+  * echart
+    * [echart](可视化/echart/echart.md)
+    * error
+      * [图表刷新](可视化/echart/error/图表刷新.md)
+      * [多条折线数据错乱](可视化/echart/error/多条折线数据错乱.md)
+  * [HighEchart](可视化/HighEchart.md)
+  * threejs
+    * API
+      * [PerspectiveCamera](可视化/threejs/API/PerspectiveCamera.md)
+      * [WebGLRenderer](可视化/threejs/API/WebGLRenderer.md)
+      * 几何体
+        * [BoxGeometry](可视化/threejs/API/几何体/BoxGeometry.md)
+        * [CircleGeometry](可视化/threejs/API/几何体/CircleGeometry.md)
+        * [DodecahedronGeometry](可视化/threejs/API/几何体/DodecahedronGeometry.md)
+      * 材质
+        * [LineBasicMaterial](可视化/threejs/API/材质/LineBasicMaterial.md)
+        * [LineDashedMaterial](可视化/threejs/API/材质/LineDashedMaterial.md)
+        * [MeshMatcapMaterial](可视化/threejs/API/材质/MeshMatcapMaterial.md)
+      * 渲染器
+        * [CSS3DRenderer](可视化/threejs/API/渲染器/CSS3DRenderer.md)
+    * [three](可视化/threejs/three.md)
+    * [threejs](可视化/threejs/threejs.md)
+,* 多端
   * [Electron](多端/Electron/index.md)
     * [home](多端/Electron/index.md)
     * [问题](多端/Electron/问题.md)
@@ -181,7 +184,7 @@
       * [获取用户信息](多端/小程序/微信小程序/获取用户信息.md)
       * 错误
         * [600002](多端/小程序/微信小程序/错误/600002.md)
-* 拓展
+,* 拓展
   * [CORS](拓展/CORS.md)
   * css-in-js
     * [特点](拓展/css-in-js/特点.md)
@@ -204,7 +207,7 @@
     * [方法](拓展/编码规范/方法.md)
   * 跨域
     * [jsonp](拓展/跨域/jsonp.md)
-* 框架
+,* 框架
   * 微前端
     * [Garfish](框架/微前端/Garfish.md)
     * [icestark](框架/微前端/icestark.md)
@@ -215,7 +218,7 @@
     * [sockjs-node](框架/错误/sockjs-node.md)
   * [问题](框架/问题/index.md)
     * [home](框架/问题/index.md)
-* 浏览器
+,* 浏览器
   * [Date](浏览器/Date.md)
   * [favicon](浏览器/favicon.md)
   * [meta](浏览器/meta.md)
@@ -260,11 +263,11 @@
     * [http缓存](浏览器/缓存/http缓存.md)
     * [web缓存](浏览器/缓存/web缓存.md)
   * [调试](浏览器/调试.md)
-* 问题
+,* 问题
   * [内存](问题/内存.md)
   * [同步和异步](问题/同步和异步.md)
   * [闭包](问题/闭包.md)
-* 项目搭建
+,* 项目搭建
   * [esbuild](项目搭建/esbuild/index.md)
     * [home](项目搭建/esbuild/index.md)
   * [Gulp](项目搭建/Gulp/index.md)

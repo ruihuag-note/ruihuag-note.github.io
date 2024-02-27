@@ -2,7 +2,7 @@ const fs = require('fs')
 const { toArray, isDir } = require('./util')
 
 // 通过模板生成对应模块的入口文件index.html
-const map = {}
+// const map = {}
 function write(path, index = 0, lv = 0) {
   const indexSpaces = new Array(index).fill('  ').join('')
   const dirs = toArray(fs.readdirSync(path, 'utf-8'))
@@ -20,12 +20,16 @@ function write(path, index = 0, lv = 0) {
                 `__ruihuag__website__${item}__`
               )
           )
-          const data = write(path + item, 0, 1)
+          const data = write(path + item, 0, 1) || ''
+          // if (!item || typeof data !== 'string') {
+          if (!item) {
+            return
+          }
           // console.log(path, item, data)
-          map[item] = data
+          // map[item] = data
           fs.writeFileSync(
             `./${item}/_sidebar.md`,
-            data.replaceAll(`](${item}/`, '](')
+            data.toString().replaceAll(`](${item}/`, '](')
           )
         } catch (error) {
           console.error(error)
@@ -64,4 +68,4 @@ function write(path, index = 0, lv = 0) {
 
 write('./', 0)
 
-console.log(map)
+// console.log(map)
