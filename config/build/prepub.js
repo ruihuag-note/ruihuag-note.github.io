@@ -6,8 +6,7 @@ const errorCallback = (error, stdout, stderr) => {
   }
   console.log(`命令输出: ${stdout}`)
 }
-console.log('Running lv1 before...')
-exec('node config/build/build-sidebar-lv1.js', errorCallback)
+console.log('Running Version before...')
+exec('node config/build/update-version.js', errorCallback)
 
-console.log('Running lv2 before...')
-exec('node config/build/build-sidebar-lv2.js', errorCallback)
+

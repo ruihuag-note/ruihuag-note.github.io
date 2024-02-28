@@ -1,6 +1,6 @@
 {
   "name": "ruihuag-note",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "note",
   "author": "ruihuag",
   "main": "/",
@@ -13,6 +13,8 @@
     "docs2": "bash ./config/script/push.bat",
     "presave": "node config/build/presave.js",
     "save": ".\\config\\script\\push.bat",
+    "version": "node config/build/update-version.js",
+    "prepub": "node config/build/update-version.js",
     "build": "node config/build/build-sidebar-lv2.js",
     "lv2": "node config/build/build-sidebar-lv2.js",
     "lv1": "node config/build/build-sidebar-lv1.js",
