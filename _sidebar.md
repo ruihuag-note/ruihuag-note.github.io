@@ -38,7 +38,9 @@
     * [媒体监听](/CSS/at-rules/媒体监听.md)
   * attribute
     * [animation](/CSS/attribute/animation.md)
-    * [background](/CSS/attribute/background.md)
+    * background
+      * [background-clip](/CSS/attribute/background/background-clip.md)
+      * [background](/CSS/attribute/background/background.md)
     * [box-shadow](/CSS/attribute/box-shadow.md)
     * [contain](/CSS/attribute/contain.md)
     * [content-visibility](/CSS/attribute/content-visibility.md)

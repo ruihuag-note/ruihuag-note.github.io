@@ -9,7 +9,9 @@
   * [媒体监听](at-rules/媒体监听.md)
 ,* attribute
   * [animation](attribute/animation.md)
-  * [background](attribute/background.md)
+  * background
+    * [background-clip](attribute/background/background-clip.md)
+    * [background](attribute/background/background.md)
   * [box-shadow](attribute/box-shadow.md)
   * [contain](attribute/contain.md)
   * [content-visibility](attribute/content-visibility.md)

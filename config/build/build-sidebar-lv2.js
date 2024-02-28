@@ -65,7 +65,7 @@ function write(path, index = 0, lv = 0) {
   // return dirs.join('')
   return dirs
 }
-
+console.log('lv2 running start...')
 write('./', 0)
-
+console.log('lv2 running end...')
 // console.log(map)
