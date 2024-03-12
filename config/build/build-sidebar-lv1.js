@@ -67,6 +67,7 @@ function genJSON2(path, index = 0) {
   return record
 }
 
+console.log('lv1 running start...')
 const res = write('./', 0)
 
 fs.writeFileSync('./_sidebar.md', res)
@@ -85,4 +86,5 @@ const data2 = {
   path: genJSON2('./', 0)
 }
 fs.writeFileSync('./sidebar.all.json', JSON.stringify(data2))
+console.log('lv1 running end...')
 // fs.writeFileSync('./sidebar.all.json', JSON.stringify(data2, null, 2))

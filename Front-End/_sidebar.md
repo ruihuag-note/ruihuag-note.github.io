@@ -31,28 +31,6 @@
   * 全屏
     * [react-flip-toolkit](Package/全屏/react-flip-toolkit.md)
   * [兼容性](Package/兼容性.md)
-  * 可视化
-    * [cesium](Package/可视化/cesium.md)
-    * [D3](Package/可视化/D3.md)
-    * [echart](Package/可视化/echart/index.md)
-      * [home](Package/可视化/echart/index.md)
-    * [HighEchart](Package/可视化/HighEchart.md)
-    * threejs
-      * API
-        * [PerspectiveCamera](Package/可视化/threejs/API/PerspectiveCamera.md)
-        * [WebGLRenderer](Package/可视化/threejs/API/WebGLRenderer.md)
-        * 几何体
-          * [BoxGeometry](Package/可视化/threejs/API/几何体/BoxGeometry.md)
-          * [CircleGeometry](Package/可视化/threejs/API/几何体/CircleGeometry.md)
-          * [DodecahedronGeometry](Package/可视化/threejs/API/几何体/DodecahedronGeometry.md)
-        * 材质
-          * [LineBasicMaterial](Package/可视化/threejs/API/材质/LineBasicMaterial.md)
-          * [LineDashedMaterial](Package/可视化/threejs/API/材质/LineDashedMaterial.md)
-          * [MeshMatcapMaterial](Package/可视化/threejs/API/材质/MeshMatcapMaterial.md)
-        * 渲染器
-          * [CSS3DRenderer](Package/可视化/threejs/API/渲染器/CSS3DRenderer.md)
-      * [three](Package/可视化/threejs/three.md)
-      * [threejs](Package/可视化/threejs/threejs.md)
   * [国际化](Package/国际化.md)
   * 工具包
     * jquery
@@ -155,6 +133,31 @@
       * [config](包管理器/package/脚本配置/config.md)
       * [script](包管理器/package/脚本配置/script.md)
   * [使用script命令触发bat命令](包管理器/使用script命令触发bat命令.md)
+* 可视化
+  * [cesium](可视化/cesium.md)
+  * [D3](可视化/D3.md)
+  * echart
+    * [echart](可视化/echart/echart.md)
+    * error
+      * [图表刷新](可视化/echart/error/图表刷新.md)
+      * [多条折线数据错乱](可视化/echart/error/多条折线数据错乱.md)
+  * [HighEchart](可视化/HighEchart.md)
+  * threejs
+    * API
+      * [PerspectiveCamera](可视化/threejs/API/PerspectiveCamera.md)
+      * [WebGLRenderer](可视化/threejs/API/WebGLRenderer.md)
+      * 几何体
+        * [BoxGeometry](可视化/threejs/API/几何体/BoxGeometry.md)
+        * [CircleGeometry](可视化/threejs/API/几何体/CircleGeometry.md)
+        * [DodecahedronGeometry](可视化/threejs/API/几何体/DodecahedronGeometry.md)
+      * 材质
+        * [LineBasicMaterial](可视化/threejs/API/材质/LineBasicMaterial.md)
+        * [LineDashedMaterial](可视化/threejs/API/材质/LineDashedMaterial.md)
+        * [MeshMatcapMaterial](可视化/threejs/API/材质/MeshMatcapMaterial.md)
+      * 渲染器
+        * [CSS3DRenderer](可视化/threejs/API/渲染器/CSS3DRenderer.md)
+    * [three](可视化/threejs/three.md)
+    * [threejs](可视化/threejs/threejs.md)
 * 多端
   * [Electron](多端/Electron/index.md)
     * [home](多端/Electron/index.md)
