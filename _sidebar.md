@@ -827,6 +827,7 @@
     * 错误
       * [index](/Tool/git/错误/index.md)
       * [timeout](/Tool/git/错误/timeout.md)
+      * [未能对 git remote 进行身份验证](/Tool/git/错误/未能对 git remote 进行身份验证.md)
   * [idea](/Tool/idea.md)
   * PC
     * PC相关技术
