@@ -1,9 +1,9 @@
 * C语言
   * C++
     * [C++basic](C语言/C++/C++basic.md)
-,* [GoLang](GoLang/index.md)
+* [GoLang](GoLang/index.md)
   * [home](GoLang/index.md)
-,* Java
+* Java
   * [java-basis](Java/java-basis.md)
   * [java-Collection](Java/java-Collection.md)
   * [java-expand](Java/java-expand.md)
@@ -11,7 +11,7 @@
     * [lambda](Java/java8/lambda.md)
   * [VO_DTO_Entity](Java/VO_DTO_Entity.md)
   * [线程](Java/线程.md)
-,* Spring
+* Spring
   * [maven](Spring/maven.md)
   * question
     * [ssm跨域](Spring/question/ssm跨域.md)

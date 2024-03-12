@@ -1,12 +1,12 @@
 * [autohotkey](autohotkey/index.md)
   * [autohotkey-config](autohotkey/autohotkey-config.md)
   * [home](autohotkey/index.md)
-,* bat
+* bat
   * [bat](bat/bat.md)
   * [bat_script](bat/bat_script.md)
-,* [eclipse](eclipse/index.md)
+* [eclipse](eclipse/index.md)
   * [home](eclipse/index.md)
-,* git
+* git
   * [gitee](git/gitee.md)
   * [github](git/github.md)
   * [type](git/type.md)
@@ -30,8 +30,8 @@
     * [home](git/错误/index.md)
     * [timeout](git/错误/timeout.md)
     * [未能对 git remote 进行身份验证](git/错误/未能对 git remote 进行身份验证.md)
-,* [idea](idea.md)
-,* PC
+* [idea](idea.md)
+* PC
   * PC相关技术
     * [host](PC/PC相关技术/host.md)
     * [search-tips](PC/PC相关技术/search-tips.md)
@@ -40,16 +40,16 @@
     * [端口号占用处理](PC/PC相关技术/端口号占用处理.md)
   * [文件右键](PC/文件右键.md)
   * 脚本
-,* [ps](ps.md)
-,* [ssl](ssl.md)
-,* svn
+* [ps](ps.md)
+* [ssl](ssl.md)
+* svn
   * [svn](svn/svn.md)
-,* vim
+* vim
   * [nvim](vim/nvim.md)
   * [space-vim](vim/space-vim.md)
   * [vim-plug](vim/vim-plug.md)
   * [vim](vim/vim.md)
-,* [vscode](vscode/index.md)
+* [vscode](vscode/index.md)
   * api
     * [主题颜色](vscode/api/主题颜色.md)
   * [emmet](vscode/emmet.md)
@@ -63,4 +63,4 @@
   * [格式化配置文件](vscode/格式化配置文件.md)
   * [正则替换](vscode/正则替换.md)
   * [配置参数](vscode/配置参数.md)
-,* [windows_Terminal](windows_Terminal.md)
+* [windows_Terminal](windows_Terminal.md)

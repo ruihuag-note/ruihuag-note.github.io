@@ -29,7 +29,8 @@ function write(path, index = 0, lv = 0) {
           // map[item] = data
           fs.writeFileSync(
             `./${item}/_sidebar.md`,
-            data.toString().replaceAll(`](${item}/`, '](')
+            (Array.isArray(data) ? data.join('') : data).replaceAll(`](${item}/`, '](')
+            // data.toString().replaceAll(`](${item}/`, '](')
           )
         } catch (error) {
           console.error(error)
