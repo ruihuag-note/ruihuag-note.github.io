@@ -60,7 +60,7 @@ Java(Quartz)
 | Hours | 是 | 0–23 | `*,-`  |
 | Day of month | 是 | 1–31 | `*,-?LW` | `?LW` 只有部分软件实现了 |
 | Month | 是 | 1–12 or JAN–DEC | `*,-`  |
-| Day of week | 是 | 0–7 or SUN–SAT | `*,-?L#` | `?L#`只有部分软件实现<br/> Linux和Spring的允许值为0 -7，0和7为周日 <br/> Quartz的允许值为1 -7，1为周日
+| Day of week | 是 | 0–7 or SUN–SAT | `*,-?L#` | `?L#`只有部分软件实现<br/> Linux和Spring的允许值为0-7，0和7为周日 <br/> Quartz的允许值为1-7，1为周日
 | Year | 否 |  1970–2099 | `*,-` | 标准实现不支持此字段。 |
 
 ## 标准字段
