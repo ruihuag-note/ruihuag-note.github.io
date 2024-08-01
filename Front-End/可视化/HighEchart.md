@@ -117,9 +117,11 @@ title: {
 
 ### 去掉图例
 
-   legend: {
-            enabled: false
-        }
+```js
+legend: {
+  enabled: false
+}
+```
 
 ### highcharts改变y轴刻度的单位
 
