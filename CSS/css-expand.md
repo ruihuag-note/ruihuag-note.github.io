@@ -10,56 +10,6 @@
 >
 > 2. 无视事件：pointer-events: none 。
 
-## 修改滚动条样式
-
-demo
-
-```css
-/*滚动条的宽度*/
-
-    ::-webkit-scrollbar {
-        width:9px;
-        height:9px;
-    }
-
-/*外层轨道。可以用display:none让其不显示，也可以添加背景图片，颜色改变显示效果*/
-
-    ::-webkit-scrollbar-track {
-        width: 6px;
-        background-color:#0d1b20;
-        -webkit-border-radius: 2em;
-        -moz-border-radius: 2em;
-        border-radius:2em;
-    }
-
-/*滚动条的设置*/
-
-    ::-webkit-scrollbar-thumb {
-        background-color:#606d71;
-        background-clip:padding-box;
-        min-height:28px;
-        -webkit-border-radius: 2em;
-        -moz-border-radius: 2em;
-        border-radius:2em;
-    }
-/*滚动条移上去的背景*/
-
-    ::-webkit-scrollbar-thumb:hover {
-         background-color:#fff;
-    }
-
-```
-
-```css
-::-webkit-scrollbar 滚动条整体部分，其中的属性有width,height,background,border（就和一个块级元素一样）等。
-::-webkit-scrollbar-button 滚动条两端的按钮。可以用display:none让其不显示，也可以添加背景图片，颜色改变显示效果。
-::-webkit-scrollbar-track 外层轨道。可以用display:none让其不显示，也可以添加背景图片，颜色改变显示效果。
-::-webkit-scrollbar-track-piece 内层轨道，滚动条中间部分（除去）。
-::-webkit-scrollbar-thumb 滚动条里面可以拖动的那部分
-::-webkit-scrollbar-corner 边角
-::-webkit-resizer 定义右下角拖动块的样式
-```
-
 ## 清除浮动
 
 > - 1  非父元素设置高度         但这种情况 有些时候不能精确的计算出父元所需要的高度

@@ -40,8 +40,7 @@
 
 这种方法兼容性也很好，缺点是需要知道子元素的宽高
 
-```html
-<style type="text/css">
+```css
   .out{
     position: relative;
     width: 300px;
@@ -60,15 +59,13 @@
     bottom: 0;
     margin: auto;
   }
-</style>
 ```
 
 #### absolute + calc
 
 这种方法的兼容性依赖于 calc，且也需要知道宽高
 
-```html
-<style type="text/css">
+```css
   .out{
     position: relative;
     width: 300px;
@@ -82,9 +79,8 @@
     height: 100px;
     background: yellow;
     left: calc(50% - 50px);
-    top: calc(50% - 50px);
+       top: calc(50% - 50px);
   }
-</style>
 ```
 
 #### absolute + transform
@@ -198,49 +194,6 @@ grid 布局也很强大，大体上属性跟 flex 差不多。
     justify-self: center;
   }
 </style>
-```
-
-## 多行文本实现移除显示省略号
-
-单行
-
-```css
-overflow:hidden;
-text-overflow: ellipsis;
-white-space: nowrap;
-```
-
-webkit浏览器或移动端的页面
-
-多行
-
-```css
-overflow : hidden;
-text-overflow: ellipsis;//显示省略号
-display: -webkit-box;//设置对象为弹性盒子模型显示
--webkit-line-clamp: 2;//限制一个块元素显示的文本的行数
--webkit-box-orient: vertical;//必须结合的属性,设置或检索伸缩和对象
-```
-
-跨浏览器兼容的方案
-
-```css
-p {
-    position:relative;
-    line-height:1.4em;
-    /* 3 times the line-height to show 3 lines */
-    height:4.2em;
-    overflow:hidden;
-}
-p::after {
-    content:"...";
-    font-weight:bold;
-    position:absolute;
-    bottom:0;
-    right:0;
-    padding:0 20px 1px 45px;
-    background:url(/newimg88/2014/09/ellipsis_bg.png) repeat-y;
-}
 ```
 
 ## 更改有序列表的样式

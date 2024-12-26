@@ -3,9 +3,6 @@
 > `<template>` 和 `<slot>` 元素创建一个可以用来灵活填充 Web组件的 shadow DOM 的模板。
 
 ```html
-<link rel="stylesheet" href="../../config/css/test-body.css">
-<script src="../../config/js/addWindowSize.js" defer></script>
-
 <style>
  dl {
   margin-left: 6px;
@@ -125,4 +122,4 @@
 </element-details>
 ```
 
-![](/__assets__/img/2022-01-10-17-09-40.png)
+![](./.assets/2022-01-10-17-09-40.png)
