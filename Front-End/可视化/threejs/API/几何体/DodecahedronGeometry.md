@@ -4,8 +4,6 @@
 
 <iframe id="scene" src="https://threejs.org/docs/scenes/geometry-browser.html#DodecahedronGeometry" style="width: 880px; height: 420px; border: 0px; color: rgb(187, 187, 187); font-family: Inter, sans-serif; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"></iframe>
 
-
-
 ## 构造器
 
 ### DodecahedronGeometry(radius : Float, detail : Integer)

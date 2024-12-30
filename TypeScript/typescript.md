@@ -39,7 +39,7 @@ tsc --init //创建tsconfig.js文件
 ```ts
 // hello.ts
 function greet(person: string) {
-  return person;
+  return person
 }
 console.log(greet('ts'))
 ```
@@ -51,31 +51,31 @@ tsc hello.ts
 ```
 
 ```js
-"use strcit"
+'use strcit'
 function greet(persion) {
- return persion;
-} 
+  return persion
+}
 console.log(greet('ts'))
 ```
 
 ## 基本数据类型
 
-| 数据类型           | 栗子                                                         |
-| ------------------ | ------------------------------------------------------------ |
-| 布尔值boolean      | `let isDone: boolean = false`                                |
-| 数字number         | `let myNumber: number = 6 [十] | 0xf00d [十六] |0b1010 [二]| 0o744 [八]` |
-| 字符串string       | let name: string = "hua" ; <br/>let fullName = \`  rui ${name} \` ;  <br/>let sen: string = "guan"+( number + 1) +"hua" |
-| 数组(Array)        | let list: number[] = [1, 2, 3]; <br/>let list: Array<number> = [1, 2, 3]; |
-| 元组<br>[Tuple]    | let x: [string, number] ;<br/>x= ['hello', 10];<br>x[2] = 2; |
-| 枚举</br>[enum]    | enum Color { Red[ =1( 不赋值就会在0开始)], Green, Blue }<br>let c: Color = Color.Green;<br>取值: c[1], c.Red |
-| 任意值any          | let notSure : any = 4;//可以避开类型检查器<br>let list: any[] = [1, true, "free" ]<br>//类型的顶级类型 |
-| 空值null/void      | function fn() : void{}<br>只能复制null和defined              |
-| Null<br/>Unfefined | let u: undefined = undefined;<br>let n: null = null;         |
+| 数据类型           | 栗子                                                                                                                                                                                                                                                         |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------- | ----------- | ----------- |
+| 布尔值boolean      | `let isDone: boolean = false`                                                                                                                                                                                                                                |
+| 数字number         | `let myNumber: number = 6 [十]                                                                                                                                                                                                                               | 0xf00d [十六] | 0b1010 [二] | 0o744 [八]` |
+| 字符串string       | let name: string = "hua" ; <br/>let fullName = \` rui ${name} \` ; <br/>let sen: string = "guan"+( number + 1) +"hua"                                                                                                                                        |
+| 数组(Array)        | let list: number[] = [1, 2, 3]; <br/>let list: Array<number> = [1, 2, 3];                                                                                                                                                                                    |
+| 元组<br>[Tuple]    | let x: [string, number] ;<br/>x= ['hello', 10];<br>x[2] = 2;                                                                                                                                                                                                 |
+| 枚举</br>[enum]    | enum Color { Red[ =1( 不赋值就会在0开始)], Green, Blue }<br>let c: Color = Color.Green;<br>取值: c[1], c.Red                                                                                                                                                 |
+| 任意值any          | let notSure : any = 4;//可以避开类型检查器<br>let list: any[] = [1, true, "free" ]<br>//类型的顶级类型                                                                                                                                                       |
+| 空值null/void      | function fn() : void{}<br>只能复制null和defined                                                                                                                                                                                                              |
+| Null<br/>Unfefined | let u: undefined = undefined;<br>let n: null = null;                                                                                                                                                                                                         |
 | Never              | 是任何类型的子类型, 也可以赋值给任何类型, 即使any也不可以给never赋值<br>function error(message: string): never { throw new Error(message);}<br>function fail(): never { return error("Something failed");<br>function infiniteLoop(): never { while(true){}} |
-| 类型断言           | let someValue: any = "this is s string";<br>let strLength: number = (someValue as string).length<br>let strLength: number = (<string> someValue>)length |
-| Symbol             | const sym = Symbol();<br>let obj = { [sym]: 'ts' }           |
-|Unknown|和any类似<br>let value: any;|
-|||
+| 类型断言           | let someValue: any = "this is s string";<br>let strLength: number = (someValue as string).length<br>let strLength: number = (<string> someValue>)length                                                                                                      |
+| Symbol             | const sym = Symbol();<br>let obj = { [sym]: 'ts' }                                                                                                                                                                                                           |
+| Unknown            | 和any类似<br>let value: any;                                                                                                                                                                                                                                 |
+|                    |                                                                                                                                                                                                                                                              |
 
 ### object, Object & {}
 
@@ -84,18 +84,18 @@ console.log(greet('ts'))
 ```ts
 // node_modules/typescript/lib/lib.es5.d.ts
 interface ObjectConstructor {
-  create(o: object | null): any;
+  create(o: object | null): any
   // ...
 }
 
-const proto = {};
+const proto = {}
 
-Object.create(proto);     // OK
-Object.create(null);      // OK
-Object.create(undefined); // Error
-Object.create(1337);      // Error
-Object.create(true);      // Error
-Object.create("oops");    // Error
+Object.create(proto) // OK
+Object.create(null) // OK
+Object.create(undefined) // Error
+Object.create(1337) // Error
+Object.create(true) // Error
+Object.create('oops') // Error
 ```
 
 #### Object
@@ -105,13 +105,13 @@ Oject接口定义了Object.prototype原型对象
 ```ts
 // node_modules/typescript/lib/lib.es5.d.ts
 interface Object {
-  constructor: Function;
-  toString(): string;
-  toLocaleString(): string;
-  valueOf(): Object;
-  hasOwnProperty(v: PropertyKey): boolean;
-  isPrototypeOf(v: Object): boolean;
-  propertyIsEnumerable(v: PropertyKey): boolean;
+  constructor: Function
+  toString(): string
+  toLocaleString(): string
+  valueOf(): Object
+  hasOwnProperty(v: PropertyKey): boolean
+  isPrototypeOf(v: Object): boolean
+  propertyIsEnumerable(v: PropertyKey): boolean
 }
 ```
 
@@ -120,13 +120,13 @@ ObjectConstrucotor接口定义了Object类的属性
 ```ts
 // node_modules/typescript/lib/lib.es5.d.ts
 interface Object {
-  constructor: Function;
-  toString(): string;
-  toLocaleString(): string;
-  valueOf(): Object;
-  hasOwnProperty(v: PropertyKey): boolean;
-  isPrototypeOf(v: Object): boolean;
-  propertyIsEnumerable(v: PropertyKey): boolean;
+  constructor: Function
+  toString(): string
+  toLocaleString(): string
+  valueOf(): Object
+  hasOwnProperty(v: PropertyKey): boolean
+  isPrototypeOf(v: Object): boolean
+  propertyIsEnumerable(v: PropertyKey): boolean
 }
 ```
 
@@ -136,8 +136,8 @@ interface Object {
 // Type {}
 const obj = {}
 
-obj.prop = '123';// Error: Property 'prop' does not exist on type '{}'
-obj.toString();// "[object object]"
+obj.prop = '123' // Error: Property 'prop' does not exist on type '{}'
+obj.toString() // "[object object]"
 ```
 
 ## 类型守卫
@@ -148,24 +148,24 @@ obj.toString();// "[object object]"
 
 ```ts
 interface Admin {
-  name: string;
-  privileges: string[];
+  name: string
+  privileges: string[]
 }
 
 interface Employee {
-  name: string;
-  startDate: Date;
+  name: string
+  startDate: Date
 }
 
-type UnknownEmployee = Employee | Admin;
+type UnknownEmployee = Employee | Admin
 
 function printEmployeeInformation(emp: UnknownEmployee) {
-  console.log("Name: " + emp.name);
-  if ("privileges" in emp) {
-    console.log("Privileges: " + emp.privileges);
+  console.log('Name: ' + emp.name)
+  if ('privileges' in emp) {
+    console.log('Privileges: ' + emp.privileges)
   }
-  if ("startDate" in emp) {
-    console.log("Start Date: " + emp.startDate);
+  if ('startDate' in emp) {
+    console.log('Start Date: ' + emp.startDate)
   }
 }
 ```
@@ -174,13 +174,13 @@ function printEmployeeInformation(emp: UnknownEmployee) {
 
 ```ts
 function padLeft(value: string, padding: string | number) {
-  if (typeof padding === "number") {
-      return Array(padding + 1).join(" ") + value;
+  if (typeof padding === 'number') {
+    return Array(padding + 1).join(' ') + value
   }
-  if (typeof padding === "string") {
-      return padding + value;
+  if (typeof padding === 'string') {
+    return padding + value
   }
-  throw new Error(`Expected string or number, got '${padding}'.`);
+  throw new Error(`Expected string or number, got '${padding}'.`)
 }
 ```
 
@@ -188,24 +188,24 @@ function padLeft(value: string, padding: string | number) {
 
 ```ts
 interface Padder {
-  getPaddingString(): string;
+  getPaddingString(): string
 }
 
 class SpaceRepeatingPadder implements Padder {
   constructor(private numSpaces: number) {}
   getPaddingString() {
-    return Array(this.numSpaces + 1).join(" ");
+    return Array(this.numSpaces + 1).join(' ')
   }
 }
 
 class StringPadder implements Padder {
   constructor(private value: string) {}
   getPaddingString() {
-    return this.value;
+    return this.value
   }
 }
 
-let padder: Padder = new SpaceRepeatingPadder(6);
+let padder: Padder = new SpaceRepeatingPadder(6)
 
 if (padder instanceof SpaceRepeatingPadder) {
   // padder的类型收窄为 'SpaceRepeatingPadder'
@@ -216,11 +216,11 @@ if (padder instanceof SpaceRepeatingPadder) {
 
 ```ts
 function isNumber(x: any): x is number {
-  return typeof x === "number";
+  return typeof x === 'number'
 }
 
 function isString(x: any): x is string {
-  return typeof x === "string";
+  return typeof x === 'string'
 }
 ```
 
@@ -236,7 +236,7 @@ const sayHello = (name: string | undefined) => {
 };
 ```
 
- `name` 的类型是 `string | undefined` 意味着可以将 `string` 或 `undefined` 的值传递给`sayHello` 函数。
+`name` 的类型是 `string | undefined` 意味着可以将 `string` 或 `undefined` 的值传递给`sayHello` 函数。
 
 ```
 sayHello("semlinker");
@@ -253,29 +253,29 @@ type EventNames = 'click' | 'scroll' | 'mousemove';
 > 将多个类型合并成一个类型, 通过&运算符
 
 ```ts
-type PartialPointX = { x: number; };
-type Point = PartialPointX & { y: number; };
+type PartialPointX = { x: number }
+type Point = PartialPointX & { y: number }
 
 let point: Point = {
   x: 1,
-  y: 1
+  y: 1,
 }
 
 interface X {
-  c: string;
-  d: string;
+  c: string
+  d: string
 }
 
 interface Y {
-  c: number;
+  c: number
   e: string
 }
 
-type XY = X & Y;
-type YX = Y & X;
+type XY = X & Y
+type YX = Y & X
 
-let p: XY;
-let q: YX;
+let p: XY
+let q: YX
 // 这样子c的类型是never
 ```
 
@@ -285,7 +285,7 @@ let q: YX;
 
 ```ts
 function createUserId(name: string, id: number): string {
-  return name + id;
+  return name + id
 }
 ```
 
@@ -310,32 +310,32 @@ myBooks.forEach((title, idx, arr) => {
 ```ts
 // 可选参数
 function createUserId(name: string, id: number, age?: number): string {
-  return name + id;
+  return name + id
 }
 
 // 默认参数
 function createUserId(
-  name: string = "semlinker",
+  name: string = 'semlinker',
   id: number,
-  age?: number
+  age?: number,
 ): string {
-  return name + id;
+  return name + id
 }
 ```
 
 ### 函数重载
 
 ```ts
-function add(a: number, b: number): number;
-function add(a: string, b: string): string;
-function add(a: string, b: number): string;
-function add(a: number, b: string): string;
+function add(a: number, b: number): number
+function add(a: string, b: string): string
+function add(a: string, b: number): string
+function add(a: number, b: string): string
 function add(a: Combinable, b: Combinable) {
   // type Combinable = string | number;
   if (typeof a === 'string' || typeof b === 'string') {
-    return a.toString() + b.toString();
+    return a.toString() + b.toString()
   }
-  return a + b;
+  return a + b
 }
 ```
 
@@ -344,35 +344,40 @@ function add(a: Combinable, b: Combinable) {
 > 作用: 为这些类型命名和代码或第三方代码定义契约
 
 ```typescript
-function printLabel( labelledObj: { label: string }) {
+function printLabel(labelledObj: { label: string }) {
   console.log(labelledObj.label)
 }
-let myObj = { size: 10, label: "Size 10 Object" };
-printLabel(myObj);
+let myObj = { size: 10, label: 'Size 10 Object' }
+printLabel(myObj)
 ```
 
 ```typescript
-interface LavelledValue { label: string } 
-function printLabel( lavelledObj: LabelledValue ){
-  console.log(lavelledObj.label);
+interface LavelledValue {
+  label: string
 }
-let myObj = { size: 10, label: "Size 10 Object"};
-printLabel(myObj);
+function printLabel(lavelledObj: LabelledValue) {
+  console.log(lavelledObj.label)
+}
+let myObj = { size: 10, label: 'Size 10 Object' }
+printLabel(myObj)
 ```
 
 ```typescript
 //?表示可选属性
-interface SquareConfig { color?: string; width?: number; }
-function createSquare(config: SquareConfig): { color: string; area: numner} {
-  let newSquare = { color: "white", area: 100 };
-  if(config.color){
-    newSquare.color = config.color;
+interface SquareConfig {
+  color?: string
+  width?: number
+}
+function createSquare(config: SquareConfig): { color: string; area: numner } {
+  let newSquare = { color: 'white', area: 100 }
+  if (config.color) {
+    newSquare.color = config.color
   }
-  if(config.width){
-    newSquare.width = config.width * config.width;
+  if (config.width) {
+    newSquare.width = config.width * config.width
   }
 }
-let mySquare = createSquare({ color: "black"})
+let mySquare = createSquare({ color: 'black' })
 ```
 
 ```typescript
@@ -391,31 +396,37 @@ a = ro as number[];// 断言重写
 **Interface extends interface**
 
 ```ts
-interface PartialPointX { x: number; }
-interface Point extends PartialPointX { 
-  y: number; 
+interface PartialPointX {
+  x: number
+}
+interface Point extends PartialPointX {
+  y: number
 }
 ```
 
 **Type alias extends type alias**
 
 ```ts
-type PartialPointX = { x: number; };
-type Point = PartialPointX & { y: number; };
+type PartialPointX = { x: number }
+type Point = PartialPointX & { y: number }
 ```
 
 **Interface extends type alias**
 
 ```ts
-type PartialPointX = { x: number; };
-interface Point extends PartialPointX { y: number; }
+type PartialPointX = { x: number }
+interface Point extends PartialPointX {
+  y: number
+}
 ```
 
 **Type alias extends interface**
 
 ```ts
-interface PartialPointX { x: number; }
-type Point = PartialPointX & { y: number; };
+interface PartialPointX {
+  x: number
+}
+type Point = PartialPointX & { y: number }
 ```
 
 implements
@@ -424,32 +435,33 @@ implements
 
 ```ts
 interface Point {
-  x: number;
-  y: number;
+  x: number
+  y: number
 }
 
 class SomePoint implements Point {
-  x = 1;
-  y = 2;
+  x = 1
+  y = 2
 }
 
 type Point2 = {
-  x: number;
-  y: number;
-};
-
-class SomePoint2 implements Point2 {
-  x = 1;
-  y = 2;
+  x: number
+  y: number
 }
 
-type PartialPoint = { x: number; } | { y: number; };
+class SomePoint2 implements Point2 {
+  x = 1
+  y = 2
+}
 
-// A class can only implement an object type or 
+type PartialPoint = { x: number } | { y: number }
+
+// A class can only implement an object type or
 // intersection of object types with statically known members.
-class SomePartialPoint implements PartialPoint { // Error
-  x = 1;
-  y = 2;
+class SomePartialPoint implements PartialPoint {
+  // Error
+  x = 1
+  y = 2
 }
 ```
 
@@ -460,51 +472,51 @@ class SomePartialPoint implements PartialPoint { // Error
 ```ts
 class Greeter {
   // 静态属性
-  static cname: string = "Greeter";
+  static cname: string = 'Greeter'
   // 成员属性
-  greeting: string;
+  greeting: string
 
   // 构造函数 - 执行初始化操作
   constructor(message: string) {
-    this.greeting = message;
+    this.greeting = message
   }
 
   // 静态方法
   static getClassName() {
-    return "Class name is Greeter";
+    return 'Class name is Greeter'
   }
 
   // 成员方法
   greet() {
-    return "Hello, " + this.greeting;
+    return 'Hello, ' + this.greeting
   }
 }
 
-let greeter = new Greeter("world");
+let greeter = new Greeter('world')
 ```
 
 编译成ES5代码
 
 ```ts
-"use strict";
+'use strict'
 var Greeter = /** @class */ (function () {
-    // 构造函数 - 执行初始化操作
-    function Greeter(message) {
-      this.greeting = message;
-    }
-    // 静态方法
-    Greeter.getClassName = function () {
-      return "Class name is Greeter";
-    };
-    // 成员方法
-    Greeter.prototype.greet = function () {
-      return "Hello, " + this.greeting;
-    };
-    // 静态属性
-    Greeter.cname = "Greeter";
-    return Greeter;
-}());
-var greeter = new Greeter("world");
+  // 构造函数 - 执行初始化操作
+  function Greeter(message) {
+    this.greeting = message
+  }
+  // 静态方法
+  Greeter.getClassName = function () {
+    return 'Class name is Greeter'
+  }
+  // 成员方法
+  Greeter.prototype.greet = function () {
+    return 'Hello, ' + this.greeting
+  }
+  // 静态属性
+  Greeter.cname = 'Greeter'
+  return Greeter
+})()
+var greeter = new Greeter('world')
 ```
 
 ### ECMAScript私有字段
@@ -516,20 +528,20 @@ var greeter = new Greeter("world");
 
 ```ts
 class Person {
-  #name: string;
+  #name: string
 
   constructor(name: string) {
-    this.#name = name;
+    this.#name = name
   }
 
   greet() {
-    console.log(`Hello, my name is ${this.#name}!`);
+    console.log(`Hello, my name is ${this.#name}!`)
   }
 }
 
-let semlinker = new Person("Semlinker");
+let semlinker = new Person('Semlinker')
 
-semlinker.#name;
+semlinker.#name
 //     ~~~~~
 // Property '#name' is not accessible outside class 'Person'
 // because it has a private identifier.
@@ -540,28 +552,28 @@ semlinker.#name;
 > 通过getter和setter方法来实现数据的封装和有效性检验, 防止出现异常数据
 
 ```ts
-let passcode = "Hello TypeScript";
+let passcode = 'Hello TypeScript'
 
 class Employee {
-  private _fullName: string;
+  private _fullName: string
 
   get fullName(): string {
-    return this._fullName;
+    return this._fullName
   }
 
   set fullName(newName: string) {
-    if (passcode && passcode == "Hello TypeScript") {
-      this._fullName = newName;
+    if (passcode && passcode == 'Hello TypeScript') {
+      this._fullName = newName
     } else {
-      console.log("Error: Unauthorized update of employee!");
+      console.log('Error: Unauthorized update of employee!')
     }
   }
 }
 
-let employee = new Employee();
-employee.fullName = "Semlinker";
+let employee = new Employee()
+employee.fullName = 'Semlinker'
 if (employee.fullName) {
-  console.log(employee.fullName);
+  console.log(employee.fullName)
 }
 ```
 
@@ -569,30 +581,30 @@ if (employee.fullName) {
 
 ```ts
 class Animal {
-  name: string;
-  
+  name: string
+
   constructor(theName: string) {
-    this.name = theName;
+    this.name = theName
   }
-  
+
   move(distanceInMeters: number = 0) {
-    console.log(`${this.name} moved ${distanceInMeters}m.`);
+    console.log(`${this.name} moved ${distanceInMeters}m.`)
   }
 }
 
 class Snake extends Animal {
   constructor(name: string) {
-    super(name); // 调用父类的构造函数
+    super(name) // 调用父类的构造函数
   }
-  
+
   move(distanceInMeters = 5) {
-    console.log("Slithering...");
-    super.move(distanceInMeters);
+    console.log('Slithering...')
+    super.move(distanceInMeters)
   }
 }
 
-let sam = new Snake("Sammy the Python");
-sam.move();
+let sam = new Snake('Sammy the Python')
+sam.move()
 ```
 
 ### 抽象类
@@ -603,27 +615,26 @@ sam.move();
 
 ```ts
 abstract class Person {
-  constructor(public name: string){}
- // 抽象方法
-  abstract say(words: string) :void;
+  constructor(public name: string) {}
+  // 抽象方法
+  abstract say(words: string): void
 }
 
 // Cannot create an instance of an abstract class.(2511)
-const lolo = new Person(); // Error
+const lolo = new Person() // Error
 
 class Developer extends Person {
   constructor(name: string) {
-    super(name);
+    super(name)
   }
-  
+
   say(words: string): void {
-    console.log(`${this.name} says ${words}`);
+    console.log(`${this.name} says ${words}`)
   }
 }
 
-const lolo = new Developer("lolo");
-lolo.say("I love ts!"); // lolo says I love ts!
-
+const lolo = new Developer('lolo')
+lolo.say('I love ts!') // lolo says I love ts!
 ```
 
 ### 类方法重载
@@ -632,20 +643,20 @@ lolo.say("I love ts!"); // lolo says I love ts!
 
 ```ts
 class ProductService {
-    getProducts(): void;
-    getProducts(id: number): void;
-    getProducts(id?: number) {
-      if(typeof id === 'number') {
-          console.log(`获取id为 ${id} 的产品信息`);
-      } else {
-          console.log(`获取所有的产品信息`);
-      }  
+  getProducts(): void
+  getProducts(id: number): void
+  getProducts(id?: number) {
+    if (typeof id === 'number') {
+      console.log(`获取id为 ${id} 的产品信息`)
+    } else {
+      console.log(`获取所有的产品信息`)
     }
+  }
 }
 
-const productService = new ProductService();
-productService.getProducts(666); // 获取id为 666 的产品信息
-productService.getProducts(); // 获取所有的产品信息 
+const productService = new ProductService()
+productService.getProducts(666) // 获取id为 666 的产品信息
+productService.getProducts() // 获取所有的产品信息
 ```
 
 ## 泛型
@@ -654,12 +665,12 @@ productService.getProducts(); // 获取所有的产品信息
 > - 范类(Generics)是允许一个函数接受不同类型参数的一种模板
 
 ```ts
-function identity <T, U>(value: T, message: U) : T {
-  console.log(message);
-  return value;
+function identity<T, U>(value: T, message: U): T {
+  console.log(message)
+  return value
 }
 
-console.log(identity<Number, string>(68, "Semlinker"));
+console.log(identity<Number, string>(68, 'Semlinker'))
 ```
 
 ### 泛型工具类
@@ -670,18 +681,18 @@ console.log(identity<Number, string>(68, "Semlinker"));
 
 ```ts
 interface Person {
-  name: string;
-  age: number;
+  name: string
+  age: number
 }
 
-const sem: Person = { name: 'semlinker', age: 33 };
-type Sem= typeof sem; // -> Person
+const sem: Person = { name: 'semlinker', age: 33 }
+type Sem = typeof sem // -> Person
 
 function toArray(x: number): Array<number> {
-  return [x];
+  return [x]
 }
 
-type Func = typeof toArray; // -> (x: number) => number[]
+type Func = typeof toArray // -> (x: number) => number[]
 ```
 
 #### keyof
@@ -690,26 +701,25 @@ type Func = typeof toArray; // -> (x: number) => number[]
 
 ```ts
 interface Person {
-  name: string;
-  age: number;
+  name: string
+  age: number
 }
 
-type K1 = keyof Person; // "name" | "age"
-type K2 = keyof Person[]; // "length" | "toString" | "pop" | "push" | "concat" | "join" 
-type K3 = keyof { [x: string]: Person };  // string | number
+type K1 = keyof Person // "name" | "age"
+type K2 = keyof Person[] // "length" | "toString" | "pop" | "push" | "concat" | "join"
+type K3 = keyof { [x: string]: Person } // string | number
 ```
 
 ```ts
 interface StringArray {
   // 字符串索引 -> keyof StringArray => string | number
-  [index: string]: string; 
+  [index: string]: string
 }
 // 使用数字索引时, js在执行索引操作时, 会先把索引转换为字符串先
 
-
 interface StringArray1 {
   // 数字索引 -> keyof StringArray1 => number
-  [index: number]: string;
+  [index: number]: string
 }
 ```
 
@@ -718,9 +728,9 @@ interface StringArray1 {
 > 遍历枚举类型
 
 ```ts
-type Keys = "a"|"b"|"c"
+type Keys = 'a' | 'b' | 'c'
 
-type Obj =  {
+type Obj = {
   [p in Keys]: any
 } // -> { a: any, b: any, c: any }
 ```
@@ -730,9 +740,7 @@ type Obj =  {
 > 声明一个类型变量, 并且对它进行使用
 
 ```ts
-type ReturnType<T> = T extends (
-  ...args: any[]
-) => infer R ? R : any;
+type ReturnType<T> = T extends (...args: any[]) => infer R ? R : any
 // 声明一个变量类继承传入函数签名的返回值类型
 // 渠道函数的返回值, 方便之后使用
 ```
@@ -741,17 +749,16 @@ type ReturnType<T> = T extends (
 
 ```ts
 interface Lengthwise {
-  length: number;
+  length: number
 }
 
 function loggingIdentity<T extends Lengthwise>(arg: T): T {
-  console.log(arg.length);
-  return arg;
+  console.log(arg.length)
+  return arg
 }
 
-loggingIdentity(3);// Error, number doesn't have a .length property
-loggingIdentity({length: 10, value: 3});
-
+loggingIdentity(3) // Error, number doesn't have a .length property
+loggingIdentity({ length: 10, value: 3 })
 ```
 
 #### partial
@@ -765,10 +772,9 @@ loggingIdentity({length: 10, value: 3});
  * Make all properties in T optional
  */
 type Partial<T> = {
-  [P in keyof T]?: T[P];
-};
+  [P in keyof T]?: T[P]
+}
 // 通过keyof T拿到T所有属性名, 然后通过in 进行遍历, 将值赋给P, 最后通过T[P]取得相应的值, ? 使所有属性比那层可选属性
-
 ```
 
 ## 装饰类
@@ -806,55 +812,54 @@ compilerOptions 每个选项的详细说明如下：
 ```json
 {
   "compilerOptions": {
-
     /* 基本选项 */
-    "target": "es5",                       // 指定 ECMAScript 目标版本: 'ES3' (default), 'ES5', 'ES6'/'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'
-    "module": "commonjs",                  // 指定使用模块: 'commonjs', 'amd', 'system', 'umd' or 'es2015'
-    "lib": [],                             // 指定要包含在编译中的库文件
-    "allowJs": true,                       // 允许编译 javascript 文件
-    "checkJs": true,                       // 报告 javascript 文件中的错误
-    "jsx": "preserve",                     // 指定 jsx 代码的生成: 'preserve', 'react-native', or 'react'
-    "declaration": true,                   // 生成相应的 '.d.ts' 文件
-    "sourceMap": true,                     // 生成相应的 '.map' 文件
-    "outFile": "./",                       // 将输出文件合并为一个文件
-    "outDir": "./",                        // 指定输出目录
-    "rootDir": "./",                       // 用来控制输出目录结构 --outDir.
-    "removeComments": true,                // 删除编译后的所有的注释
-    "noEmit": true,                        // 不生成输出文件
-    "importHelpers": true,                 // 从 tslib 导入辅助工具函数
-    "isolatedModules": true,               // 将每个文件做为单独的模块 （与 'ts.transpileModule' 类似）.
+    "target": "es5", // 指定 ECMAScript 目标版本: 'ES3' (default), 'ES5', 'ES6'/'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'
+    "module": "commonjs", // 指定使用模块: 'commonjs', 'amd', 'system', 'umd' or 'es2015'
+    "lib": [], // 指定要包含在编译中的库文件
+    "allowJs": true, // 允许编译 javascript 文件
+    "checkJs": true, // 报告 javascript 文件中的错误
+    "jsx": "preserve", // 指定 jsx 代码的生成: 'preserve', 'react-native', or 'react'
+    "declaration": true, // 生成相应的 '.d.ts' 文件
+    "sourceMap": true, // 生成相应的 '.map' 文件
+    "outFile": "./", // 将输出文件合并为一个文件
+    "outDir": "./", // 指定输出目录
+    "rootDir": "./", // 用来控制输出目录结构 --outDir.
+    "removeComments": true, // 删除编译后的所有的注释
+    "noEmit": true, // 不生成输出文件
+    "importHelpers": true, // 从 tslib 导入辅助工具函数
+    "isolatedModules": true, // 将每个文件做为单独的模块 （与 'ts.transpileModule' 类似）.
 
     /* 严格的类型检查选项 */
-    "strict": true,                        // 启用所有严格类型检查选项
-    "noImplicitAny": true,                 // 在表达式和声明上有隐含的 any类型时报错
-    "strictNullChecks": true,              // 启用严格的 null 检查
-    "noImplicitThis": true,                // 当 this 表达式值为 any 类型的时候，生成一个错误
-    "alwaysStrict": true,                  // 以严格模式检查每个模块，并在每个文件里加入 'use strict'
+    "strict": true, // 启用所有严格类型检查选项
+    "noImplicitAny": true, // 在表达式和声明上有隐含的 any类型时报错
+    "strictNullChecks": true, // 启用严格的 null 检查
+    "noImplicitThis": true, // 当 this 表达式值为 any 类型的时候，生成一个错误
+    "alwaysStrict": true, // 以严格模式检查每个模块，并在每个文件里加入 'use strict'
 
     /* 额外的检查 */
-    "noUnusedLocals": true,                // 有未使用的变量时，抛出错误
-    "noUnusedParameters": true,            // 有未使用的参数时，抛出错误
-    "noImplicitReturns": true,             // 并不是所有函数里的代码都有返回值时，抛出错误
-    "noFallthroughCasesInSwitch": true,    // 报告 switch 语句的 fallthrough 错误。（即，不允许 switch 的 case 语句贯穿）
+    "noUnusedLocals": true, // 有未使用的变量时，抛出错误
+    "noUnusedParameters": true, // 有未使用的参数时，抛出错误
+    "noImplicitReturns": true, // 并不是所有函数里的代码都有返回值时，抛出错误
+    "noFallthroughCasesInSwitch": true, // 报告 switch 语句的 fallthrough 错误。（即，不允许 switch 的 case 语句贯穿）
 
     /* 模块解析选项 */
-    "moduleResolution": "node",            // 选择模块解析策略： 'node' (Node.js) or 'classic' (TypeScript pre-1.6)
-    "baseUrl": "./",                       // 用于解析非相对模块名称的基目录
-    "paths": {},                           // 模块名到基于 baseUrl 的路径映射的列表
-    "rootDirs": [],                        // 根文件夹列表，其组合内容表示项目运行时的结构内容
-    "typeRoots": [],                       // 包含类型声明的文件列表
-    "types": [],                           // 需要包含的类型声明文件名列表
-    "allowSyntheticDefaultImports": true,  // 允许从没有设置默认导出的模块中默认导入。
+    "moduleResolution": "node", // 选择模块解析策略： 'node' (Node.js) or 'classic' (TypeScript pre-1.6)
+    "baseUrl": "./", // 用于解析非相对模块名称的基目录
+    "paths": {}, // 模块名到基于 baseUrl 的路径映射的列表
+    "rootDirs": [], // 根文件夹列表，其组合内容表示项目运行时的结构内容
+    "typeRoots": [], // 包含类型声明的文件列表
+    "types": [], // 需要包含的类型声明文件名列表
+    "allowSyntheticDefaultImports": true, // 允许从没有设置默认导出的模块中默认导入。
 
     /* Source Map Options */
-    "sourceRoot": "./",                    // 指定调试器应该找到 TypeScript 文件而不是源文件的位置
-    "mapRoot": "./",                       // 指定调试器应该找到映射文件而不是生成文件的位置
-    "inlineSourceMap": true,               // 生成单个 soucemaps 文件，而不是将 sourcemaps 生成不同的文件
-    "inlineSources": true,                 // 将代码与 sourcemaps 生成到一个文件中，要求同时设置了 --inlineSourceMap 或 --sourceMap 属性
+    "sourceRoot": "./", // 指定调试器应该找到 TypeScript 文件而不是源文件的位置
+    "mapRoot": "./", // 指定调试器应该找到映射文件而不是生成文件的位置
+    "inlineSourceMap": true, // 生成单个 soucemaps 文件，而不是将 sourcemaps 生成不同的文件
+    "inlineSources": true, // 将代码与 sourcemaps 生成到一个文件中，要求同时设置了 --inlineSourceMap 或 --sourceMap 属性
 
     /* 其他选项 */
-    "experimentalDecorators": true,        // 启用装饰器
-    "emitDecoratorMetadata": true          // 为装饰器提供元数据的支持
+    "experimentalDecorators": true, // 启用装饰器
+    "emitDecoratorMetadata": true // 为装饰器提供元数据的支持
   }
 }
 ```
@@ -865,7 +870,7 @@ compilerOptions 每个选项的详细说明如下：
 
 [Schemats](https://github.com/SweetIQ/schemats) :基于sql数据库中的schema自动生成typescript接口定义
 
- [TypeScript AST Viewer](https://ts-ast-viewer.com/) : 在线工具, 查看指定ts代码对应的ast抽象数
+[TypeScript AST Viewer](https://ts-ast-viewer.com/) : 在线工具, 查看指定ts代码对应的ast抽象数
 
 [TypeDoc](https://typedoc.org/) : 将 TypeScript 源代码中的注释转换为 HTML 文档或 JSON 模型
 

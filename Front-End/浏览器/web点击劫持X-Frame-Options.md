@@ -17,39 +17,38 @@
 ```html
 <!DOCTYPE html>
 <html>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<head>
-<title>点击劫持 POC</title>
-<style>
-iframe {
-  width: 1440px;
-  height: 900px;
-  position: absolute;
-  top: -0px;
-  left: -0px;
-  z-index: 2;
-  -moz-opacity: 0;
-  opacity: 0;
-  filter: alpha(opacity=0);
-}
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <head>
+    <title>点击劫持 POC</title>
+    <style>
+      iframe {
+        width: 1440px;
+        height: 900px;
+        position: absolute;
+        top: -0px;
+        left: -0px;
+        z-index: 2;
+        -moz-opacity: 0;
+        opacity: 0;
+        filter: alpha(opacity=0);
+      }
 
-button {
-  position: absolute;
-  top: 270px;
-  left: 1150px;
-  z-index: 1;
-  width: 90px;
-  height:40px;
-}
-</style>
-</head>
-<body>
-  <button>美女图片</button>
-  <img src="http://pic1.win4000.com/wallpaper/2018-03-19/5aaf2bf0122d2.jpg">
-  <iframe src="http://i.youku.com/u/UMjA0NTg4Njcy" scrolling="no"></iframe>
-</body>
+      button {
+        position: absolute;
+        top: 270px;
+        left: 1150px;
+        z-index: 1;
+        width: 90px;
+        height: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <button>美女图片</button>
+    <img src="http://pic1.win4000.com/wallpaper/2018-03-19/5aaf2bf0122d2.jpg" />
+    <iframe src="http://i.youku.com/u/UMjA0NTg4Njcy" scrolling="no"></iframe>
+  </body>
 </html>
-
 ```
 
 当然真正的页面肯定会更精致一些，不会这么简陋。
@@ -105,7 +104,7 @@ add_header X-Frame-Options SAMEORIGIN;
 允许单个域名iframe嵌套
 
 ```bash
-add_header X-Frame-Options ALLOW-FROM http://whsir.com/; 
+add_header X-Frame-Options ALLOW-FROM http://whsir.com/;
 ```
 
 允许多个域名iframe嵌套，注意这里是用**逗号**分隔

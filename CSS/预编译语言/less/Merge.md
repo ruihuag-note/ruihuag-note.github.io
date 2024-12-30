@@ -14,7 +14,9 @@
 
 ```css
 .myclass {
-  box-shadow: inset 0 0 10px #555, 0 0 20px black;
+  box-shadow:
+    inset 0 0 10px #555,
+    0 0 20px black;
 }
 ```
 

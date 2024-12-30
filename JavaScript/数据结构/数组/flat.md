@@ -6,17 +6,17 @@
 
 ```js
 function flatten(arr) {
-  let result = [];
-  for(let i = 0; i < arr.length; i++) {
-    if(Array.isArray(arr[i])) {
-      result = result.concat(flatten(arr[i]));
-   continue;
+  let result = []
+  for (let i = 0; i < arr.length; i++) {
+    if (Array.isArray(arr[i])) {
+      result = result.concat(flatten(arr[i]))
+      continue
     }
-      result.push(arr[i]);
+    result.push(arr[i])
   }
-  return result;
+  return result
 }
-console.log(flatten([1, [2, [3, 4, 5]]]));  //  [1, 2, 3, 4，5]
+console.log(flatten([1, [2, [3, 4, 5]]])) //  [1, 2, 3, 4，5]
 ```
 
 ## reduce实现
@@ -26,27 +26,27 @@ console.log(flatten([1, [2, [3, 4, 5]]]));  //  [1, 2, 3, 4，5]
 
 ```js
 function flatten(arr) {
-    return arr.reduce(function(pre, cur){
-        return pre.concat(Array.isArray(cur) ? flatten(cur) : cur)
-    }, [])
+  return arr.reduce(function (pre, cur) {
+    return pre.concat(Array.isArray(cur) ? flatten(cur) : cur)
+  }, [])
 }
-console.log(flatten([1, [2, [3, 4]]]));//  [1, 2, 3, 4，5]
+console.log(flatten([1, [2, [3, 4]]])) //  [1, 2, 3, 4，5]
 ```
 
 > 使用reduce后，代码更加的简洁，reduce 的第一个参数用来返回最后累加的结果，第二个参数是当前遍历到的元素值，处理数组元素和非数组元素的思路和第一种方法是一样，最后再把处理后的结果拼接到累加的结果数组中返回即可。
 
 ## 扩展运算符实现
 
->扩展运算符是ES6的新特性之一，用它操作数组可以直接展开数组的第一层，利用这个特性，我们可以不使用递归来实现数组的展平，这是因为每一次递归都是对当前层次数组的一次展开，而扩展操作符就是干这工作的。
+> 扩展运算符是ES6的新特性之一，用它操作数组可以直接展开数组的第一层，利用这个特性，我们可以不使用递归来实现数组的展平，这是因为每一次递归都是对当前层次数组的一次展开，而扩展操作符就是干这工作的。
 
 ```js
 function flatten(arr) {
-    while (arr.some(i => Array.isArray(i))) {
-        arr = [].concat(...arr);
-    }
-    return arr;
+  while (arr.some((i) => Array.isArray(i))) {
+    arr = [].concat(...arr)
+  }
+  return arr
 }
-console.log(flatten([1, [2, [3, 4]]])); //  [1, 2, 3, 4，5]
+console.log(flatten([1, [2, [3, 4]]])) //  [1, 2, 3, 4，5]
 ```
 
 > 代码中使用了数组的另一个方法some，目的是判断当前数组是否还有数组元素，如果有则对数组进行一层展开，同时将展开结果作为下一次判断的条件，这样就像剥洋葱一样，一层层地剥开洋葱皮，当循环条件不满足时说明数组里已经没有数组元素了，这是数组已经完全扁平。
@@ -57,9 +57,12 @@ console.log(flatten([1, [2, [3, 4]]])); //  [1, 2, 3, 4，5]
 
 ```js
 function flatten(arr) {
-  return arr.toString().split(',').map(i=>Number(i));
+  return arr
+    .toString()
+    .split(',')
+    .map((i) => Number(i))
 }
-console.log(flatten([1, [2, [3, 4]]])); //  [1, 2, 3, 4]
+console.log(flatten([1, [2, [3, 4]]])) //  [1, 2, 3, 4]
 ```
 
 > - 不过需要注意的是，虽然这个方法非常简单，但具有一定的局限性，对于包含引用类型元素的数组来说，在toString过程中会发生类型转换，从而使得转换结果异常，因为对于引用类型转成字符串，会调用引用类型的toString，上面提到不同对象会对它进行改写，例如函数就会得到一个函数体的代码字符串，而不是我们想要的函数引用。
@@ -71,13 +74,13 @@ console.log(flatten([1, [2, [3, 4]]])); //  [1, 2, 3, 4]
 
 ```js
 function flatten(arr) {
-  let str = JSON.stringify(arr);
-  str = str.replace(/(\[|\])/g, '');
+  let str = JSON.stringify(arr)
+  str = str.replace(/(\[|\])/g, '')
   // 拼接最外层，变成JSON能解析的格式
-  str = '[' + str + ']';
-  return JSON.parse(str);
+  str = '[' + str + ']'
+  return JSON.parse(str)
 }
-console.log(flatten([1, [2, [3, [4, 5]]], 6])); //  [1, 2, 3, 4，5]
+console.log(flatten([1, [2, [3, [4, 5]]], 6])) //  [1, 2, 3, 4，5]
 ```
 
 > 同样，这种方式在处理引用数据类型上也有局限性，同时还要注意元素是否是JSON的合法数据类型。
@@ -87,11 +90,11 @@ console.log(flatten([1, [2, [3, [4, 5]]], 6])); //  [1, 2, 3, 4，5]
 > `Array.prototype.flat`是ES6新增的一个数组方法，它的作用就是用来数组扁平化，并且根据传入的参数来决定展开的层级，是数组扁平化的终极解决方案。
 
 ```js
-let arr = [1, [2, [3, 4]]];
+let arr = [1, [2, [3, 4]]]
 function flatten(arr) {
-  return arr.flat(Infinity);
+  return arr.flat(Infinity)
 }
-console.log(flatten(arr)); //  [1, 2, 3, 4，5]
+console.log(flatten(arr)) //  [1, 2, 3, 4，5]
 ```
 
 > 参数Infinity表示完全展开，使用起来非常方便、快捷。

@@ -17,9 +17,7 @@
 > 2. 通过脚手架创建项目
 >
 >    1. `mkdir [项目名] && cd [项目名]`
->
 >    2. `npm create umi`
->
 >    3. ```shell
 >       ? Select the boilerplate type (Use arrow keys)
 >         ant-design-pro  - Create project with an layout-only ant-design-pro boilerplate, use together with umi block.
@@ -28,11 +26,9 @@
 >         library         - Create a library with umi.
 >         plugin          - Create a umi plugin.
 >       ```
->
 >    4. ```shell
 >       ? Do you want to use typescript? (y / N)
 >       ```
->
 >    5. ```shell
 >       ? What functionality do you want to enable? (Press <space> to select, <a> to toggle all, <i> to invert selection)
 >       ❯◯ antd

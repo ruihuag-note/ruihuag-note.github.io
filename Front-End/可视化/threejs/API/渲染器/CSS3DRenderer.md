@@ -9,8 +9,6 @@ CSS3DRenderer用于通过CSS3的[transform](https://www.w3schools.com/cssref/css
 
 因此，CSS3DRenderer仅仅关注普通的DOM元素，这些元素被包含到了特殊的对象中（**CSS3DObject**或者**CSS3DSprite**），然后被加入到场景图中。
 
-
-
 ## 例子
 
 [molecules](https://threejs.org/examples/#css3d_molecules)

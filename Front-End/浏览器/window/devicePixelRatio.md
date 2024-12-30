@@ -2,9 +2,7 @@
 
 > - `Window` 接口的 `devicePixelRatio` 返回当前显示设备的物理像素分辨率与CSS 像素分辨率之比。
 > - 可解释为像素大小的比率：一个 CSS 像素的大小与一个物理像素的大小。简单来说，它告诉浏览器应使用多少屏幕实际像素来绘制单个 CSS 像素
->
 > - 当处理标准显示器与 HiDPI 或 Retina 显示器之间的差异时，这很有用，后者使用更多的屏幕像素绘制相同的对象，从而获得更清晰的图像
->
 > - 可以使用`window.matchMedia()` 检查`devicePixelRatio`的值是否发生更改（例如，如果用户将窗口拖动到带有 不同的像素密度）
 
 ```js
@@ -29,34 +27,34 @@ value = window.devicePixelRatio
 ```
 
 ```js
- var canvas = document.getElementById('canvas');
-var ctx = canvas.getContext('2d');
+var canvas = document.getElementById('canvas')
+var ctx = canvas.getContext('2d')
 
 // Set display size (css pixels).
-var size = 200;
-canvas.style.width = size + "px";
-canvas.style.height = size + "px";
+var size = 200
+canvas.style.width = size + 'px'
+canvas.style.height = size + 'px'
 
 // Set actual size in memory (scaled to account for extra pixel density).
-var scale = window.devicePixelRatio; // Change to 1 on retina screens to see blurry canvas.
-canvas.width = Math.floor(size *scale);
-canvas.height = Math.floor(size* scale);
+var scale = window.devicePixelRatio // Change to 1 on retina screens to see blurry canvas.
+canvas.width = Math.floor(size * scale)
+canvas.height = Math.floor(size * scale)
 
 // Normalize coordinate system to use css pixels.
-ctx.scale(scale, scale);
+ctx.scale(scale, scale)
 
-ctx.fillStyle = "#bada55";
-ctx.fillRect(10, 10, 300, 300);
-ctx.fillStyle = "#ffffff";
-ctx.font = '18px Arial';
-ctx.textAlign = 'center';
-ctx.textBaseline = 'middle';
+ctx.fillStyle = '#bada55'
+ctx.fillRect(10, 10, 300, 300)
+ctx.fillStyle = '#ffffff'
+ctx.font = '18px Arial'
+ctx.textAlign = 'center'
+ctx.textBaseline = 'middle'
 
-var x = size / 2;
-var y = size / 2;
+var x = size / 2
+var y = size / 2
 
-var textString = "I love MDN";
-ctx.fillText(textString, x, y);
+var textString = 'I love MDN'
+ctx.fillText(textString, x, y)
 ```
 
 ![](./__assets__/devicePixelRatio-2022-12-09-10-46-05.png)
@@ -68,16 +66,16 @@ ctx.fillText(textString, x, y);
 > JavaScript 代码创建媒体查询，以监控设备分辨率并在每次更改时检查`devicePixelRatio`的值
 
 ```js
-let pixelRatioBox = document.querySelector(".pixel-ratio");
-let mqString = `(resolution: ${window.devicePixelRatio}dppx)`;
+let pixelRatioBox = document.querySelector('.pixel-ratio')
+let mqString = `(resolution: ${window.devicePixelRatio}dppx)`
 
 const updatePixelRatio = () => {
-  let pr = window.devicePixelRatio;
-  let prString = (pr * 100).toFixed(0);
-  pixelRatioBox.innerText = `${prString}% (${pr.toFixed(2)})`;
+  let pr = window.devicePixelRatio
+  let prString = (pr * 100).toFixed(0)
+  pixelRatioBox.innerText = `${prString}% (${pr.toFixed(2)})`
 }
 
-updatePixelRatio();
+updatePixelRatio()
 
 matchMedia(mqString).addListener(updatePixelRatio)
 ```
@@ -93,18 +91,23 @@ matchMedia(mqString).addListener(updatePixelRatio)
 ```html
 <div class="container">
   <div class="inner-container">
-    <p>This example demonstrates the effect of zooming the page in
-       and out (or moving it to a screen with a different scaling
-       factor) on the value of the property <code>Window.devicePixelRatio</code>.
-       Try it and watch what happens!</p>
+    <p>
+      This example demonstrates the effect of zooming the page in and out (or
+      moving it to a screen with a different scaling factor) on the value of the
+      property
+      <code>Window.devicePixelRatio</code>
+      . Try it and watch what happens!
+    </p>
   </div>
-    <div class="pixel-ratio"></div>
+  <div class="pixel-ratio"></div>
 </div>
 ```
 
 ```css
 body {
-  font: 22px arial, sans-serif;
+  font:
+    22px arial,
+    sans-serif;
 }
 
 .container {
@@ -135,4 +138,5 @@ body {
 ```
 
 ![](./__assets__/devicePixelRatio-2022-12-09-10-52-02.png)
+
 > > `devicePixelRatio`=1 时候

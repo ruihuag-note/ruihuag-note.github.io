@@ -7,10 +7,10 @@ HTTP 是一个连接客户端，网关和服务器的一个协议。
 ## 7.2 特点
 
 支持客户/服务器模式：可以连接客户端和服务端；
- 简单快速：请求只需传送请求方法，路径和请求主体；
- 灵活：传输数据类型灵活；
- 无连接：请求结束立即断开；
- 无状态：无法记住上一次请求。
+简单快速：请求只需传送请求方法，路径和请求主体；
+灵活：传输数据类型灵活；
+无连接：请求结束立即断开；
+无状态：无法记住上一次请求。
 
 ## 7.3 怎么解决无状态和无连接
 
@@ -33,9 +33,9 @@ HTTP(S) 请求地址 → DNS 解析 → 三次握手 → 发送请求 → 四次
 ### 7.5.1 HTTP 0.9
 
 只允许客户端发送 GET 这一种请求；
- 且不支持请求头，协议只支持纯文本；
- 无状态性，每个访问独立处理，完成断开；
- 无状态码。
+且不支持请求头，协议只支持纯文本；
+无状态性，每个访问独立处理，完成断开；
+无状态码。
 
 ### 7.5.2 HTTP 1.0
 
@@ -46,12 +46,12 @@ HTTP(S) 请求地址 → DNS 解析 → 三次握手 → 发送请求 → 四次
 |属性名| 含义| |-|-|-| |Connection| 值 keep-alive 是长连接| |Content-Type| 返回文档类型,常见的值有 text/plain,text/html,text/json| |Date| 消息发送的时间| |Server| 服务器名字| |Last-Modified| 值为时间,s 返回的最后修改时间| |Expires| 缓存过期时间,b 和 s 时间做对比| 注意
 
 expires 是响应头内容，返回一个固定的时间,缺陷是时间到了服务器要重新设置;
- 请求头中如果有 If-Modified-Since，服务器会将时间与 last-modified 对比，相同返回 304;
- 响应对象以一个响应状态行开始;
- 响应对象不只限于超文本;
- 支持 GET、HEAD、POST 方法;
- 有状态码;
- 支持长连接（但默认还是使用短连接）、缓存机制以及身份认证。
+请求头中如果有 If-Modified-Since，服务器会将时间与 last-modified 对比，相同返回 304;
+响应对象以一个响应状态行开始;
+响应对象不只限于超文本;
+支持 GET、HEAD、POST 方法;
+有状态码;
+支持长连接（但默认还是使用短连接）、缓存机制以及身份认证。
 
 ### 7.5.3 HTTP 1.1
 
@@ -66,38 +66,36 @@ Cache-Control 的 max-age 返回是缓存的相对时间 Cache-Control 优先级
 ### 7.5.4 HTTP 2.0
 
 采用二进制格式传输;
- 多路复用，其实就是将请求数据分成帧乱序发送到 TCP 中。TCP 只能有一个 steam，所以还是会阻塞;
- 报头压缩;
- 服务器推送主动向 B 端发送静态资源，避免往返延迟。
+多路复用，其实就是将请求数据分成帧乱序发送到 TCP 中。TCP 只能有一个 steam，所以还是会阻塞;
+报头压缩;
+服务器推送主动向 B 端发送静态资源，避免往返延迟。
 
 ### 7.5.5 HTTP 3.0
 
-1.是基于 QUIC 协议，基于 UDP
- 2.特点:
- 自定义连接机制：TCP 以 IP/端口标识,变化重新连接握手，UDP 是一 64 位 ID 标识，是无连接；
- 自定义重传机制：TCP 使用序号和应答传输，QUIC 是使用递增序号传输； 无阻塞的多路复用：同一条 QUIC 可以创建多个 steam。
+1.是基于 QUIC 协议，基于 UDP 2.特点:
+自定义连接机制：TCP 以 IP/端口标识,变化重新连接握手，UDP 是一 64 位 ID 标识，是无连接；
+自定义重传机制：TCP 使用序号和应答传输，QUIC 是使用递增序号传输； 无阻塞的多路复用：同一条 QUIC 可以创建多个 steam。
 
 ### 7.5.6 HTTPS
 
-1.https 是在 http 协议的基础上加了个 SSL；
- 2.主要包括：握手(凭证交换和验证)和记录协议(数据进行加密)。
+1.https 是在 http 协议的基础上加了个 SSL；2.主要包括：握手(凭证交换和验证)和记录协议(数据进行加密)。
 
 ### 7.5.7 缓存
 
 1.按协议分：协议层缓存和非 http 协议缓存：
- 1.1协议层缓存：利用 http 协议头属性值设置；
- 1.2非协议层缓存：利用 meta 标签的 http-equiv 属性值 Expires,set-cookie。
+1.1协议层缓存：利用 http 协议头属性值设置；
+1.2非协议层缓存：利用 meta 标签的 http-equiv 属性值 Expires,set-cookie。
 
 2.按缓存分：强缓存和协商缓存：
- 2.1强缓存：利用 cache-control 和 expires 设置，直接返回一个过期时间，所以在缓存期间不请求，If-modify-since；
- 2.2协商缓存：响应头返回 etag 或 last-modified 的哈希值，第二次请求头 If-none-match 或 IF-modify-since 携带上次哈希值，一致则返回 304。
+2.1强缓存：利用 cache-control 和 expires 设置，直接返回一个过期时间，所以在缓存期间不请求，If-modify-since；
+2.2协商缓存：响应头返回 etag 或 last-modified 的哈希值，第二次请求头 If-none-match 或 IF-modify-since 携带上次哈希值，一致则返回 304。
 
 3.协商缓存对比： etag 优先级高于 last-modified；
- 4.etag 精度高，last-modified 精度是 s，1s 内 etag 修改多少次都会被记录； last-modified 性能好，etag 要得到 hash 值。
+4.etag 精度高，last-modified 精度是 s，1s 内 etag 修改多少次都会被记录； last-modified 性能好，etag 要得到 hash 值。
 
 5.浏览器读取缓存流程： 会先判断强缓存；再判断协商缓存 etag(last-modified)是否存在；
- 存在利用属性 If-None-match(If-Modified-since)携带值；
- 请求服务器,服务器对比 etag(last-modified)，生效返回 304。
+存在利用属性 If-None-match(If-Modified-since)携带值；
+请求服务器,服务器对比 etag(last-modified)，生效返回 304。
 
 F5 刷新会忽略强缓存不会忽略协商缓存，ctrl+f5 都失效
 

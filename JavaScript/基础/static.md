@@ -10,37 +10,36 @@
 > - 静态属性直接由类本身引用, 而不是他的对象实例
 
 ```js
-class Antzone{}
-Antzone.webName="grh";
-console.log(Antzone.webName);
+class Antzone {}
+Antzone.webName = 'grh'
+console.log(Antzone.webName)
 ```
 
 ## 静态方法
 
 > - 静态方法是由类或构造函数直接调用, 而不是对象实例
->
 > -
 
 ```js
 function Antzone() {
-  Antzone.show = function() {
+  Antzone.show = function () {
     console.log('grh')
   }
 }
-Antzone.show();
+Antzone.show()
 ```
 
 使用关键词static
 
 ```js
 class Antzone {
- static show() {
-  console.log('grh')
+  static show() {
+    console.log('grh')
   }
 }
-let ant = new Antzone();
+let ant = new Antzone()
 Antzone.show()
-ant.show();// 这里会报ant.show not a function
+ant.show() // 这里会报ant.show not a function
 ```
 
 > 1. 通过关键词static定义show()
@@ -51,34 +50,34 @@ ant.show();// 这里会报ant.show not a function
 
 ```js
 class Antzone {
- static show() {
-  console.log('grh')
+  static show() {
+    console.log('grh')
   }
   show() {
-   console.log('grh')
+    console.log('grh')
   }
 }
-let ant = new Antzone();
+let ant = new Antzone()
 Antzone.show()
-ant.show();
+ant.show()
 ```
 
 > 静态方法与实例化方法可以重名
 
 ```js
-class Antzone{
-  static show(){
+class Antzone {
+  static show() {
     this.done()
   }
-  static done(){
-    console.log("蚂蚁部落一");
+  static done() {
+    console.log('蚂蚁部落一')
   }
-  done(){
-    console.log("蚂蚁部落二");
+  done() {
+    console.log('蚂蚁部落二')
   }
 }
-let ant=new Antzone();
-Antzone.show();
+let ant = new Antzone()
+Antzone.show()
 ```
 
 > 1. 使用实例对象调用方法, 方法中的this指向此实例对象
@@ -88,17 +87,16 @@ Antzone.show();
 ## 静态属性 and 静态方法的继承
 
 > - extends 关键字 , 可以实现类之间的继承
->
 > - 可以继承父类的实例属性and 实例function, 静态属性and 静态方法也会被继承
 
 ```js
-class F{
+class F {
   static func() {
-  console.log('grh')
+    console.log('grh')
   }
-} 
+}
 F.address = '珠海'
-class C extends F{}
-C.func();
-console.log(C.address);
+class C extends F {}
+C.func()
+console.log(C.address)
 ```

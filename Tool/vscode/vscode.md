@@ -8,19 +8,19 @@
 
 ```json
 {
-    // 使用 IntelliSense 了解相关属性。 
-    // 悬停以查看现有属性的描述。
-    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "chrome",
-            "request": "launch",
-            "name": "Launch Chrome against localhost",
-            "url": "http://localhost:3000",
-            "webRoot": "${workspaceRoot}"
-        }
-    ]
+  // 使用 IntelliSense 了解相关属性。
+  // 悬停以查看现有属性的描述。
+  // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome against localhost",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceRoot}"
+    }
+  ]
 }
 ```
 
@@ -37,12 +37,12 @@
 
 | 快捷键                | 描述                 |
 | --------------------- | -------------------- |
-| `ctrl + shift + b` | 活动栏的显隐(自定义) |
-| <code>ctrl + `</code> | 缩略图显隐(自定义) |
-| `ctrl + shift + f` | 全局搜索 |
-| `ctrl + shift + e` | 定位到文件树 |
-| `ctrl + shift + x` | 打开插件(拓展) |
-| `ctrl + \` | 分屏打开当前文件 |
+| `ctrl + shift + b`    | 活动栏的显隐(自定义) |
+| <code>ctrl + `</code> | 缩略图显隐(自定义)   |
+| `ctrl + shift + f`    | 全局搜索             |
+| `ctrl + shift + e`    | 定位到文件树         |
+| `ctrl + shift + x`    | 打开插件(拓展)       |
+| `ctrl + \`            | 分屏打开当前文件     |
 
 ## 光标
 
@@ -51,22 +51,22 @@
 | `ctrl + 0`            | 将光标移动到文件树   |
 | `alt + [数字]`        | 切换当前窗口对应文件 |
 | `ctrl + [数字(非零)]` | 切换分屏             |
-|`ctrl + shift + >`| 通过大纲进行跳转 |
-| | |
-| | |
+| `ctrl + shift + >`    | 通过大纲进行跳转     |
+|                       |                      |
+|                       |                      |
 
 ## 文件树
 
 > 添加
 
-| 快捷键                | 描述                 |
-| --------------------- | -------------------- |
+| 快捷键             | 描述         |
+| ------------------ | ------------ | ------ |
 | `ctrl + shift + e` | 定位到文件树 |
-| `h | j` | 文件树 |
-| `a` | 新建文件 |
-| `A` | 新建文件夹 |
-| `o` | 打开文件 |
-| `ctrl + 1` | 分屏打开文件 |
+| `h                 | j`           | 文件树 |
+| `a`                | 新建文件     |
+| `A`                | 新建文件夹   |
+| `o`                | 打开文件     |
+| `ctrl + 1`         | 分屏打开文件 |
 
 ## 添加代码块
 
@@ -74,60 +74,59 @@
 
 ```json
 {
- "React Component":{
-    "prefix": "rc",    
+  "React Component": {
+    "prefix": "rc",
     "body": [
-   "import React, { Component } from 'react'",
-   "",
-   "class Index extends Component {",
-   "\trender() {",
-   "\t\treturn (",
-   "\t\t\t<div>",
-   "\t\t\t\tIndex",
-   "\t\t\t</div>",
-   "\t\t)",
-   "\t}",
-   "}",
-   "",
-   "export default Index;",
-  ],
-  "description": "react component"   
-  },
-  "React function" : {
-   "prefix": "rf",    
-   "body": [
-    "import React, { Component } from 'react'",
-    "",
-    "function Index() {",
-    "\treturn (",
-    "\t\t<div>",
-    "\t\t\tIndex",
-    "\t\t</div>",
-    "\t)",
-    "}",
-    "",
-    "export default Index;",
-   ],
-   "description": "react component"   
-   },
-   "React const " : {
-    "prefix": "rco",    
-    "body": [
-     "import React, { Component } from 'react'",
-     "",
-     "const Index = () => {",
-     "\treturn (",
-     "\t\t<div>",
-     "\t\t\tIndex",
-     "\t\t</div>",
-     "\t)",
-     "}",
-     "",
-     "export default Index;",
+      "import React, { Component } from 'react'",
+      "",
+      "class Index extends Component {",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t<div>",
+      "\t\t\t\tIndex",
+      "\t\t\t</div>",
+      "\t\t)",
+      "\t}",
+      "}",
+      "",
+      "export default Index;"
     ],
-    "description": "react component"   
-    }
-
+    "description": "react component"
+  },
+  "React function": {
+    "prefix": "rf",
+    "body": [
+      "import React, { Component } from 'react'",
+      "",
+      "function Index() {",
+      "\treturn (",
+      "\t\t<div>",
+      "\t\t\tIndex",
+      "\t\t</div>",
+      "\t)",
+      "}",
+      "",
+      "export default Index;"
+    ],
+    "description": "react component"
+  },
+  "React const ": {
+    "prefix": "rco",
+    "body": [
+      "import React, { Component } from 'react'",
+      "",
+      "const Index = () => {",
+      "\treturn (",
+      "\t\t<div>",
+      "\t\t\tIndex",
+      "\t\t</div>",
+      "\t)",
+      "}",
+      "",
+      "export default Index;"
+    ],
+    "description": "react component"
+  }
 }
 ```
 
@@ -135,19 +134,19 @@
 
 ### 主命令框
 
-| 快捷键                 | 描述                                           |
-| ---------------------- | ---------------------------------------------- |
-| `F1` 或 `ctrl + shift + p` |  `ctrl+J`|  ctrl+ \` | 打开命令面板                                   |
-| `ctrl + p`             | 下拉菜单<br>再输入`>`进入ctrl + shift + p 模式 |
-|`ctrl + k, ctrl + 0[数字]`|折叠所有代码块|
-|`ctrl + k, ctrl + j`|展示所有代码块|
-|`ctrl + k, ctrl + f`|自动格式代码|
+| 快捷键                     | 描述                                           |
+| -------------------------- | ---------------------------------------------- | -------- | ------------ |
+| `F1` 或 `ctrl + shift + p` | `ctrl+J`                                       | ctrl+ \` | 打开命令面板 |
+| `ctrl + p`                 | 下拉菜单<br>再输入`>`进入ctrl + shift + p 模式 |
+| `ctrl + k, ctrl + 0[数字]` | 折叠所有代码块                                 |
+| `ctrl + k, ctrl + j`       | 展示所有代码块                                 |
+| `ctrl + k, ctrl + f`       | 自动格式代码                                   |
 
 ### 边界器与窗口管理
 
 | 快捷键           | 描述                             |
 | ---------------- | -------------------------------- |
-| ctrl  + n        | 新建文件                         |
+| ctrl + n         | 新建文件                         |
 | ctrl + tap       | 文件之间切换                     |
 | ctrl + shift + n | 打开一个新的vscode编辑器         |
 | ctrl + w         | 关闭当前窗口                     |
@@ -157,26 +156,26 @@
 
 ### 代码编辑
 
-| 快捷键                                           | 描述                 |
-| ------------------------------------------------ | -------------------- |
-| shift + alt + f                                  | 代码格式化           |
-| alt + up 或 alt + down                           | 向上或向下移动一行   |
-| shift + alt + up 或 shift + alt + down           | 向上或向下复制一行   |
-| ctrl + enter                                     | 在下方插入一行       |
-| ctrl + shift + enter                             | 在前一行插入一行     |
-| alt + shift + 鼠标 左键  或  Ctrl+ alt + down/up | 多行编辑             |
-| Shift+Alt+Right 和 Shift+Alt+Left                | 扩展/缩小选取范围：  |
-| ctrl + delete                                    | 删除光标后面内容     |
-| Ctrl + u                                         | 回退上一个光标的操作 |
-| Ctrl + h                                         | 查找替换             |
+| 快捷键                                         | 描述                 |
+| ---------------------------------------------- | -------------------- |
+| shift + alt + f                                | 代码格式化           |
+| alt + up 或 alt + down                         | 向上或向下移动一行   |
+| shift + alt + up 或 shift + alt + down         | 向上或向下复制一行   |
+| ctrl + enter                                   | 在下方插入一行       |
+| ctrl + shift + enter                           | 在前一行插入一行     |
+| alt + shift + 鼠标 左键 或 Ctrl+ alt + down/up | 多行编辑             |
+| Shift+Alt+Right 和 Shift+Alt+Left              | 扩展/缩小选取范围：  |
+| ctrl + delete                                  | 删除光标后面内容     |
+| Ctrl + u                                       | 回退上一个光标的操作 |
+| Ctrl + h                                       | 查找替换             |
 
 ### 显示相关
 
-| 快捷键            | 描述           |
-| ----------------- | -------------- |
-| ctrl + b          | 侧栏显示或隐藏 |
-| ctrl + shift  + d | 显示 debug     |
-| ctrl + shift + u  | 显示 output    |
+| 快捷键           | 描述           |
+| ---------------- | -------------- |
+| ctrl + b         | 侧栏显示或隐藏 |
+| ctrl + shift + d | 显示 debug     |
+| ctrl + shift + u | 显示 output    |
 
 ## 修改默认配置
 
@@ -280,19 +279,19 @@
 #### VS Code ES7 React/Redux/React-Native/JS snippets
 
 > `CTRL + ALT + R` : 查看快捷键
-> [*Windows*](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf): `Ctrl+P`  然后输入 `ext install dsznajder.es7-react-js-snippets`
+> [_Windows_](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf): `Ctrl+P` 然后输入 `ext install dsznajder.es7-react-js-snippets`
 
 #### React
 
-| jPrefix | Method                                                       |
-| :------ | :----------------------------------------------------------- |
-| `cwm→`  | `componentWillMount = () => { }` DEPRECATED!!!               |
-| `cdm→`  | `componentDidMount = () => { }`                              |
-| `cwr→`  | `componentWillReceiveProps = (nextProps) => { }` DEPRECATED!!! |
-| `scu→`  | `shouldComponentUpdate = (nextProps, nextState) => { }`      |
+| jPrefix | Method                                                              |
+| :------ | :------------------------------------------------------------------ |
+| `cwm→`  | `componentWillMount = () => { }` DEPRECATED!!!                      |
+| `cdm→`  | `componentDidMount = () => { }`                                     |
+| `cwr→`  | `componentWillReceiveProps = (nextProps) => { }` DEPRECATED!!!      |
+| `scu→`  | `shouldComponentUpdate = (nextProps, nextState) => { }`             |
 | `cwup→` | `componentWillUpdate = (nextProps, nextState) => { }` DEPRECATED!!! |
-| `cdup→` | `componentDidUpdate = (prevProps, prevState) => { }`         |
-| `cwun→` | `componentWillUnmount = () => { }`                           |
+| `cdup→` | `componentDidUpdate = (prevProps, prevState) => { }`                |
+| `cwun→` | `componentWillUnmount = () => { }`                                  |
 
 #### PropTypes
 
@@ -339,37 +338,32 @@
 
 #### Console
 
-| Prefix | Method                              |
-| :----- | :---------------------------------- |
-| `clg→` | `console.log(object)`               |
-| `clo→` | `console.log("object", object)`     |
-| `ctm→` | `console.time("timeId")`            |
-| `cte→` | `console.timeEnd("timeId")`         |
-| `cer→` | `console.error(object)`             |
-| `cwa→` | `console.warn`                      |
-| `cin→` | `console.info`                      |
+| Prefix | Method                          |
+| :----- | :------------------------------ |
+| `clg→` | `console.log(object)`           |
+| `clo→` | `console.log("object", object)` |
+| `ctm→` | `console.time("timeId")`        |
+| `cte→` | `console.timeEnd("timeId")`     |
+| `cer→` | `console.error(object)`         |
+| `cwa→` | `console.warn`                  |
+| `cin→` | `console.info`                  |
 
 #### React Components
 
 > - 第一个字母:
->
 > - `r` : react 项目
->
 > - 第二个字母:
 >   - `f` : function组件
 >   - `c`: class组件
 > - `af` : const 定义组件
->
 > - 第三个字母
 >
 >   - `c` : 定义处导出
-> - `e` : 结尾处导出
 >
+> - `e` : 结尾处导出
 > - 第四个字母:
 >
 >   - `p` : 添加``PropTypes`组件
->
->
 
 ##### `rcc`
 
@@ -507,6 +501,6 @@ export default $1
 
 ### vscode&vim
 
-> vim 提供了 3 个基本模式：normal ， insert ,  visual
+> vim 提供了 3 个基本模式：normal ， insert , visual
 
 ![](https://upload-images.jianshu.io/upload_images/66696-5bc30a92ae0f73a6.gif?imageMogr2/auto-orient/strip|imageView2/2/w/1024/format/webp)

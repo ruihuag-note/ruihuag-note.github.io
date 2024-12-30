@@ -10,9 +10,10 @@
 
 ```css
 @font-face {
-  font-family: "Open Sans";
-  src: url("/fonts/OpenSans-Regular-webfont.woff2") format("woff2"),
-       url("/fonts/OpenSans-Regular-webfont.woff") format("woff");
+  font-family: 'Open Sans';
+  src:
+    url('/fonts/OpenSans-Regular-webfont.woff2') format('woff2'),
+    url('/fonts/OpenSans-Regular-webfont.woff') format('woff');
 }
 ```
 
@@ -80,20 +81,22 @@ Copy to Clipboard
 
 ```html
 <html>
-<head>
-  <title>Web Font Sample</title>
-  <style type="text/css" media="screen, print">
-    @font-face {
-      font-family: "Bitstream Vera Serif Bold";
-      src: url("https://developer.mozilla.org/@api/deki/files/2934/=VeraSeBd.ttf");
-    }
+  <head>
+    <title>Web Font Sample</title>
+    <style type="text/css" media="screen, print">
+      @font-face {
+        font-family: 'Bitstream Vera Serif Bold';
+        src: url('https://developer.mozilla.org/@api/deki/files/2934/=VeraSeBd.ttf');
+      }
 
-    body { font-family: "Bitstream Vera Serif Bold", serif }
-  </style>
-</head>
-<body>
-  This is Bitstream Vera Serif Bold.
-</body>
+      body {
+        font-family: 'Bitstream Vera Serif Bold', serif;
+      }
+    </style>
+  </head>
+  <body>
+    This is Bitstream Vera Serif Bold.
+  </body>
 </html>
 ```
 
@@ -102,9 +105,8 @@ Copy to Clipboard
 ```css
 @font-face {
   font-family: MyHelvetica;
-  src: local("Helvetica Neue Bold"),
-  local("HelveticaNeue-Bold"),
-  url(MgOpenModernaBold.ttf);
+  src: local('Helvetica Neue Bold'), local('HelveticaNeue-Bold'),
+    url(MgOpenModernaBold.ttf);
   font-weight: bold;
 }
 ```
@@ -117,15 +119,15 @@ Copy to Clipboard
 
 ```css
 @font-face {
-    font-family: myFirstFont;
-    src: local("Times New Roman");
-    font-weight:normal;
+  font-family: myFirstFont;
+  src: local('Times New Roman');
+  font-weight: normal;
 }
 
 @font-face {
-    font-family: myFirstFont;
-    src: local(Consolas);
-    font-weight:bold;
+  font-family: myFirstFont;
+  src: local(Consolas);
+  font-weight: bold;
 }
 ```
 
@@ -133,7 +135,7 @@ Copy to Clipboard
 
 ## [注意](https://developer.mozilla.org/zh-CN/docs/Web/CSS/@font-face#注意)
 
-- 这里使用的Web fonts 仍然受到同域限制  (字体文件必须和调用它的网页同一域), 但可以使用 [HTTP access controls](https://developer.mozilla.org/en-US/docs/HTTP_access_control) 解除这一限制。
+- 这里使用的Web fonts 仍然受到同域限制 (字体文件必须和调用它的网页同一域), 但可以使用 [HTTP access controls](https://developer.mozilla.org/en-US/docs/HTTP_access_control) 解除这一限制。
 
 - 因为这里没有为 TrueType(ttf), OpenType(otf) 和 Web Open File Format(WOFF) 字体定义MIME，因此不能为这些字体类型设置特定的MIME（实际上WOFF的MIME将会是application/font-woff，但浏览器对此MIME的识别还不统一，其它字体情况也类似，可暂时使用application/octet-stream）。
 
@@ -143,8 +145,8 @@ Copy to Clipboard
   .className {
     @font-face {
       font-family: MyHelvetica;
-      src: local("Helvetica Neue Bold"), local("HelveticaNeue-Bold"),
-          url(MgOpenModernaBold.ttf);
+      src: local('Helvetica Neue Bold'), local('HelveticaNeue-Bold'),
+        url(MgOpenModernaBold.ttf);
       font-weight: bold;
     }
   }

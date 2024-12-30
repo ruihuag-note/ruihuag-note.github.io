@@ -1,4 +1,4 @@
-# *-content
+# \*-content
 
 - `max-content`：内容有多宽，容器就有多宽，不会受父级的限制
 - `min-content`：宽度是最大内容的最小宽度

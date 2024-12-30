@@ -4,7 +4,7 @@
 
 ```css
 .container:empty::after {
-    content: "暂无数据";
+  content: '暂无数据';
 }
 ```
 

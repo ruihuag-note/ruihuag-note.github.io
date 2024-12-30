@@ -33,7 +33,8 @@
 #### Date pickers(date, month, week, time, datetime, datetime-local )(日期选择器)
 
 ```html
-Date: <input type="date" name="user_date" />
+Date:
+<input type="date" name="user_date" />
 ```
 
 > - date - 选取日、月、年
@@ -66,7 +67,8 @@ Date: <input type="date" name="user_date" />
 > option里面的value一定要设置属性
 
 ```html
-Webpage: <input type="url" list="url_list" name="link" />
+Webpage:
+<input type="url" list="url_list" name="link" />
 <datalist id="url_list">
   <option label="W3School" value="http://www.W3School.com.cn" />
   <option label="Google" value="http://www.google.com" />
@@ -86,8 +88,10 @@ Webpage: <input type="url" list="url_list" name="link" />
 
 ```html
 <form action="demo_form.asp" method="get">
-  Username: <input type="text" name="usr_name" />
-  Encryption: <keygen name="security" />
+  Username:
+  <input type="text" name="usr_name" />
+  Encryption:
+  <keygen name="security" />
   <input type="submit" />
 </form>
 ```
@@ -129,10 +133,16 @@ document.getElementById("result").value=Number(numA)+Number(numB);
 
 ```html
 <form action="/example/html5/demo_form.asp" method="get" autocomplete="on">
-First name:<input type="text" name="fname" /><br />
-Last name: <input type="text" name="lname" /><br />
-E-mail: <input type="email" name="email" autocomplete="off" /><br />
-<input type="submit" />
+  First name:
+  <input type="text" name="fname" />
+  <br />
+  Last name:
+  <input type="text" name="lname" />
+  <br />
+  E-mail:
+  <input type="email" name="email" autocomplete="off" />
+  <br />
+  <input type="submit" />
 </form>
 
 <p>请填写并提交此表单，然后重载页面，来查看自动完成功能是如何工作的。</p>
@@ -150,18 +160,20 @@ E-mail: <input type="email" name="email" autocomplete="off" /><br />
 > 页面加载时,自动获得焦点
 
 ```html
-User name: <input type="text" name="user_name"  autofocus="autofocus" />
+User name:
+<input type="text" name="user_name" autofocus="autofocus" />
 ```
 
 ##### form
 
 ```html
 <form action="demo_form.asp" method="get" id="user_form">
-First name:<input type="text" name="fname" />
-<input type="submit" />
+  First name:
+  <input type="text" name="fname" />
+  <input type="submit" />
 </form>
-//这个不在form里面,但是form属性指向的form的id,可以把它和form标签绑定
-Last name: <input type="text" name="lname" form="user_form" />
+//这个不在form里面,但是form属性指向的form的id,可以把它和form标签绑定 Last name:
+<input type="text" name="lname" form="user_form" />
 ```
 
 - 表单重写属性form overrides (formaction, formenctype, formmethod, formnovalidate, formtarget)
@@ -174,10 +186,21 @@ Last name: <input type="text" name="lname" form="user_form" />
 
   ```html
   <form action="/example/html5/demo_form.asp" method="get" id="user_form">
-      E-mail: <input type="email" name="userid" /><br />
-      <input type="submit" value="Submit" /><br />
-      <input type="submit" formaction="/example/html5/demo_admin.asp" value="Submit as admin" /><br />
-      <input type="submit" formnovalidate="true" value="Submit without validation" /><br />
+    E-mail:
+    <input type="email" name="userid" />
+    <br />
+    <input type="submit" value="Submit" />
+    <br />
+    <input
+      type="submit"
+      formaction="/example/html5/demo_admin.asp"
+      value="Submit as admin" />
+    <br />
+    <input
+      type="submit"
+      formnovalidate="true"
+      value="Submit without validation" />
+    <br />
   </form>
   ```
 
@@ -195,13 +218,14 @@ Last name: <input type="text" name="lname" form="user_form" />
 
 ```html
 <form action="/example/html5/demo_form.asp" method="get">
-Webpage: <input type="url" list="url_list" name="link" />
-<datalist id="url_list">
- <option label="W3School" value="http://www.w3school.com.cn" />
- <option label="Google" value="http://www.google.com" />
- <option label="Microsoft" value="http://www.microsoft.com" />
-</datalist>
-<input type="submit" />
+  Webpage:
+  <input type="url" list="url_list" name="link" />
+  <datalist id="url_list">
+    <option label="W3School" value="http://www.w3school.com.cn" />
+    <option label="Google" value="http://www.google.com" />
+    <option label="Microsoft" value="http://www.microsoft.com" />
+  </datalist>
+  <input type="submit" />
 </form>
 ```
 
@@ -210,7 +234,7 @@ Webpage: <input type="url" list="url_list" name="link" />
 > 可以选择多个文件
 
 ```html
- <input type="file" name="img" multiple="multiple" />
+<input type="file" name="img" multiple="multiple" />
 ```
 
 ##### pattern (regexp)
@@ -218,8 +242,11 @@ Webpage: <input type="url" list="url_list" name="link" />
 > pattern 属性规定用于验证 input 域的模式（pattern）。
 
 ```html
- <input type="text" name="country_code"
-pattern="[A-z]{3}" title="Three letter country code" />
+<input
+  type="text"
+  name="country_code"
+  pattern="[A-z]{3}"
+  title="Three letter country code" />
 ```
 
 ##### placeholder
@@ -228,10 +255,11 @@ pattern="[A-z]{3}" title="Three letter country code" />
 
 ##### required
 
->required 属性规定必须在提交之前填写输入域（不能为空）。
+> required 属性规定必须在提交之前填写输入域（不能为空）。
 
 ```html
-Name: <input type="text" name="usr_name" required="required" />
+Name:
+<input type="text" name="usr_name" required="required" />
 ```
 
 ## 视频/DOM
@@ -242,21 +270,21 @@ Name: <input type="text" name="usr_name" required="required" />
 > - MPEG4 = 带有 H.264 视频编码和 AAC 音频编码的 MPEG 4 文件
 > - WebM = 带有 VP8 视频编码和 Vorbis 音频编码的 WebM 文件
 
-| 属性                                                         | 值       | 描述                                                         |
-| :----------------------------------------------------------- | :------- | :----------------------------------------------------------- |
-| [autoplay](https://www.w3school.com.cn/tags/att_video_autoplay.asp) | autoplay | 如果出现该属性，则视频在就绪后马上播放。                     |
-| [controls](https://www.w3school.com.cn/tags/att_video_controls.asp) | controls | 如果出现该属性，则向用户显示控件，比如播放按钮。             |
-| [height](https://www.w3school.com.cn/tags/att_video_height.asp) | *pixels* | 设置视频播放器的高度。                                       |
-| [loop](https://www.w3school.com.cn/tags/att_video_loop.asp)  | loop     | 如果出现该属性，则当媒介文件完成播放后再次开始播放。         |
-| [preload](https://www.w3school.com.cn/tags/att_video_preload.asp) | preload  | 如果出现该属性，则视频在页面加载时进行加载，并预备播放。如果使用 "autoplay"，则忽略该属性。 |
-| [src](https://www.w3school.com.cn/tags/att_video_src.asp)    | *url*    | 要播放的视频的 URL。                                         |
-| [width](https://www.w3school.com.cn/tags/att_video_width.asp) | *pixels* | 设置视频播放器的宽度。                                       |
+| 属性                                                                | 值       | 描述                                                                                        |
+| :------------------------------------------------------------------ | :------- | :------------------------------------------------------------------------------------------ |
+| [autoplay](https://www.w3school.com.cn/tags/att_video_autoplay.asp) | autoplay | 如果出现该属性，则视频在就绪后马上播放。                                                    |
+| [controls](https://www.w3school.com.cn/tags/att_video_controls.asp) | controls | 如果出现该属性，则向用户显示控件，比如播放按钮。                                            |
+| [height](https://www.w3school.com.cn/tags/att_video_height.asp)     | _pixels_ | 设置视频播放器的高度。                                                                      |
+| [loop](https://www.w3school.com.cn/tags/att_video_loop.asp)         | loop     | 如果出现该属性，则当媒介文件完成播放后再次开始播放。                                        |
+| [preload](https://www.w3school.com.cn/tags/att_video_preload.asp)   | preload  | 如果出现该属性，则视频在页面加载时进行加载，并预备播放。如果使用 "autoplay"，则忽略该属性。 |
+| [src](https://www.w3school.com.cn/tags/att_video_src.asp)           | _url_    | 要播放的视频的 URL。                                                                        |
+| [width](https://www.w3school.com.cn/tags/att_video_width.asp)       | _pixels_ | 设置视频播放器的宽度。                                                                      |
 
 ```html
 <video width="320" height="240" controls="controls">
-  <source src="movie.ogg" type="video/ogg">
-  <source src="movie.mp4" type="video/mp4">
- Your browser does not support the video tag.
+  <source src="movie.ogg" type="video/ogg" />
+  <source src="movie.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
 </video>
 ```
 
@@ -264,41 +292,38 @@ Name: <input type="text" name="usr_name" required="required" />
 
 ```html
 <div style="text-align:center;">
-  <button onclick="playPause()">播放/暂停</button> 
+  <button onclick="playPause()">播放/暂停</button>
   <button onclick="makeBig()">大</button>
   <button onclick="makeNormal()">中</button>
   <button onclick="makeSmall()">小</button>
-  <br /> 
+  <br />
   <video id="video1" width="420" style="margin-top:15px;">
     <source src="/example/html5/mov_bbb.mp4" type="video/mp4" />
     <source src="/example/html5/mov_bbb.ogg" type="video/ogg" />
     Your browser does not support HTML5 video.
   </video>
-</div> 
+</div>
 
 <script type="text/javascript">
-var myVideo=document.getElementById("video1");
+  var myVideo = document.getElementById('video1')
 
-function playPause(){ 
-  if (myVideo.paused) 
-    myVideo.play(); 
-  else 
-    myVideo.pause(); 
-} 
+  function playPause() {
+    if (myVideo.paused) myVideo.play()
+    else myVideo.pause()
+  }
 
-function makeBig(){ 
- myVideo.width=560; 
-} 
+  function makeBig() {
+    myVideo.width = 560
+  }
 
-function makeSmall(){ 
- myVideo.width=320; 
-} 
+  function makeSmall() {
+    myVideo.width = 320
+  }
 
-function makeNormal(){ 
- myVideo.width=420; 
-} 
-</script> 
-
+  function makeNormal() {
+    myVideo.width = 420
+  }
+</script>
 ```
 
 #### HTML5 <video> - 方法、属性以及事件
@@ -327,21 +352,21 @@ function makeNormal(){
 
 ```html
 <audio controls="controls">
-  <source src="song.ogg" type="audio/ogg">
-  <source src="song.mp3" type="audio/mpeg">
-Your browser does not support the audio tag.
+  <source src="song.ogg" type="audio/ogg" />
+  <source src="song.mp3" type="audio/mpeg" />
+  Your browser does not support the audio tag.
 </audio>
 ```
 
 ### <audio> 标签的属性
 
-| 属性                                                         | 值       | 描述                                                         |
-| :----------------------------------------------------------- | :------- | :----------------------------------------------------------- |
-| [autoplay](https://www.w3school.com.cn/tags/att_audio_autoplay.asp) | autoplay | 如果出现该属性，则音频在就绪后马上播放。                     |
-| [controls](https://www.w3school.com.cn/tags/att_audio_controls.asp) | controls | 如果出现该属性，则向用户显示控件，比如播放按钮。             |
-| [loop](https://www.w3school.com.cn/tags/att_audio_loop.asp)  | loop     | 如果出现该属性，则每当音频结束时重新开始播放。               |
-| [preload](https://www.w3school.com.cn/tags/att_audio_preload.asp) | preload  | 如果出现该属性，则音频在页面加载时进行加载，并预备播放。如果使用 "autoplay"，则忽略该属性。 |
-| [src](https://www.w3school.com.cn/tags/att_audio_src.asp)    | *url*    | 要播放的音频的 URL。                                         |
+| 属性                                                                | 值       | 描述                                                                                        |
+| :------------------------------------------------------------------ | :------- | :------------------------------------------------------------------------------------------ |
+| [autoplay](https://www.w3school.com.cn/tags/att_audio_autoplay.asp) | autoplay | 如果出现该属性，则音频在就绪后马上播放。                                                    |
+| [controls](https://www.w3school.com.cn/tags/att_audio_controls.asp) | controls | 如果出现该属性，则向用户显示控件，比如播放按钮。                                            |
+| [loop](https://www.w3school.com.cn/tags/att_audio_loop.asp)         | loop     | 如果出现该属性，则每当音频结束时重新开始播放。                                              |
+| [preload](https://www.w3school.com.cn/tags/att_audio_preload.asp)   | preload  | 如果出现该属性，则音频在页面加载时进行加载，并预备播放。如果使用 "autoplay"，则忽略该属性。 |
+| [src](https://www.w3school.com.cn/tags/att_audio_src.asp)           | _url_    | 要播放的音频的 URL。                                                                        |
 
 ## 拖放
 
@@ -353,7 +378,7 @@ Your browser does not support the audio tag.
   <head>
     <style type="text/css">
     #div1 {
-      width:198px;  
+      width:198px;
       height:66px;
       padding:10px;
       border:1px solid #aaaaaa;
@@ -381,16 +406,16 @@ Your browser does not support the audio tag.
   </head>
 <body>
 
-<div 
-     id="div1"    
+<div
+     id="div1"
      ondrop="drop(event)"<!--放置被拖数据时，会发生 drop 事件-->
      ondragover="allowDrop(event)"<!--规定拖放到的数据-->
      ></div>
-<img 
-     id="drag1" 
-     src="img_logo.gif" 
+<img
+     id="drag1"
+     src="img_logo.gif"
      draggable="true" <!--是元素可以拖动-->
-     ondragstart="drag(event)" 
+     ondragstart="drag(event)"
      width="336" height="69"/>
 </body>
 </html>
@@ -402,7 +427,7 @@ Your browser does not support the audio tag.
 
 ```html
 <canvas id="myCanvas" width="200" height="100">
- Your browser does not support the canvas elemen 
+  Your browser does not support the canvas elemen
 </canvas>
 ```
 
@@ -414,10 +439,10 @@ Your browser does not support the audio tag.
 
 ```html
 <script type="text/javascript">
-  var c=document.getElementById("myCanvas");
-  var cxt=c.getContext("2d");
-  cxt.fillStyle="#FF0000";//设置画笔的颜色
-  cxt.fillRect(0,0,150,75);//绘制
+  var c = document.getElementById('myCanvas')
+  var cxt = c.getContext('2d')
+  cxt.fillStyle = '#FF0000' //设置画笔的颜色
+  cxt.fillRect(0, 0, 150, 75) //绘制
 </script>
 ```
 
@@ -427,12 +452,12 @@ Your browser does not support the audio tag.
 
 ```html
 <script type="text/javascript">
-  var c=document.getElementById("myCanvas");
-  var cxt=c.getContext("2d");
-  cxt.moveTo(10,10);
-  cxt.lineTo(150,50);
-  cxt.lineTo(10,50);
-  cxt.stroke();
+  var c = document.getElementById('myCanvas')
+  var cxt = c.getContext('2d')
+  cxt.moveTo(10, 10)
+  cxt.lineTo(150, 50)
+  cxt.lineTo(10, 50)
+  cxt.stroke()
 </script>
 ```
 
@@ -442,13 +467,13 @@ Your browser does not support the audio tag.
 
 ```html
 <script type="text/javascript">
-  var c=document.getElementById("myCanvas");
-  var cxt=c.getContext("2d");
-  cxt.fillStyle="#FF0000";
-  cxt.beginPath();
-  cxt.arc(70,18,15,0,Math.PI*2,true);
-  cxt.closePath();
-  cxt.fill();
+  var c = document.getElementById('myCanvas')
+  var cxt = c.getContext('2d')
+  cxt.fillStyle = '#FF0000'
+  cxt.beginPath()
+  cxt.arc(70, 18, 15, 0, Math.PI * 2, true)
+  cxt.closePath()
+  cxt.fill()
 </script>
 ```
 
@@ -458,13 +483,13 @@ Your browser does not support the audio tag.
 
 ```html
 <script type="text/javascript">
-  var c=document.getElementById("myCanvas");
-  var cxt=c.getContext("2d");
-  var grd=cxt.createLinearGradient(0,0,175,50);
-  grd.addColorStop(0,"#FF0000");
-  grd.addColorStop(1,"#00FF00");
-  cxt.fillStyle=grd;
-  cxt.fillRect(0,0,175,50);
+  var c = document.getElementById('myCanvas')
+  var cxt = c.getContext('2d')
+  var grd = cxt.createLinearGradient(0, 0, 175, 50)
+  grd.addColorStop(0, '#FF0000')
+  grd.addColorStop(1, '#00FF00')
+  cxt.fillStyle = grd
+  cxt.fillRect(0, 0, 175, 50)
 </script>
 ```
 
@@ -494,8 +519,9 @@ Your browser does not support the audio tag.
 
 ```html
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="190">
-  <polygon points="100,10 40,180 190,60 10,60 160,180"
-  style="fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd;" />
+  <polygon
+    points="100,10 40,180 190,60 10,60 160,180"
+    style="fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd;" />
 </svg>
 ```
 
@@ -544,8 +570,8 @@ Your browser does not support the audio tag.
 
 ```html
 <script type="text/javascript">
-  localStorage.lastname="Smith";
-  document.write(localStorage.lastname);
+  localStorage.lastname = 'Smith'
+  document.write(localStorage.lastname)
 </script>
 ```
 
@@ -555,8 +581,8 @@ Your browser does not support the audio tag.
 
 ```html
 <script type="text/javascript">
-  sessionStorage.lastname="Smith";
-  document.write(sessionStorage.lastname);
+  sessionStorage.lastname = 'Smith'
+  document.write(sessionStorage.lastname)
 </script>
 ```
 
@@ -567,13 +593,11 @@ Your browser does not support the audio tag.
 > - 减少服务器负载 - 浏览器将只从服务器下载更新过或更改过的资源
 
 ```html
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html manifest="demo.appcache">
-
-<body>
-The content of the document......
-</body>
-
+  <body>
+    The content of the document......
+  </body>
 </html>
 ```
 
@@ -585,9 +609,9 @@ The content of the document......
 >
 > manifest 文件可分为三个部分：
 >
-> - *CACHE MANIFEST* - 在此标题下列出的文件将在首次下载后进行缓存
-> - *NETWORK* - 在此标题下列出的文件需要与服务器的连接，且不会被缓存
-> - *FALLBACK* - 在此标题下列出的文件规定当页面无法访问时的回退页面（比如 404 页面）
+> - _CACHE MANIFEST_ - 在此标题下列出的文件将在首次下载后进行缓存
+> - _NETWORK_ - 在此标题下列出的文件需要与服务器的连接，且不会被缓存
+> - _FALLBACK_ - 在此标题下列出的文件规定当页面无法访问时的回退页面（比如 404 页面）
 
 ##### CACHE MANIFEST(必需)
 
@@ -600,7 +624,7 @@ CACHE MANIFEST
 /main.js
 ```
 
-##### *NETWORK*
+##### _NETWORK_
 
 > 文件永远不会被缓存
 
@@ -614,7 +638,7 @@ NETWORK:
 #代表所有资源文件
 ```
 
-##### *FALLBACK*
+##### _FALLBACK_
 
 > 规定如果无法建立因特网连接，则用 "404.html" 替代 /html5/ 目录中的所有文件：
 
@@ -661,55 +685,59 @@ FALLBACK:
 
 #### 简介
 
->当在 HTML 页面中执行脚本时，页面的状态是不可响应的，直到脚本已完成。
+> 当在 HTML 页面中执行脚本时，页面的状态是不可响应的，直到脚本已完成。
 
 > web worker 是运行在后台的 JavaScript，独立于其他脚本，不会影响页面的性能。您可以继续做任何愿意做的事情：点击、选取内容等等，而此时 web worker 在后台运行。
 
 demo_worker.js
 
 ```js
-var i=0;
-function timedCount(){
-  i=i+1;
-  postMessage(i);
-  setTimeout("timedCount()",500);
+var i = 0
+function timedCount() {
+  i = i + 1
+  postMessage(i)
+  setTimeout('timedCount()', 500)
 }
 
-timedCount();
+timedCount()
 ```
 
 ```html
 <!DOCTYPE html>
 <html>
-<body>
-<p>Count numbers: <output id="result"></output></p>
-<button onclick="startWorker()">Start Worker</button>
-<button onclick="stopWorker()">Stop Worker</button>
-<br /><br />
+  <body>
+    <p>
+      Count numbers:
+      <output id="result"></output>
+    </p>
+    <button onclick="startWorker()">Start Worker</button>
+    <button onclick="stopWorker()">Stop Worker</button>
+    <br />
+    <br />
 
-<script>
-var w;
-function startWorker(){
-  <!-- 检测是否支持Worker-->
-if(typeof(Worker)!=="undefined"){
-  if(typeof(w)=="undefined"){
-    w=new Worker("demo_workers.js");
-    }
-  w.onmessage = function (event) {
-  document.getElementById("result").innerHTML=event.data;
-  };
-}
-else{
-document.getElementById("result").innerHTML="Sorry, your browser
- does not support Web Workers...";
-}
-}
+    <script>
+      var w;
+      function startWorker(){
+        <!-- 检测是否支持Worker-->
+      if(typeof(Worker)!=="undefined"){
+        if(typeof(w)=="undefined"){
+          w=new Worker("demo_workers.js");
+          }
+        w.onmessage = function (event) {
+        document.getElementById("result").innerHTML=event.data;
+        };
+      }
+      else{
+      document.getElementById("result").innerHTML="Sorry, your browser
+       does not support Web Workers...";
+      }
+      }
 
-function stopWorker(){
-w.terminate();
-}
-</script>
-</body>
+      function stopWorker(){
+      w.terminate();
+      }
+    </script>
+  </body>
 </html>
 ```
 
@@ -720,21 +748,21 @@ w.terminate();
 ## 检测 Server-Sent 事件支持
 
 ```js
-if(typeof(EventSource)!=="undefined"){
+if (typeof EventSource !== 'undefined') {
   // Yes! Server-sent events support!
   // Some code.....
-  }else{
+} else {
   // Sorry! No server-sent events support..
-  }
+}
 ```
 
 ### 接收Server-Sent事件通知
 
 ```js
-var source=new EventSource("demo_sse.php");
-source.onmessage=function(event){
-  document.getElementById("result").innerHTML+=event.data + "<br />";
-  };
+var source = new EventSource('demo_sse.php')
+source.onmessage = function (event) {
+  document.getElementById('result').innerHTML += event.data + '<br />'
+}
 ```
 
 > - 创建一个新的 EventSource 对象，然后规定发送更新的页面的 URL（本例中是 "demo_sse.php"）

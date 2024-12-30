@@ -117,7 +117,7 @@ pom.xml
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd
-                           http://www.springframework.org/schema/context  
+                           http://www.springframework.org/schema/context
                            http://www.springframework.org/schema/context/spring-context.xsd">
     <!-- 开启注释 -->
     <context:annotation-config/>
@@ -132,7 +132,7 @@ pom.xml
 ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 HelloSpring helloSpring = (HelloSpring) context.getBean("helloSpring");
 //通过 获取bean的实例来初始化, 该方法获取bean不需要设置bean的id
-// HelloSpring helloSpring = (HelloSpring) context.getBean(HelloSpring.class); 
+// HelloSpring helloSpring = (HelloSpring) context.getBean(HelloSpring.class);
 helloSpring.setName("Spring add");
 System.out.println(helloSpring);
 ```
@@ -170,11 +170,11 @@ Scope 的五种取值
 
 - singleton:　单例模式, 在整个Spring IOC 容器中只会创建一个实例. 默认即为单例模式
 
-- prototype:  原型模式, 每次通过`getBean`方法获取实例, 都会创建一个新的实例
+- prototype: 原型模式, 每次通过`getBean`方法获取实例, 都会创建一个新的实例
 
-- request:  在同一次`http`请求内, 只会产生一个实例 ( Web 应用 )
+- request: 在同一次`http`请求内, 只会产生一个实例 ( Web 应用 )
 
-- session:  在同一词`http`请求内, 只会产生一个实例 ( Web 应用 )
+- session: 在同一词`http`请求内, 只会产生一个实例 ( Web 应用 )
 
 - global session: 映射到porlet的global范围的session, 如果是普通web项目施使用, 会当做普通的session ( 在基于porlet 的web应用程序 )
 
@@ -240,7 +240,7 @@ applicationContext.xml
 javaclass
 
 ```java
- 
+
 public void demo1(){
         //创建工厂
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -262,7 +262,7 @@ applicationContext.xml
 javaclass
 
 ```java
- 
+
 public void demo1(){
         //创建工厂
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -272,7 +272,7 @@ public void demo1(){
     }
 ```
 
-DEMO  
+DEMO
 
 PetFactory.java
 
@@ -342,7 +342,7 @@ Parrot can fly!
 javaclass
 
 ```java
- 
+
 public void demo1(){
         //创建工厂
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -439,7 +439,7 @@ Parrot can fly!
 - 第八步,初始化后的方法, 如果存在类实现 BeanPostProcessor ( 处理Bean ) , 执行postProcessAfterInitialization
 - 第九步: 执行业务方法, 执行业务处理
 - 第十步: 执行Spring的销毁方法, 如果Bean实现DisposableBean 执行 destory
-- 第十一步: MAN被销毁了....  , 掉用`<bean destroy-method="customerDestroy">`执行销毁方法customerDestroy
+- 第十一步: MAN被销毁了.... , 掉用`<bean destroy-method="customerDestroy">`执行销毁方法customerDestroy
 
 > 最重要的是第五步和第八步: 可以增强类的方法
 
@@ -496,20 +496,20 @@ public class Parrot implements Ipet{
 > - 使用"横切"技术，AOP把软件系统分为两个部分：**核心关注点**和**横切关注点**。业务处理的主要流程是核心关注点，与之关系不大的部分是横切关注点。横切关注点的一个特点是，他们经常发生在核心关注点的多处，而各处基本相似，比如权限认证、日志、事物。AOP的作用在于分离系统中的各种关注点，将核心关注点和横切关注点分离开来。
 > - AOP分为两种类型:
 >   - 静态AOP : 在编译期进行加入, 就是对切面进行的任何修改, 都要进行重新编译程序
->   - 动态AOP : 在代码执行过程中进行加入,  他的切面代码不是编译进class 文件分钟, SpringAOP就是动态AOP
+>   - 动态AOP : 在代码执行过程中进行加入, 他的切面代码不是编译进class 文件分钟, SpringAOP就是动态AOP
 
 ### AOP术语
 
-| 项                        | 描述                                                         |
-| ------------------------- | ------------------------------------------------------------ |
-| 横切关注点                | 对那些方法进行拦截, 拦截后如何处理, 这些关注点成为横切关注点 |
+| 项                        | 描述                                                                                                                                                                                       |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 横切关注点                | 对那些方法进行拦截, 拦截后如何处理, 这些关注点成为横切关注点                                                                                                                               |
 | Aspect ( 切面 )           | 类就是对物体特征的抽象， 切面就是对横切关注点的抽象， 一个模块具有一组提供横切需求的 APIs。例如，一个日志模块为了记录日志将被 AOP 方面调用。应用程序可以拥有任意数量的方面，这取决于需求。 |
-| Join point ( 连接点)      | 在你的应用程序中它代表一个点，你可以在插件 AOP 方面。你也能说，它是在实际的应用程序中，其中一个操作将使用 Spring AOP 框架。 |
-| Advice( 通知)             | 这是实际行动之前或之后执行的方法。这是在程序执行期间通过 Spring AOP 框架实际被调用的代码。 |
-| Pointcut( 切入点 )        | 对连接点进行拦截的定义， 这是一组一个或多个连接点，通知应该被执行。你可以使用表达式或模式指定切入点正如我们将在 AOP 的例子中看到的。 |
-| Introduction( )           | 在不修改代码的前提下， 引入可以在运行期， 为类动态地添加一些方法或字段，引用允许你添加新方法或属性到现有的类中。 |
-| Target object( 目标对象 ) | 被一个或者多个方面所通知的对象，这个对象永远是一个被代理对象。也称为被通知对象。 |
-| Weaving( 织入 )           | Weaving 把方面连接到其它的应用程序类型或者对象上，并创建一个被通知的对象。这些可以在编译时，类加载时和运行时完成。 |
+| Join point ( 连接点)      | 在你的应用程序中它代表一个点，你可以在插件 AOP 方面。你也能说，它是在实际的应用程序中，其中一个操作将使用 Spring AOP 框架。                                                                |
+| Advice( 通知)             | 这是实际行动之前或之后执行的方法。这是在程序执行期间通过 Spring AOP 框架实际被调用的代码。                                                                                                 |
+| Pointcut( 切入点 )        | 对连接点进行拦截的定义， 这是一组一个或多个连接点，通知应该被执行。你可以使用表达式或模式指定切入点正如我们将在 AOP 的例子中看到的。                                                       |
+| Introduction( )           | 在不修改代码的前提下， 引入可以在运行期， 为类动态地添加一些方法或字段，引用允许你添加新方法或属性到现有的类中。                                                                           |
+| Target object( 目标对象 ) | 被一个或者多个方面所通知的对象，这个对象永远是一个被代理对象。也称为被通知对象。                                                                                                           |
+| Weaving( 织入 )           | Weaving 把方面连接到其它的应用程序类型或者对象上，并创建一个被通知的对象。这些可以在编译时，类加载时和运行时完成。                                                                         |
 
 ### **Spring对AOP的支持**
 
@@ -541,9 +541,9 @@ AOP编程其实是很简单的事情，纵观AOP编程，程序员只需要参�
         http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
-            
+
    <!-- bean definition & AOP specific configuration -->
-  
+
 </beans>
 ```
 
@@ -574,7 +574,7 @@ public class HelloWorldImpl1 implements HelloWorld
     {
         System.out.println("Enter HelloWorldImpl1.printHelloWorld()");
     }
-    
+
     public void doPrint()
     {
         System.out.println("Enter HelloWorldImpl1.doPrint()");
@@ -590,7 +590,7 @@ public class HelloWorldImpl2 implements HelloWorld
     {
         System.out.println("Enter HelloWorldImpl2.printHelloWorld()");
     }
-    
+
     public void doPrint()
     {
         System.out.println("Enter HelloWorldImpl2.doPrint()");
@@ -623,11 +623,11 @@ public class TimeHandler
         http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
-        
+
         <bean id="helloWorldImpl1" class="com.xrq.aop.HelloWorldImpl1" />
         <bean id="helloWorldImpl2" class="com.xrq.aop.HelloWorldImpl2" />
         <bean id="timeHandler" class="com.xrq.aop.TimeHandler" />
-        
+
         <aop:config>
             <aop:aspect id="time" ref="timeHandler">
                 <aop:pointcut id="addAllMethod" expression="execution(* com.xrq.aop.HelloWorld.*(..))" />
@@ -643,15 +643,15 @@ public class TimeHandler
 ```java
 public static void main(String[] args)
 {
-    ApplicationContext ctx = 
+    ApplicationContext ctx =
             new ClassPathXmlApplicationContext("aop.xml");
-        
+
     HelloWorld hw1 = (HelloWorld)ctx.getBean("helloWorldImpl1");
     HelloWorld hw2 = (HelloWorld)ctx.getBean("helloWorldImpl2");
     hw1.printHelloWorld();
     System.out.println();
     hw1.doPrint();
-    
+
     System.out.println();
     hw2.printHelloWorld();
     System.out.println();
@@ -681,7 +681,7 @@ CurrentTime = 1446129611994
 
 看到给HelloWorld接口的两个实现类的所有方法都加上了代理，代理内容就是打印时间
 
-#### ***\*基于Spring的AOP使用其他细节\****
+#### **\*\*基于Spring的AOP使用其他细节\*\***
 
 1、增加一个横切关注点，打印日志，Java类为：
 
@@ -692,7 +692,7 @@ public class LogHandler
     {
         System.out.println("Log before method");
     }
-    
+
     public void LogAfter()
     {
         System.out.println("Log after method");
@@ -712,12 +712,12 @@ aop.xml配置为：
         http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
-        
+
         <bean id="helloWorldImpl1" class="com.xrq.aop.HelloWorldImpl1" />
         <bean id="helloWorldImpl2" class="com.xrq.aop.HelloWorldImpl2" />
         <bean id="timeHandler" class="com.xrq.aop.TimeHandler" />
         <bean id="logHandler" class="com.xrq.aop.LogHandler" />
-        
+
         <aop:config>
             <aop:aspect id="time" ref="timeHandler" order="1">
                 <aop:pointcut id="addTime" expression="execution(* com.xrq.aop.HelloWorld.*(..))" />
@@ -781,12 +781,12 @@ CurrentTime = 1446130273737
         http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
-        
+
         <bean id="helloWorldImpl1" class="com.xrq.aop.HelloWorldImpl1" />
         <bean id="helloWorldImpl2" class="com.xrq.aop.HelloWorldImpl2" />
         <bean id="timeHandler" class="com.xrq.aop.TimeHandler" />
         <bean id="logHandler" class="com.xrq.aop.LogHandler" />
-        
+
         <aop:config>
             <aop:aspect id="time" ref="timeHandler" order="1">
                 <aop:pointcut id="addTime" expression="execution(* com.xrq.aop.HelloWorld.print*(..))" />
@@ -891,7 +891,7 @@ public class LogHandler {
 CurrentTime = 1610941059733
 Log before method
 方法执行前
-Enter HelloWorldImpl1.printHelloWorld() 
+Enter HelloWorldImpl1.printHelloWorld()
 after-returning
 方法执行后
 Log after method
@@ -941,7 +941,7 @@ XML文件
         http://www.springframework.org/schema/aop/spring-aop-4.2.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 // 组件扫描
     <context:component-scan base-package="com.tutorialspoint.beans.SpringAOP.AOPAnnontation2"/>
-// aop自动扫描  
+// aop自动扫描
   <aop:aspectj-autoproxy/>
 
 </beans>
@@ -1088,14 +1088,14 @@ public class AnnoTest {
 
 ```java
 public class MovieRecommender {
- 
+
     private final CustomerPreferenceDao customerPreferenceDao;
- 
+
     @Autowired
     public MovieRecommender(CustomerPreferenceDao customerPreferenceDao) {
         this.customerPreferenceDao = customerPreferenceDao;
     }
- 
+
     // ...
 }
 ```
@@ -1104,14 +1104,14 @@ public class MovieRecommender {
 
 ```java
 public class SimpleMovieLister {
- 
+
     private MovieFinder movieFinder;
- 
+
     @Autowired
     public void setMovieFinder(MovieFinder movieFinder) {
         this.movieFinder = movieFinder;
     }
- 
+
     // ...
 }
 ```
@@ -1120,37 +1120,37 @@ public class SimpleMovieLister {
 
 ```java
 public class MovieRecommender {
- 
+
     private MovieCatalog movieCatalog;
- 
+
     private CustomerPreferenceDao customerPreferenceDao;
- 
+
     @Autowired
     public void prepare(MovieCatalog movieCatalog,
             CustomerPreferenceDao customerPreferenceDao) {
         this.movieCatalog = movieCatalog;
         this.customerPreferenceDao = customerPreferenceDao;
     }
- 
+
     // ...
 }
 ```
 
- @Autowired 注释应用于字段，或者将其与构造函数混合，如以下示例所示
+@Autowired 注释应用于字段，或者将其与构造函数混合，如以下示例所示
 
 ```java
 public class MovieRecommender {
- 
+
     private final CustomerPreferenceDao customerPreferenceDao;
- 
+
     @Autowired
     private MovieCatalog movieCatalog;
- 
+
     @Autowired
     public MovieRecommender(CustomerPreferenceDao customerPreferenceDao) {
         this.customerPreferenceDao = customerPreferenceDao;
     }
- 
+
     // ...
 }
 ```
@@ -1161,10 +1161,10 @@ public class MovieRecommender {
 
 ```java
 public class MovieRecommender {
- 
+
     @Autowired
     private MovieCatalog[] movieCatalogs;
- 
+
     // ...
 }
 ```
@@ -1173,25 +1173,25 @@ public class MovieRecommender {
 
 ```java
 public class MovieRecommender {
- 
+
     private Set<MovieCatalog> movieCatalogs;
- 
+
     @Autowired
     public void setMovieCatalogs(Set<MovieCatalog> movieCatalogs) {
         this.movieCatalogs = movieCatalogs;
     }
- 
+
     // ...
 }
 public class MovieRecommender {
- 
+
     private Map<String, MovieCatalog> movieCatalogs;
- 
+
     @Autowired
     public void setMovieCatalogs(Map<String, MovieCatalog> movieCatalogs) {
         this.movieCatalogs = movieCatalogs;
     }
- 
+
     // ...
 }
 ```
@@ -1340,7 +1340,7 @@ helloWorld.getMessage();
 public class ConfigA {
    @Bean
    public A a() {
-      return new A(); 
+      return new A();
    }
 }
 ```
@@ -1353,7 +1353,7 @@ public class ConfigA {
 public class ConfigB {
    @Bean
    public B b() {
-      return new B(); 
+      return new B();
    }
 }
 ```
@@ -1362,7 +1362,7 @@ public class ConfigB {
 
 ```java
 public static void main(String[] args) {
-   ApplicationContext ctx = 
+   ApplicationContext ctx =
    new AnnotationConfigApplicationContext(ConfigB.class);
    // now both beans A and B will be available...
    A a = ctx.getBean(A.class);
@@ -1371,7 +1371,7 @@ public static void main(String[] args) {
 ```
 
 > 注意这里的`ApplicationContext ctx =
-> new AnnotationConfigApplicationContext(ConfigB.class);`
+new AnnotationConfigApplicationContext(ConfigB.class);`
 
 ### 生命周期回调@Bean(initMethod = "", destroyMethod = "")
 
@@ -1420,16 +1420,15 @@ public class AppConfig {
 ## 事件处理
 
 > - Spring核心是ApplicationContext,负责调用beans的生命周期
->
 > - Spring的时间处理是单线程的, 所有如果一个时间被发布 , 直至并且除非所有的接收者得到的该消息, 该进程被阻塞并且流程将不会继续
 
-| 事件名                    | Spring 内置事件 & 描述                                       |
-| ------------------------- | ------------------------------------------------------------ |
-| **ContextRefreshedEvent** | ApplicationContext 被初始化或刷新时，该事件被发布。这也可以在 ConfigurableApplicationContext 接口中使用 refresh() 方法来发生。 |
+| 事件名                    | Spring 内置事件 & 描述                                                                                                                                                          |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ContextRefreshedEvent** | ApplicationContext 被初始化或刷新时，该事件被发布。这也可以在 ConfigurableApplicationContext 接口中使用 refresh() 方法来发生。                                                  |
 | **ContextStartedEvent**   | 当使用 ConfigurableApplicationContext 接口中的 start() 方法启动 ApplicationContext 时，该事件被发布。你可以调查你的数据库，或者你可以在接受到这个事件后重启任何停止的应用程序。 |
-| **ContextStoppedEvent**   | 当使用 ConfigurableApplicationContext 接口中的 stop() 方法停止 ApplicationContext 时，发布这个事件。你可以在接受到这个事件后做必要的清理的工作。 |
-| **ContextClosedEvent**    | 当使用 ConfigurableApplicationContext 接口中的 close() 方法关闭 ApplicationContext 时，该事件被发布。一个已关闭的上下文到达生命周期末端；它不能被刷新或重启。 |
-| **RequestHandledEvent**   | 这是一个 web-specific 事件，告诉所有 bean HTTP 请求已经被服务。 |
+| **ContextStoppedEvent**   | 当使用 ConfigurableApplicationContext 接口中的 stop() 方法停止 ApplicationContext 时，发布这个事件。你可以在接受到这个事件后做必要的清理的工作。                                |
+| **ContextClosedEvent**    | 当使用 ConfigurableApplicationContext 接口中的 close() 方法关闭 ApplicationContext 时，该事件被发布。一个已关闭的上下文到达生命周期末端；它不能被刷新或重启。                   |
+| **RequestHandledEvent**   | 这是一个 web-specific 事件，告诉所有 bean HTTP 请求已经被服务。                                                                                                                 |
 
 #### 监听上下文事件
 
@@ -1452,7 +1451,7 @@ public class HelloWorld {
 package com.tutorialspoint;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextStartedEvent;
-public class CStartEventHandler 
+public class CStartEventHandler
    implements ApplicationListener<ContextStartedEvent>{
    public void onApplicationEvent(ContextStartedEvent event) {
       System.out.println("ContextStartedEvent Received");
@@ -1466,7 +1465,7 @@ public class CStartEventHandler
 package com.tutorialspoint;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextStoppedEvent;
-public class CStopEventHandler 
+public class CStopEventHandler
    implements ApplicationListener<ContextStoppedEvent>{
    public void onApplicationEvent(ContextStoppedEvent event) {
       System.out.println("ContextStoppedEvent Received");
@@ -1484,7 +1483,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class MainApp {
    public static void main(String[] args) {
-      ConfigurableApplicationContext context = 
+      ConfigurableApplicationContext context =
       new ClassPathXmlApplicationContext("Beans.xml");
 
       // Let us raise a start event.
@@ -1514,10 +1513,10 @@ public class MainApp {
       <property name="message" value="Hello World!"/>
    </bean>
 
-   <bean id="cStartEventHandler" 
+   <bean id="cStartEventHandler"
          class="com.tutorialspoint.CStartEventHandler"/>
 
-   <bean id="cStopEventHandler" 
+   <bean id="cStopEventHandler"
          class="com.tutorialspoint.CStopEventHandler"/>
 
 </beans>
@@ -1540,7 +1539,7 @@ ContextStoppedEvent Received
 ```java
 package com.tutorialspoint;
 import org.springframework.context.ApplicationEvent;
-public class CustomEvent extends ApplicationEvent{ 
+public class CustomEvent extends ApplicationEvent{
    public CustomEvent(Object source) {
       super(source);
    }
@@ -1556,7 +1555,7 @@ public class CustomEvent extends ApplicationEvent{
 package com.tutorialspoint;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
-public class CustomEventPublisher 
+public class CustomEventPublisher
    implements ApplicationEventPublisherAware {
    private ApplicationEventPublisher publisher;
    public void setApplicationEventPublisher
@@ -1575,7 +1574,7 @@ public class CustomEventPublisher
 ```java
 package com.tutorialspoint;
 import org.springframework.context.ApplicationListener;
-public class CustomEventHandler 
+public class CustomEventHandler
    implements ApplicationListener<CustomEvent>{
    public void onApplicationEvent(CustomEvent event) {
       System.out.println(event.toString());
@@ -1591,11 +1590,11 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class MainApp {
    public static void main(String[] args) {
-      ConfigurableApplicationContext context = 
-      new ClassPathXmlApplicationContext("Beans.xml");    
-      CustomEventPublisher cvp = 
+      ConfigurableApplicationContext context =
+      new ClassPathXmlApplicationContext("Beans.xml");
+      CustomEventPublisher cvp =
       (CustomEventPublisher) context.getBean("customEventPublisher");
-      cvp.publish();  
+      cvp.publish();
       cvp.publish();
    }
 }
@@ -1611,10 +1610,10 @@ public class MainApp {
     xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-   <bean id="customEventHandler" 
+   <bean id="customEventHandler"
       class="com.tutorialspoint.CustomEventHandler"/>
 
-   <bean id="customEventPublisher" 
+   <bean id="customEventPublisher"
       class="com.tutorialspoint.CustomEventPublisher"/>
 
 </beans>

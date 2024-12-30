@@ -247,8 +247,8 @@ skew(([<angle>|<zero>],[<angle>|<zero>]? )
 
 ```css
 matrix()
-matrix(a, b, c, d, tx, ty) 
-=> matrix3d(a, b, 0, 0, c, d, 0, 0, 0, 0, 1, 0, tx, ty, 0, 1) 
+matrix(a, b, c, d, tx, ty)
+=> matrix3d(a, b, 0, 0, c, d, 0, 0, 0, 0, 1, 0, tx, ty, 0, 1)
 => matrix( scaleX(), skewY(), skewX(), scaleY(), translateX(), translateY() )
 
 
@@ -280,22 +280,22 @@ matrix3d(a1, b1, c1, d1, a2, b2, c2, d2, a3, b3, c3, d3, a4, b4, c4, d4)
 </table>
 
 ## 视距 `prtspective`
->
-> - perspective([length])  : 就是相当于定义人物（或观察者）＂离显示器中该元素的距离＂
+
+> - perspective([length]) : 就是相当于定义人物（或观察者）＂离显示器中该元素的距离＂
 > - <b style="color:red;"> 在3D空间中改变元素的形态时, 基本上都要赋予元素一定H的视域。</b>
 > - 视域为元素赋予前后深度，而这深度可以根据需要设定。
 
 ​
 
 ## 移动原点`transform-origin`
->
+
 > - 修改元素动画的变形原点
 > - 旋转中心默认中心
 > - 其他变换中心是是不太确定的
 > - 都可以通过该属性进行修改
 
 ```css
-transform-origin: 50%,50%;
+transform-origin: 50%, 50%;
 ```
 
 ## 变换方式 `tansform-style`
@@ -316,22 +316,24 @@ transform-origin: 50%,50%;
 
 ```html
 <style>
-.mbd{ border:1px solid red; }
-.outer{
- display:flex;
- width:150px;
- height:125px;
- justify-content:center;
- align-items:center;
-}
-.inner { 
- width:50px;
- transform: perspective(750px) translateZ(60px) rotateX(60deg); 
- }
+  .mbd {
+    border: 1px solid red;
+  }
+  .outer {
+    display: flex;
+    width: 150px;
+    height: 125px;
+    justify-content: center;
+    align-items: center;
+  }
+  .inner {
+    width: 50px;
+    transform: perspective(750px) translateZ(60px) rotateX(60deg);
+  }
 </style>
 
 <div class="outer mbd">
-    <div class="inner mbd">inner</div>
+  <div class="inner mbd">inner</div>
 </div>
 ```
 
@@ -357,7 +359,8 @@ transform-origin: 50%,50%;
 ### 后
 
 ```html
-<div style="
+<div
+  style="
   display:flex;
   width:150px;
   height:125px;
@@ -373,11 +376,14 @@ transform-origin: 50%,50%;
   mask-border-source: none;
   mix-blend-mode: normal;
   border:1px solid red;">
-    <div style=" 
+  <div
+    style=" 
    width:50px;
    border:1px solid red;
    transform: perspective(750px) translateZ(60px) rotateX(60deg); 
-   ">inner</div>
+   ">
+    inner
+  </div>
 </div>
 ```
 

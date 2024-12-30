@@ -1,7 +1,6 @@
 # Extend
 
 ```less
-
 nav ul {
   &:extend(.inline);
   background: blue;
@@ -24,7 +23,8 @@ nav ul {
 ## Extend Syntax
 
 ```less
-.a:extend(.b) {}
+.a:extend(.b) {
+}
 
 // the above block does the same thing as the below block
 .a {
@@ -37,33 +37,39 @@ nav ul {
   // extends only instances where the selector will be output as just ".d"
 }
 
-.e:extend(.f) {}
-.e:extend(.g) {}
+.e:extend(.f) {
+}
+.e:extend(.g) {
+}
 
 // the above and the below do the same thing
-.e:extend(.f, .g) {}
+.e:extend(.f, .g) {
+}
 ```
 
 ## nth Expression
 
 ```less
-[title=identifier] {
+[title='identifier'] {
   color: blue;
 }
 [title='identifier'] {
   color: blue;
 }
-[title="identifier"] {
+[title='identifier'] {
   color: blue;
 }
 
-.noQuote:extend([title=identifier]) {}
-.singleQuote:extend([title='identifier']) {}
-.doubleQuote:extend([title="identifier"]) {}
+.noQuote:extend([title='identifier']) {
+}
+.singleQuote:extend([title='identifier']) {
+}
+.doubleQuote:extend([title='identifier']) {
+}
 ```
 
 ```css
-[title=identifier],
+[title='identifier'],
 .noQuote,
 .singleQuote,
 .doubleQuote {
@@ -77,7 +83,7 @@ nav ul {
   color: blue;
 }
 
-[title="identifier"],
+[title='identifier'],
 .noQuote,
 .singleQuote,
 .doubleQuote {
@@ -98,7 +104,8 @@ nav ul {
   }
 }
 
-.replacement:extend(.test all) {}
+.replacement:extend(.test all) {
+}
 ```
 
 ```css

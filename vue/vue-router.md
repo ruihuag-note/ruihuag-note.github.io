@@ -3,7 +3,6 @@
 # vue-router-基础
 
 > - [官网](https://router.vuejs.org/zh/)
->
 > - [API](https://router.vuejs.org/zh/api/#router-link)
 
 ## router和route的区别
@@ -54,20 +53,20 @@ const Bar = { template: '<div>bar</div>' }
 // 我们晚点再讨论嵌套路由。
 const routes = [
   { path: '/foo', component: Foo },
-  { path: '/bar', component: Bar }
+  { path: '/bar', component: Bar },
 ]
 
 // 3. 创建 router 实例，然后传 `routes` 配置
 // 你还可以传别的配置参数, 不过先这么简单着吧。
 const router = new VueRouter({
-  routes // (缩写) 相当于 routes: routes
+  routes, // (缩写) 相当于 routes: routes
 })
 
 // 4. 创建和挂载根实例。
 // 记得要通过 router 配置参数注入路由，
 // 从而让整个应用都有路由功能
 const app = new Vue({
-  router
+  router,
 }).$mount('#app')
 
 // 现在，应用已经启动了！
@@ -80,19 +79,9 @@ const app = new Vue({
 >   - this.$route : 访问当前路由
 
 ```vue
-export default {
-  computed: {
-    username() {
-      // 我们很快就会看到 `params` 是什么
-      return this.$route.params.username
-    }
-  },
-  methods: {
-    goBack() {
-      window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
-    }
-  }
-}
+export default { computed: { username() { // 我们很快就会看到 `params` 是什么
+return this.$route.params.username } }, methods: { goBack() {
+window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/') } } }
 ```
 
 ## 动态路由
@@ -106,15 +95,15 @@ export default {
 
 ```js
 const User = {
- template:  '<div>{{$route.params.id}}</div>'
+  template: '<div>{{$route.params.id}}</div>',
 }
 
 const router = new VueRouter({
   routes: [
     //动态路径参数 以冒号开头
     //`/user/foo`  和 `/user/bar`  都会映射到相同的路由
-    { path: '/user/:id', component: User }
-  ]
+    { path: '/user/:id', component: User },
+  ],
 })
 ```
 
@@ -130,17 +119,16 @@ const router = new VueRouter({
 > - 当使用路由, 从 /user/foo 导航到 /user/bar , 原来的组件实例会被复用, 比起两个路由都渲染同个组件, 比起销毁再创建, 复用则显得更加高效
 >
 >   - 但是复用意味着生命周期钩子不会再被调用
->
 >   - 复用组件可以使用watch(检测变化) $route 对象
 >
 >     - ```js
->       const User={
->        template: `...`,
+>       const User = {
+>         template: `...`,
 >         watch: {
->          $route(to, from) {
->            //对路由变化做出响应....
->           }
->         }
+>           $route(to, from) {
+>             //对路由变化做出响应....
+>           },
+>         },
 >       }
 >       ```
 >
@@ -148,21 +136,19 @@ const router = new VueRouter({
 >
 >     - ```js
 >       const User = {
->        template: '...',
+>         template: '...',
 >         beforeRouteUpdate(to, from, next) {
 >           //next() ; 放行
->         }
+>         },
 >       }
 >       ```
 
 ### 捕获所有路由 或 404 Not found 路由
 
-> - 通配符 *  , pathMatch : 匹配的部分
+> - 通配符 \* , pathMatch : 匹配的部分
 >
->   - path: '  *  '  匹配所有路径
->
->   - path: ' /user-*' => 匹配 '/user-' 开头的任意路径
->
+>   - path: ' \* ' 匹配所有路径
+>   - path: ' /user-\*' => 匹配 '/user-' 开头的任意路径
 >   - ```js
 >     // 给出一个路由 { path: '/user-*' }
 >     this.$router.push('/user-admin')
@@ -189,27 +175,30 @@ const User = {
   <h2>User {{ $route.params.id }}</h2>
   <router-view></router-view>
  </div>
- `
+ `,
 }
 
 const router = new VueRouter({
   routes: [
     {
-      path: '/user/:id', 
+      path: '/user/:id',
       component: User,
-      children: [{
-        // 当 /user/:id/profile 匹配成功，
+      children: [
+        {
+          // 当 /user/:id/profile 匹配成功，
           // UserProfile 会被渲染在 User 的 <router-view> 中
           path: 'profile',
-          component: UserProfile
-      },{
-     // 当 /user/:id/posts 匹配成功
+          component: UserProfile,
+        },
+        {
+          // 当 /user/:id/posts 匹配成功
           // UserPosts 会被渲染在 User 的 <router-view> 中
           path: 'posts',
-          component: UserPosts
-      }]
-    }
-  ]
+          component: UserPosts,
+        },
+      ],
+    },
+  ],
 })
 ```
 
@@ -228,16 +217,16 @@ router.push('home')
 router.push({ path: 'home' })
 
 // 命名的路由
-router.push({ name: 'user', params: { userId: '123' }})
+router.push({ name: 'user', params: { userId: '123' } })
 
 // 带查询参数，变成 /register?plan=private
-router.push({ path: 'register', query: { plan: 'private' }})
+router.push({ path: 'register', query: { plan: 'private' } })
 
 const userId = '123'
-router.push({ name: 'user', params: { userId }}) // -> /user/123
+router.push({ name: 'user', params: { userId } }) // -> /user/123
 router.push({ path: `/user/${userId}` }) // -> /user/123
 // 这里的 params 不生效
-router.push({ path: '/user', params: { userId }}) // -> /user
+router.push({ path: '/user', params: { userId } }) // -> /user
 ```
 
 ### router.replace
@@ -247,7 +236,7 @@ router.push({ path: '/user', params: { userId }}) // -> /user
 > - 例如一个用户资料到另一个, /users/1 => /users/2
 
 ```js
-<router-link :to="..." replace></router-link> 
+<router-link :to="..." replace></router-link>
 //等同于
 router.replace(...)
 ```
@@ -311,10 +300,10 @@ const router = new VueRouter({
       components: {
         default: Foo,
         a: Bar,
-        b: Baz
-      }
-    }
-  ]
+        b: Baz,
+      },
+    },
+  ],
 })
 ```
 
@@ -340,9 +329,9 @@ const router = new VueRouter({
 <!-- UserSettings.vue -->
 <div>
   <h1>User Settings</h1>
-  <NavBar/>
-  <router-view/>
-  <router-view name="helper"/>
+  <NavBar />
+  <router-view />
+  <router-view name="helper" />
 </div>
 ```
 
@@ -374,12 +363,15 @@ const router = new VueRouter({
 const router = new VueRouter({
   routes: [
     { path: '/a', redirect: '/b' },
-    { path: '/a', redirect: { name: 'foo' }},
-    { path: '/a', redirect: to => {
-      // 方法接收 目标路由 作为参数
-      // return 重定向的 字符串路径/路径对象
-    }}
-  ]
+    { path: '/a', redirect: { name: 'foo' } },
+    {
+      path: '/a',
+      redirect: (to) => {
+        // 方法接收 目标路由 作为参数
+        // return 重定向的 字符串路径/路径对象
+      },
+    },
+  ],
 })
 ```
 
@@ -389,9 +381,7 @@ const router = new VueRouter({
 
 ```js
 const router = new VueRouter({
-  routes: [
-    { path: '/a', component: A, alias: '/b' }
-  ]
+  routes: [{ path: '/a', component: A, alias: '/b' }],
 })
 ```
 
@@ -403,12 +393,10 @@ const router = new VueRouter({
 
 ```js
 const User = {
-  template: '<div>User {{ $route.params.id }}</div>'
+  template: '<div>User {{ $route.params.id }}</div>',
 }
 const router = new VueRouter({
-  routes: [
-    { path: '/user/:id', component: User }
-  ]
+  routes: [{ path: '/user/:id', component: User }],
 })
 ```
 
@@ -417,7 +405,7 @@ const router = new VueRouter({
 ```js
 const User = {
   props: ['id'],
-  template: '<div>User {{ id }}</div>'
+  template: '<div>User {{ id }}</div>',
 }
 const router = new VueRouter({
   routes: [
@@ -427,9 +415,9 @@ const router = new VueRouter({
     {
       path: '/user/:id',
       components: { default: User, sidebar: Sidebar },
-      props: { default: true, sidebar: false }
-    }
-  ]
+      props: { default: true, sidebar: false },
+    },
+  ],
 })
 ```
 
@@ -444,12 +432,12 @@ const router = new VueRouter({
 ```js
 const router = new VueRouter({
   routes: [
-    { 
-      path: '/promotion/from-newsletter', 
-       component: Promotion, 
-      props: { newsletterPopup: false } 
-    }
-  ]
+    {
+      path: '/promotion/from-newsletter',
+      component: Promotion,
+      props: { newsletterPopup: false },
+    },
+  ],
 })
 ```
 
@@ -459,13 +447,13 @@ const router = new VueRouter({
 
 ```js
 const router = new VueRouter({
- routes: [
+  routes: [
     {
       paht: '/search',
-      component: SearchUser, 
-      props: route => ({ query: route.query.q })
-    }
-  ]
+      component: SearchUser,
+      props: (route) => ({ query: route.query.q }),
+    },
+  ],
 })
 // 当URL 为/search?q=vue 会将{ query; 'vue' } 作为属性传递给 SearchUser 组件
 ```
@@ -479,9 +467,7 @@ const router = new VueRouter({
 ```js
 const router = new VueRouter({
   mode: 'history',
-  routes: [
-    { path: '*', component: NotFoundComponent }
-  ]
+  routes: [{ path: '*', component: NotFoundComponent }],
 })
 ```
 
@@ -503,18 +489,18 @@ router.beforeEach((to, from, next) => {
 ```
 
 > - to : Route : 即将要进入的目标
-> - from : Rotue :  当前导航正要离开的路由
+> - from : Rotue : 当前导航正要离开的路由
 > - next: Function :
 >   - next() : 进行管道中的下一个钩子. 如果全部钩子执行网, 则导航状态就是confirmed( 确认 )
 >   - next( false ): 中断当前的导航. 如果浏览器的URL改变了, 可能是用户手动或者浏览器后退按钮, URL地址会重置到from 路由对应的地址
->   - next('/') 或 next({ path: '/' })  : 跳转到一个不同的地址, 当前的导航被中断, 然后进行一个新的导航
+>   - next('/') 或 next({ path: '/' }) : 跳转到一个不同的地址, 当前的导航被中断, 然后进行一个新的导航
 >     - 且可以设置replace: true, name: 'home'等
 >   - next(error) : (2.4.0+) 如果传入next 的参数是一个Error 实例, 则导航会被终止且该错误会被传递给rotuer.onError()注册过的回调
 
 ```js
 router.beforeEach((to, from, next) => {
- if ( to.name !== 'Login' && !isAuthenticated ) next({ name: 'Login '}) 
- //如果用户未能验证用户 , 则 next 会被调用两次
+  if (to.name !== 'Login' && !isAuthenticated) next({ name: 'Login ' })
+  //如果用户未能验证用户 , 则 next 会被调用两次
   next()
 })
 ```
@@ -531,9 +517,9 @@ router.beforeEach((to, from, next) => {
 ### 全局后置钩子
 
 ```js
-router.afterEach((to, from) =>{
- // ...
-})  
+router.afterEach((to, from) => {
+  // ...
+})
 ```
 
 ### 路由独享的守卫
@@ -548,9 +534,9 @@ const router = new VueRouter({
       component: Foo,
       beforeEnter: (to, from, next) => {
         // ...
-      }
-    }
-  ]
+      },
+    },
+  ],
 })
 ```
 
@@ -563,22 +549,22 @@ const router = new VueRouter({
 ```js
 const Foo = {
   template: `...`,
-  beforeRouteEnter (to, from, next) {
+  beforeRouteEnter(to, from, next) {
     // 在渲染该组件的对应路由被 confirm 前调用
     // 不！能！获取组件实例 `this`
     // 可以通过next(vm => {/* 通过`vm` 访问实例 */})
     // 因为当守卫执行前，组件实例还没被创建
   },
-  beforeRouteUpdate (to, from, next) {
+  beforeRouteUpdate(to, from, next) {
     // 在当前路由改变，但是该组件被复用时调用
     // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
     // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
     // 可以访问组件实例 `this`
   },
-  beforeRouteLeave (to, from, next) {
+  beforeRouteLeave(to, from, next) {
     // 导航离开该组件的对应路由时调用
     // 可以访问组件实例 `this`
-  }
+  },
 }
 ```
 
@@ -612,23 +598,23 @@ const router = new VueRouter({
           path: 'bar',
           component: Bar,
           // a meta field
-          meta: { requiresAuth: true }
-        }
-      ]
-    }
-  ]
+          meta: { requiresAuth: true },
+        },
+      ],
+    },
+  ],
 })
 ```
 
 ```js
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
     if (!auth.loggedIn()) {
       next({
         path: '/login',
-        query: { redirect: to.fullPath }
+        query: { redirect: to.fullPath },
       })
     } else {
       next()
@@ -647,15 +633,10 @@ router.beforeEach((to, from, next) => {
   <router-view></router-view>
 </transition>
 
-// 接着在父组件内
-// watch $route 决定使用哪种过渡
-watch: {
-  '$route' (to, from) {
-    const toDepth = to.path.split('/').length
-    const fromDepth = from.path.split('/').length
-    this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
-  }
-}
+// 接着在父组件内 // watch $route 决定使用哪种过渡 watch: { '$route' (to, from)
+{ const toDepth = to.path.split('/').length const fromDepth =
+from.path.split('/').length this.transitionName = toDepth < fromDepth ?
+'slide-right' : 'slide-left' } }
 ```
 
 ## 数据获取
@@ -665,13 +646,9 @@ watch: {
 ```html
 <template>
   <div class="post">
-    <div v-if="loading" class="loading">
-      Loading...
-    </div>
+    <div v-if="loading" class="loading">Loading...</div>
 
-    <div v-if="error" class="error">
-      {{ error }}
-    </div>
+    <div v-if="error" class="error">{{ error }}</div>
 
     <div v-if="post" class="content">
       <h2>{{ post.title }}</h2>
@@ -683,24 +660,24 @@ watch: {
 
 ```js
 export default {
-  data () {
+  data() {
     return {
       loading: false,
       post: null,
-      error: null
+      error: null,
     }
   },
-  created () {
+  created() {
     // 组件创建完后获取数据，
     // 此时 data 已经被 observed 了
     this.fetchData()
   },
   watch: {
     // 如果路由有变化，会再次执行该方法
-    '$route': 'fetchData'
+    $route: 'fetchData',
   },
   methods: {
-    fetchData () {
+    fetchData() {
       this.error = this.post = null
       this.loading = true
       // replace getPost with your data fetching util / API wrapper
@@ -712,8 +689,8 @@ export default {
           this.post = post
         }
       })
-    }
-  }
+    },
+  },
 }
 ```
 
@@ -721,20 +698,20 @@ export default {
 
 ```js
 export default {
-  data () {
+  data() {
     return {
       post: null,
-      error: null
+      error: null,
     }
   },
-  beforeRouteEnter (to, from, next) {
+  beforeRouteEnter(to, from, next) {
     getPost(to.params.id, (err, post) => {
-      next(vm => vm.setData(err, post))
+      next((vm) => vm.setData(err, post))
     })
   },
   // 路由改变前，组件就已经渲染完了
   // 逻辑稍稍不同
-  beforeRouteUpdate (to, from, next) {
+  beforeRouteUpdate(to, from, next) {
     this.post = null
     getPost(to.params.id, (err, post) => {
       this.setData(err, post)
@@ -742,14 +719,14 @@ export default {
     })
   },
   methods: {
-    setData (err, post) {
+    setData(err, post) {
       if (err) {
         this.error = err.toString()
       } else {
         this.post = post
       }
-    }
-  }
+    },
+  },
 }
 ```
 
@@ -762,7 +739,7 @@ const router = new VueRouter({
   routes: [...],
   scrollBehavior (to, from, savedPosition) {
     // savePosition 当且仅当 popsate导航到 (浏览器 的前进/后退 按钮触发) 时才可用
-    // return 期望滚动到哪个的位置 
+    // return 期望滚动到哪个的位置
        //{ x: number, y: number }
     //{ selector: string, offset? : { x: number, y: number }} (offset 只在 2.6.0+ 支持)
   }

@@ -33,18 +33,10 @@ npm i --save-dev @types/react @types/react-dom
     "noUnusedParameters": true,
     "noUnusedLocals": true,
     "target": "es6",
-    "lib": [
-      "dom",
-      "es7"
-    ]
+    "lib": ["dom", "es7"]
   },
-  "exclude": [
-    "node_modules",
-    "lib",
-    "es"
-  ]
+  "exclude": ["node_modules", "lib", "es"]
 }
-
 ```
 
 demo
@@ -58,15 +50,11 @@ interface IAppState {}
 
 class App extends React.Component<IAppProps, IAppState> {
   public render(): JSX.Element {
-    return (
-      <div>
-        这是typescript了哦~
-      </div>
-    )
+    return <div>这是typescript了哦~</div>
   }
 }
 
-export default App;
+export default App
 ```
 
 > 然后直接在路由页面吧该组件展示出去

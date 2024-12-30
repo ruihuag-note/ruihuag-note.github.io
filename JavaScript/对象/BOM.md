@@ -86,7 +86,6 @@ Internet Explorer 8、7、6、5 ：
 > - forward() 返回下一个 URL
 > - go() 返回某个具体页面
 > - 添加和修改历史记录中的条目
->
 > - pushState() 添加
 > - replaceState() 修改
 > - popstate

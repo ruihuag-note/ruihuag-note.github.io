@@ -24,14 +24,14 @@ resources/log4j.properties
 ```properties
 #日志配置
 log4j.rootLogger = DEBUG,stdout,file
- 
+
 #控制台输出
 log4j.appender.stdout=org.apache.log4j.ConsoleAppender
 log4j.appender.stdout.Target=System.out
 log4j.appender.stdout.Threshold=DEBUG
 log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
 log4j.appender.stdout.layout.ConversionPattern=%-d{yyyy-MM-dd HH:mm:ss}[ %p ]%m%n
- 
+
 #所有文件输出
 log4j.appender.file = org.apache.log4j.FileAppender
 log4j.appender.file.File = D:/logs/log.log
@@ -49,7 +49,7 @@ log4j.appender.file.append = true
 import org.apache.log4j.Logger;public class log4jTest {
     //获取日志记录器Logger，名字为本类类名
     private static Logger logger = Logger.getLogger(log4jTest.class);
-  
+
     public static void main(String[] args) {
         for(int i=0;i<3;i++){
             // 记录debug级别的信息
@@ -84,10 +84,10 @@ Log4j配置文件实现了输出到控制台、文件、回滚文件、发送日
 输出目的地类型：
 
 ```properties
-org.apache.log4j.ConsoleAppender（控制台），  
-org.apache.log4j.FileAppender（文件），  
-org.apache.log4j.DailyRollingFileAppender（每天产生一个日志文件），  
-org.apache.log4j.RollingFileAppender（文件大小到达指定尺寸的时候产生一个新的文件），  
+org.apache.log4j.ConsoleAppender（控制台），
+org.apache.log4j.FileAppender（文件），
+org.apache.log4j.DailyRollingFileAppender（每天产生一个日志文件），
+org.apache.log4j.RollingFileAppender（文件大小到达指定尺寸的时候产生一个新的文件），
 org.apache.log4j.WriterAppender（将日志信息以流格式发送到任意指定的地方）
 ```
 

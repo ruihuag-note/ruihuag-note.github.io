@@ -312,7 +312,7 @@ netstat -atunp
 - 安装软件包： yum install nginx
 - 检查可以更新的软件包：yum check-update
 - 更新指定的软件包：yum update nginx
-- 在资源库中查找软件包信息：yum info nginx*
+- 在资源库中查找软件包信息：yum info nginx\*
 - 列出已经安装的所有软件包：yum info installed
-- 列出软件包名称：yum list nginx*
+- 列出软件包名称：yum list nginx\*
 - 模糊搜索软件包：yum search nginx

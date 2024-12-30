@@ -7,17 +7,17 @@
 > - 包含了@ComponentScan、@Configuration和@EnableAutoConfiguration注解。
 > - 其中@ComponentScan让spring Boot扫描到Configuration类并把它加入到程序上下文。
 
-| 注解                         | 描述                                                         |
-| ---------------------------- | ------------------------------------------------------------ |
-| @Configuration               | 等同于spring的XML配置文件；使用[Java][]代码可以检查类型安全。 |
-| @EnableAutoConfiguration     | 自动配置                                                     |
-| @ComponentScan               | 组件扫描                                                     |
-| @Component                   | 可配合CommandLineRunner使用, 在程序启动后执行一些任务        |
+| 注解                         | 描述                                                                                                             |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| @Configuration               | 等同于spring的XML配置文件；使用[Java][]代码可以检查类型安全。                                                    |
+| @EnableAutoConfiguration     | 自动配置                                                                                                         |
+| @ComponentScan               | 组件扫描                                                                                                         |
+| @Component                   | 可配合CommandLineRunner使用, 在程序启动后执行一些任务                                                            |
 | @RestController              | 是@Controller 和 @ResponseBody 的合集, 表示这个是控制器, 并且是将函数的返回值,接填入HTTP响应体中, REST风格控制器 |
-| @Autowried                   | 自动导入                                                     |
-| @PathVariable                | 获取参数                                                     |
-| @JsonBackReference           | 解决嵌套外链问题                                             |
-| @RepositoryRestResoucepublic | 配合spring-boot-start-data-rest使用                          |
+| @Autowried                   | 自动导入                                                                                                         |
+| @PathVariable                | 获取参数                                                                                                         |
+| @JsonBackReference           | 解决嵌套外链问题                                                                                                 |
+| @RepositoryRestResoucepublic | 配合spring-boot-start-data-rest使用                                                                              |
 
 ## 注解(annotations)详解
 
@@ -39,11 +39,11 @@ publicclassApplication{
 
 @ResponseBody：
 
-​   表示该方法的返回结果直接写入HTTP response body中，一般在异步获取数据时使用，用于构建RESTful的api。在使用@RequestMapping后，返回值通常解析为跳转路径，加上@responsebody后返回结果不会被解析为跳转路径，而是直接写入HTTP response body中。比如异步获取json数据，加上@responsebody后，会直接返回json数据。该注解一般会配合@RequestMapping一起使用。示例代码：
+​ 表示该方法的返回结果直接写入HTTP response body中，一般在异步获取数据时使用，用于构建RESTful的api。在使用@RequestMapping后，返回值通常解析为跳转路径，加上@responsebody后返回结果不会被解析为跳转路径，而是直接写入HTTP response body中。比如异步获取json数据，加上@responsebody后，会直接返回json数据。该注解一般会配合@RequestMapping一起使用。示例代码：
 
 ```java
 @RequestMapping(“/test”)
-@ResponseBody 
+@ResponseBody
 public String test(){
  return”ok”;
 }
@@ -51,19 +51,19 @@ public String test(){
 
 @Controller：
 
-​   用于定义控制器类，在spring 项目中由控制器负责将用户发来的URL请求转发到对应的服务接口（service层），一般这个注解在类中，通常方法需要配合注解@RequestMapping。示例代码：
+​ 用于定义控制器类，在spring 项目中由控制器负责将用户发来的URL请求转发到对应的服务接口（service层），一般这个注解在类中，通常方法需要配合注解@RequestMapping。示例代码：
 
 ```java
-@Controller 
+@Controller
 @RequestMapping(“/demoInfo”)
 public class DemoController{
   @Autowired
   private DemoInfoService demoInfoService;
   @RequestMapping("/hello")
-  public String hello(Map<String,Object> map){   
-    System.out.println("DemoController.hello()");   
-    map.put("hello","from TemplateController.helloHtml");   
-    //会使用hello.html或者hello.ftl模板进行渲染显示.   
+  public String hello(Map<String,Object> map){
+    System.out.println("DemoController.hello()");
+    map.put("hello","from TemplateController.helloHtml");
+    //会使用hello.html或者hello.ftl模板进行渲染显示.
     return"/hello";
   }}
 ```
@@ -74,7 +74,7 @@ public class DemoController{
 package com.kfit.demo.web;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-@RestController 
+@RestController
 @RequestMapping(“/demoInfo2”)
 public class DemoController2{
    @RequestMapping("/test")

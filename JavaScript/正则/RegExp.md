@@ -17,9 +17,9 @@ r2.exec(s) // null
 ## String to RegExp
 
 ```js
-let temp = 'UAID'
-let treg = '/' + temp + '/'
-let reg = eval(treg)// 核心
+let temp = 'UAID'
+let treg = '/' + temp + '/'
+let reg = eval(treg) // 核心
 ```
 
 ## **y修饰符**
@@ -40,7 +40,7 @@ r1.exec(s) // ["aa"]
 r2.exec(s) // null
 ```
 
-上面代码有两个正则表达式，一个使用g修饰符，另一个使用y修饰符。这两个正则表达式各执行了两次，第一次执行的时候，两者行为相同，剩余字符串都是_aa_a。由于g修饰没有位置要求，所以第二次执行会返回结果，而y修饰符要求匹配必须从头部开始，所以返回null。
+上面代码有两个正则表达式，一个使用g修饰符，另一个使用y修饰符。这两个正则表达式各执行了两次，第一次执行的时候，两者行为相同，剩余字符串都是\_aa_a。由于g修饰没有位置要求，所以第二次执行会返回结果，而y修饰符要求匹配必须从头部开始，所以返回null。
 
 如果改一下正则表达式，保证每次都能头部匹配，y修饰符就会返回结果了。
 
@@ -114,7 +114,7 @@ sticky 模式在正则匹配过程中只会影响两件事：
 
   ```
   /^\uD83D/u.test('\uD83D\uDC2A') // false
-  
+
   /^\uD83D/.test('\uD83D\uDC2A') // true
   ```
 
@@ -127,9 +127,9 @@ sticky 模式在正则匹配过程中只会影响两件事：
 
   ```
   let s = '𠮷'
-  
+
   /^.$/.test(s) // false
-  
+
   /^.$/u.test(s) // true
   ```
 
@@ -138,9 +138,9 @@ sticky 模式在正则匹配过程中只会影响两件事：
 
   ```
   /\u{61}/.test('a') // false
-  
+
   /\u{61}/u.test('a') // true
-  
+
   /\u{20BB7}/u.test('𠮷') // true
   ```
 
@@ -149,11 +149,11 @@ sticky 模式在正则匹配过程中只会影响两件事：
 
   ```
   /a{2}/.test('aa') // true
-  
+
   /a{2}/u.test('aa') // true
-  
+
   /𠮷{2}/.test('𠮷𠮷') // false
-  
+
   /𠮷{2}/u.test('𠮷𠮷') // true
   ```
 
@@ -162,7 +162,7 @@ sticky 模式在正则匹配过程中只会影响两件事：
 
   ```
   /^\S$/.test('𠮷') // false
-  
+
   /^\S$/u.test('𠮷') // true
   ```
 
@@ -187,9 +187,9 @@ codePointLength(s) // 2
 有些Unicode字符的编码不同，但是字型很相近，比如，\u004B与\u212A都是大写的K。
 
 ```js
-/[a-z]/i.test('\u212A') // false
-
-/[a-z]/iu.test('\u212A') // true
+;/[a-z]/i.test('\u212A') / // false
+  [a - z] /
+  iu.test('\u212A') // true
 ```
 
 上面代码中，不加u修饰符，就无法识别非规范的K字符。

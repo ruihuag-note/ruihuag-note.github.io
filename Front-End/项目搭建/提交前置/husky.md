@@ -25,16 +25,16 @@ npm install -D @commitlint/config-conventional
 ```jsonc
 {
   "scripts": {
-  // add
-   "commitlint": "commitlint -e",
-   "prepare": "husky install"
+    // add
+    "commitlint": "commitlint -e",
+    "prepare": "husky install",
   },
- // add
+  // add
   "husky": {
     "hooks": {
-      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
-    }
-  }
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS",
+    },
+  },
 }
 ```
 
@@ -75,9 +75,9 @@ module.exports = {
         'test', // 增加测试
         'chore', // 构建过程或辅助工具的变动
         'revert', // feat(pencil): add ‘graphiteWidth’ option (撤销之前的commit)
-        'merge' // 合并分支， 例如： merge（前端页面）： feature-xxxx修改线程地址
-      ]
-    ]
-  }
+        'merge', // 合并分支， 例如： merge（前端页面）： feature-xxxx修改线程地址
+      ],
+    ],
+  },
 }
 ```

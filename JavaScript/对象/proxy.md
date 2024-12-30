@@ -8,10 +8,10 @@
 let p = new Proxy(target, handler)
 ```
 
-| 参数    | 含义                                                         | 必选 |
-| ------- | ------------------------------------------------------------ | ---- |
+| 参数    | 含义                                                                                | 必选 |
+| ------- | ----------------------------------------------------------------------------------- | ---- |
 | target  | 用 Proxy 包装的目标对象（可以是任何类型的对象，包括原生数组，函数，甚至另一个代理） | y    |
-| handler | 一个对象，其属性是当执行一个操作时定义代理的行为的函数       | y    |
+| handler | 一个对象，其属性是当执行一个操作时定义代理的行为的函数                              | y    |
 
 **2.常用拦截操作**
 
@@ -22,9 +22,9 @@ let p = new Proxy(target, handler)
   let arr = [7, 8, 9]
   arr = new Proxy(arr, {
     get(target, prop) {
-        // console.log(target, prop)
-        return prop in target ? target[prop] : 'error'
-    }
+      // console.log(target, prop)
+      return prop in target ? target[prop] : 'error'
+    },
   })
   console.log(arr[1])
   console.log(arr[10])
@@ -32,13 +32,13 @@ let p = new Proxy(target, handler)
 
   ```js
   let dict = {
-    'hello': '你好',
-    'world': '世界'
+    hello: '你好',
+    world: '世界',
   }
   dict = new Proxy(dict, {
     get(target, prop) {
-        return prop in target ? target[prop] : prop
-    }
+      return prop in target ? target[prop] : prop
+    },
   })
   console.log(dict['world'])
   console.log(dict['imooc'])
@@ -51,13 +51,13 @@ let p = new Proxy(target, handler)
   let arr = []
   arr = new Proxy(arr, {
     set(target, prop, val) {
-        if (typeof val === 'number') {
-            target[prop] = val
-            return true
-        } else {
-            return false
-        }
-    }
+      if (typeof val === 'number') {
+        target[prop] = val
+        return true
+      } else {
+        return false
+      }
+    },
   })
   arr.push(5)
   arr.push(6)
@@ -70,13 +70,13 @@ let p = new Proxy(target, handler)
   ```js
   let range = {
     start: 1,
-    end: 5
+    end: 5,
   }
-  
+
   range = new Proxy(range, {
     has(target, prop) {
-        return prop >= target.start && prop <= target.end
-    }
+      return prop >= target.start && prop <= target.end
+    },
   })
   console.log(2 in range)
   console.log(9 in range)
@@ -89,14 +89,14 @@ let p = new Proxy(target, handler)
   let userinfo = {
     username: 'xxx',
     age: 18,
-    _password: '***'
+    _password: '***',
   }
   userinfo = new Proxy(userinfo, {
     ownKeys(target) {
-        return Object.keys(target).filter(key => !key.startsWith('_'))
-    }
+      return Object.keys(target).filter((key) => !key.startsWith('_'))
+    },
   })
-  
+
   // for (let key in userinfo) {
   //     console.log(key)
   // }
@@ -110,35 +110,36 @@ let p = new Proxy(target, handler)
   let user = {
     name: 'xxx',
     age: 18,
-    _password: '***'
+    _password: '***',
   }
   user = new Proxy(user, {
     get(target, prop) {
-        if (prop.startsWith('_')) {
-            throw new Error('不可访问')
-        } else {
-            return target[prop]
-        }
+      if (prop.startsWith('_')) {
+        throw new Error('不可访问')
+      } else {
+        return target[prop]
+      }
     },
     set(target, prop, val) {
-        if (prop.startsWith('_')) {
-            throw new Error('不可访问')
-        } else {
-            target[prop] = val
-            return true
-        }
+      if (prop.startsWith('_')) {
+        throw new Error('不可访问')
+      } else {
+        target[prop] = val
+        return true
+      }
     },
-    deleteProperty(target, prop) { // 拦截删除
-        if (prop.startsWith('_')) {
-            throw new Error('不可删除')
-        } else {
-            delete target[prop]
-            return true
-        }
+    deleteProperty(target, prop) {
+      // 拦截删除
+      if (prop.startsWith('_')) {
+        throw new Error('不可删除')
+      } else {
+        delete target[prop]
+        return true
+      }
     },
     ownKeys(target) {
-        return Object.keys(target).filter(key => !key.startsWith('_'))
-    }
+      return Object.keys(target).filter((key) => !key.startsWith('_'))
+    },
   })
   console.log(user.age)
   console.log(user._password)
@@ -149,7 +150,7 @@ let p = new Proxy(target, handler)
   } catch (e) {
     console.log(e.message)
   }
-  
+
   try {
     // delete user.age
     delete user._password
@@ -157,7 +158,7 @@ let p = new Proxy(target, handler)
     console.log(e.message)
   }
   console.log(user.age)
-  
+
   for (let key in user) {
     console.log(key)
   }
@@ -169,16 +170,16 @@ let p = new Proxy(target, handler)
   ```js
   let sum = (...args) => {
     let num = 0
-    args.forEach(item => {
-        num += item
+    args.forEach((item) => {
+      num += item
     })
     return num
   }
-  
+
   sum = new Proxy(sum, {
     apply(target, ctx, args) {
-        return target(...args) * 2
-    }
+      return target(...args) * 2
+    },
   })
   console.log(sum(1, 2))
   console.log(sum.call(null, 1, 2, 3))
@@ -191,14 +192,14 @@ let p = new Proxy(target, handler)
   ```js
   let User = class {
     constructor(name) {
-        this.name = name
+      this.name = name
     }
   }
   User = new Proxy(User, {
     construct(target, args, newTarget) {
-        console.log('construct')
-        return new target(...args)
-    }
+      console.log('construct')
+      return new target(...args)
+    },
   })
   console.log(new User('imooc'))
   ```

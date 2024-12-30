@@ -44,6 +44,6 @@
 
   ```js
   console.log(Math.cbrt(8)) // 2
-  
+
   console.log(Math.cbrt('xx')) // NaN
   ```

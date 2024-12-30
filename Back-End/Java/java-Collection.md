@@ -32,10 +32,7 @@
 
 ### **Iterator**
 
-> - 遍历集合中元素的接口，主要包含以下三种方法：
->   1.**hasNext()** 是否还有下一个元素。
->   2.**next()** 返回下一个元素。
->   3.**remove()**删除当前元素。
+> - 遍历集合中元素的接口，主要包含以下三种方法：1.**hasNext()** 是否还有下一个元素。2.**next()** 返回下一个元素。3.**remove()**删除当前元素。
 
 ### 层次图
 
@@ -159,15 +156,15 @@ Set里存放的对象是无序，不能重复的，集合中的对象不按特�
 
 #### 方法
 
-**boolean add(E e) \**
+**boolean add(E e) \*\*
 　　如果此 set 中尚未包含指定元素，则添加指定元素。
-\**void clear()\**
+\*\*void clear()\*\*
 　　从此 set 中移除所有元素。
-\** Object clone() \**
+\*\* Object clone() \*\*
 　　返回此 HashSet 实例的浅表副本：并没有复制这些元素本身。
-\** boolean contains(Object o) \**
+\*\* boolean contains(Object o) \*\*
 　　如果此 set 包含指定元素，则返回 true。
-\** boolean isEmpty()**
+\*\* boolean isEmpty()**
 　　如果此 set 不包含任何元素，则返回 true。
 **Iterator iterator()**
 　　返回对此 set 中元素进行迭代的迭代器。
@@ -189,20 +186,20 @@ Set里存放的对象是无序，不能重复的，集合中的对象不按特�
 1.迭代遍历：
 
 ```
-Set<String> set = new HashSet<String>();  
-Iterator<String> it = set.iterator();  
-while (it.hasNext()) {  
-  String str = it.next();  
-  System.out.println(str);  
-}  
+Set<String> set = new HashSet<String>();
+Iterator<String> it = set.iterator();
+while (it.hasNext()) {
+  String str = it.next();
+  System.out.println(str);
+}
 ```
 
 2.for(foreach)循环遍历：
 
 ```
-for (String str : set) {  
-      System.out.println(str);  
-}  
+for (String str : set) {
+      System.out.println(str);
+}
 ```
 
 ## Map（键值对、键唯一、值不唯一）
@@ -270,7 +267,7 @@ LinkedHashMap保存了记录的插入顺序，在用Iteraor遍历LinkedHashMap�
  map.put("key1","lisi1");
  map.put("key2","lisi2");
  map.put("key3","lisi3");
- map.put("key4","lisi4");  
+ map.put("key4","lisi4");
  //先获取map集合的所有键的set集合，keyset（）
  Iterator it = map.keySet().iterator();
   //获取迭代器
@@ -303,7 +300,7 @@ Set<Map.Entry<K,V>> entrySet() //返回此映射中包含的映射关系的 Set 
         Iterator<Map.Entry<Integer, String>> it = es.iterator();
 
         while (it.hasNext()) {
-            
+
             // 返回的是封装了key和value对象的Map.Entry对象
             Map.Entry<Integer, String> en = it.next();
 

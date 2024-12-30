@@ -24,7 +24,7 @@ tslint --project
   member-ordering: [// 设置修饰符顺序
     true,
     {
-      order: [ 
+      order: [
         public-static-field,
         public-static-method,
         protected-static-field,

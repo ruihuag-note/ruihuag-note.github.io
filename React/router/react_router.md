@@ -8,45 +8,46 @@
 
 ```jsx
 import { IndexRoute } from 'react-router'
- 
+
 const Dashboard = React.createClass({
   render() {
     return <div>Welcome to the app!</div>
-  }
+  },
 })
- 
-React.render((
+
+React.render(
   <Router>
-    <Route path="/" component={App}>
+    <Route path='/' component={App}>
       <IndexRoute component={Dashboard} />
-      <Route path="about" component={About} />
-      <Route path="inbox" component={Inbox}>
-        <Route path="messages/:id" component={Message} />
+      <Route path='about' component={About} />
+      <Route path='inbox' component={Inbox}>
+        <Route path='messages/:id' component={Message} />
       </Route>
     </Route>
-  </Router>
-), document.body)
+  </Router>,
+  document.body,
+)
 ```
 
 ### 对象
 
 ```jsx
 const routeConfig = [
-  { path: '/',
+  {
+    path: '/',
     component: App,
     indexRoute: { component: Dashboard },
     childRoutes: [
       { path: 'about', component: About },
-      { path: 'inbox',
+      {
+        path: 'inbox',
         component: Inbox,
-        childRoutes: [
-          { path: '/messages/:id', component: Message }
-        ]
-      }
-    ]
-  }
+        childRoutes: [{ path: '/messages/:id', component: Message }],
+      },
+    ],
+  },
 ]
- 
+
 React.render(<Router routes={routeConfig} />, document.body)
 ```
 
@@ -55,15 +56,23 @@ React.render(<Router routes={routeConfig} />, document.body)
 > `useParams` : 通过对`url`进行取值
 
 ```jsx
-import { BrowserRouter as Router, Link, Route, Switch, useParams } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+  Switch,
+  useParams,
+} from 'react-router-dom'
 
 function RouterParams() {
-  let { id,name } = useParams()
-  console.log(useParams());
-  return (<>
+  let { id, name } = useParams()
+  console.log(useParams())
+  return (
+    <>
       <h1>ID: {id}</h1>
       <h1>Name: {name}</h1>
-  </>)
+    </>
+  )
 }
 
 function App() {
@@ -71,10 +80,10 @@ function App() {
     <Router>
       <div>
         <h2>Params </h2>
-        <Link to="/aa/ac">aa</Link>
-        <Link to="/bb/bc">bb</Link>
+        <Link to='/aa/ac'>aa</Link>
+        <Link to='/bb/bc'>bb</Link>
         <Switch>
-          <Route path="/:id/:name" children={<RouterParams />} />
+          <Route path='/:id/:name' children={<RouterParams />} />
         </Switch>
       </div>
     </Router>
@@ -82,10 +91,10 @@ function App() {
 }
 ```
 
-|        | id   | name |
-| ------ | ---- | ---- |
-| 点击aa | aa   | ac   |
-| 点击bb | bb   | bc   |
+|        | id  | name |
+| ------ | --- | ---- |
+| 点击aa | aa  | ac   |
+| 点击bb | bb  | bc   |
 
 ## API
 
@@ -100,9 +109,9 @@ function App() {
 
 ### BrowerRouter
 
-> - `basename : string`  => 所有位置基本URl
-> - `forRefresh : bool` =>    是否强制刷新刷新
-> - `getUserConfirmation : func` =>  用于确认导航的函数
+> - `basename : string` => 所有位置基本URl
+> - `forRefresh : bool` => 是否强制刷新刷新
+> - `getUserConfirmation : func` => 用于确认导航的函数
 > - `keyLength : number` => location.key 默认6
 > - `children : node`
 >   - 要呈现的子元素
@@ -110,17 +119,17 @@ function App() {
 
 ### HashRouter
 
->- `basename : string`
->- `getUserConfirmation: func`
->- `hashType:string`
->- `children:node`
+> - `basename : string`
+> - `getUserConfirmation: func`
+> - `hashType:string`
+> - `children:node`
 
 ### Link
 
 > - `to: string`
 >
 >   - ```jsx
->     <Link to="/courses?sort=name" />
+>     <Link to='/courses?sort=name' />
 >     ```
 >
 > - `to :object`
@@ -128,10 +137,10 @@ function App() {
 >   - ```jsx
 >     <Link
 >       to={{
->         pathname: "/courses",
->         search: "?sort=name",
->         hash: "#the-hash",
->         state: { fromDashboard: true }
+>         pathname: '/courses',
+>         search: '?sort=name',
+>         hash: '#the-hash',
+>         state: { fromDashboard: true },
 >       }}
 >     />
 >     ```
@@ -151,8 +160,8 @@ function App() {
 >
 >   - ```jsx
 >     <Link
->       to="/"
->       innerRef={node => {
+>       to='/'
+>       innerRef={(node) => {
 >         // `node` refers to the mounted DOM element
 >         // or null when unmounted
 >       }}
@@ -198,14 +207,9 @@ function App() {
 >     </MemoryRotuer>
 >     ```
 >
->
->
 > - `initialIndex: number`
->
 > - `getUserConfirmation: func`
->
 > - `keyLength: number`
->
 > - `children: node`
 
 ### Redirect
@@ -213,7 +217,7 @@ function App() {
 > - `to : string`
 >
 >   - ```jsx
->     <Redirect to="/somewhere/else" />
+>     <Redirect to='/somewhere/else' />
 >     ```
 >
 > - `to: object`
@@ -221,9 +225,9 @@ function App() {
 >   - ```jsx
 >     <Redirect
 >       to={{
->         pathname: "/login",
->         search: "?utm=your+face",
->         state: { referrer: currentLocation }
+>         pathname: '/login',
+>         search: '?utm=your+face',
+>         state: { referrer: currentLocation },
 >       }}
 >     />
 >     ```
@@ -231,19 +235,17 @@ function App() {
 > - `push: bool`
 >
 >   - 重新加入一个history, 而不是取代当前的
->
 >   - ```jsx
->     <Redirect push to="/somewhere/else" />
+>     <Redirect push to='/somewhere/else' />
 >     ```
 >
 > - `from: string`
 >
 >   - 重定向`old-path` 跳转到`new-path`
->
 >   - ```jsx
 >     <Switch>
->       <Redirect from="/old-path" to="/new-path" />
->       <Route path="/new-path">
+>       <Redirect from='/old-path' to='/new-path' />
+>       <Route path='/new-path'>
 >         <Place />
 >       </Route>
 >     </Switch>
@@ -252,7 +254,6 @@ function App() {
 > - `exact : bool`
 >
 >   - true : 完全匹配
->
 >   - |  path  | location.pathname |  exact  | matches? |
 >     | :----: | :---------------: | :-----: | :------: |
 >     | `/one` |    `/one/two`     | `true`  |    no    |
@@ -269,7 +270,6 @@ function App() {
 > - `sensitive : bool`
 >
 >   - 区分大小写
->
 >   - |  path  | location.pathname | sensitive | matches? |
 >     | :----: | :---------------: | :-------: | :------: |
 >     | `/one` |      `/one`       |  `true`   |   yes    |
@@ -291,15 +291,12 @@ function App() {
 >   - history
 >
 > - component `<Route path="/user/:username" component={User} />`
->
 > - `render: func`
->
 > - `children: func`
->
 > - `path: string | string[]` :
 >
 >   ```jsx
->   <Route path={["/users/:id", "/profile/:id"]}>
+>   <Route path={['/users/:id', '/profile/:id']}>
 >     <User />
 >   </Route>
 >   ```
@@ -307,7 +304,6 @@ function App() {
 > - `exact : bool`
 >
 >   - true : 完全匹配
->
 >   - |  path  | location.pathname |  exact  | matches? |
 >     | :----: | :---------------: | :-----: | :------: |
 >     | `/one` |    `/one/two`     | `true`  |    no    |
@@ -324,7 +320,6 @@ function App() {
 > - `sensitive : bool`
 >
 >   - 区分大小写
->
 >   - |  path  | location.pathname | sensitive | matches? |
 >     | :----: | :---------------: | :-------: | :------: |
 >     | `/one` |      `/one`       |  `true`   |   yes    |
@@ -344,19 +339,19 @@ function App() {
 >   - `children:node`
 
 ```js
-import React from "react";
-import ReactDOM from "react-dom";
-import { Router } from "react-router";
-import { createBrowserHistory } from "history";
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Router } from 'react-router'
+import { createBrowserHistory } from 'history'
 
-const history = createBrowserHistory();
+const history = createBrowserHistory()
 
 ReactDOM.render(
   <Router history={history}>
     <App />
   </Router>,
-  node
-);
+  node,
+)
 ```
 
 ### StaticRouter
@@ -380,7 +375,7 @@ ReactDOM.render(
 > - `params:object`
 >
 > ```js
-> generatePath("/user/:id/:entity(posts|comments)", { id: 1 });
+> generatePath('/user/:id/:entity(posts|comments)', { id: 1 })
 > ```
 
 ### history
@@ -410,9 +405,9 @@ ReactDOM.render(
 > - `block(prompt)`‎- （功能） 阻止导航（‎[‎请参阅历史记录文档‎](https://github.com/ReactTraining/history/blob/master/docs/blocking-transitions.md))
 
 ```jsx
-import { createBrowserHistory } from "history";
-const customHistory = createBrowserHistory();
-ReactDOM.render(<Router history={customHistory} />, node);
+import { createBrowserHistory } from 'history'
+const customHistory = createBrowserHistory()
+ReactDOM.render(<Router history={customHistory} />, node)
 ```
 
 ### location

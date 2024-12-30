@@ -16,33 +16,41 @@
 
 ```js
 /* ReferenceError: Class01 is not defined */
-try { var ins01 = new Class01(); } catch ( e ) { console.error( e ); }
-class Class01 { }
-console.log( typeof Class01 ); /* function */
+try {
+  var ins01 = new Class01()
+} catch (e) {
+  console.error(e)
+}
+class Class01 {}
+console.log(typeof Class01) /* function */
 /* Class constructor Class01 cannot be invoked without 'new' */
-try { Class01() } catch ( e ) { console.error( e ); }
-console.log( window.Class01 ); /* undefined */
+try {
+  Class01()
+} catch (e) {
+  console.error(e)
+}
+console.log(window.Class01) /* undefined */
 ```
 
 ## set & get
 
 ```js
 // 可直接使用 set 和 get 函数, 而function 中需要通过`Object.defineProperty`方法来设置get和set
-class Class01{
-    constructor() { }
-    get name(){
-        console.log( 'getter' );
-        return this._name;
-    }
-    set name( v ){
-        this._name = v;
-        console.log( 'setter' );
-        return this;
-    }
+class Class01 {
+  constructor() {}
+  get name() {
+    console.log('getter')
+    return this._name
+  }
+  set name(v) {
+    this._name = v
+    console.log('setter')
+    return this
+  }
 }
-var ins01 =  new Class01();
-ins01.name; /* getter */
-ins01.name = 2; /* setter */
+var ins01 = new Class01()
+ins01.name /* getter */
+ins01.name = 2 /* setter */
 ```
 
 ## class this 不会指向 window
@@ -50,25 +58,28 @@ ins01.name = 2; /* setter */
 ```js
 // class 中的 this 永远都不会指向 window。
 class Class01 {
-  
-    constructor() {
-        this.a = 'a';
-    }
-    geta(){
-        return this.a;
-    }
+  constructor() {
+    this.a = 'a'
+  }
+  geta() {
+    return this.a
+  }
 }
-let ins01 = new Class01();
-console.log( ins01.geta() ); /* a */
-let obj = {};
-obj.a = 'objA';
-obj.geta = ins01.geta;
-console.log( obj.geta() ); /* 'objA' */
-window.a = 'windowA';
-window.geta = ins01.geta;
+let ins01 = new Class01()
+console.log(ins01.geta()) /* a */
+let obj = {}
+obj.a = 'objA'
+obj.geta = ins01.geta
+console.log(obj.geta()) /* 'objA' */
+window.a = 'windowA'
+window.geta = ins01.geta
 /* Cannot read property 'a' of undefined */
 /* 若是 function 类此处会返回 'windowA' */
-try { geta() } catch ( e ) { console.error( e ); }
+try {
+  geta()
+} catch (e) {
+  console.error(e)
+}
 ```
 
 ## class 继承
@@ -88,72 +99,72 @@ static get [Symbol.species]() { return Array; }参见 https://developer.mozilla.
 ```js
 // class 中有一个对象super，这个对象可以取到父类的方法、构造函数等。
 class Class01 {
-    constructor( name ){
-        this.name = name;
-    }
-    geta(){
-        console.log( this.name + ' 父类方法.' );
-    }
+  constructor(name) {
+    this.name = name
+  }
+  geta() {
+    console.log(this.name + ' 父类方法.')
+  }
 }
 class Class02 extends Class01 {
-    geta(){
-        super.geta();
-        console.log( this.name + ' 子类方法.' );
-    }
+  geta() {
+    super.geta()
+    console.log(this.name + ' 子类方法.')
+  }
 }
-var l = new Class02( 'Class02' );
-l.geta();
+var l = new Class02('Class02')
+l.geta()
 ```
 
 ```js
-// 11、class 不能使用 return 来返回一个实例（等等，我还没有试验过，不好意思，我会马上试验一下）。　　
+// 11、class 不能使用 return 来返回一个实例（等等，我还没有试验过，不好意思，我会马上试验一下）。
 // 编辑验证，class 的 constructor 可以使用 return，因此 class 与 function 一样可以返回任意的内容。若不写 return 语句，或返回是数值、字符串等非引用类型的值，则 constructor 任然会返回 this（实例）。return [] 或 return {} 都会使得 new 关键字并不会返回 class 的实例说了这么多的不同点，再来说说 class 和 function 的相同之处：
 
 // 1、静态方法  在这点上，两者还是有相似之处的。尽管相似，显然 class 要更加优雅，可读性也更强，class 使用 static 关键词指定静态方法。并且class 可以在函数体内定义静态函数，而 function 不能，这无疑也让 function 写出来的代码更加的复杂。
 
-class Class01{
-    static geta(){
-        console.log( '01的静态方法' );
-    }
+class Class01 {
+  static geta() {
+    console.log('01的静态方法')
+  }
 }
-function Class02 () { }
-Class02.geta = function () { console.log( '02的静态方法' ); }
-Class01.geta();
-Class02.geta();
+function Class02() {}
+Class02.geta = function () {
+  console.log('02的静态方法')
+}
+Class01.geta()
+Class02.geta()
 
 // 2、私有属性和方法两者都必须采用闭包的方式才能实现。下面给出 class 的私有属性和方法。
-var Class02 = ( function () {
-    let pVal ;
-    function sayHello(){
-        console.log( this ); /* this 指向 window */
-        console.log( '欢迎访问nDos的博客' );
+var Class02 = (function () {
+  let pVal
+  function sayHello() {
+    console.log(this) /* this 指向 window */
+    console.log('欢迎访问nDos的博客')
+  }
+  return class Class01 {
+    constructor(v = '初始值') {
+      pVal = v
     }
-    return class Class01{
-        constructor( v = '初始值' ){
-            pVal = v;
-        }
-        get val(){
-            sayHello();
-            return pVal;
-        }
-        set val( v ){
-            pVal = v;
-        }
-    };
-} )();
-let ins01 = new Class02();
-console.log( ins01.val );
-ins01.val = 'hello';
-console.log( ins01.val );
-ins01 instanceof Class02; /* true */
-ins01.constructor.name; /* "Class01" */
+    get val() {
+      sayHello()
+      return pVal
+    }
+    set val(v) {
+      pVal = v
+    }
+  }
+})()
+let ins01 = new Class02()
+console.log(ins01.val)
+ins01.val = 'hello'
+console.log(ins01.val)
+ins01 instanceof Class02 /* true */
+ins01.constructor.name /* "Class01" */
 // 小tips：上面的代码显示 ins01 是 Class02 的实例，但 ins01 的构造函数 name 属性却是 Class01。显然这在项目中不可行，会给类的使用者造成困惑。下例可解决这个问题：
-var Class01 = ( function () {
-    return class Class01 { };
-} )();
-let ins01 = new Class01();
-ins01 instanceof Class01; /* true */
-ins01.constructor.name; /* "Class01" */
-
-
+var Class01 = (function () {
+  return class Class01 {}
+})()
+let ins01 = new Class01()
+ins01 instanceof Class01 /* true */
+ins01.constructor.name /* "Class01" */
 ```

@@ -15,10 +15,12 @@
 > - `path`: cookie的路径
 
 ```js
-document.cookie="username=John Smith; expires=Thu, 18 Dec 2043 12:00:00 GMT; path=/";
-document.cookie="username2=John Smith2; expires=Thu, 18 Dec 2043 12:00:00 GMT; path=/";
+document.cookie =
+  'username=John Smith; expires=Thu, 18 Dec 2043 12:00:00 GMT; path=/'
+document.cookie =
+  'username2=John Smith2; expires=Thu, 18 Dec 2043 12:00:00 GMT; path=/'
 
-getCookie("username")//John Smith
-getCookie("username2")//John Smith2
+getCookie('username') //John Smith
+getCookie('username2') //John Smith2
 document.cookie // 可以返回全部cookie
 ```

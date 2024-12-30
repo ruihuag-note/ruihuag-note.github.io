@@ -58,13 +58,11 @@ npm login --registry=https://registry.npmjs.org/
 ### npm包删除和弃用
 
 > - 撤销发布的包( 24 小时内 ): `npm unpublish`
->
 > - 弃用特定版本以及版本范围: `npm deprecate <pkg>[@version] <message>`
 
 ### 发布问题
 
 > - 必须要有``package.json`, 而且里面的`version` 要有改变
->
 > - 手动更改版本号:
 >
 >   ```bash
@@ -73,8 +71,6 @@ npm login --registry=https://registry.npmjs.org/
 >   npm version minor // 第二位+1
 >   npm version major // 第一位+1
 >   ```
->
->
 
 ### 使用
 

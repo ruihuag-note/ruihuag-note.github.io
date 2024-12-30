@@ -49,5 +49,5 @@ nrm del <registry>
 ### 测试源的响应时间
 
 ```shell
-nrm test npm  
+nrm test npm
 ```

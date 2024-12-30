@@ -6,7 +6,6 @@
 > 客户端：sockjs-client（<https://github.com/sockjs/soc>…）
 >
 > 开发时，如果变更网络环境（如切换wifi导致开发服务器的IP地址更换），服务器不知道如何确定访问源，就有可能造成上述情况
->
 
 ## 方法一
 

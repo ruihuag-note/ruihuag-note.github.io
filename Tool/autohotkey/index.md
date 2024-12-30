@@ -4,4 +4,4 @@
 
 ## 自启动设
 
->添加到 `C:\Users\用户名\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`
+> 添加到 `C:\Users\用户名\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`

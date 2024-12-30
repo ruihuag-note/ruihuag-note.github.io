@@ -11,7 +11,7 @@
 ### 添加搜索过滤功能
 
 > `showSearch
-> optionFilterProp="children"`
+optionFilterProp="children"`
 
 ```jsx
 <Select

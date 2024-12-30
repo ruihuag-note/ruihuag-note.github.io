@@ -5,9 +5,9 @@
 - `History` 对象有如下方法：参见 [`Manipulating the browser history`](https://developer.mozilla.org/zh-CN/docs/Web/API/History_API) 中的示例和详情。尤其指出的是文章里解释了在使用 `pushState()` 和 `replaceState()` 方法前，你需要了解的安全问题
 
 ```js
-var historyObj = window.history;
-history.back();     // 等同于点击浏览器的回退按钮
-history.go(-1);     //等同于 history.back();
+var historyObj = window.history
+history.back() // 等同于点击浏览器的回退按钮
+history.go(-1) //等同于 history.back();
 ```
 
 ## 附注

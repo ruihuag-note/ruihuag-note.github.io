@@ -408,7 +408,7 @@ public class MybatisTest {
         in.close();
     }
 
-    @Test // 使用注解开发 
+    @Test // 使用注解开发
     public void DEMO2() throws Exception{
         InputStream in = Resources.getResourceAsStream("SqlMapConfig.xml");
         SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
@@ -487,7 +487,7 @@ public interface CategoryMapper {
   @SelectProvider(type=CategoryDynaSqlProvider.class,method="list")
  public List<Category> list();
 }
-  
+
 
 **步骤** **7** **:** **关于SQL类**
 SQL类是用于进行动态SQL生成的，如下代码是一个相对复杂的SQL类的使用举例，以后需要用到的时候，再来参考。

@@ -38,11 +38,11 @@ align-self:start | end | center | stretch;[垂直方向]
 place-self:[justify-item] [align-items];//同时设置水平和垂直方向
 
 //控制内容区域在容器的位置
-justify-content: start | end | center | stretch | 
-   space-around[每个项目两侧距离相等,项目间间隔比到容器间隙大一倍] | 
-   space-between[项目间隔相等,与容器边框没有间隙] | 
+justify-content: start | end | center | stretch |
+   space-around[每个项目两侧距离相等,项目间间隔比到容器间隙大一倍] |
+   space-between[项目间隔相等,与容器边框没有间隙] |
    space-evenly[项目与项目的间隙相等, 项目间与容器边框间间隙相等];
-align-content: start | end | center | stretch | space-around | space-between | space-evenly;  
+align-content: start | end | center | stretch | space-around | space-between | space-evenly;
 place-content: [justify-content] [align-content]
 
 //定义隐式网格属性[当超出grid-template-xxx的定义就会触发]
@@ -65,14 +65,12 @@ grid-column: auto / span 2;
 
 ## display 属性
 
-> - `display：grid`  
->
+> - `display：grid`
 > - `display：inline-grid`
 
 ## grid-template-columns / rows
 
 > - `grid-template-columns` 属性设置每列宽
->
 > - `grid-template-rows` 属性设置每行高
 
 **固定的列宽和行高**
@@ -183,10 +181,10 @@ grid-column: auto / span 2;
 .wrapper {
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: 120px  120px  120px;
+  grid-template-columns: 120px 120px 120px;
   grid-template-areas:
-    ". header  header"
-    "sidebar content content";
+    '. header  header'
+    'sidebar content content';
   background-color: #fff;
   color: #444;
 }
@@ -250,16 +248,15 @@ grid-column: auto / span 2;
   grid-auto-columns: 100px;
   grid-auto-flow: column;
   grid-gap: 5px;
-  grid-template-rows:  50px 50px;
+  grid-template-rows: 50px 50px;
 }
 ```
 
 ## 项目对齐(item)
 
 > - `justify-items` : 设置单元格内容的水平位置（左中右）
->
-> - `align-items`  : 设置单元格的垂直位置（上中下）
-> - `place-items : [align-items]  | [justify-items]`  
+> - `align-items` : 设置单元格的垂直位置（上中下）
+> - `place-items : [align-items]  | [justify-items]`
 
 ```css
 .container {
@@ -269,7 +266,10 @@ grid-column: auto / span 2;
 ```
 
 ```css
-.wrapper, .wrapper-1, .wrapper-2, .wrapper-3 {
+.wrapper,
+.wrapper-1,
+.wrapper-2,
+.wrapper-3 {
   display: grid;
   grid-template-columns: 100px 200px 100px;
   grid-gap: 5px;
@@ -311,14 +311,22 @@ grid-column: auto / span 2;
 
 ```css
 .container {
-  justify-content: start | end | center | stretch | space-around | space-between | space-evenly;
-  align-content: start | end | center | stretch | space-around | space-between | space-evenly; 
-  place-content:  [align-content] [justify-content];
+  justify-content: start | end | center | stretch | space-around | space-between
+    | space-evenly;
+  align-content: start | end | center | stretch | space-around | space-between |
+    space-evenly;
+  place-content: [align-content] [justify-content];
 }
 ```
 
 ```css
-.wrapper, .wrapper-1, .wrapper-2, .wrapper-3, .wrapper-4, .wrapper-5, .wrapper-6 {
+.wrapper,
+.wrapper-1,
+.wrapper-2,
+.wrapper-3,
+.wrapper-4,
+.wrapper-5,
+.wrapper-6 {
   display: grid;
   grid-template-columns: 100px 200px 100px;
   grid-gap: 5px;
@@ -356,7 +364,6 @@ grid-column: auto / span 2;
 ## grid-auto-columns, grid-auto-rows
 
 > - 显式网格 : 包含了你在 `grid-template-columns` 和 `grid-template-rows` 属性中定义的行和列。
->
 > - 如果你在网格定义之外又放了一些东西，或者因为内容的数量而需要的更多网格轨道的时候，**网格将会在隐式网格中创建行和列**
 > - 不指定这隐式网格属性，浏览器完全根据单元格内容的大小，决定新增网格的列宽和行高
 
@@ -364,7 +371,7 @@ grid-column: auto / span 2;
 .wrapper {
   display: grid;
   grid-template-columns: 200px 100px;
-/*  只设置了两行，但实际的数量会超出两行，超出的行高会以 grid-auto-rows 算 */
+  /*  只设置了两行，但实际的数量会超出两行，超出的行高会以 grid-auto-rows 算 */
   grid-template-rows: 100px 100px;
   grid-gap: 10px 20px;
   grid-auto-rows: 50px;
@@ -394,42 +401,42 @@ grid-column: auto / span 2;
 .one {
   grid-column-start: 1;
   grid-column-end: 2;
-  background: #19CAAD;
+  background: #19caad;
 }
-.two { 
+.two {
   grid-column-start: 2;
   grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 2;
   /*   如果有重叠，就使用 z-index */
   z-index: 1;
-  background: #8CC7B5;
+  background: #8cc7b5;
 }
 .three {
   grid-column-start: 3;
   grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 4;
-  background: #D1BA74;
+  background: #d1ba74;
 }
 .four {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 2;
   grid-row-end: 5;
-  background: #BEE7E9;
+  background: #bee7e9;
 }
 .five {
   grid-column-start: 2;
   grid-column-end: 2;
   grid-row-start: 2;
   grid-row-end: 5;
-  background: #E6CEAC;
+  background: #e6ceac;
 }
 .six {
   grid-column: 3;
   grid-row: 4;
-  background: #ECAD9E;
+  background: #ecad9e;
 }
 ```
 
@@ -438,7 +445,6 @@ grid-column: auto / span 2;
 ### justify / align / place -self
 
 > - `justify-self` 属性设置单元格内容的水平位置（左中右），跟 `justify-items` 属性的用法完全一致，但只作用于单个项目
->
 > - `align-self` 属性设置单元格内容的垂直位置（上中下），跟``align-items`属性的用法完全一致，也是只作用于单个项目
 
 ```css
@@ -473,7 +479,7 @@ grid-column: auto / span 2;
 
 最后，聊聊 `Grid` 布局兼容性问题，在 [caniuse](https://caniuse.com/#search=grid) 中，我们可以看到的结果如下，总体兼容性还不错，但在 IE 10 以下不支持。个人建议在公司的内部系统运用起来是没有问题的，但 TOC 的话，可能目前还是不太合适
 
-|                   属性                   |            描述            |
-| :--------------------------------------: | :------------------------: |
-|                 display                  | grid      \|   inline-grid |
-| grid-template-columns/grid-template-rows |       设置列宽/行高        |
+|                   属性                   |        描述         |
+| :--------------------------------------: | :-----------------: |
+|                 display                  | grid \| inline-grid |
+| grid-template-columns/grid-template-rows |    设置列宽/行高    |

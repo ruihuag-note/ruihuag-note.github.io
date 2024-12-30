@@ -3,9 +3,7 @@
 ## 弹性布局
 
 > - 弹性布局可以简便、完整、响应的实现各种页面上的布局。
->
 > - 与静态不同的是，使用em或rem单位（lem=16px，1rem=10px）进行相对布局，相对使用百分比更加方便、灵活，相应同时支持浏览器的字体大小调整和缩放的等正常显示。
->
 > - 优点：
 >
 >   1. 适应性强，在做多种不同的屏幕分辨率不同的界面是非常使用。
@@ -14,14 +12,12 @@
 >   4. 网页布局实现快捷，维护起来更加容易。
 >
 > - 如果做移动端时，如果客户对细微的之处的要求不高，使用弹性布局进行制作是最好的选择，一份css+一份js调节font-size搞定。
->
 > - 缺点： 浏览器兼容性较差，只能<u>兼容到IE9及以上</u>。
->
 > - 使用:
 >
 >   ```css
 >   .box{
->    display: flex; 
+>    display: flex;
 >     display: inline-flex; // 行内块
 >     // Webkit 内核的浏览器
 >     display: -webkit-flex; /* Safari */
@@ -38,9 +34,7 @@
 > 容器默认存在两根轴：
 >
 > - 水平的主轴（main axis）和垂直的交叉轴（cross axis）。
->
 > - 主轴的开始位置（与边框的交叉点）叫做`main start`，结束位置叫做`main end`；
->
 > - 交叉轴的开始位置叫做`cross start`，结束位置叫做`cross end`。
 >
 > 项目默认沿主轴排列。单个项目占据的主轴空间叫做`main size`，占据的交叉轴空间叫做`cross size`。
@@ -49,7 +43,7 @@
 
 ## 容器的属性
 
-> - `flex-direction :  row | row-reverse | column | column-reverse;`  => 决定主轴的方向(项目的排列方式)
+> - `flex-direction :  row | row-reverse | column | column-reverse;` => 决定主轴的方向(项目的排列方式)
 > - `flex-wrap : nowrap | wrap | wrap-reverse;` => 如果一条轴线排不下，如何换行
 > - `flex-flow :  <flex-direction> || <flex-wrap>;` => 是前flex-direction和flex-warp的简写方式
 > - `justify-content : flex-start | flex-end | center | space-between | space-around;` => 项目在主轴上的对齐方式
@@ -62,11 +56,11 @@
 
 > ```css
 > .box {
->  flex-direction: row | row-reverse | column | column-reverse;
+>   flex-direction: row | row-reverse | column | column-reverse;
 > }
 > ```
 >
-![](/__assets__/img/2022-01-25-14-30-04.png)
+> ![](/__assets__/img/2022-01-25-14-30-04.png)
 
 它可能有4个值。
 
@@ -80,8 +74,8 @@
 默认情况下，项目都排在一条线（又称"轴线"）上。`flex-wrap`属性定义，如果一条轴线排不下，如何换行。
 
 > ```css
-> .box{
->  flex-wrap: nowrap | wrap | wrap-reverse;
+> .box {
+>   flex-wrap: nowrap | wrap | wrap-reverse;
 > }
 > ```
 
@@ -115,7 +109,8 @@
 
 > ```css
 > .box {
->  justify-content: flex-start | flex-end | center | space-between | space-around;
+>   justify-content: flex-start | flex-end | center | space-between |
+>     space-around;
 > }
 > ```
 
@@ -135,7 +130,7 @@
 
 > ```css
 > .box {
->  align-items: flex-start | flex-end | center | baseline | stretch;
+>   align-items: flex-start | flex-end | center | baseline | stretch;
 > }
 > ```
 
@@ -155,7 +150,8 @@
 
 > ```css
 > .box {
->  align-content: flex-start | flex-end | center | space-between | space-around | stretch;
+>   align-content: flex-start | flex-end | center | space-between | space-around
+>     | stretch;
 > }
 > ```
 
@@ -172,9 +168,9 @@
 
 ## 项目的属性
 
-> - `order : <integer>`  => 项目的排列顺序。数值越小，排列越靠前，默认为0
+> - `order : <integer>` => 项目的排列顺序。数值越小，排列越靠前，默认为0
 > - `flex-grow: <number>` => 项目的放大比例，默认为`0`，即如果存在剩余空间，也不放大
-> - `flex-shrink: <number>`=>  定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。
+> - `flex-shrink: <number>`=> 定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。
 > - `flex-basis: <length> | auto; /* default auto */` => 定义了在分配多余空间之前，项目占据的主轴空间（main size）
 > - `flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]`=> 默认值为`0 1 auto`
 > - `align-self : auto | flex-start | flex-end | center | baseline | stretch;` => 允许单个项目有与其他项目不一样的对齐方式，可覆盖`align-items`属性。默认值为`auto`，表示继承父元素的`align-items`属性，如果没有父元素，则等同于`stretch`。
@@ -185,7 +181,7 @@
 
 ```css
 .item {
- order: <integer>;
+  order: <integer>;
 }
 ```
 
@@ -197,7 +193,7 @@
 
 ```css
 .item {
- flex-grow: <number>; /* default 0 */
+  flex-grow: <number>; /* default 0 */
 }
 ```
 
@@ -209,7 +205,7 @@
 
 ```css
 .item {
- flex-shrink: <number>; /* default 1 */
+  flex-shrink: <number>; /* default 1 */
 }
 ```
 
@@ -227,7 +223,7 @@
 
 ```css
 .item {
- flex-basis: <length> | auto; /* default auto */
+  flex-basis: <length> | auto; /* default auto */
 }
 ```
 
@@ -239,7 +235,7 @@
 
 ```css
 .item {
- flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
+  flex: none | [ < 'flex-grow' > < 'flex-shrink' >? || < 'flex-basis' >];
 }
 ```
 
@@ -254,7 +250,7 @@
 
 ```css
 .item {
- align-self: auto | flex-start | flex-end | center | baseline | stretch;
+  align-self: auto | flex-start | flex-end | center | baseline | stretch;
 }
 ```
 

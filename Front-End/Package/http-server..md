@@ -44,7 +44,7 @@
 | -S或--tls--ssl  |                                                          启用使用 TLS/SSL （HTTPS） 提供安全请求服务                                                           |  false   |
 | -C或--cert SSL  |                                                                         证书文件的路径                                                                         | cert.pem |
 |  -K或--key SSL  |                                                                         密钥文件的路径                                                                         | key.pem  |
-|  -r或--robots   |                                                 自动提供 /robots.txt（其内容默认为User-agent: *\nDisallow: /)                                                  |  false   |
+|  -r或--robots   |                                                 自动提供 /robots.txt（其内容默认为User-agent: \*\nDisallow: /)                                                 |  false   |
 |  --no-dotfiles  |                                                                          不显示点文件                                                                          |
 |   --mimetypes   |                                                          用于自定义 mimetype 定义的 .types 文件的路径                                                          |
 |   -h或--help    |                                                                        打印此列表并退出                                                                        |
@@ -70,11 +70,11 @@
 >
 > 这将生成一个证书密钥对，有效期为 3650 天（约 10 年）
 > 然后，您需要运行用于启用 SSL 和证书文件的服务器。-S-C
-`http-server -S -C cert.pem`
+> `http-server -S -C cert.pem`
 > 如果您希望对私钥使用密码，则可以通过 -passout 参数（使用 foobar 的密码）在 openssl 命令中包含一个密码短语
 > 例如openssl req -newkey rsa:2048 -passout pass:foobar -keyout key.pem -x509 -days 365 -out cert.pem
 > 出于安全原因，密码短语将仅从环境变量中读取。NODE_HTTP_SERVER_SSL_PASSPHRASE
-如果成功，应输出以下内容：
+> 如果成功，应输出以下内容：
 
 ```js
 Starting up http-server, serving ./ through https

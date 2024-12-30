@@ -22,15 +22,15 @@ function (){} //匿名函数
 
 ```js
 // ES5
-var sum = function(){};
+var sum = function () {}
 // ES6
-let sum = () => {};// 函数体只有一行{}和return 可以省略
+let sum = () => {} // 函数体只有一行{}和return 可以省略
 ```
 
 ### 构造函数
 
 ```js
-const sum = new Function('a', 'b', 'return a + b');
+const sum = new Function('a', 'b', 'return a + b')
 ```
 
 ### 三种方法对比
@@ -40,7 +40,7 @@ const sum = new Function('a', 'b', 'return a + b');
 >    1. 第一次解析常规的JavaScript代码
 >    2. 第二次解析传入构造函数的字符串
 
-------
+---
 
 ## Rest 参数
 
@@ -48,11 +48,11 @@ const sum = new Function('a', 'b', 'return a + b');
 
 ```js
 function sum(...nums) {
-    let num = 0
-    nums.forEach(function(item) {
-        num += item * 1
-    })
-    return num
+  let num = 0
+  nums.forEach(function (item) {
+    num += item * 1
+  })
+  return num
 }
 
 console.log(sum(1, 2, 3)) // 6
@@ -62,7 +62,7 @@ console.log(sum(1, 2, 3, 4)) // 10
 ## name属性
 
 ```js
-function foo(){}
+function foo() {}
 
 foo.name // "foo"s
 ```
@@ -83,19 +83,17 @@ foo.name // "foo"s
 > 函数名()和匿名函数调用, this 指向 window
 
 ```js
- function getSum() {
-    console.log(this) //这个属于函数名调用，this指向window
- }
- getSum()
- 
- (function() {
-    console.log(this) //匿名函数调用，this指向window
- })()
- 
- var getSum=function() {
-    console.log(this) //实际上也是函数名调用，window
- }
- getSum()
+function getSum() {
+  console.log(this) //这个属于函数名调用，this指向window
+}
+getSum()(function () {
+  console.log(this) //匿名函数调用，this指向window
+})()
+
+var getSum = function () {
+  console.log(this) //实际上也是函数名调用，window
+}
+getSum()
 ```
 
 #### 方法调用
@@ -104,10 +102,10 @@ foo.name // "foo"s
 
 ```js
 var obj = {
-   name: 'methods',
-   getSum: function() {
-     console.log(this) //objList对象
-   }
+  name: 'methods',
+  getSum: function () {
+    console.log(this) //objList对象
+  },
 }
 obj.getSum()
 ```
@@ -118,9 +116,9 @@ obj.getSum()
 
 ```js
 function Person() {
-  console.log(this); //是构造函数调用，指向实例化的对象personOne
+  console.log(this) //是构造函数调用，指向实例化的对象personOne
 }
-var personOne = new Person();
+var personOne = new Person()
 ```
 
 #### 间接调用
@@ -129,10 +127,10 @@ var personOne = new Person();
 
 ```js
 function foo() {
-   console.log(this);
+  console.log(this)
 }
-foo.apply('我是apply改变的this值');//我是apply改变的this值
-foo.call('我是call改变的this值');//我是call改变的this值
+foo.apply('我是apply改变的this值') //我是apply改变的this值
+foo.call('我是call改变的this值') //我是call改变的this值
 ```
 
 ### ES6箭头函数
@@ -144,32 +142,30 @@ foo.call('我是call改变的this值');//我是call改变的this值
 > - 调用就是调用模式
 
 ```js
-(() => {
-   console.log(this)//window
+;(() => {
+  console.log(this) //window
 })()
 
 let arrowFun = () => {
-  console.log(this)//window
+  console.log(this) //window
 }
 arrowFun()
 
 let arrowObj = {
-  arrFun: function() {
-   (() => {
-     console.log(this)//this指向的是arrowObj对象
-   })()
-   }
- }
- arrowObj.arrFun();
+  arrFun: function () {
+    ;(() => {
+      console.log(this) //this指向的是arrowObj对象
+    })()
+  },
+}
+arrowObj.arrFun()
 ```
 
 ## 方法
 
 > - IE5之前不支持call和apply,bind是ES5出来的;
->
 > - call和apply可以调用函数,改变this,实现继承和借用别的对象的方法;
->
-> - apply  :
+> - apply :
 >
 >   - 将函数作为对象的方法来调用
 >   - 将参数以数组形式传递给改方法(多个参)
@@ -191,44 +187,44 @@ let arrowObj = {
 
 ```js
 var foo = {
-  name:"张三",
-  logName:function(){
-    console.log(this.name);
-  }
+  name: '张三',
+  logName: function () {
+    console.log(this.name)
+  },
 }
-var bar={
-  name:"李四"
-};
-foo.logName.call(bar);//李四
+var bar = {
+  name: '李四',
+}
+foo.logName.call(bar) //李四
 // 实质是call改变了foo的this指向为bar,并调用该函数
 ```
 
 #### 两个函数继承
 
 ```js
-function Animal(name){   
-  this.name = name;   
-  this.showName = function(){   
-    console.log(this.name);   
-  }   
-}   
-function Cat(name){  
-  Animal.call(this, name);  
-}    
-var cat = new Cat("Black Cat");   
-cat.showName(); //Black Cat
+function Animal(name) {
+  this.name = name
+  this.showName = function () {
+    console.log(this.name)
+  }
+}
+function Cat(name) {
+  Animal.call(this, name)
+}
+var cat = new Cat('Black Cat')
+cat.showName() //Black Cat
 ```
 
 ### 其他运用
 
 ```js
-let arr1 = [1, 2, 3];
-let arr2 = [4, 5, 6];
-Array.prototype.push.apply(arr1, arr2); //将arr2合并到了arr1中
-console.log('max:', Math.max.apply(null, arr1)); // max: 6
-console.log('arr1:', arr1); //arr1:  [1,2,3,4,5,6]
-console.log('type:', Object.prototype.toString.call({}));// type: [Object Object]
-console.log('type:', Object.prototype.toString.call(arr1)); // type: [Object arrary]
+let arr1 = [1, 2, 3]
+let arr2 = [4, 5, 6]
+Array.prototype.push.apply(arr1, arr2) //将arr2合并到了arr1中
+console.log('max:', Math.max.apply(null, arr1)) // max: 6
+console.log('arr1:', arr1) //arr1:  [1,2,3,4,5,6]
+console.log('type:', Object.prototype.toString.call({})) // type: [Object Object]
+console.log('type:', Object.prototype.toString.call(arr1)) // type: [Object arrary]
 ```
 
 ### bind
@@ -239,13 +235,13 @@ console.log('type:', Object.prototype.toString.call(arr1)); // type: [Object arr
 
 ```js
 let foo = {
-  name: "张三",
+  name: '张三',
   logName: function (age) {
-    console.log(this.name, age);
-  }
+    console.log(this.name, age)
+  },
 }
-let fooNewBind = foo.logName.bind(foo);
-fooNewBind(11)//张三,11  因为bind改变了fooNewBind里面的this指向
+let fooNewBind = foo.logName.bind(foo)
+fooNewBind(11) //张三,11  因为bind改变了fooNewBind里面的this指向
 ```
 
 ### call apply bind 原理
@@ -263,17 +259,17 @@ Function.prototype.newCall = function (context, ...parameter) {
   let fn = Symbol()
   context[fn] = this
   const res = context[fn](...parameter)
-  delete context.fn;
+  delete context.fn
   return res
 }
 
 let person = {
-  name: 'Abiel'
+  name: 'Abiel',
 }
 function sayHi(age, sex) {
-  console.log(this.name, age, sex);
+  console.log(this.name, age, sex)
 }
-sayHi.newCall(person, 25, '男'); // Abiel 25 男
+sayHi.newCall(person, 25, '男') // Abiel 25 男
 ```
 
 #### apply
@@ -288,15 +284,15 @@ Function.prototype.newApply = function (context, parameter) {
   }
   let fn = Symbol()
   context[fn] = this
-  const res = context[fn](...parameter);
+  const res = context[fn](...parameter)
   delete context[fn]
   return res
 }
 let person = {
-  name: "Abiel"
-};
+  name: 'Abiel',
+}
 function sayHi(age, sex) {
-  console.log(this.name, age, sex);
+  console.log(this.name, age, sex)
 }
 sayHi.newApply(person, [25, '男']) //Abiel 25 男
 ```
@@ -312,10 +308,10 @@ Function.prototype.bind = function (context, ...innerArgs) {
   }
 }
 let person = {
-  name: 'Abiel'
+  name: 'Abiel',
 }
 function sayHi(age, sex) {
-  console.log(this.name, age, sex);
+  console.log(this.name, age, sex)
 }
 let personSayHi = sayHi.bind(person, 25)
 personSayHi('男')
@@ -330,12 +326,12 @@ personSayHi('男')
 >   - 函数声明自动初始化
 > - 属性:
 >   - length
->   - callee   当前正指向的函数
->   - caler    抵用当前正在执行函数的函数名
+>   - callee 当前正指向的函数
+>   - caler 抵用当前正在执行函数的函数名
 
 ## 指针标识
 
-> - this                 指向当前操作对象
-> - callee             指向参数集合所处函数
-> - prototype      指向函数附带的原型对象
-> - constructor   指向创建该对象的构造函数
+> - this 指向当前操作对象
+> - callee 指向参数集合所处函数
+> - prototype 指向函数附带的原型对象
+> - constructor 指向创建该对象的构造函数

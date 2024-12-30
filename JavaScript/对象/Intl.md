@@ -8,8 +8,8 @@
 > `Collator`，`NumberFormat` 和 `DateTimeFormat` 对象的构造函数是 Intl 对象的属性。本页文档内容包括了这些属性，以及国际化使用的构造器和其他语言的方法等常见的功能
 
 - locales 参数:
-locales 参数必须是一个 BCP 47 语言标记的字符串，或者是一个包括多个语言标记的数组。如果 locales 参数未提供或者是 undefined，便会使用运行时默认的 locale。
-[BCP 47 语言标记](https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry)
+  locales 参数必须是一个 BCP 47 语言标记的字符串，或者是一个包括多个语言标记的数组。如果 locales 参数未提供或者是 undefined，便会使用运行时默认的 locale。
+  [BCP 47 语言标记](https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry)
 
 属性
 Intl.Collator

@@ -37,11 +37,14 @@ var promise = new Promise(function(resolve, reject) {
 > - 第一个回调函数,会将返回结果作为参数,传入第二个回调函数
 
 ```js
-promise.then(function(value) {
-  // success
-}, function(error) {
-  // failure
-});
+promise.then(
+  function (value) {
+    // success
+  },
+  function (error) {
+    // failure
+  },
+)
 ```
 
 ### Promise.prototype.catch()
@@ -53,8 +56,8 @@ promise.then(function(value) {
 > 将多个Promise实例,包装成一个新的Promise实例
 >
 > ```js
-> var p = Promise.all([p1, p2, p3]);
-> 
+> var p = Promise.all([p1, p2, p3])
+>
 > /*
 > （1）只有p1、p2、p3的状态都变成fulfilled，p的状态才会变成fulfilled，
 >   此时p1、p2、p3的返回值组成一个数组，传递给p的回调函数。
@@ -62,26 +65,26 @@ promise.then(function(value) {
 >   此时第一个被reject的实例的返回值，会传递给p的回
 > 调函数。
 > */
-> 
+>
 > let p1 = new Promise((resolve, reject) => {
->   resolve(11);
+>   resolve(11)
 > })
-> let p2 = new Promise(((resolve, reject) => {
->   resolve(12);
-> }))
-> 
-> let p3 = new Promise(((resolve, reject) => {
->   resolve(13);
-> }))
-> 
-> let p = Promise.all([p1, p2, p3]);
-> p.then(res => {
->   console.log('then', res);
-> }).catch(res => {
->   console.log("catch", res)
-> });
+> let p2 = new Promise((resolve, reject) => {
+>   resolve(12)
+> })
+>
+> let p3 = new Promise((resolve, reject) => {
+>   resolve(13)
+> })
+>
+> let p = Promise.all([p1, p2, p3])
+> p.then((res) => {
+>   console.log('then', res)
+> }).catch((res) => {
+>   console.log('catch', res)
+> })
 > // 打印
-> then [11, 12, 13]
+> then[(11, 12, 13)]
 > ```
 >
 > ```js
@@ -91,11 +94,11 @@ promise.then(function(value) {
 > let p2 = new Promise(((resolve, reject) => {
 >   resolve(12);
 > }))
-> 
+>
 > let p3 = new Promise(((resolve, reject) => {
 >   reject(33)
 > }))
-> 
+>
 > let p = Promise.all([p1, p2, p3]);
 > p.then(res => {
 >   console.log('then', res);
@@ -104,7 +107,7 @@ promise.then(function(value) {
 > });
 > // 打印
 > catch 33
-> 
+>
 > ```
 
 ### Promise.race()
@@ -112,13 +115,11 @@ promise.then(function(value) {
 > 就是通过竞赛来比较, 看谁的转态先发生改变
 >
 > ```js
-> var p = Promise.race([p1, p2, p3]);
+> var p = Promise.race([p1, p2, p3])
 > /*
 >  p1, p2, p3 中有一个实例率先改变状态,p就会跟着改变,先改变的Promise实例的返回值,就返回给p的回调函数
 > */
 > ```
->
->
 
 ### Promise.resolve()
 
@@ -133,13 +134,13 @@ promise.then(function(value) {
 ### Promise.reject()
 
 ```js
-var p = Promise.reject('出错了');
+var p = Promise.reject('出错了')
 // 等同于
 var p = new Promise((resolve, reject) => reject('出错了'))
 
-p.then(null, function (s){
+p.then(null, function (s) {
   console.log(s)
-});
+})
 // 出错了
 ```
 
@@ -148,23 +149,20 @@ p.then(null, function (s){
 > Promise对象的回调链，不管以`then`方法或`catch`方法结尾，要是最后一个方法抛出错误，都有可能无法捕捉到（因为Promise内部的错误不会冒泡到全局）。因此，我们可以提供一个`done`方法，总是处于回调链的尾端，保证抛出任何可能出现的错误。
 
 ```js
-asyncFunc()
-  .then(f1)
-  .catch(r1)
-  .then(f2)
-  .done();
+asyncFunc().then(f1).catch(r1).then(f2).done()
 ```
 
 ### finally()
 
->不管状态,都一定会执行
+> 不管状态,都一定会执行
 
 ```js
-server.listen(0)
+server
+  .listen(0)
   .then(function () {
     // run test
   })
-  .finally(server.stop);
+  .finally(server.stop)
 ```
 
 ### Promise.try()
@@ -215,35 +213,38 @@ show data then return data
 #### Promise对象实现Ajax操作的例子
 
 ```js
-var getJSON = function(url) {
-  var promise = new Promise(function(resolve, reject){
-    var client = new XMLHttpRequest();
-    client.open("GET", url);
-    client.onreadystatechange = handler;
-    client.responseType = "json";
-    client.setRequestHeader("Accept", "application/json");
-    client.send();
+var getJSON = function (url) {
+  var promise = new Promise(function (resolve, reject) {
+    var client = new XMLHttpRequest()
+    client.open('GET', url)
+    client.onreadystatechange = handler
+    client.responseType = 'json'
+    client.setRequestHeader('Accept', 'application/json')
+    client.send()
 
     function handler() {
       if (this.readyState !== 4) {
-        return;
+        return
       }
       if (this.status === 200) {
-        resolve(this.response);
+        resolve(this.response)
       } else {
-        reject(new Error(this.statusText));
+        reject(new Error(this.statusText))
       }
-    };
-  });
+    }
+  })
 
-  return promise;
-};
+  return promise
+}
 
-getJSON("/posts.json").then(function(json) {
-  console.log('Contents: ' + json);
-}, function(error) {
-  console.error('出错了', error);
-});
+getJSON('/posts.json').then(
+  function (json) {
+    console.log('Contents: ' + json)
+  },
+  function (error) {
+    console.error('出错了', error)
+  },
+)
 ```
 
 ## async, await
@@ -253,14 +254,13 @@ getJSON("/posts.json").then(function(json) {
 ```javascript
 async function main() {
   try {
-    var val1 = await firstStep();
-    var val2 = await secondStep(val1);
-    var val3 = await thirdStep(val1, val2);
+    var val1 = await firstStep()
+    var val2 = await secondStep(val1)
+    var val3 = await thirdStep(val1, val2)
 
-    console.log('Final: ', val3);
-  }
-  catch (err) {
-    console.error(err);
+    console.log('Final: ', val3)
+  } catch (err) {
+    console.error(err)
   }
 }
 ```

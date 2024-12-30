@@ -3,7 +3,7 @@
 ## length
 
 ```less
-@list: "banana", "tomato", "potato", "peach";
+@list: 'banana', 'tomato', 'potato', 'peach';
 n: length(@list);
 ```
 
@@ -74,7 +74,7 @@ each(@selectors, {
   one: blue;
   two: green;
   three: red;
-}
+};
 .set {
   each(@set, {
     @{key}-@{index}: @value;

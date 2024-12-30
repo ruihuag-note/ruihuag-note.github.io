@@ -2,18 +2,18 @@
 
 ## 方法一: 修改node_modules文件
 
-> 找到/node_modules/sockjs-client/dist/sockjs.js 
+> 找到/node_modules/sockjs-client/dist/sockjs.js
 >
 > 找到代码的 1606行 ，并注释掉
 
-   ```js
-try{
+```js
+try {
   //self.xhr.send(payload); //注释这一行
-}catch(e){
-  self.emit('finish', 0, '');
-  self._cleanup(false);
+} catch (e) {
+  self.emit('finish', 0, '')
+  self._cleanup(false)
 }
-   ```
+```
 
 ## 方法二
 

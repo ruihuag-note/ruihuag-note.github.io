@@ -3,6 +3,7 @@
 ## 目录
 
 - 本地模式：npm 将包安装到当前项目目录，默认为当前工作目录。
+
   - 软件包安装到 `./node_modules`，并将 bin 安装到`./node_modules/.bin`
 
 - 全局模式：npm 将包安装到安装前缀到 `$npm_config_prefix/lib/node_modules`和 `$npm_config_prefix/bin`

@@ -8,6 +8,6 @@
 
 ```json
 {
- "license": "MIT"
+  "license": "MIT"
 }
 ```

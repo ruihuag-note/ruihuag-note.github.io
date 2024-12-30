@@ -14,15 +14,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    count : 1,
+    count: 1,
     msg: 'msg',
   },
-  mutations: {
-    
-  }, 
-  action: {
-    
-  }
+  mutations: {},
+  action: {},
 })
 ```
 
@@ -30,16 +26,16 @@ app.js
 
 ```js
 export default {
-  data(){
-    return ({
+  data() {
+    return {
       msg: 'hello',
-    })
+    }
   },
   computed: {
     count() {
-      return this.$store.state.count;//获取单个状态
-    }
-  }
+      return this.$store.state.count //获取单个状态
+    },
+  },
 }
 ```
 
@@ -50,13 +46,13 @@ store.js
 ```js
 import Vue from 'vue'
 import Vuex from 'vuex'
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     count: 0,
-    msg: 'msg'
-  }
+    msg: 'msg',
+  },
 })
 ```
 
@@ -71,7 +67,7 @@ export defualt {
   //方法一
   computed: mapState({
     msg() {
-     return this.msg + 'hello'; 
+     return this.msg + 'hello';
     },
     msg2(state) {
       return state.msg;
@@ -91,21 +87,21 @@ store.js
 ```js
 import Vue from 'vue'
 import Vuex from 'vuex'
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     count: 0,
     msg: 'msg',
-    list: [1, 2, 3, 4]
+    list: [1, 2, 3, 4],
   },
   getters: {
     modifyArr(state) {
-      return state.list.filter((item, index, arr) =>{
-       return item % 2 == 0;
+      return state.list.filter((item, index, arr) => {
+        return item % 2 == 0
       })
-    }
-  }
+    },
+  },
 })
 ```
 
@@ -130,11 +126,8 @@ export default {
 ## Mutation
 
 > - 可以修改store里面的状态
->
 > - 必须是**同步函数**
->
 > - 最好在store中先初始化所需要的属性
->
 > - 当需要添加属性时, 使用Vue.set(obj, 'newProp', 123)或用新的对象替换老对象
 >
 >   - ```js
@@ -145,7 +138,7 @@ export default {
 >         this.replaceStae({...state, newProp: '添加一个新值! ' })
 >       }
 >     }
->     
+>
 >     methods: {
 >       addNewProp() {
 >         this.$store.commit('addNewState', {});
@@ -166,18 +159,18 @@ methods: {
     this.$store.commit('reduce');
   },
   loadAdd() {
-    
+
     this.$store.commit('loadAdd', 100)
     this.$store.commit('loadAdd', {
      extraCount: 100
     })//传输额外的参数
-    
+
     this.$store.commit({
       type:'addLoad'
       extraCount: 100
-    },{}) //将多个写在一个上                  
+    },{}) //将多个写在一个上
   },
-    
+
   //mapMutation using
   ...mapMutations([
     'increment',//将`this.increment`映射为'this.$store.commit(increment)'
@@ -188,7 +181,7 @@ methods: {
     add: 'increment',
     get: 'incrementBy',
   ])
-  
+
 }
 
 //store.js
@@ -223,7 +216,7 @@ actions: {
     //   context.commit('changeProduct', {change: 'ship'});
     // }, 1500)
     // 使用载荷
-    let temp = 'ship+' + payload.extraInfo; 
+    let temp = 'ship+' + payload.extraInfo;
     setTimeout(() => {
       context.commit('changeProduct', {change: temp});
     }, 1500)
@@ -271,9 +264,9 @@ actions: {
     })
   }
 }
-  
+
 //app.js
-  
+
 data() {
   return {
     status: 'no changed',
@@ -343,12 +336,12 @@ export default new Vuex.Store({
     ...//其他状态
   },
 })
-  
-  
+
+
 //app.vue
 compute: {
  msg() {
-  return this.$store.mb; //{name: 'rui', age: '22'} 
+  return this.$store.mb; //{name: 'rui', age: '22'}
  }
 }
 ```
@@ -376,7 +369,7 @@ export const moduleC = {
     }
   },
   actions: {
-    
+
   }
 }
 //store.js

@@ -11,13 +11,13 @@ Reflect对象与Proxy对象一样，也是 ES6 为了操作对象而提供的新
   let newVal = ''
   Reflect.defineProperty(obj, 'name', {
     get() {
-        return newVal
+      return newVal
     },
     set(val) {
-        console.log('set')
-        // this.name = val
-        newVal = val
-    }
+      console.log('set')
+      // this.name = val
+      newVal = val
+    },
   })
   obj.name = 'es'
   console.log(obj.name)
@@ -33,7 +33,7 @@ Reflect对象与Proxy对象一样，也是 ES6 为了操作对象而提供的新
   } catch (e) {
     // failure
   }
-  
+
   // 新写法
   if (Reflect.defineProperty(target, property, attributes)) {
     // success
@@ -47,7 +47,7 @@ Reflect对象与Proxy对象一样，也是 ES6 为了操作对象而提供的新
   ```js
   // 老写法
   'assign' in Object // true
-  
+
   // 新写法
   Reflect.has(Object, 'assign') // true
   ```
@@ -56,13 +56,13 @@ Reflect对象与Proxy对象一样，也是 ES6 为了操作对象而提供的新
 
   ```js
   Proxy(target, {
-    set: function(target, name, value, receiver) {
-        var success = Reflect.set(target, name, value, receiver)
-        if (success) {
-            console.log('property ' + name + ' on ' + target + ' set to ' + value)
-        }
-        return success
-    }
+    set: function (target, name, value, receiver) {
+      var success = Reflect.set(target, name, value, receiver)
+      if (success) {
+        console.log('property ' + name + ' on ' + target + ' set to ' + value)
+      }
+      return success
+    },
   })
   ```
 
@@ -103,7 +103,7 @@ Reflect.apply(''.charAt, 'ponies', [3])
   ```js
   const student = {}
   Reflect.defineProperty(student, 'name', {
-    value: 'Mike'
+    value: 'Mike',
   }) // true
   student.name // "Mike"
   ```
@@ -114,22 +114,25 @@ Reflect.apply(''.charAt, 'ponies', [3])
   ```js
   var obj = {
     x: 1,
-    y: 2
+    y: 2,
   }
-  Reflect.deleteProperty(obj, "x") // true
+  Reflect.deleteProperty(obj, 'x') // true
   obj // { y: 2 }
-  
+
   var arr = [1, 2, 3, 4, 5]
-  Reflect.deleteProperty(arr, "3") // true
+  Reflect.deleteProperty(arr, '3') // true
   arr // [1, 2, 3, , 5]
-  
+
   // 如果属性不存在，返回 true
-  Reflect.deleteProperty({}, "foo") // true
-  
+  Reflect.deleteProperty({}, 'foo') // true
+
   // 如果属性不可配置，返回 false
-  Reflect.deleteProperty(Object.freeze({
-    foo: 1
-  }), "foo") // false
+  Reflect.deleteProperty(
+    Object.freeze({
+      foo: 1,
+    }),
+    'foo',
+  ) // false
   ```
 
 - Reflect.get()
@@ -139,21 +142,21 @@ Reflect.apply(''.charAt, 'ponies', [3])
   // Object
   var obj = {
     x: 1,
-    y: 2
+    y: 2,
   }
   Reflect.get(obj, 'x') // 1
-  
+
   // Array
   Reflect.get(['zero', 'one'], 1) // "one"
-  
+
   // Proxy with a get handler
   var x = {
-    p: 1
+    p: 1,
   }
   var obj = new Proxy(x, {
     get(t, k, r) {
-        return k + 'bar'
-    }
+      return k + 'bar'
+    },
   })
   Reflect.get(obj, 'foo') // "foobar"
   ```
@@ -162,16 +165,22 @@ Reflect.apply(''.charAt, 'ponies', [3])
   静态方法 Reflect.getOwnPropertyDescriptor() 与 Object.getOwnPropertyDescriptor() 方法相似。如果在对象中存在，则返回给定的属性的属性描述符，否则返回 undefined。
 
   ```js
-  Reflect.getOwnPropertyDescriptor({
-    x: 'hello'
-  }, 'x')
+  Reflect.getOwnPropertyDescriptor(
+    {
+      x: 'hello',
+    },
+    'x',
+  )
   // {value: "hello", writable: true, enumerable: true, configurable: true}
-  
-  Reflect.getOwnPropertyDescriptor({
-    x: 'hello'
-  }, 'y')
+
+  Reflect.getOwnPropertyDescriptor(
+    {
+      x: 'hello',
+    },
+    'y',
+  )
   // undefined
-  
+
   Reflect.getOwnPropertyDescriptor([], 'length')
   // {value: 0, writable: true, enumerable: false, configurable: false}
   ```

@@ -10,9 +10,9 @@
 
 ```html
 <video width="320" height="240" controls>
-    <source src="movie.mp4" type="video/mp4">
-    <source src="movie.ogg" type="video/ogg">
-    您的浏览器不支持 video 标签。
+  <source src="movie.mp4" type="video/mp4" />
+  <source src="movie.ogg" type="video/ogg" />
+  您的浏览器不支持 video 标签。
 </video>
 ```
 
@@ -31,4 +31,3 @@
 | timeupdate()     | 视频变化事件, (获取实时的currentTime) |
 | ended()          | 视频播放结束事件                      |
 | volumechange()   | 视频声音事件                          |
-

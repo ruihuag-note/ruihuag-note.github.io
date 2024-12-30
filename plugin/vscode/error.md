@@ -12,12 +12,12 @@ More info: <https://aka.ms/vscodepat>
 ![](./__assets__/error-2024-04-07-16-40-44.png)
 
 - 解决: 去 <https://dev.azure.com/>
-![](./__assets__/error-2024-04-07-16-45-09.png)
+  ![](./__assets__/error-2024-04-07-16-45-09.png)
 
 - 查看Status 是否过期, 过期则通过 Regenerate 修改过期时间
 - 再次发布即可
 
-## `pnpm`  与 `vsce` 不兼容
+## `pnpm` 与 `vsce` 不兼容
 
 - 切换为 `yarn`, 重新安装依赖
 - 使用的命令后面添加 `--no-yarn`, 及可以正常发布和打包

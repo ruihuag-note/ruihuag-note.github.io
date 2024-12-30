@@ -4,11 +4,9 @@
 >
 > [hucongcong/heima-uui (github.com)](https://github.com/hucongcong/heima-uui)
 >
->  [构建目标 | Vue CLI (vuejs.org)](https://cli.vuejs.org/zh/guide/build-targets.html#库)
+> [构建目标 | Vue CLI (vuejs.org)](https://cli.vuejs.org/zh/guide/build-targets.html#库)
 >
 > 仿制Element-UI组件的文件目录
-
-
 
 ## 开发准备
 
@@ -20,12 +18,12 @@
 >
 > - packages :组件的文件夹
 >   - index.js:写成注册packages组件的的方法
-> - .npmignore : npm 提交忽略目录 
+> - .npmignore : npm 提交忽略目录
 > - vue.config.js: 修改webpack的打包方法
 >
 > 修改
 >
-> - src => examples 
+> - src => examples
 
 #### packages / index.js
 
@@ -40,7 +38,7 @@ import Button from './button'
 // 存储组件列表
 const components = [
   Button,
-  
+
 ]
 const install = function (Vue) {
   // 全局注册所有的组件
@@ -60,12 +58,10 @@ export default {
 
 ```
 
-
-
 #### .npmignore
 
 ```
-# 忽略目录 
+# 忽略目录
 examples/
 packages/
 public/
@@ -77,33 +73,32 @@ babel.config.js
 .gitignore
 ```
 
-
-
 #### vue.config.js
 
 ```js
 const path = require('path')
 module.exports = {
-	pages: {
-		index: {
-			// 修改项目的入口文件
-			entry: 'examples/main.js',
-			template: 'public/index.html',
-			filename: 'index.html'
-		}
-	},
-	// 扩展 webpack 配置，使 packages 加入编译
-	chainWebpack: config => {
-		config.module
-			.rule('js')
-			.include.add(path.resolve(__dirname, 'packages')).end()
-			.use('babel')
-			.loader('babel-loader')
-			.tap(options => {
-				// 修改它的选项...
-				return options
-			})
-	}
+  pages: {
+    index: {
+      // 修改项目的入口文件
+      entry: 'examples/main.js',
+      template: 'public/index.html',
+      filename: 'index.html',
+    },
+  },
+  // 扩展 webpack 配置，使 packages 加入编译
+  chainWebpack: (config) => {
+    config.module
+      .rule('js')
+      .include.add(path.resolve(__dirname, 'packages'))
+      .end()
+      .use('babel')
+      .loader('babel-loader')
+      .tap((options) => {
+        // 修改它的选项...
+        return options
+      })
+  },
 }
 ```
 
@@ -123,16 +118,12 @@ module.exports = {
 }
 ```
 
-
-
 ## 发布
 
 ```npm
 npm login
 npm publish
 ```
-
-
 
 ## 使用
 
@@ -148,6 +139,3 @@ import 'rh-vue-ui/dist/rh-vue-ui.css'
 ```vue
 <RH-Button>我是按钮</RH-Button>
 ```
-
-
-

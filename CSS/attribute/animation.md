@@ -4,16 +4,16 @@
 > `animation: 属性名 时长 过度方式 延迟 次数 方向 填充模式 是否暂停;`  
 > `animation: name duration timing-function delay iteration-count direction fill-mode;`
 
-| 属性   | 描述 |
-| -- | -- |
-| animation-name            | 指定 @keyframes 动画的`名称`。|
+| 属性                      | 描述                                                              |
+| ------------------------- | ----------------------------------------------------------------- |
+| animation-name            | 指定 @keyframes 动画的`名称`。                                    |
 | animation-duration        | 指定动画完成一个`周期`所需要时间，单位秒（s）或毫秒（ms），默认是 |
-| animation-timing-function | 指定动画`计时函数`，即动画的速度曲线，默认是 "ease"。|
-| animation-delay           | 指定动画`延迟时间`，即动画何时开始，默认是 0。|
-| animation-iteration-count | 指定动画`播放的次数`，默认是 1。|
-| animation-direction       | 指定动画`播放的方向`。默认是 normal。|
-| animation-fill-mode       | 指定动画`填充模式`。默认是 none。|
-| animation-play-state      | 指定动画`播放状态`，正在运行或暂停。默认是 running。|
+| animation-timing-function | 指定动画`计时函数`，即动画的速度曲线，默认是 "ease"。             |
+| animation-delay           | 指定动画`延迟时间`，即动画何时开始，默认是 0。                    |
+| animation-iteration-count | 指定动画`播放的次数`，默认是 1。                                  |
+| animation-direction       | 指定动画`播放的方向`。默认是 normal。                             |
+| animation-fill-mode       | 指定动画`填充模式`。默认是 none。                                 |
+| animation-play-state      | 指定动画`播放状态`，正在运行或暂停。默认是 running。              |
 
 ## animation-name
 
@@ -47,7 +47,7 @@ animation-duration: 2s;
   100%{
     transform: rotate(360deg);
   }
- 
+
 
 @keyframes [name]{
   0%, 66%{
@@ -63,10 +63,10 @@ animation-duration: 2s;
 
 ```css
 @keyframes [name] {
-  from{
+  from {
     transform: rotate(0deg);
   }
-  to{
+  to {
     transform: rotate(360deg);
   }
 }

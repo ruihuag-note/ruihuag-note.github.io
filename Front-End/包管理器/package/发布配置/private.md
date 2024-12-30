@@ -4,6 +4,6 @@
 
 ```json
 {
- "private": true
+  "private": true
 }
 ```

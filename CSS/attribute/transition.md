@@ -3,7 +3,7 @@
 > vscode可以支持动图  
 > transition-property、transition-duration、transition-timing-function,transition-delay
 > `transition-duration`: 为必填项
-简写
+> 简写
 
 ```css
 transition: all 5s linear .2s; // 以空格隔开属性
@@ -283,11 +283,11 @@ transition-delay: 1s;
 ```css
 .app {
   width: 300px;
- transition: all 3s linear .2s;
+  transition: all 3s linear 0.2s;
 }
 
 .app:hover {
   width: 100;
-  transition: all 1s linear .2s;
+  transition: all 1s linear 0.2s;
 }
 ```

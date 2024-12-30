@@ -7,11 +7,14 @@
 > `fetch(input ?: Requset | string, init ?: RequestInit ): Promise<Response>`
 
 ```js
-fetch(url, option).then(function(response){
-  // 处理 HTTP 响应
-}, function(error){
- // 处理网络错误
-})
+fetch(url, option).then(
+  function (response) {
+    // 处理 HTTP 响应
+  },
+  function (error) {
+    // 处理网络错误
+  },
+)
 ```
 
 ## fetch() 参数
@@ -22,7 +25,7 @@ fetch(url, option).then(function(response){
 > - option : (可选) , 一个配置对象
 >   - method: 请求方式 [GET, POST]
 >   - headers: 请求的头信息, 包含与请求关联的Headers对象
->   - body : 请求的body信息,  [ 注意: GET 或 HEAD 方法的请求不得包含body信息 ]
+>   - body : 请求的body信息, [ 注意: GET 或 HEAD 方法的请求不得包含body信息 ]
 >   - mode : 请求模式 , cors, no-cors 或 same-origin
 >   - credentials: 请求 的credentidials, 如omit, same-origin 或 include [ 为了在当前域名内自动发送cookie, 必须提供这个选项 ]
 
@@ -32,13 +35,15 @@ fetch(url, option).then(function(response){
 
 ```js
 fetch('/index/fetchHtml')
- .then(res => {
- return res.text()
-}).then( result => {
-  document.body.innerHTML += result
-}).catch( err => {
-  // errs
-})
+  .then((res) => {
+    return res.text()
+  })
+  .then((result) => {
+    document.body.innerHTML += result
+  })
+  .catch((err) => {
+    // errs
+  })
 ```
 
 ### JSON
@@ -55,13 +60,13 @@ fetch('/api/user/a')
 ### POST Form
 
 ```js
-function postForm(){
+function postForm() {
   const form = document.querySelector('form')
   const name = encodeURL(document.getElementByName('name')[0].value)
-  fetch(`/api/user/${name}`,{
+  fetch(`/api/user/${name}`, {
     method: 'POST',
-    body: new FormData(form)
- })
+    body: new FormData(form),
+  })
 }
 ```
 
@@ -71,12 +76,12 @@ function postForm(){
 fetch('/api/user/a', {
   method: 'POST',
   header: {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   },
   body: JSON.stringify({
     name: 'a',
     age: 23,
-  })
+  }),
 })
 ```
 
@@ -85,29 +90,31 @@ fetch('/api/user/a', {
 > fetch自身没有提供中止请求的话方法, 但是大部分浏览器有实现AbortController, 可以通过AbortController中止fetch请求
 
 ```js
-const controller = new AbortController();
-const signal = controller.signal;
-setTimeout(() => controller.abort(), 5000);
-
+const controller = new AbortController()
+const signal = controller.signal
+setTimeout(() => controller.abort(), 5000)
 
 fetch('/api/user/CaiCai', {
   signal, // 在option中加入signal
   method: 'POST',
   // credentials:'include',
   headers: {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   },
   body: JSON.stringify({
     name: 'CaiCai',
     age: '26',
-  })
-}).then((res) => {
-  return res.json()
-}).then((result) => {
-  console.log(result)
-}).catch((err) => {
-  console.log(err)
+  }),
 })
+  .then((res) => {
+    return res.json()
+  })
+  .then((result) => {
+    console.log(result)
+  })
+  .catch((err) => {
+    console.log(err)
+  })
 ```
 
 ## 兼容性

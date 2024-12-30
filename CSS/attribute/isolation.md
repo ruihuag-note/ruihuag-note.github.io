@@ -10,18 +10,29 @@
 </section>
 
 <article>
-  This is a <span class="tooltip-parent"><u>tooltip</u>
+  This is a
+  <span class="tooltip-parent">
+    <u>tooltip</u>
     <span class="tooltip">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac vulputate augue, sed consequat velit. Praesent rhoncus viverra ullamcorper.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac vulputate
+      augue, sed consequat velit. Praesent rhoncus viverra ullamcorper.
     </span>
+  </span>
+  that is in a hovered state for your convinience.
 
-  </span> that is in a hovered state for your convinience.
-
-  <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac vulputate augue, sed consequat velit. Praesent rhoncus viverra ullamcorper.
-  </p>
-  
   <p>
-    In eu erat commodo enim varius feugiat ac vitae arcu. Aenean id varius justo. Curabitur eget mollis nibh. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum eu sapien sed lorem imperdiet auctor sit amet in felis. Donec non sem vel turpis laoreet pretium vitae sit amet odio. In sit amet fermentum arcu. Ut fringilla risus ac venenatis euismod. Donec non eleifend purus. Suspendisse a aliquet tellus. Maecenas bibendum commodo augue et porta.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac vulputate
+    augue, sed consequat velit. Praesent rhoncus viverra ullamcorper.
+  </p>
+
+  <p>
+    In eu erat commodo enim varius feugiat ac vitae arcu. Aenean id varius
+    justo. Curabitur eget mollis nibh. Class aptent taciti sociosqu ad litora
+    torquent per conubia nostra, per inceptos himenaeos. Vestibulum eu sapien
+    sed lorem imperdiet auctor sit amet in felis. Donec non sem vel turpis
+    laoreet pretium vitae sit amet odio. In sit amet fermentum arcu. Ut
+    fringilla risus ac venenatis euismod. Donec non eleifend purus. Suspendisse
+    a aliquet tellus. Maecenas bibendum commodo augue et porta.
   </p>
 </article>
 ```
@@ -49,7 +60,7 @@ h1 span {
 }
 
 h1::before {
-  content: "";
+  content: '';
   width: 100%;
   height: 20px;
   background-color: goldenrod;
@@ -76,7 +87,6 @@ u {
 }
 
 .tooltip-parent {
-  
   position: relative;
   display: inline-block;
 }
@@ -96,19 +106,18 @@ u {
 }
 
 .tooltip::before {
-  content: "";
-  width: 0; 
-  height: 0; 
+  content: '';
+  width: 0;
+  height: 0;
   border-left: 12px solid transparent;
   border-right: 12px solid transparent;
-  border-top :12px solid darkgoldenrod;
+  border-top: 12px solid darkgoldenrod;
   position: absolute;
   top: 100%;
   margin-top: 1px;
-  left:12px;
+  left: 12px;
   z-index: -1;
 }
-
 ```
 
 <section>
@@ -123,7 +132,7 @@ u {
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac vulputate augue, sed consequat velit. Praesent rhoncus viverra ullamcorper.
     </span>
 
-  </span> that is in a hovered state for your convinience.
+</span> that is in a hovered state for your convinience.
 
   <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac vulputate augue, sed consequat velit. Praesent rhoncus viverra ullamcorper.
   </p>

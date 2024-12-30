@@ -7,8 +7,8 @@
 2. 修改my.ini
 
    ```sh
-   basedir ="C:\RUIHUA\env\mysql\5.7.31.2"   # 设置mysql的安装目录 
-   datadir ="C:\RUIHUA\env\mysql\5.7.31.2\data"   # 设置mysql数据库的数据的存放目录，必须是data，或者是//xxx/data  
+   basedir ="C:\RUIHUA\env\mysql\5.7.31.2"   # 设置mysql的安装目录
+   datadir ="C:\RUIHUA\env\mysql\5.7.31.2\data"   # 设置mysql数据库的数据的存放目录，必须是data，或者是//xxx/data
    ```
 
 3. 管理员身份模式进入mysql下的bin目录
@@ -31,9 +31,9 @@
 
       ```
       SET PASSWORD=PASSWORD('[修改的密码]');
-      
+
       mysql8.0.4以后
-      
+
       ALTER` `USER` `'root'``@``'localhost'` `IDENTIFIED ``WITH` `mysql_native_password ``BY` `'修改的密码'``;
       ```
 

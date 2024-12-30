@@ -9,7 +9,7 @@
 > localStorage 中的键值对总是以字符串的形式存储。 (需要注意，和 js 对象相比，键值对总是以字符串的形式存储意味着数值类型会自动转化为字符串类型)
 
 ```js
-myStorage = localStorage;
+myStorage = localStorage
 ```
 
 > 一个可被用于访问当前源（origin）的本地存储空间的 Storage 对象。

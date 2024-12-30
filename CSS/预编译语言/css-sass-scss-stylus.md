@@ -1,4 +1,4 @@
-# CSS  Sass Scss stylus
+# CSS Sass Scss stylus
 
 > - css预处理器是为了给css添加一些编程的特性
 >   - 无需考虑浏览器的兼容性问题
@@ -8,23 +8,20 @@
 
 ## 变量
 
-> - sass:    $变量名 :  变量值
->
-> - less, css:  @变量名: 变量值
->
+> - sass: $变量名 : 变量值
+> - less, css: @变量名: 变量值
 > - stylus :
 >   - 可以是任何字符开头(@除外)
 >   - 变量之间可以使用冒号, 空格隔开
 >   - 变量名 = 变量值
 >   - 属性 属性值
 >   - 栗子:
->
 
 ```stylus
 maincolor = #092873
 siteWidth = 1024px
 borderStyle = dotted
-body 
+body
   color maincolor
   border 1px borderStyle mainColor
   max-width siteWidth
@@ -33,34 +30,34 @@ body
 ## 嵌套
 
 ```scss
-//scss style //----------------------------------- 
-nav { 
-    ul { 
-       margin: 0; 
-       padding: 0; 
-    } 
-    li { 
-       display: inline-block; 
-    } 
-    a { 
-       display: block; 
-       padding: 6px 12px; 
-       text-decoration: none; 
-    } 
+//scss style //-----------------------------------
+nav {
+    ul {
+       margin: 0;
+       padding: 0;
+    }
+    li {
+       display: inline-block;
+    }
+    a {
+       display: block;
+       padding: 6px 12px;
+       text-decoration: none;
+    }
 }
-//css style //----------------------------------- 
-nav ul { 
-    margin: 0; 
-    padding: 0; 
-    list-style: none; 
-} 
-nav li { 
-    display: inline-block; 
-} 
-nav a { 
-    display: block; 
-    padding: 6px 12px; 
-    text-decoration: none; 
+//css style //-----------------------------------
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+nav li {
+    display: inline-block;
+}
+nav a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
 
 ```
 
@@ -81,14 +78,14 @@ body {
 ### sass颜色函数
 
 ```sass
-lighten($color, 10%); 
-darken($color, 10%);  
-saturate($color, 10%);   
+lighten($color, 10%);
+darken($color, 10%);
+saturate($color, 10%);
 desaturate($color, 10%);
-grayscale($color);  
-complement($color); 
-invert($color); 
-mix($color1, $color2, 50%); 
+grayscale($color);
+complement($color);
+invert($color);
+mix($color1, $color2, 50%);
 
 使用
 @color: #0982C1;
@@ -98,12 +95,12 @@ border : 3px solid darken($color, 50%);
 ### less css颜色函数
 
 ```css
-lighten(@color, 10%); 
-darken(@color, 10%);  
-saturate(@color, 10%);  
-desaturate(@color, 10%); 
-spin(@color, 10); 
-spin(@color, -10); 
+lighten(@color, 10%);
+darken(@color, 10%);
+saturate(@color, 10%);
+desaturate(@color, 10%);
+spin(@color, 10);
+spin(@color, -10);
 mix(@color1, @color2);
 
 @color: #0982C1;
@@ -116,12 +113,12 @@ h1 {
 ### Stylus颜色处理函数
 
 ```css
-lighten(color, 10%); 
-darken(color, 10%);  
-saturate(color, 10%);  
-desaturate(color, 10%); 
+lighten(color, 10%);
+darken(color, 10%);
+saturate(color, 10%);
+desaturate(color, 10%);
 
-color = #0982C1 
+color = #0982C1
 h1
   background color
   border 3px solid darken(color, 50%)
@@ -201,8 +198,8 @@ h1
 
 ```less
 .error(@borderWidth: 2px) {
-  border: @borderWidth solid #F00;
-  color: #F00;
+  border: @borderWidth solid #f00;
+  color: #f00;
 }
 .generic-error {
   padding: 20px;
@@ -228,7 +225,7 @@ error(borderWidth = 2px){
   left: 12px;
   position: absolute;
   top: 20px;
-  error(5px); 
+  error(5px);
 }
 ```
 
@@ -263,7 +260,7 @@ error(borderWidth = 2px){
                4px 4px 0px darken($color, 20%),
                4px 4px 2px #000;
 }
- 
+
 h1 {
   font-size: 32pt;
   @ include text3d(#0982c1);
@@ -275,13 +272,14 @@ h1 {
 ```less
 .text3d(@color) {
   color: @color;
-  text-shadow: 1px 1px 0px darken(@color, 5%),
-               2px 2px 0px darken(@color, 10%),
-               3px 3px 0px darken(@color, 15%),
-               4px 4px 0px darken(@color, 20%),
-               4px 4px 2px #000;
+  text-shadow:
+    1px 1px 0px darken(@color, 5%),
+    2px 2px 0px darken(@color, 10%),
+    3px 3px 0px darken(@color, 15%),
+    4px 4px 0px darken(@color, 20%),
+    4px 4px 2px #000;
 }
- 
+
 span {
   font-size: 32pt;
   .text3d(#0982c1);
@@ -293,10 +291,10 @@ span {
 ```stylus
 text3d(color)
   color: color
-  text-shadow: 1px 1px 0px darken(color, 5%), 
-               2px 2px 0px darken(color, 10%), 
-               3px 3px 0px darken(color, 15%), 
-               4px 4px 0px darken(color, 20%), 
+  text-shadow: 1px 1px 0px darken(color, 5%),
+               2px 2px 0px darken(color, 10%),
+               3px 3px 0px darken(color, 15%),
+               4px 4px 0px darken(color, 20%),
                4px 4px 2px #000
 span
   font-size: 32pt
@@ -309,17 +307,18 @@ span
 span {
   font-size: 32pt;
   color: #0982c1;
-  text-shadow:  1px 1px 0px #097bb7,
-            2px 2px 0px #0875ae,
-            3px 3px 0px #086fa4,
-            4px 4px 0px #07689a,
-            4px 4px 2px #000;
+  text-shadow:
+    1px 1px 0px #097bb7,
+    2px 2px 0px #0875ae,
+    3px 3px 0px #086fa4,
+    4px 4px 0px #07689a,
+    4px 4px 2px #000;
 }
 ```
 
 ## 高级语法
 
-> sass支持条件控制语句:@if @else  @for @while @each
+> sass支持条件控制语句:@if @else @for @while @each
 
 ### @if @else
 

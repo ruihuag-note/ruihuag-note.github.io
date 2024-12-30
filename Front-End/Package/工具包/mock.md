@@ -14,7 +14,7 @@
 npm install mockjs
 npm install mockjs -g # 全局安装
 
-$ random url 
+$ random url
 # => http://rmcpx.org/funzwc
 $ random -h #帮助
 ```
@@ -23,11 +23,13 @@ $ random -h #帮助
 // 使用 Mock
 var Mock = require('mockjs')
 var data = Mock.mock({
-    // 属性 list 的值是一个数组，其中含有 1 到 10 个元素
-    'list|1-10': [{
-        // 属性 id 是一个自增数，起始值为 1，每次增 1
-        'id|+1': 1
-    }]
+  // 属性 list 的值是一个数组，其中含有 1 到 10 个元素
+  'list|1-10': [
+    {
+      // 属性 id 是一个自增数，起始值为 1，每次增 1
+      'id|+1': 1,
+    },
+  ],
 })
 // 输出结果
 console.log(JSON.stringify(data, null, 4))
@@ -153,7 +155,7 @@ Random.email()
 // => "n.clark@miller.io"
 Mock.mock('@email')
 // => "y.lee@lewis.org"
-Mock.mock( { email: '@email' } )
+Mock.mock({ email: '@email' })
 // => { email: "v.lewis@hall.gov" }
 ```
 
@@ -163,17 +165,17 @@ Mock.mock( { email: '@email' } )
 
 Mock.Random 提供的完整方法（占位符）如下：
 
-| Type          | Method                                                       |
-| ------------- | ------------------------------------------------------------ |
+| Type          | Method                                                                                |
+| ------------- | ------------------------------------------------------------------------------------- |
 | Basic         | boolean, natural, integer, float, character, string, range, date, time, datetime, now |
-| Image         | image, dataImage                                             |
-| Color         | color                                                        |
-| Text          | paragraph, sentence, word, title, cparagraph, csentence, cword, ctitle |
-| Name          | first, last, name, cfirst, clast, cname                      |
-| Web           | url, domain, email, ip, tld                                  |
-| Address       | region, province, city, county, zip                          |
-| Helper        | capitalize, upper, lower, pick, shuffle                      |
-| Miscellaneous | guid, id                                                     |
+| Image         | image, dataImage                                                                      |
+| Color         | color                                                                                 |
+| Text          | paragraph, sentence, word, title, cparagraph, csentence, cword, ctitle                |
+| Name          | first, last, name, cfirst, clast, cname                                               |
+| Web           | url, domain, email, ip, tld                                                           |
+| Address       | region, province, city, county, zip                                                   |
+| Helper        | capitalize, upper, lower, pick, shuffle                                               |
+| Miscellaneous | guid, id                                                                              |
 
 ### 扩展
 
@@ -181,17 +183,30 @@ Mock.Random 中的方法与数据模板的 `@占位符` 一一对应，在需要
 
 ```js
 Random.extend({
-    constellation: function(date) {
-        var constellations = ['白羊座', '金牛座', '双子座', '巨蟹座', '狮子座', '处女座', '天秤座', '天蝎座', '射手座', '摩羯座', '水瓶座', '双鱼座']
-        return this.pick(constellations)
-    }
+  constellation: function (date) {
+    var constellations = [
+      '白羊座',
+      '金牛座',
+      '双子座',
+      '巨蟹座',
+      '狮子座',
+      '处女座',
+      '天秤座',
+      '天蝎座',
+      '射手座',
+      '摩羯座',
+      '水瓶座',
+      '双鱼座',
+    ]
+    return this.pick(constellations)
+  },
 })
 Random.constellation()
 // => "水瓶座"
 Mock.mock('@CONSTELLATION')
 // => "天蝎座"
 Mock.mock({
-    constellation: '@CONSTELLATION'
+  constellation: '@CONSTELLATION',
 })
 // => { constellation: "射手座" }
 ```
@@ -218,25 +233,21 @@ Mock.mock({
 
 ```js
 var template = {
-    name: 'value1'
+  name: 'value1',
 }
 var data = {
-    name: 'value2'
+  name: 'value2',
 }
-Mock.valid(template, data)
-// =>
-[
-    {
-        "path": [
-            "data",
-            "name"
-        ],
-        "type": "value",
-        "actual": "value2",
-        "expected": "value1",
-        "action": "equal to",
-        "message": "[VALUE] Expect ROOT.name'value is equal to value1, but is value2"
-    }
+Mock.valid(template, data)[
+  // =>
+  {
+    path: ['data', 'name'],
+    type: 'value',
+    actual: 'value2',
+    expected: 'value1',
+    action: 'equal to',
+    message: "[VALUE] Expect ROOT.name'value is equal to value1, but is value2",
+  }
 ]
 ```
 

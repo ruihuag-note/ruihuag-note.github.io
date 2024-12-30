@@ -8,7 +8,7 @@
 
 > [MYSQL创建表的约束条件（可选） - 迎风而来 - 博客园 (cnblogs.com)](https://www.cnblogs.com/sui776265233/p/9343690.html)
 >
-> [(1条消息) MySQL索引的创建与使用_mysql创建索引](https://blog.csdn.net/justry_deng/article/details/81458470)
+> [(1条消息) MySQL索引的创建与使用\_mysql创建索引](https://blog.csdn.net/justry_deng/article/details/81458470)
 
 ## 环境搭建
 
@@ -39,7 +39,7 @@ select user(); # 查询用户
 
 show databases; # 显示所有数据库
 create database [数据库名] # 创建数据库
-drop database [数据库名] # 删除数据库 
+drop database [数据库名] # 删除数据库
 create database if not exists # [数据库名] # 判断数据库时候存在
 
 use [数据库名] # 使用数据库
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `user`(
 >
 > not null: 不可为空
 >
-> primary key: 关键字用于定义主键,  使用多列来定义组件, 列间以逗号分隔开
+> primary key: 关键字用于定义主键, 使用多列来定义组件, 列间以逗号分隔开
 >
 > engine: 设置存储引擎
 >

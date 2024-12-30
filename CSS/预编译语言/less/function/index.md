@@ -6,15 +6,15 @@
 @some: foo;
 
 div {
-    margin: if((2 > 1), 0, 3px);
-    color:  if((iscolor(@some)), @some, black);
+  margin: if((2 > 1), 0, 3px);
+  color: if((iscolor(@some)), @some, black);
 }
 ```
 
 ```css
 div {
-    margin: 0;
-    color:  black;
+  margin: 0;
+  color: black;
 }
 ```
 
@@ -25,7 +25,7 @@ div {
 @bg-light: boolean(luma(@bg) > 50%);
 
 div {
-  background: @bg; 
+  background: @bg;
   color: if(@bg-light, black, white);
 }
 ```
@@ -61,8 +61,7 @@ a%3D1
 - 返回：string-转义字符串，不带引号。
 
 ```less
-@mscode: "ms:alwaysHasItsOwnSyntax.For.Stuff()" 
-filter: e(@mscode);
+@mscode: 'ms:alwaysHasItsOwnSyntax.For.Stuff()' filter: e(@mscode);
 ```
 
 ```css
@@ -83,22 +82,23 @@ filter: ms:alwaysHasItsOwnSyntax.For.Stuff();
 - 返回：格式化`string`
 
 ```less
-format-a-d: %("repetitions: %a file: %d", 1 + 2, "directory/file.less");
-format-a-d-upper: %('repetitions: %A file: %D', 1 + 2, "directory/file.less");
-format-s: %("repetitions: %s file: %s", 1 + 2, "directory/file.less");
-format-s-upper: %('repetitions: %S file: %S', 1 + 2, "directory/file.less");
+format-a-d: %('repetitions: %a file: %d', 1 + 2, 'directory/file.less');
+format-a-d-upper: %('repetitions: %A file: %D', 1 + 2, 'directory/file.less');
+format-s: %('repetitions: %s file: %s', 1 + 2, 'directory/file.less');
+format-s-upper: %('repetitions: %S file: %S', 1 + 2, 'directory/file.less');
 ```
 
 ```css
-format-a-d: "repetitions: 3 file: "directory/file.less"";
-format-a-d-upper: "repetitions: 3 file: %22directory%2Ffile.less%22";
-format-s: "repetitions: 3 file: directory/file.less";
-format-s-upper: "repetitions: 3 file: directory%2Ffile.less";
+format-a-d: 'repetitions: 3 file: ' directory/file.less '';
+format-a-d-upper: 'repetitions: 3 file: %22directory%2Ffile.less%22';
+format-s: 'repetitions: 3 file: directory/file.less';
+format-s-upper: 'repetitions: 3 file: directory%2Ffile.less';
 ```
 
 ## replace
 
 - 参数:
+
   - `string`: 待处理子符串
   - `pattern`: 要搜索的字符串/正则
   - `replacement`: 替换的子串

@@ -22,12 +22,12 @@ Plug 'machakann/vim-sandwich' "环绕字符编辑(sandwich)
 
 "Plug 'marijnh/tern_for_vim' "代码提示插件2, 和上一个一起使用
 "Plug 'moll/vim-node' "node的相关插件
-"Plug 'liuchengxu/vista.vim' " 
+"Plug 'liuchengxu/vista.vim' "
 "Plug 'tpope/vim-surround' " 添加、更改和删除标签
 call plug#end()
 
 "*********************************************************************************
-" 代码提示 coc.nvim 
+" 代码提示 coc.nvim
 let g:coc_global_extensions = ['coc-json','coc-css','coc-html']
 
 "*********************************************************************************
@@ -45,7 +45,7 @@ nmap <C-Z> <CR> " 去掉这个快捷键, 会导致我的机器卡死
 nmap lj   ^  "行首
 nmap lk   $  "行末
 
-"文件保存与退出  
+"文件保存与退出
 nmap fw     :w!<CR>  "强制保存
 nmap fq     :q!<CR>  "强制保存与退出
 nmap fwq    :wq!<CR> "强制保存与退出
@@ -55,7 +55,7 @@ set foldmethod=indent  "indent 依缩进折叠 ；manual 手动折叠 ； marker
 set foldlevel=3
 nnoremap <space> za
 let g:SimpylFold_docstring_preview=1
-let NERDTreeMapOpenInTab='<ENTER>' 
+let NERDTreeMapOpenInTab='<ENTER>'
 
 " 显示制图符
 set listchars=tab:>-
@@ -84,7 +84,7 @@ set fdm=manual "开启代码折叠
 " 添加js提示文件(补全)
 set dictionary+=C:/Users/ruihuag/AppData/Local/nvim/javascript.dict
 
-let g:ycm_min_num_of_chars_for_completion = 3 
+let g:ycm_min_num_of_chars_for_completion = 3
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_complete_in_comments = 1
 let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
@@ -138,16 +138,16 @@ set relativenumber       "开启相对行数
 set clipboard=unnamed            "系统剪贴板
 let mapleader=';'                "定义leader
 set backspace=indent,eol,start   "backspace不能用时设置
-set noswapfile 
+set noswapfile
 set clipboard=unnamed            "设置系统复制粘贴板
 set hlsearch                     "搜索关键字高亮
 set incsearch                    "输入搜索命令立即显示
 set encoding=utf-8
 set wrap                         "主动换行
-set autoread 
+set autoread
 set autowriteall
-" 让配置变更立即生效  
-autocmd BufWritePost $MYVIMRC source $MYVIMRC  
+" 让配置变更立即生效
+autocmd BufWritePost $MYVIMRC source $MYVIMRC
 
 "定义高亮
 highlight BadWhitespace guifg=gray guibg=red ctermfg=gray ctermbg=red
@@ -168,7 +168,7 @@ const
 console
 class
 
-# d 
+# d
 # e
 export
 extends
@@ -177,40 +177,40 @@ extends
 function
 
 # g
-# h 
-# i 
+# h
+# i
 info
 
-# j 
-# k 
-# l 
+# j
+# k
+# l
 log
 let
 
 # m
 module
 
-# n 
+# n
 node
-# o 
-# p 
+# o
+# p
 Promise
 Proxy
 
 # q
-# r 
+# r
 React
 require()
 
-# s 
+# s
 # t
-# u 
-# v 
+# u
+# v
 var
 Vue
 
-# w 
+# w
 # x
-# y 
-# z 
+# y
+# z
 ```

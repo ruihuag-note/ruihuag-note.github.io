@@ -12,15 +12,11 @@
 >
 > DOM3比DOM2添加了一些事件类型
 
-
-
 ### DOM事件捕获的具体流程
 
-> 捕获流程:  window -> document -> html -> body- >...-> 目标元素
+> 捕获流程: window -> document -> html -> body- >...-> 目标元素
 >
 > 冒泡流程: 目标元素 -> ...-> body -> html - > document -> window
-
-
 
 ## DOM操作
 
@@ -51,7 +47,7 @@
 
 ### 节点操作
 
-> - 创建节点 : 
+> - 创建节点 :
 >   - createElement
 >     - document.createElement
 >     - 创建元素节点
@@ -78,7 +74,7 @@
 >     - 创建指定节点的副本
 >     - true : 复制当前节点以及所有的子节点
 >     - false : 仅复制当前节点
-> - 删除节点 : 
+> - 删除节点 :
 >   - removeChild(要删除的节点)
 >   - 删除指定的节点
 >     - 删除父节点的一个子节点 : document.getElementById("id1").parentNode.removeNode(document.getElementById("id2"))
@@ -97,16 +93,9 @@
 
 ### 文本操作
 
-> - insertData(offset, String)   :    从offset指定位置插入string
->
-> - appedData(String)   :   将string插入到文本节点末尾处
->
-> - deleteData(offset, count)  :    从offset起杀出count个字符
-> - replaceData(off, count, string)    :    从off将count个字符用string替代
-> - splitData(offset)   :   从offset起将文本节点分成两个节点
-> - substring(offset, count)    :   返回有offset 起的count个节点
-
-
-
-
-
+> - insertData(offset, String) : 从offset指定位置插入string
+> - appedData(String) : 将string插入到文本节点末尾处
+> - deleteData(offset, count) : 从offset起杀出count个字符
+> - replaceData(off, count, string) : 从off将count个字符用string替代
+> - splitData(offset) : 从offset起将文本节点分成两个节点
+> - substring(offset, count) : 返回有offset 起的count个节点

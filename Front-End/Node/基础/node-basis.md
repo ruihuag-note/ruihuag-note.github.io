@@ -26,7 +26,7 @@ Node.js，Stream 有四种流类型：
 
 本教程会为大家介绍常用的流操作。
 
-------
+---
 
 ### 从流中读取数据
 
@@ -70,7 +70,7 @@ console.log("程序执行完毕");
 程序执行完毕地址：www.sxt.com
 ```
 
-------
+---
 
 ### 写入流
 
@@ -104,7 +104,7 @@ console.log("程序执行完毕");
 以上程序会将 data 变量的数据写入到 output.txt 文件中。代码执行结果如下：
 
 ```
-$ node main.js 
+$ node main.js
 程序执行完毕
 写入完成。
 ```
@@ -112,11 +112,11 @@ $ node main.js
 查看 output.txt 文件的内容：
 
 ```
-$ cat output.txt 
+$ cat output.txt
 www.sxt.com
 ```
 
-------
+---
 
 ### 管道流
 
@@ -156,19 +156,19 @@ console.log("程序执行完毕");
 代码执行结果如下：
 
 ```
-$ node main.js 
+$ node main.js
 程序执行完毕
 ```
 
 查看 output.txt 文件的内容：
 
 ```
-$ cat output.txt 
+$ cat output.txt
 教程官网地址：www.sxt.com
 管道流操作实例
 ```
 
-------
+---
 
 ### 链式流
 
@@ -179,21 +179,21 @@ $ cat output.txt
 创建 compress.js 文件, 代码如下：
 
 ```js
-var fs = require("fs");
-var zlib = require('zlib');
+var fs = require('fs')
+var zlib = require('zlib')
 
 // 压缩 input.txt 文件为 input.txt.gz
 fs.createReadStream('input.txt')
   .pipe(zlib.createGzip())
-  .pipe(fs.createWriteStream('input.txt.gz'));
-  
-console.log("文件压缩完成。");
+  .pipe(fs.createWriteStream('input.txt.gz'))
+
+console.log('文件压缩完成。')
 ```
 
 代码执行结果如下：
 
 ```
-$ node compress.js 
+$ node compress.js
 文件压缩完成。
 ```
 
@@ -209,14 +209,14 @@ var zlib = require('zlib');
 fs.createReadStream('input.txt.gz')
   .pipe(zlib.createGunzip())
   .pipe(fs.createWriteStream('input.txt'));
-  
+
 console.log("文件解压完成。");
 ```
 
 代码执行结果如下：
 
 ```js
-$ node decompress.js 
+$ node decompress.js
 文件解压完成。
 ```
 
@@ -235,11 +235,11 @@ Node.js 单线程类似进入一个while(true)的事件循环，直到没有事�
 开启线程
 初始化数据，window/document/location...
 while(true){
-    
+
     初始化事件列表
     根据事件修改数据
     根据数据去渲染页面
-    
+
     if(count=0){
         运行js代e
         btn.onclick = function(){
@@ -249,12 +249,12 @@ while(true){
         console.log(456)
         count++
     }
-    
-    
+
+
 }
 ```
 
-------
+---
 
 ### 事件驱动程序
 
@@ -299,30 +299,30 @@ eventEmitter.emit('eventName');
 
 ```js
 // 引入 events 模块
-var events = require('events');
+var events = require('events')
 // 创建 eventEmitter 对象
-var eventEmitter = new events.EventEmitter();
- 
+var eventEmitter = new events.EventEmitter()
+
 // 创建事件处理程序
 var connectHandler = function connected() {
-   console.log('连接成功。');
-  
-   // 触发 data_received 事件 
-   eventEmitter.emit('data_received');
+  console.log('连接成功。')
+
+  // 触发 data_received 事件
+  eventEmitter.emit('data_received')
 }
- 
+
 // 绑定 connection 事件处理程序
-eventEmitter.on('connection', connectHandler);
- 
+eventEmitter.on('connection', connectHandler)
+
 // 使用匿名函数绑定 data_received 事件
-eventEmitter.on('data_received', function(){
-   console.log('数据接收成功。');
-});
- 
-// 触发 connection 事件 
-eventEmitter.emit('connection');
- 
-console.log("程序执行完毕。");
+eventEmitter.on('data_received', function () {
+  console.log('数据接收成功。')
+})
+
+// 触发 connection 事件
+eventEmitter.emit('connection')
+
+console.log('程序执行完毕。')
 ```
 
 接下来让我们执行以上代码：
@@ -334,7 +334,7 @@ $ node main.js
 程序执行完毕。
 ```
 
-------
+---
 
 ### Node 应用程序是如何工作的？
 
@@ -349,16 +349,16 @@ $ node main.js
 创建 main.js 文件，代码如下：
 
 ```js
-var fs = require("fs");
+var fs = require('fs')
 
 fs.readFile('input.txt', function (err, data) {
-   if (err){
-      console.log(err.stack);
-      return;
-   }
-   console.log(data.toString());
-});
-console.log("程序执行完毕");
+  if (err) {
+    console.log(err.stack)
+    return
+  }
+  console.log(data.toString())
+})
+console.log('程序执行完毕')
 ```
 
 以上程序中 fs.readFile() 是异步函数用于读取文件。 如果在读取文件过程中发生错误，错误 err 对象就会输出错误信息。
@@ -387,7 +387,7 @@ Node.js 所有的异步 I/O 操作在完成时都会发送一个事件到事件�
 
 Node.js 里面的许多对象都会分发事件：一个 net.Server 对象会在每次有新连接时触发一个事件， 一个 fs.readStream 对象会在文件被打开的时候触发一个事件。 所有这些产生事件的对象都是 events.EventEmitter 的实例。
 
-------
+---
 
 ### EventEmitter 类
 
@@ -397,9 +397,9 @@ events 模块只提供了一个对象： events.EventEmitter。EventEmitter 的�
 
 ```js
 // 引入 events 模块
-var events = require('events');
+var events = require('events')
 // 创建 eventEmitter 对象
-var eventEmitter = new events.EventEmitter();
+var eventEmitter = new events.EventEmitter()
 ```
 
 EventEmitter 对象如果在实例化时发生错误，会触发 error 事件。当添加新的监听器时，newListener 事件会触发，当监听器被移除时，removeListener 事件被触发。
@@ -408,14 +408,14 @@ EventEmitter 对象如果在实例化时发生错误，会触发 error 事件。
 
 ```js
 //event.js 文件
-var EventEmitter = require('events').EventEmitter; 
-var event = new EventEmitter(); 
-event.on('some_event', function() { 
-    console.log('some_event 事件触发'); 
-}); 
-setTimeout(function() { 
-    event.emit('some_event'); 
-}, 1000); 
+var EventEmitter = require('events').EventEmitter
+var event = new EventEmitter()
+event.on('some_event', function () {
+  console.log('some_event 事件触发')
+})
+setTimeout(function () {
+  event.emit('some_event')
+}, 1000)
 ```
 
 执行结果如下：
@@ -423,7 +423,7 @@ setTimeout(function() {
 运行这段代码，1 秒后控制台输出了 **'some_event 事件触发'**。其原理是 event 对象注册了事件 some_event 的一个监听器，然后我们通过 setTimeout 在 1000 毫秒以后向 event 对象发送事件 some_event，此时会调用some_event 的监听器。
 
 ```
-$ node event.js 
+$ node event.js
 some_event 事件触发
 ```
 
@@ -435,21 +435,21 @@ EventEmitter 的每个事件由一个事件名和若干个参数组成，事件�
 
 ```
 //event.js 文件
-var events = require('events'); 
-var emitter = new events.EventEmitter(); 
-emitter.on('someEvent', function(arg1, arg2) { 
-    console.log('listener1', arg1, arg2); 
-}); 
-emitter.on('someEvent', function(arg1, arg2) { 
-    console.log('listener2', arg1, arg2); 
-}); 
-emitter.emit('someEvent', 'arg1 参数', 'arg2 参数'); 
+var events = require('events');
+var emitter = new events.EventEmitter();
+emitter.on('someEvent', function(arg1, arg2) {
+    console.log('listener1', arg1, arg2);
+});
+emitter.on('someEvent', function(arg1, arg2) {
+    console.log('listener2', arg1, arg2);
+});
+emitter.emit('someEvent', 'arg1 参数', 'arg2 参数');
 ```
 
 执行以上代码，运行的结果如下：
 
 ```
-$ node event.js 
+$ node event.js
 listener1 arg1 参数 arg2 参数
 listener2 arg1 参数 arg2 参数
 ```
@@ -525,16 +525,16 @@ server.on('request', (req, res) => {
     res.end('login page')
   } else if (url === '/register') {
     res.end('register page')
-  } else if (url === '/product'){
+  } else if (url === '/product') {
     let arr = [
       {
         name: 'iphone X',
-        price: 8888
+        price: 8888,
       },
       {
         name: 'iphone 7',
-        price: 4320
-      }
+        price: 4320,
+      },
     ]
     // 响应的数据类型必须是字符串或者二进制数据
     res.end(JSON.stringify(arr))
@@ -650,11 +650,11 @@ server.on('request',function(req,res){
         let rs = fs.createReadStream('./static/'+urlObj.base)
         rs.pipe(res)
     }else{
-        
+
         res.setHeader("content-type","text/html;charset=utf-8")
         res.end("<h1>404页面找不到</h1>")
     }
-    
+
 })
 
 
@@ -689,7 +689,7 @@ server.listen(80,function(){
 
 ```js
 //请求路径：http://127.0.0.1/movies/0
-let index = req.pathObj.base;
+let index = req.pathObj.base
 ```
 
 2. 根据索引获取数据
@@ -712,30 +712,30 @@ let pageData = movies[index]
 1. 根据模板渲染页面
 
 ```js
-res.render( movies[index],'./template/index.html')
+res.render(movies[index], './template/index.html')
 ```
 
 1. 底层需要实现渲染函数，通过正则匹配，找到需要修改的地方进行一一的修改。
 
 ```js
-function render(options,path){
-    fs.readFile(path,{encoding:"utf-8",flag:"r"},(err,data)=>{
-        if(err){
-            console.log(err)
-        }else{
-            console.log(data)
-            let reg = /\{\{(.*?)\}\}/igs
-            let result;
-            while(result = reg.exec(data)){
-                //去除2边的空白
-                let strKey = result[1].trim()
-                let strValue = options[strKey]
-                data = data.replace(result[0],strValue)
-            }
+function render(options, path) {
+  fs.readFile(path, { encoding: 'utf-8', flag: 'r' }, (err, data) => {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log(data)
+      let reg = /\{\{(.*?)\}\}/gis
+      let result
+      while ((result = reg.exec(data))) {
+        //去除2边的空白
+        let strKey = result[1].trim()
+        let strValue = options[strKey]
+        data = data.replace(result[0], strValue)
+      }
 
-            this.end(data)
-        }
-    })
+      this.end(data)
+    }
+  })
 }
 ```
 
@@ -758,7 +758,7 @@ get(url).then((res)=>{})
 async_await
 
 ```
-(async ()=>{ 
+(async ()=>{
     let res = await get(url)
 })()
 ```
@@ -823,34 +823,33 @@ class LcPromise{
 - 定义初始化状态
 - 调用传入进行执行异步内容的函数（在未来有成功的结果时调用传入进去的成功函数，在未来失败时调用传入进行的失败函数）
 
-2.传入成功或者失败时需要调用的函数
+  2.传入成功或者失败时需要调用的函数
 
 ```js
-class LcPromise{
-    constructor(fn) {
-
-        //将成功的事件函数集成在successList数组里
-        this.successList  = [];
-        //这里将所有的失败函数集成到failList里
-        this.failList = []
-        //pending,fullfilled,rejected
-        this.state = "pending"
-        //传入的函数对象,(异步操作的函数内容)
-        fn(this.resolveFn.bind(this),this.rejectFn.bind(this))
+class LcPromise {
+  constructor(fn) {
+    //将成功的事件函数集成在successList数组里
+    this.successList = []
+    //这里将所有的失败函数集成到failList里
+    this.failList = []
+    //pending,fullfilled,rejected
+    this.state = 'pending'
+    //传入的函数对象,(异步操作的函数内容)
+    fn(this.resolveFn.bind(this), this.rejectFn.bind(this))
+  }
+  then(successFn, failFn) {
+    if (typeof successFn == 'function') {
+      this.successList.push(successFn)
     }
-    then(successFn,failFn){
-        if(typeof successFn=='function'){
-            this.successList.push(successFn)
-        }
-        if(typeof failFn=='function'){
-            this.failList.push(failFn)
-        }
+    if (typeof failFn == 'function') {
+      this.failList.push(failFn)
     }
-    catch(failFn){
-        if(typeof failFn=='function'){
-            this.failList.push(failFn)
-        }
+  }
+  catch(failFn) {
+    if (typeof failFn == 'function') {
+      this.failList.push(failFn)
     }
+  }
 }
 ```
 
@@ -862,48 +861,46 @@ class LcPromise{
 
 ```js
 //promise async await proxy Iteratror
-class LcPromise{
+class LcPromise {
   constructor(fn) {
-
     //将成功的事件函数集成在successList数组里
-    this.successList  = [];
+    this.successList = []
     //这里将所有的失败函数集成到failList里
     this.failList = []
     //pending,fullfilled,rejected
-    this.state = "pending"
+    this.state = 'pending'
     //传入的函数对象,(异步操作的函数内容)
-    fn(this.resolveFn.bind(this),this.rejectFn.bind(this))
+    fn(this.resolveFn.bind(this), this.rejectFn.bind(this))
   }
-  then(successFn,failFn){
-    if(typeof successFn=='function'){
+  then(successFn, failFn) {
+    if (typeof successFn == 'function') {
       this.successList.push(successFn)
     }
-    if(typeof failFn=='function'){
+    if (typeof failFn == 'function') {
       this.failList.push(failFn)
     }
   }
-  catch(failFn){
-    if(typeof failFn=='function'){
+  catch(failFn) {
+    if (typeof failFn == 'function') {
       this.failList.push(failFn)
     }
   }
-  resolveFn(res){
-    this.state = "fullfilled"
-    this.successList.forEach(function(item,index){
+  resolveFn(res) {
+    this.state = 'fullfilled'
+    this.successList.forEach(function (item, index) {
       //将成功的事件循环调用
       item(res)
     })
   }
-  rejectFn(res){
+  rejectFn(res) {
     this.state = 'rejected'
     //注册到的失败所有事件进行调用
-    this.failList.forEach(function(item,index){
+    this.failList.forEach(function (item, index) {
       item(res)
     })
 
-    throw Error(res);
+    throw Error(res)
   }
-
 }
 ```
 
@@ -918,20 +915,18 @@ class LcPromise{
 典型异步读写的回调操作
 
 ```js
-fs.readFile(path,{flag:'r',encoding:"utf-8"},function(err,data){
-    if(err){
-        //console.log(err)
-        //失败执行的内容
-        reject(err)
-
-    }else{
-        //console.log(data)
-        //成功执行的内容
-        resolve(data)
-    }
-    //console.log(456)
+fs.readFile(path, { flag: 'r', encoding: 'utf-8' }, function (err, data) {
+  if (err) {
+    //console.log(err)
+    //失败执行的内容
+    reject(err)
+  } else {
+    //console.log(data)
+    //成功执行的内容
+    resolve(data)
+  }
+  //console.log(456)
 })
-
 ```
 
 转换成promise对象
@@ -977,7 +972,7 @@ p1.then(function(data){
 asycn_await写法
 
 ```
-(async ()=>{ 
+(async ()=>{
     let data = await fsRead(path)
 })()
 ```
@@ -985,7 +980,7 @@ asycn_await写法
 异步async函数调用之后也是一个promise对象
 
 ```
-(async ()=>{ 
+(async ()=>{
     async function test(){
         let data = await fsRead(path)
         return data;
@@ -995,7 +990,7 @@ asycn_await写法
         console.log(data)
     })
     let a = await test()//异步函数调用后，也是一个promise对象
-    
+
     console.log(123)
 })()
 ```
@@ -1121,7 +1116,7 @@ function replaceVar(data,options){
     while(result = reg.exec(data)){
         //去除2边的空白
         let strKey = result[1].trim()
-        
+
         console.log(strKey)// item,item.abc
         //options.item
         let strValue = eval('options.'+strKey);//执行字符串作为JS表达式，并将计算出来的结果返回
@@ -1195,15 +1190,15 @@ if(reg.test(req.url)){
 ### 4.判断是否正则路径响应过，如果响应过，将不再响应，不能重复响应，会报错
 
 ```javascript
-if(!resState){
-    if(pathObj.dir==this.staticDir){
-        res.setHeader("content-type",this.getContentType(pathObj.ext))
-        let rs = fs.createReadStream('./static/'+pathObj.base)
-        rs.pipe(res)
-    }else{
-        res.setHeader("content-type","text/html;charset=utf-8")
-        res.end("<h1>404!页面找不到</h1>")
-    }
+if (!resState) {
+  if (pathObj.dir == this.staticDir) {
+    res.setHeader('content-type', this.getContentType(pathObj.ext))
+    let rs = fs.createReadStream('./static/' + pathObj.base)
+    rs.pipe(res)
+  } else {
+    res.setHeader('content-type', 'text/html;charset=utf-8')
+    res.end('<h1>404!页面找不到</h1>')
+  }
 }
 ```
 
@@ -1235,52 +1230,55 @@ fs.writeFile('path',写入数据，写入配置，()=>{})
 
 ```javascript
 let fs = require('fs')
-function fsRead(path){
-    return new Promise(function(resolve,reject){
-        fs.readFile(path,{flag:'r',encoding:"utf-8"},function(err,data){
-            if(err){
-                //console.log(err)
-                //失败执行的内容
-                reject(err)
-
-            }else{
-                //console.log(data)
-                //成功执行的内容
-                resolve(data)
-            }
-            //console.log(456)
-        })
+function fsRead(path) {
+  return new Promise(function (resolve, reject) {
+    fs.readFile(path, { flag: 'r', encoding: 'utf-8' }, function (err, data) {
+      if (err) {
+        //console.log(err)
+        //失败执行的内容
+        reject(err)
+      } else {
+        //console.log(data)
+        //成功执行的内容
+        resolve(data)
+      }
+      //console.log(456)
     })
+  })
 }
 
-
-function fsWrite(path,content){
-    return new Promise(function(resolve,reject){
-        fs.writeFile(path,content,{flag:"a",encoding:"utf-8"},function(err){
-            if(err){
-                //console.log("写入内容出错")
-                reject(err)
-            }else{
-                resolve(err)
-                //console.log("写入内容成功")
-            }
-        })
-    })
+function fsWrite(path, content) {
+  return new Promise(function (resolve, reject) {
+    fs.writeFile(
+      path,
+      content,
+      { flag: 'a', encoding: 'utf-8' },
+      function (err) {
+        if (err) {
+          //console.log("写入内容出错")
+          reject(err)
+        } else {
+          resolve(err)
+          //console.log("写入内容成功")
+        }
+      },
+    )
+  })
 }
 
-function fsDir(path){
-    return new Promise(function(resolve,reject){
-        fs.mkdir(path,function(err){
-            if(err){
-                reject(err)
-            }else{
-                resolve("成功创建目录")
-            }
-        })
+function fsDir(path) {
+  return new Promise(function (resolve, reject) {
+    fs.mkdir(path, function (err) {
+      if (err) {
+        reject(err)
+      } else {
+        resolve('成功创建目录')
+      }
     })
+  })
 }
 
-module.exports = {fsRead,fsWrite,fsDir}
+module.exports = { fsRead, fsWrite, fsDir }
 ```
 
 #### 使用方式
@@ -1317,16 +1315,16 @@ server.on('request',(req,res)=>{
 
 ```javascript
 //循环匹配正则路径
-for(let key in this.reqEvent){
-    res.setHeader("content-type","text/html;charset=utf-8")
-    let regStr = key
-    let reg = new RegExp(regStr,'igs');
-    //console.log(regStr,reg)
-    if(reg.test(req.url)){
-        this.reqEvent[key](req,res)
-        resState = true
-        break;
-    }
+for (let key in this.reqEvent) {
+  res.setHeader('content-type', 'text/html;charset=utf-8')
+  let regStr = key
+  let reg = new RegExp(regStr, 'igs')
+  //console.log(regStr,reg)
+  if (reg.test(req.url)) {
+    this.reqEvent[key](req, res)
+    resState = true
+    break
+  }
 }
 ```
 
@@ -1335,32 +1333,31 @@ for(let key in this.reqEvent){
 会有个固定样式和结构的HTML模板，根据请求的数据不同，显示页面内容。例如新闻网站
 
 ```javascript
-function render(options,path){
-    fs.readFile(path,{encoding:"utf-8",flag:"r"},(err,data)=>{
-        if(err){
-            console.log(err)
-        }else{
-            try {
-                data = replaceArr(data,options)
-                data = replaceVar(data,options)
-            } catch (error) {
-               console.log(error)     
-            }
+function render(options, path) {
+  fs.readFile(path, { encoding: 'utf-8', flag: 'r' }, (err, data) => {
+    if (err) {
+      console.log(err)
+    } else {
+      try {
+        data = replaceArr(data, options)
+        data = replaceVar(data, options)
+      } catch (error) {
+        console.log(error)
+      }
 
-            this.end(data)
-        }
-    })
+      this.end(data)
+    }
+  })
 }
 ```
 
 ## 回调函数
 
 > - 异步变成的直接体现就是回调
->
 > - node所有api都支持回调函数
 
 ```js
-function foo(value, callback1, callback) { }
+function foo(value, callback1, callback) {}
 ```
 
 ### 阻塞代码实例
@@ -1374,10 +1371,10 @@ grhgrh
 main.js
 
 ```js
-var fs = require('fs');
-var data = fs.readFileSync('input.txt');
-console.log(data.toString());
-console.log("程序执行结束!");
+var fs = require('fs')
+var data = fs.readFileSync('input.txt')
+console.log(data.toString())
+console.log('程序执行结束!')
 ```
 
 执行代码
@@ -1400,12 +1397,12 @@ grhgrh
 main.js
 
 ```js
-var fs = require('fs');
-fs.readFile('input.txt', function(err, data){
-  if(err) return console.log(err);
-  consolo.log(data.toString());
-});
-console.log("程序执行结束!");
+var fs = require('fs')
+fs.readFile('input.txt', function (err, data) {
+  if (err) return console.log(err)
+  consolo.log(data.toString())
+})
+console.log('程序执行结束!')
 ```
 
 执行代码
@@ -1424,7 +1421,6 @@ grhgrh
 ### 事件驱动程序
 
 > - 当web server接收到请求，就把它关闭然后进行处理，然后去服务下一个web请求。
->
 > - 当这个请求完成，它被放回处理队列，当到达队列开头，这个结果被返回给用户
 
 <img src="https://images.gitee.com/uploads/images/2020/0601/115845_6c7a6287_6545143.png" style="zoom:50%;" />
@@ -1434,26 +1430,26 @@ grhgrh
 var events = require('events');
 // 创建 eventEmitter 对象
 var eventEmitter = new events.EventEmitter();
- 
+
 // 创建事件处理程序
 var connectHandler = function connected() {
    console.log('连接成功。');
-  
-   // 触发 data_received 事件 
+
+   // 触发 data_received 事件
    eventEmitter.emit('data_received');
 }
- 
+
 // 绑定 connection 事件处理程序
 eventEmitter.on('connection', connectHandler);
- 
+
 // 使用匿名函数绑定 data_received 事件
 eventEmitter.on('data_received', function(){
    console.log('数据接收成功。');
 });
- 
-// 触发 connection 事件 
+
+// 触发 connection 事件
 eventEmitter.emit('connection');
- 
+
 console.log("程序执行完毕。");
 
 执行结果:
@@ -1467,25 +1463,24 @@ $ node main.js
 ## EventEmitter
 
 > - Node.js 所有的异步 I/O 操作在完成时都会发送一个事件到事件队列。
->
 > - Node.js 里面的许多对象都会分发事件：
 >   - 一个 net.Server 对象会在每次有新连接时触发一个事件，
 >   - 一个 fs.readStream 对象会在文件被打开的时候触发一个事件。 所有这些产生事件的对象都是 events.EventEmitter 的实例。
 
 ```js
 //event.js 文件
-var events = require('events'); 
-var emitter = new events.EventEmitter(); 
-emitter.on('someEvent', function(arg1, arg2) { 
-    console.log('listener1', arg1, arg2); 
-}); 
-emitter.on('someEvent', function(arg1, arg2) { 
-    console.log('listener2', arg1, arg2); 
-}); 
-emitter.emit('someEvent', 'arg1 参数', 'arg2 参数'); 
+var events = require('events');
+var emitter = new events.EventEmitter();
+emitter.on('someEvent', function(arg1, arg2) {
+    console.log('listener1', arg1, arg2);
+});
+emitter.on('someEvent', function(arg1, arg2) {
+    console.log('listener2', arg1, arg2);
+});
+emitter.emit('someEvent', 'arg1 参数', 'arg2 参数');
 
 //执行后
-$ node event.js 
+$ node event.js
 listener1 arg1 参数 arg2 参数
 listener2 arg1 参数 arg2 参数
 ```
@@ -1530,7 +1525,7 @@ var listener2 = function listener2() {
   console.log('监听器 listener2 执行。');
 }
 
-// 绑定 connection 事件，处理函数为 listener1 
+// 绑定 connection 事件，处理函数为 listener1
 eventEmitter.addListener('connection', listener1);
 
 // 绑定 connection 事件，处理函数为 listener2
@@ -1539,7 +1534,7 @@ eventEmitter.on('connection', listener2);
 var eventListeners = eventEmitter.listenerCount('connection');
 console.log(eventListeners + " 个监听器监听连接事件。");
 
-// 处理 connection 事件 
+// 处理 connection 事件
 eventEmitter.emit('connection');
 
 // 移除监绑定的 listener1 函数
@@ -1567,14 +1562,12 @@ $ node main.js
 
 ```
 
-------
+---
 
 ## Buffer(缓冲区)
 
 > - JavaScript 语言自身只有字符串数据类型，没有二进制数据类型。
->
 > - 但在处理像TCP流或文件流时，必须使用到二进制数据。因此在 Node.js中，定义了一个 Buffer 类，该类用来创建一个专门存放二进制数据的缓存区。
->
 > - 在 Node.js 中，Buffer 类是随 Node 内核一起发布的核心库。Buffer 库为 Node.js 带来了一种存储原始数据的方法，可以让 Node.js 处理二进制数据，每当需要在 Node.js 中处理I/O操作中移动的数据时，就有可能使用 Buffer 库。原始数据存储在 Buffer 类的实例中。一个 Buffer 类似于一个整数数组，但它对应于 V8 堆内存之外的一块原始内存。
 
 ### node支持的字符编码
@@ -1591,13 +1584,13 @@ $ node main.js
 eg:
 
 ```js
-const buf = Buffer.from('runoob', 'ascii');
+const buf = Buffer.from('runoob', 'ascii')
 
 // 输出 72756e6f6f62
-console.log(buf.toString('hex'));
+console.log(buf.toString('hex'))
 
 // 输出 cnVub29i
-console.log(buf.toString('base64'));
+console.log(buf.toString('base64'))
 ```
 
 ### 创建Buffer类
@@ -1614,25 +1607,25 @@ console.log(buf.toString('base64'));
 
 ```js
 // 创建一个长度为 10、且用 0 填充的 Buffer。
-const buf1 = Buffer.alloc(10);
+const buf1 = Buffer.alloc(10)
 
-// 创建一个长度为 10、且用 0x1 填充的 Buffer。 
-const buf2 = Buffer.alloc(10, 1);
+// 创建一个长度为 10、且用 0x1 填充的 Buffer。
+const buf2 = Buffer.alloc(10, 1)
 
 // 创建一个长度为 10、且未初始化的 Buffer。
 // 这个方法比调用 Buffer.alloc() 更快，
 // 但返回的 Buffer 实例可能包含旧数据，
 // 因此需要使用 fill() 或 write() 重写。
-const buf3 = Buffer.allocUnsafe(10);
+const buf3 = Buffer.allocUnsafe(10)
 
 // 创建一个包含 [0x1, 0x2, 0x3] 的 Buffer。
-const buf4 = Buffer.from([1, 2, 3]);
+const buf4 = Buffer.from([1, 2, 3])
 
 // 创建一个包含 UTF-8 字节 [0x74, 0xc3, 0xa9, 0x73, 0x74] 的 Buffer。
-const buf5 = Buffer.from('tést');
+const buf5 = Buffer.from('tést')
 
 // 创建一个包含 Latin-1 字节 [0x74, 0xe9, 0x73, 0x74] 的 Buffer。
-const buf6 = Buffer.from('tést', 'latin1');
+const buf6 = Buffer.from('tést', 'latin1')
 ```
 
 ### 写入缓存区
@@ -1647,10 +1640,10 @@ buf.write(string[, offset[, length]][, encoding])
 > - **encoding** - 使用的编码。默认为 'utf8' 。
 
 ```js
-buf = Buffer.alloc(256);
-len = buf.write("www.ruihuag.com");
+buf = Buffer.alloc(256)
+len = buf.write('www.ruihuag.com')
 
-console.log("写入字节数 : "+  len);
+console.log('写入字节数 : ' + len)
 ```
 
 执行以上代码，输出结果为：
@@ -1742,7 +1735,7 @@ buffer3 内容: grhwww.ruihuag.com
 ### 缓存区比较
 
 ```js
-buf.compare(otherBuffer);
+buf.compare(otherBuffer)
 ```
 
 > **otherBuffer** - 与 **buf** 对象比较的另外一个 Buffer 对象。//返回一个数字
@@ -1750,21 +1743,20 @@ buf.compare(otherBuffer);
 eg:
 
 ```js
-var buffer1 = Buffer.from('ABC');
-var buffer2 = Buffer.from('ABCD');
-var result = buffer1.compare(buffer2);
+var buffer1 = Buffer.from('ABC')
+var buffer2 = Buffer.from('ABCD')
+var result = buffer1.compare(buffer2)
 
-if(result < 0) {
-   console.log(buffer1 + " 在 " + buffer2 + "之前");
-}else if(result == 0){
-   console.log(buffer1 + " 与 " + buffer2 + "相同");
-}else {
-   console.log(buffer1 + " 在 " + buffer2 + "之后");
+if (result < 0) {
+  console.log(buffer1 + ' 在 ' + buffer2 + '之前')
+} else if (result == 0) {
+  console.log(buffer1 + ' 与 ' + buffer2 + '相同')
+} else {
+  console.log(buffer1 + ' 在 ' + buffer2 + '之后')
 }
 
 输出
 ABC在ABCD之前
-
 ```
 
 ### 拷贝缓存区
@@ -1782,15 +1774,15 @@ buf.copy(targetBuffer[, targetStart[, sourceStart[, sourceEnd]]])
 eg:
 
 ```js
-var buf1 = Buffer.from('abcdefghijkl');
-var buf2 = Buffer.from('RUNOOB');
+var buf1 = Buffer.from('abcdefghijkl')
+var buf2 = Buffer.from('RUNOOB')
 
 //将 buf2 插入到 buf1 指定位置上
-buf2.copy(buf1, 2);
+buf2.copy(buf1, 2)
 
-console.log(buf1.toString());
+console.log(buf1.toString())
 
-结果:abRUNOOBijkl
+结果: abRUNOOBijkl
 ```
 
 ### 缓存区裁剪
@@ -1815,68 +1807,66 @@ console.log("buffer2 content: " + buffer2.toString());
 
 ### 方法参考手册
 
-| 序号 | 方法 & 描述                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| :--- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1    | **new Buffer(size)** 分配一个新的 size 大小单位为8位字节的 buffer。 注意, size 必须小于 kMaxLength，否则，将会抛出异常 RangeError。废弃的: 使用 Buffer.alloc() 代替（或 Buffer.allocUnsafe()）。                                                                                                                                                                                                                                     |
-| 2    | **new Buffer(buffer)** 拷贝参数 buffer 的数据到 Buffer 实例。废弃的: 使用 Buffer.from(buffer) 代替。                                                                                                                                                                                                                                                                                                                                 |
-| 3    | **new Buffer(str[, encoding])** 分配一个新的 buffer ，其中包含着传入的 str 字符串。 encoding 编码方式默认为 'utf8'。 废弃的: 使用 Buffer.from(string[, encoding]) 代替。                                                                                                                                                                                                                                                             |
-| 4    | **buf.length** 返回这个 buffer 的 bytes 数。注意这未必是 buffer 里面内容的大小。length 是 buffer 对象所分配的内存数，它不会随着这个 buffer 对象内容的改变而改变。                                                                                                                                                                                                                                                                    |
+| 序号 | 方法 & 描述                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| :--- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1    | **new Buffer(size)** 分配一个新的 size 大小单位为8位字节的 buffer。 注意, size 必须小于 kMaxLength，否则，将会抛出异常 RangeError。废弃的: 使用 Buffer.alloc() 代替（或 Buffer.allocUnsafe()）。                                                                                                                                                                                                                                       |
+| 2    | **new Buffer(buffer)** 拷贝参数 buffer 的数据到 Buffer 实例。废弃的: 使用 Buffer.from(buffer) 代替。                                                                                                                                                                                                                                                                                                                                   |
+| 3    | **new Buffer(str[, encoding])** 分配一个新的 buffer ，其中包含着传入的 str 字符串。 encoding 编码方式默认为 'utf8'。 废弃的: 使用 Buffer.from(string[, encoding]) 代替。                                                                                                                                                                                                                                                               |
+| 4    | **buf.length** 返回这个 buffer 的 bytes 数。注意这未必是 buffer 里面内容的大小。length 是 buffer 对象所分配的内存数，它不会随着这个 buffer 对象内容的改变而改变。                                                                                                                                                                                                                                                                      |
 | 5    | **`buf.write(string[, offset[, length]][, encoding])`** 根据参数 offset 偏移量和指定的 encoding 编码方式，将参数 string 数据写入buffer。 offset 偏移量默认值是 0, encoding 编码方式默认是 utf8。 length 长度是将要写入的字符串的 bytes 大小。 返回 number 类型，表示写入了多少 8 位字节流。如果 buffer 没有足够的空间来放整个 string，它将只会只写入部分字符串。 length 默认是 buffer.length - offset。 这个方法不会出现写入部分字符。 |
-| 6    | **buf.writeUIntLE(value, offset, byteLength[, noAssert])** 将 value 写入到 buffer 里， 它由 offset 和 byteLength 决定，最高支持 48 位无符号整数，小端对齐，例如： `const buf = Buffer.allocUnsafe(6); buf.writeUIntLE(0x1234567890ab, 0, 6); // 输出:  console.log(buf);`noAssert 值为 true 时，不再验证 value 和 offset 的有效性。 默认是 false。                                                                                   |
-| 7    | **buf.writeUIntBE(value, offset, byteLength[, noAssert])** 将 value 写入到 buffer 里， 它由 offset 和 byteLength 决定，最高支持 48 位无符号整数，大端对齐。noAssert 值为 true 时，不再验证 value 和 offset 的有效性。 默认是 false。`const buf = Buffer.allocUnsafe(6); buf.writeUIntBE(0x1234567890ab, 0, 6); // 输出:  console.log(buf);`                                                                                          |
-| 8    | **buf.writeIntLE(value, offset, byteLength[, noAssert])** 将value 写入到 buffer 里， 它由offset 和 byteLength 决定，最高支持48位有符号整数，小端对齐。noAssert 值为 true 时，不再验证 value 和 offset 的有效性。 默认是 false。                                                                                                                                                                                                      |
-| 9    | **buf.writeIntBE(value, offset, byteLength[, noAssert])** 将value 写入到 buffer 里， 它由offset 和 byteLength 决定，最高支持48位有符号整数，大端对齐。noAssert 值为 true 时，不再验证 value 和 offset 的有效性。 默认是 false。                                                                                                                                                                                                      |
-| 10   | **buf.readUIntLE(offset, byteLength[, noAssert])** 支持读取 48 位以下的无符号数字，小端对齐。noAssert 值为 true 时， offset 不再验证是否超过 buffer 的长度，默认为 false。                                                                                                                                                                                                                                                           |
-| 11   | **buf.readUIntBE(offset, byteLength[, noAssert])** 支持读取 48 位以下的无符号数字，大端对齐。noAssert 值为 true 时， offset 不再验证是否超过 buffer 的长度，默认为 false。                                                                                                                                                                                                                                                           |
-| 12   | **buf.readIntLE(offset, byteLength[, noAssert])** 支持读取 48 位以下的有符号数字，小端对齐。noAssert 值为 true 时， offset 不再验证是否超过 buffer 的长度，默认为 false。                                                                                                                                                                                                                                                            |
-| 13   | **buf.readIntBE(offset, byteLength[, noAssert])** 支持读取 48 位以下的有符号数字，大端对齐。noAssert 值为 true 时， offset 不再验证是否超过 buffer 的长度，默认为 false。                                                                                                                                                                                                                                                            |
-| 14   | **buf.toString([encoding[, start[, end]]])** 根据 encoding 参数（默认是 'utf8'）返回一个解码过的 string 类型。还会根据传入的参数 start (默认是 0) 和 end (默认是 buffer.length)作为取值范围。                                                                                                                                                                                                                                        |
-| 15   | **buf.toJSON()** 将 Buffer 实例转换为 JSON 对象。                                                                                                                                                                                                                                                                                                                                                                                    |
-| 16   | **buf[index]** 获取或设置指定的字节。返回值代表一个字节，所以返回值的合法范围是十六进制0x00到0xFF 或者十进制0至 255。                                                                                                                                                                                                                                                                                                                |
-| 17   | **buf.equals(otherBuffer)** 比较两个缓冲区是否相等，如果是返回 true，否则返回 false。                                                                                                                                                                                                                                                                                                                                                |
-| 18   | **buf.compare(otherBuffer)** 比较两个 Buffer 对象，返回一个数字，表示 buf 在 otherBuffer 之前，之后或相同。                                                                                                                                                                                                                                                                                                                          |
-| 19   | **buf.copy(targetBuffer[, targetStart[, sourceStart[, sourceEnd]]])** buffer 拷贝，源和目标可以相同。 targetStart 目标开始偏移和 sourceStart 源开始偏移默认都是 0。 sourceEnd 源结束位置偏移默认是源的长度 buffer.length 。                                                                                                                                                                                                          |
-| 20   | **buf.slice([start[, end]])** 剪切 Buffer 对象，根据 start(默认是 0 ) 和 end (默认是 buffer.length ) 偏移和裁剪了索引。 负的索引是从 buffer 尾部开始计算的。                                                                                                                                                                                                                                                                         |
-| 21   | **buf.readUInt8(offset[, noAssert])** 根据指定的偏移量，读取一个无符号 8 位整数。若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 如果这样 offset 可能会超出buffer 的末尾。默认是 false。                                                                                                                                                                                                                                      |
-| 22   | **buf.readUInt16LE(offset[, noAssert])** 根据指定的偏移量，使用特殊的 endian 字节序格式读取一个无符号 16 位整数。若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 offset 可能会超出 buffer 的末尾。默认是 false。                                                                                                                                                                                                     |
-| 23   | **buf.readUInt16BE(offset[, noAssert])** 根据指定的偏移量，使用特殊的 endian 字节序格式读取一个无符号 16 位整数，大端对齐。若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 offset 可能会超出 buffer 的末尾。默认是 false。                                                                                                                                                                                           |
-| 24   | **buf.readUInt32LE(offset[, noAssert])** 根据指定的偏移量，使用指定的 endian 字节序格式读取一个无符号 32 位整数，小端对齐。 若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 offset 可能会超出buffer 的末尾。默认是 false。                                                                                                                                                                                           |
-| 25   | **buf.readUInt32BE(offset[, noAssert])** 根据指定的偏移量，使用指定的 endian 字节序格式读取一个无符号 32 位整数，大端对齐。 若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 offset 可能会超出buffer 的末尾。默认是 false。                                                                                                                                                                                           |
-| 26   | **buf.readInt8(offset[, noAssert])** 根据指定的偏移量，读取一个有符号 8 位整数。 若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 offset 可能会超出 buffer 的末尾。默认是 false。                                                                                                                                                                                                                                     |
-| 27   | **buf.readInt16LE(offset[, noAssert])** 根据指定的偏移量，使用特殊的 endian 格式读取一个 有符号 16 位整数，小端对齐。 若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 offset 可能会超出 buffer 的末尾。默认是 false。                                                                                                                                                                                                |
-| 28   | **buf.readInt16BE(offset[, noAssert])** 根据指定的偏移量，使用特殊的 endian 格式读取一个 有符号 16 位整数，大端对齐。 若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 offset 可能会超出 buffer 的末尾。默认是 false。                                                                                                                                                                                                |
-| 29   | **buf.readInt32LE(offset[, noAssert])** 根据指定的偏移量，使用指定的 endian 字节序格式读取一个有符号 32 位整数，小端对齐。 若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 offset 可能会超出buffer 的末尾。默认是 false。                                                                                                                                                                                            |
-| 30   | **buf.readInt32BE(offset[, noAssert])** 根据指定的偏移量，使用指定的 endian 字节序格式读取一个有符号 32 位整数，大端对齐。 若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 offset 可能会超出buffer 的末尾。默认是 false。                                                                                                                                                                                            |
-| 31   | **buf.readFloatLE(offset[, noAssert])** 根据指定的偏移量，使用指定的 endian 字节序格式读取一个 32 位双浮点数，小端对齐。 若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 offset 可能会超出buffer的末尾。默认是 false。                                                                                                                                                                                               |
-| 32   | **buf.readFloatBE(offset[, noAssert])** 根据指定的偏移量，使用指定的 endian 字节序格式读取一个 32 位双浮点数，大端对齐。 若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 offset 可能会超出buffer的末尾。默认是 false。                                                                                                                                                                                               |
-| 33   | **buf.readDoubleLE(offset[, noAssert])** 根据指定的偏移量，使用指定的 endian字节序格式读取一个 64 位双精度数，小端对齐。 若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 offset 可能会超出buffer 的末尾。默认是 false。                                                                                                                                                                                              |
-| 34   | **buf.readDoubleBE(offset[, noAssert])** 根据指定的偏移量，使用指定的 endian字节序格式读取一个 64 位双精度数，大端对齐。 若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 offset 可能会超出buffer 的末尾。默认是 false。                                                                                                                                                                                              |
-| 35   | **buf.writeUInt8(value, offset[, noAssert])** 根据传入的 offset 偏移量将 value 写入 buffer。注意：value 必须是一个合法的无符号 8 位整数。 若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 value 可能过大，或者 offset 可能会超出 buffer 的末尾从而造成 value 被丢弃。 除非你对这个参数非常有把握，否则不要使用。默认是 false。                                                                                       |
-| 36   | **buf.writeUInt16LE(value, offset[, noAssert])** 根据传入的 offset 偏移量和指定的 endian 格式将 value 写入 buffer。注意：value 必须是一个合法的无符号 16 位整数，小端对齐。 若参数 noAssert 为 true 将不会验证 value 和 offset 偏移量参数。 这意味着 value 可能过大，或者 offset 可能会超出buffer的末尾从而造成 value 被丢弃。 除非你对这个参数非常有把握，否则尽量不要使用。默认是 false。                                          |
-| 37   | **buf.writeUInt16BE(value, offset[, noAssert])** 根据传入的 offset 偏移量和指定的 endian 格式将 value 写入 buffer。注意：value 必须是一个合法的无符号 16 位整数，大端对齐。 若参数 noAssert 为 true 将不会验证 value 和 offset 偏移量参数。 这意味着 value 可能过大，或者 offset 可能会超出buffer的末尾从而造成 value 被丢弃。 除非你对这个参数非常有把握，否则尽量不要使用。默认是 false。                                          |
-| 38   | **buf.writeUInt32LE(value, offset[, noAssert])** 根据传入的 offset 偏移量和指定的 endian 格式(LITTLE-ENDIAN:小字节序)将 value 写入buffer。注意：value 必须是一个合法的无符号 32 位整数，小端对齐。 若参数 noAssert 为 true 将不会验证 value 和 offset 偏移量参数。 这意味着value 可能过大，或者offset可能会超出buffer的末尾从而造成 value 被丢弃。 除非你对这个参数非常有把握，否则尽量不要使用。默认是 false。                      |
-| 39   | **buf.writeUInt32BE(value, offset[, noAssert])** 根据传入的 offset 偏移量和指定的 endian 格式(Big-Endian:大字节序)将 value 写入buffer。注意：value 必须是一个合法的有符号 32 位整数。 若参数 noAssert 为 true 将不会验证 value 和 offset 偏移量参数。 这意味着 value 可能过大，或者offset可能会超出buffer的末尾从而造成 value 被丢弃。 除非你对这个参数非常有把握，否则尽量不要使用。默认是 false。                                  |
-| 40   | **buf.writeInt8(value, offset[, noAssert])**                                                                                                                                                                                                                                                                                                                                                                                         |
-| 41   | **buf.writeInt16LE(value, offset[, noAssert])** 根据传入的 offset 偏移量和指定的 endian 格式将 value 写入 buffer。注意：value 必须是一个合法的 signed 16 位整数。 若参数 noAssert 为 true 将不会验证 value 和 offset 偏移量参数。 这意味着 value 可能过大，或者 offset 可能会超出 buffer 的末尾从而造成 value 被丢弃。 除非你对这个参数非常有把握，否则尽量不要使用。默认是 false 。                                                 |
-| 42   | **buf.writeInt16BE(value, offset[, noAssert])** 根据传入的 offset 偏移量和指定的 endian 格式将 value 写入 buffer。注意：value 必须是一个合法的 signed 16 位整数。 若参数 noAssert 为 true 将不会验证 value 和 offset 偏移量参数。 这意味着 value 可能过大，或者 offset 可能会超出 buffer 的末尾从而造成 value 被丢弃。 除非你对这个参数非常有把握，否则尽量不要使用。默认是 false 。                                                 |
-| 43   | **buf.writeInt32LE(value, offset[, noAssert])** 根据传入的 offset 偏移量和指定的 endian 格式将 value 写入 buffer。注意：value 必须是一个合法的 signed 32 位整数。 若参数 noAssert 为 true 将不会验证 value 和 offset 偏移量参数。 这意味着 value 可能过大，或者 offset 可能会超出 buffer 的末尾从而造成 value 被丢弃。 除非你对这个参数非常有把握，否则尽量不要使用。默认是 false。                                                  |
-| 44   | **buf.writeInt32BE(value, offset[, noAssert])** 根据传入的 offset 偏移量和指定的 endian 格式将 value 写入 buffer。注意：value 必须是一个合法的 signed 32 位整数。 若参数 noAssert 为 true 将不会验证 value 和 offset 偏移量参数。 这意味着 value 可能过大，或者 offset 可能会超出 buffer 的末尾从而造成 value 被丢弃。 除非你对这个参数非常有把握，否则尽量不要使用。默认是 false。                                                  |
-| 45   | **buf.writeFloatLE(value, offset[, noAssert])** 根据传入的 offset 偏移量和指定的 endian 格式将 value 写入 buffer 。注意：当 value 不是一个 32 位浮点数类型的值时，结果将是不确定的。 若参数 noAssert 为 true 将不会验证 value 和 offset 偏移量参数。 这意味着 value可能过大，或者 offset 可能会超出 buffer 的末尾从而造成 value 被丢弃。 除非你对这个参数非常有把握，否则尽量不要使用。默认是 false。                                |
-| 46   | **buf.writeFloatBE(value, offset[, noAssert])** 根据传入的 offset 偏移量和指定的 endian 格式将 value 写入 buffer 。注意：当 value 不是一个 32 位浮点数类型的值时，结果将是不确定的。 若参数 noAssert 为 true 将不会验证 value 和 offset 偏移量参数。 这意味着 value可能过大，或者 offset 可能会超出 buffer 的末尾从而造成 value 被丢弃。 除非你对这个参数非常有把握，否则尽量不要使用。默认是 false。                                |
-| 47   | **buf.writeDoubleLE(value, offset[, noAssert])** 根据传入的 offset 偏移量和指定的 endian 格式将 value 写入 buffer。注意：value 必须是一个有效的 64 位double 类型的值。 若参数 noAssert 为 true 将不会验证 value 和 offset 偏移量参数。 这意味着 value 可能过大，或者 offset 可能会超出 buffer 的末尾从而造成value被丢弃。 除非你对这个参数非常有把握，否则尽量不要使用。默认是 false。                                               |
-| 48   | **buf.writeDoubleBE(value, offset[, noAssert])** 根据传入的 offset 偏移量和指定的 endian 格式将 value 写入 buffer。注意：value 必须是一个有效的 64 位double 类型的值。 若参数 noAssert 为 true 将不会验证 value 和 offset 偏移量参数。 这意味着 value 可能过大，或者 offset 可能会超出 buffer 的末尾从而造成value被丢弃。 除非你对这个参数非常有把握，否则尽量不要使用。默认是 false。                                               |
+| 6    | **buf.writeUIntLE(value, offset, byteLength[, noAssert])** 将 value 写入到 buffer 里， 它由 offset 和 byteLength 决定，最高支持 48 位无符号整数，小端对齐，例如： `const buf = Buffer.allocUnsafe(6); buf.writeUIntLE(0x1234567890ab, 0, 6); // 输出:  console.log(buf);`noAssert 值为 true 时，不再验证 value 和 offset 的有效性。 默认是 false。                                                                                     |
+| 7    | **buf.writeUIntBE(value, offset, byteLength[, noAssert])** 将 value 写入到 buffer 里， 它由 offset 和 byteLength 决定，最高支持 48 位无符号整数，大端对齐。noAssert 值为 true 时，不再验证 value 和 offset 的有效性。 默认是 false。`const buf = Buffer.allocUnsafe(6); buf.writeUIntBE(0x1234567890ab, 0, 6); // 输出:  console.log(buf);`                                                                                            |
+| 8    | **buf.writeIntLE(value, offset, byteLength[, noAssert])** 将value 写入到 buffer 里， 它由offset 和 byteLength 决定，最高支持48位有符号整数，小端对齐。noAssert 值为 true 时，不再验证 value 和 offset 的有效性。 默认是 false。                                                                                                                                                                                                        |
+| 9    | **buf.writeIntBE(value, offset, byteLength[, noAssert])** 将value 写入到 buffer 里， 它由offset 和 byteLength 决定，最高支持48位有符号整数，大端对齐。noAssert 值为 true 时，不再验证 value 和 offset 的有效性。 默认是 false。                                                                                                                                                                                                        |
+| 10   | **buf.readUIntLE(offset, byteLength[, noAssert])** 支持读取 48 位以下的无符号数字，小端对齐。noAssert 值为 true 时， offset 不再验证是否超过 buffer 的长度，默认为 false。                                                                                                                                                                                                                                                             |
+| 11   | **buf.readUIntBE(offset, byteLength[, noAssert])** 支持读取 48 位以下的无符号数字，大端对齐。noAssert 值为 true 时， offset 不再验证是否超过 buffer 的长度，默认为 false。                                                                                                                                                                                                                                                             |
+| 12   | **buf.readIntLE(offset, byteLength[, noAssert])** 支持读取 48 位以下的有符号数字，小端对齐。noAssert 值为 true 时， offset 不再验证是否超过 buffer 的长度，默认为 false。                                                                                                                                                                                                                                                              |
+| 13   | **buf.readIntBE(offset, byteLength[, noAssert])** 支持读取 48 位以下的有符号数字，大端对齐。noAssert 值为 true 时， offset 不再验证是否超过 buffer 的长度，默认为 false。                                                                                                                                                                                                                                                              |
+| 14   | **buf.toString([encoding[, start[, end]]])** 根据 encoding 参数（默认是 'utf8'）返回一个解码过的 string 类型。还会根据传入的参数 start (默认是 0) 和 end (默认是 buffer.length)作为取值范围。                                                                                                                                                                                                                                          |
+| 15   | **buf.toJSON()** 将 Buffer 实例转换为 JSON 对象。                                                                                                                                                                                                                                                                                                                                                                                      |
+| 16   | **buf[index]** 获取或设置指定的字节。返回值代表一个字节，所以返回值的合法范围是十六进制0x00到0xFF 或者十进制0至 255。                                                                                                                                                                                                                                                                                                                  |
+| 17   | **buf.equals(otherBuffer)** 比较两个缓冲区是否相等，如果是返回 true，否则返回 false。                                                                                                                                                                                                                                                                                                                                                  |
+| 18   | **buf.compare(otherBuffer)** 比较两个 Buffer 对象，返回一个数字，表示 buf 在 otherBuffer 之前，之后或相同。                                                                                                                                                                                                                                                                                                                            |
+| 19   | **buf.copy(targetBuffer[, targetStart[, sourceStart[, sourceEnd]]])** buffer 拷贝，源和目标可以相同。 targetStart 目标开始偏移和 sourceStart 源开始偏移默认都是 0。 sourceEnd 源结束位置偏移默认是源的长度 buffer.length 。                                                                                                                                                                                                            |
+| 20   | **buf.slice([start[, end]])** 剪切 Buffer 对象，根据 start(默认是 0 ) 和 end (默认是 buffer.length ) 偏移和裁剪了索引。 负的索引是从 buffer 尾部开始计算的。                                                                                                                                                                                                                                                                           |
+| 21   | **buf.readUInt8(offset[, noAssert])** 根据指定的偏移量，读取一个无符号 8 位整数。若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 如果这样 offset 可能会超出buffer 的末尾。默认是 false。                                                                                                                                                                                                                                        |
+| 22   | **buf.readUInt16LE(offset[, noAssert])** 根据指定的偏移量，使用特殊的 endian 字节序格式读取一个无符号 16 位整数。若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 offset 可能会超出 buffer 的末尾。默认是 false。                                                                                                                                                                                                       |
+| 23   | **buf.readUInt16BE(offset[, noAssert])** 根据指定的偏移量，使用特殊的 endian 字节序格式读取一个无符号 16 位整数，大端对齐。若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 offset 可能会超出 buffer 的末尾。默认是 false。                                                                                                                                                                                             |
+| 24   | **buf.readUInt32LE(offset[, noAssert])** 根据指定的偏移量，使用指定的 endian 字节序格式读取一个无符号 32 位整数，小端对齐。 若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 offset 可能会超出buffer 的末尾。默认是 false。                                                                                                                                                                                             |
+| 25   | **buf.readUInt32BE(offset[, noAssert])** 根据指定的偏移量，使用指定的 endian 字节序格式读取一个无符号 32 位整数，大端对齐。 若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 offset 可能会超出buffer 的末尾。默认是 false。                                                                                                                                                                                             |
+| 26   | **buf.readInt8(offset[, noAssert])** 根据指定的偏移量，读取一个有符号 8 位整数。 若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 offset 可能会超出 buffer 的末尾。默认是 false。                                                                                                                                                                                                                                       |
+| 27   | **buf.readInt16LE(offset[, noAssert])** 根据指定的偏移量，使用特殊的 endian 格式读取一个 有符号 16 位整数，小端对齐。 若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 offset 可能会超出 buffer 的末尾。默认是 false。                                                                                                                                                                                                  |
+| 28   | **buf.readInt16BE(offset[, noAssert])** 根据指定的偏移量，使用特殊的 endian 格式读取一个 有符号 16 位整数，大端对齐。 若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 offset 可能会超出 buffer 的末尾。默认是 false。                                                                                                                                                                                                  |
+| 29   | **buf.readInt32LE(offset[, noAssert])** 根据指定的偏移量，使用指定的 endian 字节序格式读取一个有符号 32 位整数，小端对齐。 若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 offset 可能会超出buffer 的末尾。默认是 false。                                                                                                                                                                                              |
+| 30   | **buf.readInt32BE(offset[, noAssert])** 根据指定的偏移量，使用指定的 endian 字节序格式读取一个有符号 32 位整数，大端对齐。 若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 offset 可能会超出buffer 的末尾。默认是 false。                                                                                                                                                                                              |
+| 31   | **buf.readFloatLE(offset[, noAssert])** 根据指定的偏移量，使用指定的 endian 字节序格式读取一个 32 位双浮点数，小端对齐。 若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 offset 可能会超出buffer的末尾。默认是 false。                                                                                                                                                                                                 |
+| 32   | **buf.readFloatBE(offset[, noAssert])** 根据指定的偏移量，使用指定的 endian 字节序格式读取一个 32 位双浮点数，大端对齐。 若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 offset 可能会超出buffer的末尾。默认是 false。                                                                                                                                                                                                 |
+| 33   | **buf.readDoubleLE(offset[, noAssert])** 根据指定的偏移量，使用指定的 endian字节序格式读取一个 64 位双精度数，小端对齐。 若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 offset 可能会超出buffer 的末尾。默认是 false。                                                                                                                                                                                                |
+| 34   | **buf.readDoubleBE(offset[, noAssert])** 根据指定的偏移量，使用指定的 endian字节序格式读取一个 64 位双精度数，大端对齐。 若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 offset 可能会超出buffer 的末尾。默认是 false。                                                                                                                                                                                                |
+| 35   | **buf.writeUInt8(value, offset[, noAssert])** 根据传入的 offset 偏移量将 value 写入 buffer。注意：value 必须是一个合法的无符号 8 位整数。 若参数 noAssert 为 true 将不会验证 offset 偏移量参数。 这意味着 value 可能过大，或者 offset 可能会超出 buffer 的末尾从而造成 value 被丢弃。 除非你对这个参数非常有把握，否则不要使用。默认是 false。                                                                                         |
+| 36   | **buf.writeUInt16LE(value, offset[, noAssert])** 根据传入的 offset 偏移量和指定的 endian 格式将 value 写入 buffer。注意：value 必须是一个合法的无符号 16 位整数，小端对齐。 若参数 noAssert 为 true 将不会验证 value 和 offset 偏移量参数。 这意味着 value 可能过大，或者 offset 可能会超出buffer的末尾从而造成 value 被丢弃。 除非你对这个参数非常有把握，否则尽量不要使用。默认是 false。                                            |
+| 37   | **buf.writeUInt16BE(value, offset[, noAssert])** 根据传入的 offset 偏移量和指定的 endian 格式将 value 写入 buffer。注意：value 必须是一个合法的无符号 16 位整数，大端对齐。 若参数 noAssert 为 true 将不会验证 value 和 offset 偏移量参数。 这意味着 value 可能过大，或者 offset 可能会超出buffer的末尾从而造成 value 被丢弃。 除非你对这个参数非常有把握，否则尽量不要使用。默认是 false。                                            |
+| 38   | **buf.writeUInt32LE(value, offset[, noAssert])** 根据传入的 offset 偏移量和指定的 endian 格式(LITTLE-ENDIAN:小字节序)将 value 写入buffer。注意：value 必须是一个合法的无符号 32 位整数，小端对齐。 若参数 noAssert 为 true 将不会验证 value 和 offset 偏移量参数。 这意味着value 可能过大，或者offset可能会超出buffer的末尾从而造成 value 被丢弃。 除非你对这个参数非常有把握，否则尽量不要使用。默认是 false。                        |
+| 39   | **buf.writeUInt32BE(value, offset[, noAssert])** 根据传入的 offset 偏移量和指定的 endian 格式(Big-Endian:大字节序)将 value 写入buffer。注意：value 必须是一个合法的有符号 32 位整数。 若参数 noAssert 为 true 将不会验证 value 和 offset 偏移量参数。 这意味着 value 可能过大，或者offset可能会超出buffer的末尾从而造成 value 被丢弃。 除非你对这个参数非常有把握，否则尽量不要使用。默认是 false。                                    |
+| 40   | **buf.writeInt8(value, offset[, noAssert])**                                                                                                                                                                                                                                                                                                                                                                                           |
+| 41   | **buf.writeInt16LE(value, offset[, noAssert])** 根据传入的 offset 偏移量和指定的 endian 格式将 value 写入 buffer。注意：value 必须是一个合法的 signed 16 位整数。 若参数 noAssert 为 true 将不会验证 value 和 offset 偏移量参数。 这意味着 value 可能过大，或者 offset 可能会超出 buffer 的末尾从而造成 value 被丢弃。 除非你对这个参数非常有把握，否则尽量不要使用。默认是 false 。                                                   |
+| 42   | **buf.writeInt16BE(value, offset[, noAssert])** 根据传入的 offset 偏移量和指定的 endian 格式将 value 写入 buffer。注意：value 必须是一个合法的 signed 16 位整数。 若参数 noAssert 为 true 将不会验证 value 和 offset 偏移量参数。 这意味着 value 可能过大，或者 offset 可能会超出 buffer 的末尾从而造成 value 被丢弃。 除非你对这个参数非常有把握，否则尽量不要使用。默认是 false 。                                                   |
+| 43   | **buf.writeInt32LE(value, offset[, noAssert])** 根据传入的 offset 偏移量和指定的 endian 格式将 value 写入 buffer。注意：value 必须是一个合法的 signed 32 位整数。 若参数 noAssert 为 true 将不会验证 value 和 offset 偏移量参数。 这意味着 value 可能过大，或者 offset 可能会超出 buffer 的末尾从而造成 value 被丢弃。 除非你对这个参数非常有把握，否则尽量不要使用。默认是 false。                                                    |
+| 44   | **buf.writeInt32BE(value, offset[, noAssert])** 根据传入的 offset 偏移量和指定的 endian 格式将 value 写入 buffer。注意：value 必须是一个合法的 signed 32 位整数。 若参数 noAssert 为 true 将不会验证 value 和 offset 偏移量参数。 这意味着 value 可能过大，或者 offset 可能会超出 buffer 的末尾从而造成 value 被丢弃。 除非你对这个参数非常有把握，否则尽量不要使用。默认是 false。                                                    |
+| 45   | **buf.writeFloatLE(value, offset[, noAssert])** 根据传入的 offset 偏移量和指定的 endian 格式将 value 写入 buffer 。注意：当 value 不是一个 32 位浮点数类型的值时，结果将是不确定的。 若参数 noAssert 为 true 将不会验证 value 和 offset 偏移量参数。 这意味着 value可能过大，或者 offset 可能会超出 buffer 的末尾从而造成 value 被丢弃。 除非你对这个参数非常有把握，否则尽量不要使用。默认是 false。                                  |
+| 46   | **buf.writeFloatBE(value, offset[, noAssert])** 根据传入的 offset 偏移量和指定的 endian 格式将 value 写入 buffer 。注意：当 value 不是一个 32 位浮点数类型的值时，结果将是不确定的。 若参数 noAssert 为 true 将不会验证 value 和 offset 偏移量参数。 这意味着 value可能过大，或者 offset 可能会超出 buffer 的末尾从而造成 value 被丢弃。 除非你对这个参数非常有把握，否则尽量不要使用。默认是 false。                                  |
+| 47   | **buf.writeDoubleLE(value, offset[, noAssert])** 根据传入的 offset 偏移量和指定的 endian 格式将 value 写入 buffer。注意：value 必须是一个有效的 64 位double 类型的值。 若参数 noAssert 为 true 将不会验证 value 和 offset 偏移量参数。 这意味着 value 可能过大，或者 offset 可能会超出 buffer 的末尾从而造成value被丢弃。 除非你对这个参数非常有把握，否则尽量不要使用。默认是 false。                                                 |
+| 48   | **buf.writeDoubleBE(value, offset[, noAssert])** 根据传入的 offset 偏移量和指定的 endian 格式将 value 写入 buffer。注意：value 必须是一个有效的 64 位double 类型的值。 若参数 noAssert 为 true 将不会验证 value 和 offset 偏移量参数。 这意味着 value 可能过大，或者 offset 可能会超出 buffer 的末尾从而造成value被丢弃。 除非你对这个参数非常有把握，否则尽量不要使用。默认是 false。                                                 |
 | 49   | **`buf.fill(value[, offset][, end])`** 使用指定的 value 来填充这个 buffer。如果没有指定 offset (默认是 0) 并且 end (默认是 buffer.length) ，将会填充整个buffer。                                                                                                                                                                                                                                                                       |
 
 ## Stream(流)
 
 > **Stream四种类型**
 >
-> - Readable** - 可读操作。
+> - Readable\*\* - 可读操作。
 > - **Writable** - 可写操作。
 > - **Duplex** - 可读可写操作.
 > - **Transform** - 操作被写入数据，然后读出结果。
->
->
 >
 > 所有的 Stream 对象都是 EventEmitter 的实例。
 >
@@ -1934,34 +1924,33 @@ grh官网地址：www.runoob.com
 main.js
 
 ```js
-var fs = require("fs");
-var data = 'grh官网地址：www.runoob.com';
+var fs = require('fs')
+var data = 'grh官网地址：www.runoob.com'
 
 // 创建一个可以写入的流，写入到文件 output.txt 中
-var writerStream = fs.createWriteStream('output.txt');
+var writerStream = fs.createWriteStream('output.txt')
 
 // 使用 utf8 编码写入数据
-writerStream.write(data,'UTF8');
+writerStream.write(data, 'UTF8')
 
 // 标记文件末尾
-writerStream.end();
+writerStream.end()
 
 // 处理流事件 --> data, end, and error
-writerStream.on('finish', function() {
-    console.log("写入完成。");
-});
+writerStream.on('finish', function () {
+  console.log('写入完成。')
+})
 
-writerStream.on('error', function(err){
-   console.log(err.stack);
-});
+writerStream.on('error', function (err) {
+  console.log(err.stack)
+})
 
-console.log("程序执行完毕");
+console.log('程序执行完毕')
 
 结果
 
 程序执行完毕
 写入完成
-
 ```
 
 ### 管道流
@@ -1971,19 +1960,19 @@ console.log("程序执行完毕");
 >   - 可以慢慢的实现大文件的复制过程
 
 ```js
-var fs = require("fs");
+var fs = require('fs')
 
 // 创建一个可读流
-var readerStream = fs.createReadStream('input.txt');
+var readerStream = fs.createReadStream('input.txt')
 
 // 创建一个可写流
-var writerStream = fs.createWriteStream('output.txt');
+var writerStream = fs.createWriteStream('output.txt')
 
 // 管道读写操作
 // 读取 input.txt 文件内容，并将内容写入到 output.txt 文件中
-readerStream.pipe(writerStream);
+readerStream.pipe(writerStream)
 
-console.log("程序执行完毕");
+console.log('程序执行完毕')
 ```
 
 ### 链式流
@@ -1994,29 +1983,29 @@ console.log("程序执行完毕");
 ```js
 //compress.js 压缩文件
 
-var fs = require("fs");
-var zlib = require('zlib');
+var fs = require('fs')
+var zlib = require('zlib')
 
 // 压缩 input.txt 文件为 input.txt.gz
 fs.createReadStream('input.txt')
   .pipe(zlib.createGzip())
-  .pipe(fs.createWriteStream('input.txt.gz'));
-  
-console.log("文件压缩完成。");
+  .pipe(fs.createWriteStream('input.txt.gz'))
+
+console.log('文件压缩完成。')
 ```
 
 ```js
 //decompress.js 解压文件
 
-var fs = require("fs");
-var zlib = require('zlib');
+var fs = require('fs')
+var zlib = require('zlib')
 
 // 解压 input.txt.gz 文件为 input.txt
 fs.createReadStream('input.txt.gz')
   .pipe(zlib.createGunzip())
-  .pipe(fs.createWriteStream('input.txt'));
-  
-console.log("文件解压完成。");
+  .pipe(fs.createWriteStream('input.txt'))
+
+console.log('文件解压完成。')
 ```
 
 ## 模块系统
@@ -2031,42 +2020,42 @@ console.log("文件解压完成。");
 自封装一个对象
 
 ```js
-module.exports = function() {
+module.exports = function () {
   // ...
 }
 
-//hello.js 
-function Hello() { 
-    var name; 
-    this.setName = function(thyName) { 
-        name = thyName; 
-    }; 
-    this.sayHello = function() { 
-        console.log('Hello ' + name); 
-    }; 
-}; 
-module.exports = Hello;
+//hello.js
+function Hello() {
+  var name
+  this.setName = function (thyName) {
+    name = thyName
+  }
+  this.sayHello = function () {
+    console.log('Hello ' + name)
+  }
+}
+module.exports = Hello
 
-//main.js 
-var Hello = require('./hello'); 
-hello = new Hello(); 
-hello.setName('BYVoid'); 
-hello.sayHello(); 
+//main.js
+var Hello = require('./hello')
+hello = new Hello()
+hello.setName('BYVoid')
+hello.sayHello()
 ```
 
 hello.js
 
 ```js
-exports.world = function() {
-  console.log('Hello World');
+exports.world = function () {
+  console.log('Hello World')
 }
 ```
 
 main.js
 
 ```js
-var hello = require('./hello');
-hello.world();
+var hello = require('./hello')
+hello.world()
 ```
 
 ### 服务器的模块
@@ -2089,17 +2078,15 @@ http.createServer(...);
 >
 > ```js
 > function say(word) {
-> console.log(word);
+>   console.log(word)
 > }
-> 
+>
 > function execute(someFunction, value) {
-> someFunction(value);
+>   someFunction(value)
 > }
-> 
-> execute(say, "Hello");
+>
+> execute(say, 'Hello')
 > ```
->
->
 
 ### 匿名函数
 
@@ -2111,34 +2098,38 @@ http.createServer(...);
 
 ```js
 function execute(someFunction, value) {
-  someFunction(value);
+  someFunction(value)
 }
 
-execute(function(word){ console.log(word) }, "Hello");
+execute(function (word) {
+  console.log(word)
+}, 'Hello')
 ```
 
 ### 函数传递是如何让HTTP服务器工作的
 
 ```js
-var http = require("http");
+var http = require('http')
 
-http.createServer(function(request, response) {
-  response.writeHead(200, {"Content-Type": "text/plain"});
-  response.write("Hello World");
-  response.end();
-}).listen(8888);
+http
+  .createServer(function (request, response) {
+    response.writeHead(200, { 'Content-Type': 'text/plain' })
+    response.write('Hello World')
+    response.end()
+  })
+  .listen(8888)
 ```
 
 ```js
-var http = require("http");
+var http = require('http')
 
 function onRequest(request, response) {
-  response.writeHead(200, {"Content-Type": "text/plain"});
-  response.write("Hello World");
-  response.end();
+  response.writeHead(200, { 'Content-Type': 'text/plain' })
+  response.write('Hello World')
+  response.end()
 }
 
-http.createServer(onRequest).listen(8888);
+http.createServer(onRequest).listen(8888)
 ```
 
 ### 路由
@@ -2148,42 +2139,42 @@ http.createServer(onRequest).listen(8888);
 server.js
 
 ```js
-var http = require("http");
-var url = require("url");
- 
+var http = require('http')
+var url = require('url')
+
 function start() {
   function onRequest(request, response) {
-    var pathname = url.parse(request.url).pathname;
-    console.log("Request for " + pathname + " received.");
-    response.writeHead(200, {"Content-Type": "text/plain"});
-    response.write("Hello World");
-    response.end();
+    var pathname = url.parse(request.url).pathname
+    console.log('Request for ' + pathname + ' received.')
+    response.writeHead(200, { 'Content-Type': 'text/plain' })
+    response.write('Hello World')
+    response.end()
   }
- 
-  http.createServer(onRequest).listen(8888);
-  console.log("Server has started.");
+
+  http.createServer(onRequest).listen(8888)
+  console.log('Server has started.')
 }
- 
-exports.start = start;
+
+exports.start = start
 ```
 
 router.js
 
 ```js
 function route(pathname) {
-  console.log("About to route a request for " + pathname);
+  console.log('About to route a request for ' + pathname)
 }
- 
-exports.route = route;
+
+exports.route = route
 ```
 
 index.js
 
 ```js
-var server = require("./server");
-var router = require("./router");
- 
-server.start(router.route);
+var server = require('./server')
+var router = require('./router')
+
+server.start(router.route)
 ```
 
 启动
@@ -2198,7 +2189,6 @@ Server has started.
 ## 全局对象
 
 > - 在程序的任何地方都可以访问,即全局变量
->
 > - 通常window是全局对象,node中的全局对象是global
 > - 按照ECMAScript定义,全局变量的条件:
 >   - 在最外层定义的变量
@@ -2206,7 +2196,7 @@ Server has started.
 >   - 隐式定义的变量(未定义直接赋值的变量)
 >   - 不要使用var定义变量,全局变量会污染命名空间
 
-### __filename
+### \_\_filename
 
 > - 表示当前正在执行的脚本的文件名
 > - 输出文件说在位置的绝对路径
@@ -2223,7 +2213,7 @@ $ node main.js
 /web/com/runoob/nodejs/main.js
 ```
 
-### __dirname
+### \_\_dirname
 
 > 表示当前执行脚本说在的目录
 
@@ -2243,18 +2233,17 @@ $ node main.js
 ### clearTimeout(t)
 
 > - 全局函数用于停止一个之前通过 setTimeout() 创建的定时器。
->
 > - 参数 **t** 是通过 setTimeout() 函数创建的定时器。
 
 ```js
-function printHello(){
-   console.log( "Hello, World!");
+function printHello() {
+  console.log('Hello, World!')
 }
 // 两秒后执行以上函数
-var t = setTimeout(printHello, 2000);
+var t = setTimeout(printHello, 2000)
 
 // 清除定时器
-clearTimeout(t);
+clearTimeout(t)
 ```
 
 ### setInterval(cb, ms)
@@ -2263,11 +2252,11 @@ clearTimeout(t);
 > - 直到clearInterval()被调用或窗口关闭
 
 ```js
-function printHello(){
-   console.log( "Hello, World!");
+function printHello() {
+  console.log('Hello, World!')
 }
 // 两秒后执行以上函数
-setInterval(printHello, 2000);
+setInterval(printHello, 2000)
 ```
 
 ### console
@@ -2276,27 +2265,27 @@ setInterval(printHello, 2000);
 >
 > Node.js 沿用了这个标准，提供与习惯行为一致的 console 对象，用于向标准输出流（stdout）或标准错误流（stderr）输出字符。
 
-| 序号 | 方法 & 描述                                                                                                                                                                                           |
-| :--- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 序号 | 方法 & 描述                                                                                                                                                                                             |
+| :--- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | 1    | **`console.log([data][, ...])`** 向标准输出流打印字符并以换行符结束。该方法接收若干 个参数，如果只有一个参数，则输出这个参数的字符串形式。如果有多个参数，则 以类似于C 语言 printf() 命令的格式输出。   |
 | 2    | **`console.info([data][, ...])`** 该命令的作用是返回信息性消息，这个命令与console.log差别并不大，除了在chrome中只会输出文字外，其余的会显示一个蓝色的惊叹号。                                           |
 | 3    | **`console.error([data][, ...])`** 输出错误消息的。控制台在出现错误时会显示是红色的叉子。                                                                                                               |
 | 4    | **`console.warn([data][, ...])`** 输出警告消息。控制台出现有黄色的惊叹号。                                                                                                                              |
-| 5    | **console.dir(obj[, options])** 用来对一个对象进行检查（inspect），并以易于阅读和打印的格式显示。                                                                                                     |
-| 6    | **console.time(label)** 输出时间，表示计时开始。                                                                                                                                                      |
-| 7    | **console.timeEnd(label)** 结束时间，表示计时结束。                                                                                                                                                   |
-| 8    | **console.trace(message[, ...])** 当前执行的代码在堆栈中的调用路径，这个测试函数运行很有帮助，只要给想测试的函数里面加入 console.trace 就行了。                                                       |
+| 5    | **console.dir(obj[, options])** 用来对一个对象进行检查（inspect），并以易于阅读和打印的格式显示。                                                                                                       |
+| 6    | **console.time(label)** 输出时间，表示计时开始。                                                                                                                                                        |
+| 7    | **console.timeEnd(label)** 结束时间，表示计时结束。                                                                                                                                                     |
+| 8    | **console.trace(message[, ...])** 当前执行的代码在堆栈中的调用路径，这个测试函数运行很有帮助，只要给想测试的函数里面加入 console.trace 就行了。                                                         |
 | 9    | **`console.assert(value[, message][, ...])`** 用于判断某个表达式或变量是否为真，接收两个参数，第一个参数是表达式，第二个参数是字符串。只有当第一个参数为false，才会输出第二个参数，否则不会有任何结果。 |
 
 #### console.log()
 
 ```js
-console.log('Hello world'); 
-console.log('byvoid%diovyb'); 
-console.log('byvoid%diovyb', 1991); 
+console.log('Hello world');
+console.log('byvoid%diovyb');
+console.log('byvoid%diovyb', 1991);
 运行结果:
-Hello world 
-byvoid%diovyb 
+Hello world
+byvoid%diovyb
 byvoid1991iovyb
 ```
 
@@ -2312,12 +2301,12 @@ byvoid1991iovyb
 console.trace()
 
 Trace:
-at Object.<anonymous> (/home/byvoid/consoletrace.js:1:71) 
-at Module._compile (module.js:441:26) 
-at Object..js (module.js:459:10) 
-at Module.load (module.js:348:31) 
-at Function._load (module.js:308:12) 
-at Array.0 (module.js:479:10) 
+at Object.<anonymous> (/home/byvoid/consoletrace.js:1:71)
+at Module._compile (module.js:441:26)
+at Object..js (module.js:459:10)
+at Module.load (module.js:348:31)
+at Function._load (module.js:308:12)
+at Array.0 (module.js:479:10)
 at EventEmitter._tickCallback (node.js:192:40)
 ```
 
@@ -2330,7 +2319,7 @@ console.log("计数: %d", counter);
 console.time("获取数据");
 //
 // 执行一些代码
-// 
+//
 console.timeEnd('获取数据');
 console.info("程序执行完毕。")
 
@@ -2360,7 +2349,7 @@ process.on('exit', function(code) {
   setTimeout(function() {
     console.log("该代码不会执行");
   }, 0);
-  
+
   console.log('退出码为:', code);
 });
 console.log("程序执行结束")
@@ -2496,19 +2485,18 @@ hello world
 ```
 
 > - 回调函数是异步执行的，并且有异常堆栈错误追踪。 如果回调函数抛出一个异常，进程会触发一个 'uncaughtException' 异常，如果没有被捕获，进程将会退出。
->
 > - null 在回调函数中作为一个参数有其特殊的意义，如果回调函数的首个参数为 Promise 拒绝的原因且带有返回值，且值可以转换成布尔值 false，这个值会被封装在 Error 对象里，可以通过属性 reason 获取
 
 ```js
 function fn() {
-  return Promise.reject(null);
+  return Promise.reject(null)
 }
-const callbackFunction = util.callbackify(fn);
+const callbackFunction = util.callbackify(fn)
 
 callbackFunction((err, ret) => {
   // 当 Promise 被以 `null` 拒绝时，它被包装为 Error 并且原始值存储在 `reason` 中。
-  err && err.hasOwnProperty('reason') && err.reason === null;  // true
-});
+  err && err.hasOwnProperty('reason') && err.reason === null // true
+})
 ```
 
 > original 为async异步函数,改函数返回传统回调函数
@@ -2516,7 +2504,6 @@ callbackFunction((err, ret) => {
 #### util.inherits
 
 > - util.inherits(constructor, superConstructor) 是一个实现对象间原型继承的函数
->
 > - javaScript的面向对象特性是基于原型的,与常见的基于类的不同.
 > - JavaScript没有提供对象继承的语言级别特性,而是通过原型复制来实现的.
 
@@ -2581,22 +2568,22 @@ sub
 > - colors值true,输出格式将会ANSI编码,通常用于在终端显示更加漂亮的效果
 
 ```js
-var util = require('util'); 
-function Person() { 
-    this.name = 'byvoid'; 
-    this.toString = function() { 
-    return this.name; 
-    }; 
-} 
-var obj = new Person(); 
-console.log(util.inspect(obj)); 
-console.log(util.inspect(obj, true)); 
+var util = require('util');
+function Person() {
+    this.name = 'byvoid';
+    this.toString = function() {
+    return this.name;
+    };
+}
+var obj = new Person();
+console.log(util.inspect(obj));
+console.log(util.inspect(obj, true));
 
 运行结果:
 Person { name: 'byvoid', toString: [Function] }
 Person {
   name: 'byvoid',
-  toString: 
+  toString:
    { [Function]
      [length]: 0,
      [name]: '',
@@ -2621,19 +2608,19 @@ Person {
 file.js
 
 ```js
-var fs = require("fs")
+var fs = require('fs')
 //异步读取
-fs.readFIle('input.txt', function(err, data){
-  if(err){
-    return console.error(err);
+fs.readFIle('input.txt', function (err, data) {
+  if (err) {
+    return console.error(err)
   }
-  console.log("异步读取:"+ data.toString());
-});
+  console.log('异步读取:' + data.toString())
+})
 
 //同步读取
-var data = fs.readFileSync('input.txt');
-console.log("同步读取:" + data.toString());
-console.log("程序执行完毕");
+var data = fs.readFileSync('input.txt')
+console.log('同步读取:' + data.toString())
+console.log('程序执行完毕')
 ```
 
 ### 打开文件
@@ -2662,16 +2649,16 @@ flags参数
 | ax+  | 类似 'a+'， 但是如果文件路径存在，则文件读取追加失败 |
 
 ```js
-var fs = require("fs");
+var fs = require('fs')
 
 // 异步打开文件
-console.log("准备打开文件！");
-fs.open('input.txt', 'r+', function(err, fd) {
-   if (err) {
-       return console.error(err);
-   }
-  console.log("文件打开成功！");     
-});
+console.log('准备打开文件！')
+fs.open('input.txt', 'r+', function (err, fd) {
+  if (err) {
+    return console.error(err)
+  }
+  console.log('文件打开成功！')
+})
 ```
 
 ### 获取文件信息
@@ -2681,10 +2668,10 @@ fs.open('input.txt', 'r+', function(err, fd) {
 
 ```js
 //fs.stat(path)执行后，会将stats类的实例返回给其回调函数。可以通过stats类中的提供方法判断文件的相关属性。例如判断是否为文件：
-var fs = require('fs');
+var fs = require('fs')
 
 fs.stat('/Users/liuht/code/itbilu/demo/fs.js', function (err, stats) {
-    console.log(stats.isFile());         //true
+  console.log(stats.isFile()) //true
 })
 ```
 
@@ -2710,15 +2697,15 @@ fs.stat('input.txt', function (err, stats) {
    }
    console.log(stats);
    console.log("读取文件信息成功！");
-   
+
    // 检测文件类型
    console.log("是否为文件(isFile) ? " + stats.isFile());
-   console.log("是否为目录(isDirectory) ? " + stats.isDirectory());    
+   console.log("是否为目录(isDirectory) ? " + stats.isDirectory());
 });
 
 运行结果:
 
-$ node file.js 
+$ node file.js
 准备打开文件！
 { dev: 16777220,
   mode: 33188,
@@ -2768,7 +2755,7 @@ fs.writeFile('input.txt', '我是通 过fs.writeFile 写入文件的内容',  fu
 
 执行结果如下：
 
-$ node file.js 
+$ node file.js
 准备写入文件
 数据写入成功！
 --------我是分割线-------------
@@ -2781,17 +2768,11 @@ $ node file.js
 > - ```js
 >   fs.read(fd, buffer, offset, length, position, callback)
 >   ```
->
 > - **fd** - 通过 fs.open() 方法返回的文件描述符。
->
 > - **buffer** - 数据写入的缓冲区。
->
 > - **offset** - 缓冲区写入的写入偏移量。
->
 > - **length** - 要从文件中读取的字节数。
->
 > - **position** - 文件读取的起始位置，如果 position 的值为 null，则会从当前文件指针的位置读取。
->
 > - **callback** - 回调函数，有三个参数err, bytesRead, buffer，err 为错误信息， bytesRead 表示读取的字节数，buffer 为缓冲区对象。
 
 ```js
@@ -2810,7 +2791,7 @@ fs.open('input.txt', 'r+', function(err, fd) {
          console.log(err);
       }
       console.log(bytes + "  字节被读取");
-      
+
       // 仅输出读取的字节
       if(bytes > 0){
          console.log(buf.slice(0, bytes).toString());
@@ -2820,7 +2801,7 @@ fs.open('input.txt', 'r+', function(err, fd) {
 
 以上代码执行结果如下：
 
-$ node file.js 
+$ node file.js
 准备打开已存在的文件！
 文件打开成功！
 准备读取文件：
@@ -2862,7 +2843,7 @@ fs.open('input.txt', 'r+', function(err, fd) {
       fs.close(fd, function(err){
          if (err){
             console.log(err);
-         } 
+         }
          console.log("文件关闭成功");
       });
    });
@@ -2870,7 +2851,7 @@ fs.open('input.txt', 'r+', function(err, fd) {
 
 以上代码执行结果如下：
 
-$ node file.js 
+$ node file.js
 准备打开文件！
 文件打开成功！
 准备读取文件！
@@ -2899,50 +2880,50 @@ site:www.runoob.com
 接下来我们创建 file.js 文件，代码如下所示：
 
 ```js
-var fs = require("fs");
-var buf = new Buffer.alloc(1024);
+var fs = require('fs')
+var buf = new Buffer.alloc(1024)
 
-console.log("准备打开文件！");
-fs.open('input.txt', 'r+', function(err, fd) {
-   if (err) {
-       return console.error(err);
-   }
-   console.log("文件打开成功！");
-   console.log("截取10字节内的文件内容，超出部分将被去除。");
-   
-   // 截取文件
-   fs.ftruncate(fd, 10, function(err){
-      if (err){
-         console.log(err);
-      } 
-      console.log("文件截取成功。");
-      console.log("读取相同的文件"); 
-      fs.read(fd, buf, 0, buf.length, 0, function(err, bytes){
-         if (err){
-            console.log(err);
-         }
+console.log('准备打开文件！')
+fs.open('input.txt', 'r+', function (err, fd) {
+  if (err) {
+    return console.error(err)
+  }
+  console.log('文件打开成功！')
+  console.log('截取10字节内的文件内容，超出部分将被去除。')
 
-         // 仅输出读取的字节
-         if(bytes > 0){
-            console.log(buf.slice(0, bytes).toString());
-         }
+  // 截取文件
+  fs.ftruncate(fd, 10, function (err) {
+    if (err) {
+      console.log(err)
+    }
+    console.log('文件截取成功。')
+    console.log('读取相同的文件')
+    fs.read(fd, buf, 0, buf.length, 0, function (err, bytes) {
+      if (err) {
+        console.log(err)
+      }
 
-         // 关闭文件
-         fs.close(fd, function(err){
-            if (err){
-               console.log(err);
-            } 
-            console.log("文件关闭成功！");
-         });
-      });
-   });
-});
+      // 仅输出读取的字节
+      if (bytes > 0) {
+        console.log(buf.slice(0, bytes).toString())
+      }
+
+      // 关闭文件
+      fs.close(fd, function (err) {
+        if (err) {
+          console.log(err)
+        }
+        console.log('文件关闭成功！')
+      })
+    })
+  })
+})
 ```
 
 以上代码执行结果如下：
 
 ```js
-$ node file.js 
+$ node file.js
 准备打开文件！
 文件打开成功！
 截取10字节内的文件内容，超出部分将被去除。
@@ -2972,21 +2953,21 @@ site:www.runoob.com
 接下来我们创建 file.js 文件，代码如下所示：
 
 ```js
-var fs = require("fs");
+var fs = require('fs')
 
-console.log("准备删除文件！");
-fs.unlink('input.txt', function(err) {
-   if (err) {
-       return console.error(err);
-   }
-   console.log("文件删除成功！");
-});
+console.log('准备删除文件！')
+fs.unlink('input.txt', function (err) {
+  if (err) {
+    return console.error(err)
+  }
+  console.log('文件删除成功！')
+})
 ```
 
 以上代码执行结果如下：
 
 ```
-$ node file.js 
+$ node file.js
 准备删除文件！
 文件删除成功！
 ```
@@ -3022,7 +3003,7 @@ fs.mkdir("/tmp/test/",function(err){
 以上代码执行结果如下：
 
 ```
-$ node file.js 
+$ node file.js
 创建目录 /tmp/test/
 目录创建成功。
 ```
@@ -3035,7 +3016,7 @@ fs.mkdir('/tmp/a/apple', { recursive: true }, (err) => {
 });
 ```
 
-------
+---
 
 ### 读取目录
 
@@ -3051,23 +3032,23 @@ fs.readdir(path, callback)
 接下来我们创建 file.js 文件，代码如下所示：
 
 ```js
-var fs = require("fs");
+var fs = require('fs')
 
-console.log("查看 /tmp 目录");
-fs.readdir("/tmp/",function(err, files){
-   if (err) {
-       return console.error(err);
-   }
-   files.forEach( function (file){
-       console.log( file );
-   });
-});
+console.log('查看 /tmp 目录')
+fs.readdir('/tmp/', function (err, files) {
+  if (err) {
+    return console.error(err)
+  }
+  files.forEach(function (file) {
+    console.log(file)
+  })
+})
 ```
 
 以上代码执行结果如下：
 
 ```js
-$ node file.js 
+$ node file.js
 查看 /tmp 目录
 input.out
 output.out
@@ -3103,7 +3084,7 @@ fs.readdir("/tmp/",function(err, files){
 以上代码执行结果如下：
 
 ```
-$ node file.js 
+$ node file.js
 查看 /tmp 目录
 input.out
 output.out
@@ -3114,9 +3095,7 @@ test.txt
 ### 删除目录
 
 > - fs.rmdir(path, callback)
->
 > - path - 文件路径。
->
 > - callback - 回调函数，没有参数。
 
 ```js
@@ -3139,7 +3118,7 @@ fs.rmdir("/tmp/test",function(err){
 });
 以上代码执行结果如下：
 
-$ node file.js 
+$ node file.js
 准备删除目录 /tmp/test
 读取 /tmp 目录
 ……
@@ -3211,7 +3190,7 @@ $ node file.js
 | 60   | **fs.appendFileSync(filename, data[, options])** The 同步 version of fs.appendFile.                                                                                      |
 | 61   | **fs.watchFile(filename[, options], listener)** 查看文件的修改。                                                                                                         |
 | 62   | **fs.unwatchFile(filename[, listener])** 停止查看 filename 的修改。                                                                                                      |
-| 63   | **`fs.watch(filename[, options][, listener])`** 查看 filename 的修改，filename 可以是文件或目录。返回 fs.FSWatcher 对象。                                                  |
+| 63   | **`fs.watch(filename[, options][, listener])`** 查看 filename 的修改，filename 可以是文件或目录。返回 fs.FSWatcher 对象。                                                |
 | 64   | **fs.exists(path, callback)** 检测给定的路径是否存在。                                                                                                                   |
 | 65   | **fs.existsSync(path)** 同步版的 fs.exists.                                                                                                                              |
 | 66   | **fs.access(path[, mode], callback)** 测试指定路径用户权限。                                                                                                             |
@@ -3225,27 +3204,30 @@ $ node file.js
 ### 获取GET请求内容
 
 ```js
-var http = require('http');
-var url = require('url');
-var util = require('util');
- 
-http.createServer(function(req, res){
-    res.writeHead(200, {'Content-Type': 'text/plain; charset=utf-8'});
-    res.end(util.inspect(url.parse(req.url, true)));
-}).listen(3000);
+var http = require('http')
+var url = require('url')
+var util = require('util')
+
+http
+  .createServer(function (req, res) {
+    res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' })
+    res.end(util.inspect(url.parse(req.url, true)))
+  })
+  .listen(3000)
 
 //获取url参数
-http.createServer(function(req, res){
-    res.writeHead(200, {'Content-Type': 'text/plain'});
- 
-    // 解析 url 参数
-    var params = url.parse(req.url, true).query;
-    res.write("网站名：" + params.name);
-    res.write("\n");
-    res.write("网站 URL：" + params.url);
-    res.end();
+http
+  .createServer(function (req, res) {
+    res.writeHead(200, { 'Content-Type': 'text/plain' })
 
-}).listen(3000);
+    // 解析 url 参数
+    var params = url.parse(req.url, true).query
+    res.write('网站名：' + params.name)
+    res.write('\n')
+    res.write('网站 URL：' + params.url)
+    res.end()
+  })
+  .listen(3000)
 ```
 
 <img src="https://images.gitee.com/uploads/images/2020/0602/182627_1b8e7ecd_6545143.png" style="zoom:67%;" />
@@ -3256,28 +3238,28 @@ http.createServer(function(req, res){
 var http = require('http');
 var querystring = require('querystring');
 var util = require('util');
- 
+
 http.createServer(function(req, res){
     // 定义了一个post变量，用于暂存请求体的信息
-    var post = '';     
- 
+    var post = '';
+
     // 通过req的data事件监听函数，每当接受到请求体的数据，就累加到post变量中
-    req.on('data', function(chunk){    
+    req.on('data', function(chunk){
         post += chunk;
     });
- 
+
     // 在end事件触发后，通过querystring.parse将post解析为真正的POST请求格式，然后向客户端返回。
-    req.on('end', function(){    
+    req.on('end', function(){
         post = querystring.parse(post);
         res.end(util.inspect(post));
     });
 ```
 
 ```js
-var http = require('http');
-var querystring = require('querystring');
- 
-var postHTML = 
+var http = require('http')
+var querystring = require('querystring')
+
+var postHTML =
   '<html><head><meta charset="utf-8"><title>grh Node.js 实例</title></head>' +
   '<body>' +
   '<form method="post">' +
@@ -3285,27 +3267,31 @@ var postHTML =
   '网站 URL： <input name="url"><br>' +
   '<input type="submit">' +
   '</form>' +
-  '</body></html>';
- 
-http.createServer(function (req, res) {
-  var body = "";
-  req.on('data', function (chunk) {
-    body += chunk;
-  });
-  req.on('end', function () {
-    // 解析参数
-    body = querystring.parse(body);
-    // 设置响应头部信息及编码
-    res.writeHead(200, {'Content-Type': 'text/html; charset=utf8'});
- 
-    if(body.name && body.url) { // 输出提交的数据
-        res.write("网站名：" + body.name);
-        res.write("<br>");
-        res.write("网站 URL：" + body.url);
-    } else {  // 输出表单
-        res.write(postHTML);
-    }
-    res.end();
-  });
-}).listen(3000);
+  '</body></html>'
+
+http
+  .createServer(function (req, res) {
+    var body = ''
+    req.on('data', function (chunk) {
+      body += chunk
+    })
+    req.on('end', function () {
+      // 解析参数
+      body = querystring.parse(body)
+      // 设置响应头部信息及编码
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' })
+
+      if (body.name && body.url) {
+        // 输出提交的数据
+        res.write('网站名：' + body.name)
+        res.write('<br>')
+        res.write('网站 URL：' + body.url)
+      } else {
+        // 输出表单
+        res.write(postHTML)
+      }
+      res.end()
+    })
+  })
+  .listen(3000)
 ```

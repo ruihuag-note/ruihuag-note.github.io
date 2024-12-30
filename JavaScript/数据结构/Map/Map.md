@@ -7,17 +7,17 @@
 ## 实例化
 
 ```js
-let map = new Map([iterable]);
+let map = new Map([iterable])
 ```
 
-> - Iterable 可以是一个数组或其他的Iterable对象, 其元素为键值对( 两个元素的数组,  eg:`[[1, 'one'],[2,`'two']]`)
+> - Iterable 可以是一个数组或其他的Iterable对象, 其元素为键值对( 两个元素的数组, eg:`[[1, 'one'],[2,`'two']]`)
 > - `null` 会被当做 `undefined`
 
 ## 添加 set
 
 ```js
 let keyObj = {}
-let keyFunc = function() {}
+let keyFunc = function () {}
 let keyString = 'a string'
 
 // 添加键
@@ -47,12 +47,12 @@ console.log(map.has(keyObj)) // true
 ### 查询 get
 
 ```js
-console.log(map.get(keyObj));
+console.log(map.get(keyObj))
 ```
 
 ## 遍历方法
 
-> - `keys`:  返回一个新的Iterator对象,  (按照插入map对象的每个key值)
+> - `keys`: 返回一个新的Iterator对象, (按照插入map对象的每个key值)
 > - `values`: 返回一个新的Iterrator对象
 > - `entries` : 返回一个新的包含`[ key, value]` 对的迭代(`Iterator`)对象
 > - `forEach` : 会以插入顺序对Map对象每一个键值对执行应该参数提供回调函数
@@ -62,18 +62,18 @@ console.log(map.get(keyObj));
 map.forEach((value, key) => console.log(value, key))
 
 for (let [key, value] of map) {
- console.log(key, value)
+  console.log(key, value)
 }
 
 for (let key of map.keys()) {
- console.log(key)
+  console.log(key)
 }
 
 for (let value of map.values()) {
- console.log(value)
+  console.log(value)
 }
 
 for (let [key, value] of map.entries()) {
- console.log(key, value)
+  console.log(key, value)
 }
 ```

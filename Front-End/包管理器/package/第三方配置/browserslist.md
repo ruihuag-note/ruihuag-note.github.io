@@ -5,21 +5,14 @@
 
 ```json
 {
- "browserslist": [
-   "> 1%",
-   "last 2 versions"
- ]
+  "browserslist": ["> 1%", "last 2 versions"]
 }
 ```
 
 ```json
 {
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.2%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",

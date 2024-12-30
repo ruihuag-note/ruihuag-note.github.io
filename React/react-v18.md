@@ -10,32 +10,32 @@
 
 ```tsx
 // React 17
-const root = document.getElementById('root')!;
+const root = document.getElementById('root')!
 ReactDOM.render(<App />, root, () => {
-  console.log('渲染完成');
-});
+  console.log('渲染完成')
+})
 
 // React 18
 const AppWithCallback: React.FC = () => {
   useEffect(() => {
-    console.log('渲染完成');
-  }, []);
-  return <App />;
-};
-const root = document.getElementById('root')!;
-ReactDOM.createRoot(root).render(<AppWithCallback />);
+    console.log('渲染完成')
+  }, [])
+  return <App />
+}
+const root = document.getElementById('root')!
+ReactDOM.createRoot(root).render(<AppWithCallback />)
 ```
 
 ### SSR
 
 ```tsx
 // React 17
-import ReactDOM from 'react-dom';
- ReactDOM.hydrate(<App />, document.getElementById('root'));
+import ReactDOM from 'react-dom'
+ReactDOM.hydrate(<App />, document.getElementById('root'))
 
 // React 18
-import ReactDOM from 'react-dom/client';
-ReactDOM.hydrateRoot(document.getElementById('root'), <App />);
+import ReactDOM from 'react-dom/client'
+ReactDOM.hydrateRoot(document.getElementById('root'), <App />)
 ```
 
 ## lazy
@@ -45,7 +45,7 @@ ReactDOM.hydrateRoot(document.getElementById('root'), <App />);
 - 懒加载组件
 
 ```jsx
-const LazyCom = lazy(()=>import('./com'))
+const LazyCom = lazy(() => import('./com'))
 ```
 
 ## Suspense
@@ -54,8 +54,8 @@ const LazyCom = lazy(()=>import('./com'))
 - 配合`lazy`使用, 可以实现到动态加载组件
 
 ```tsx
-<Suspense fallback={<Loading/>}>
- <LazyCom />
+<Suspense fallback={<Loading />}>
+  <LazyCom />
 </Suspense>
 ```
 
@@ -95,83 +95,77 @@ const App = () => {
 ### 重新渲染两次
 
 ```tsx
-import React, { useState } from "react"
+import React, { useState } from 'react'
 import { flushSync } from 'react-dom'
 
 export default function Demo() {
- console.log('App组件渲染了！');
- const [count1, setCount1] = useState(0);
- const [count2, setCount2] = useState(0);
- return (
-  <button
-   onClick={() => {
-     setCount1(count => count + 1);
-     setCount2(count => count + 1);
-   }}
-  >
-   <div>count1： {count1}</div>
-   <div>count2： {count2}</div>
-  </button>
- );
-
+  console.log('App组件渲染了！')
+  const [count1, setCount1] = useState(0)
+  const [count2, setCount2] = useState(0)
+  return (
+    <button
+      onClick={() => {
+        setCount1((count) => count + 1)
+        setCount2((count) => count + 1)
+      }}>
+      <div>count1： {count1}</div>
+      <div>count2： {count2}</div>
+    </button>
+  )
 }
 ```
 
 ```tsx
-import React, { useState } from "react"
+import React, { useState } from 'react'
 import { flushSync } from 'react-dom'
 
 export default function Demo() {
- console.log('App组件渲染了！');
- const [count1, setCount1] = useState(0);
- const [count2, setCount2] = useState(0);
- return (
-  <button
-   onClick={() => {
-    flushSync(() => {
-     setCount1(count => count + 1);
-     // setCount2(count => count + 1);
-    });
-    flushSync(() => {
-     setCount2(count => count + 1);
-    });
-   }}
-  >
-   <div>count1： {count1}</div>
-   <div>count2： {count2}</div>
-  </button>
- );
-
+  console.log('App组件渲染了！')
+  const [count1, setCount1] = useState(0)
+  const [count2, setCount2] = useState(0)
+  return (
+    <button
+      onClick={() => {
+        flushSync(() => {
+          setCount1((count) => count + 1)
+          // setCount2(count => count + 1);
+        })
+        flushSync(() => {
+          setCount2((count) => count + 1)
+        })
+      }}>
+      <div>count1： {count1}</div>
+      <div>count2： {count2}</div>
+    </button>
+  )
 }
 ```
 
 ### 重新渲染一次
 
 ```tsx
-import React, { useState } from "react"
+import React, { useState } from 'react'
 import { flushSync } from 'react-dom'
 
 export default function Demo() {
- console.log('App组件渲染了！');
- const [count1, setCount1] = useState(0);
- const [count2, setCount2] = useState(0);
- return (
-  <button
-   onClick={() => {
-    flushSync(() => {
-     setCount1(count => count + 1);
-     setCount2(count => count + 1);
-    });
-    // flushSync(() => {
-    //  setCount2(count => count + 1);
-    // });
-   }}
-  >
-   <div>count1： {count1}</div>
-   <div>count2： {count2}</div>
-  </button>
- );
-
+  console.log('App组件渲染了！')
+  const [count1, setCount1] = useState(0)
+  const [count2, setCount2] = useState(0)
+  return (
+    <button
+      onClick={() => {
+        flushSync(() => {
+          setCount1((count) => count + 1)
+          setCount2((count) => count + 1)
+        })
+        // flushSync(() => {
+        //  setCount2(count => count + 1);
+        // });
+      }}>
+      <div>count1： {count1}</div>
+      <div>count2： {count2}</div>
+    </button>
+  )
 }
 ```
 
@@ -192,21 +186,20 @@ export default function Demo() {
 
 ```tsx
 function NameFields() {
-  const id = useId();
+  const id = useId()
   return (
     <div>
       <label htmlFor={id + '-firstName'}>First Name</label>
       <div>
-        <input id={id + '-firstName'} type="text" />
+        <input id={id + '-firstName'} type='text' />
       </div>
       <label htmlFor={id + '-lastName'}>Last Name</label>
       <div>
-        <input id={id + '-lastName'} type="text" />
+        <input id={id + '-lastName'} type='text' />
       </div>
     </div>
-  );
+  )
 }
-
 ```
 
 > 整个表单创建一个基本 ID，然后通过附加后缀从该表单派生更多 id，而不是为 N 个不同的 id 生成单独的钩子 N 次
@@ -224,22 +217,22 @@ function NameFields() {
 - 执行再`DOM`生成之后
 
 ```tsx
-const useCSS = rule => {
+const useCSS = (rule) => {
   useInsertionEffect(() => {
     if (!isInserted.has(rule)) {
-      isInserted.add(rule);
-      document.head.appendChild(getStyleForRule(rule));
+      isInserted.add(rule)
+      document.head.appendChild(getStyleForRule(rule))
     }
-  });
-  return rule;
-};
+  })
+  return rule
+}
 
 const App: React.FC = () => {
-  const className = useCSS(rule);
-  return <div className={className} />;
-};
+  const className = useCSS(rule)
+  return <div className={className} />
+}
 
-export default App;
+export default App
 ```
 
 ## Concurrent Mode
@@ -260,11 +253,11 @@ const [isPending, startTransition] = useTransition();
 const getList = async () => {
   const res: IRes = await request.get({...});
   const list = res?.Response?.Data;
-  startTransition( () => { 
-      setList(list as IDetail[]); 
+  startTransition( () => {
+      setList(list as IDetail[]);
   });
 };
-  
+
 //useDeferredValue
 const deferredList = useDeferredValue(list);
 ```

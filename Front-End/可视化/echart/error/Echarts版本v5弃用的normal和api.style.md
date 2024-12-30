@@ -9,11 +9,11 @@ series: [
     renderItem: (params, api) => {
       return {
         type: 'rect',
-        style: api.style()
+        style: api.style(),
       }
     },
-    data
-  }
+    data,
+  },
 ]
 ```
 
@@ -27,11 +27,11 @@ series: [
       return {
         type: 'rect',
         style: {
-          fill: api.visual('color')
-        }
+          fill: api.visual('color'),
+        },
       }
     },
-    data
-  }
+    data,
+  },
 ]
 ```

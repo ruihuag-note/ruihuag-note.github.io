@@ -1,7 +1,6 @@
 # ESLint
 
-> [rules](http://eslint.cn/docs/rules/)
-> <https://juejin.cn/post/6955025103507849223>
+> [rules](http://eslint.cn/docs/rules/) > <https://juejin.cn/post/6955025103507849223>
 >
 > - root - 限定配置文件的使用范围
 > - parser - 指定eslint的解析器

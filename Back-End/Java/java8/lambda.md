@@ -1,7 +1,6 @@
 # Lambda
 
 > - `Lambda` 表达式，也可称为`闭包`，是一个`匿名函数`。
->
 > - 可以把 Lambda 表达式理解为是`一段可传递的代码`（像数据一样传递）。即 Lambda 允许把`函数`作为一个方法的`实参参数`（函数当作参数传递到方法中）。
 > - `Java8`的其中一个很重要的新特性。
 
@@ -12,7 +11,7 @@ public class LambdaDemo {
         //x -> System.out.println(x)，就是一个匿名函数,即Lambda表达式，作为实参传给dealList方法
         dealList(list, x -> System.out.println(x));
     }
- 
+
     public static void dealList(List<String> list, Consumer<String> consumer) {
      // 遍历list中的每一个元素，传给consumer对象的accept函数，进行调用
         for (String x : list) {
@@ -112,7 +111,7 @@ public class Main {
         // 方式一 直接编写实现类
         Human human = new Man();
         human.speak();
-        
+
         // 方式二 匿名内部类
         Human human1 = new Human() {
             @Override
@@ -121,7 +120,7 @@ public class Main {
             }
         };
         human1.speak();
-        
+
         // 方式三 Lambda表达式
         Human human2 = () -> System.out.println("I am woman!");
         human2.speak();
@@ -289,7 +288,7 @@ public class Main {
 
         // 过滤出年龄大于等于20的学生
         students.stream().filter(t -> t.getAge() >= 20).forEach(System.out::println);
-        
+
         System.out.println("-------------------------------------");
 
         // 过滤出成绩大于80的学生

@@ -40,16 +40,16 @@ console.log(pug.renderFile('template.pug', {
 
 ### 属性Attribute
 
-| Pug代码                                                      | html                                                         | 描述                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | --------------------- |
-| a(href='baidu.com') 百度                                     | `<a href="baidu.com">百度</a>`                               |                       |
-| a(class='button' href='baidu.com') 百度                      | `<a class="button" href="baidu.com">百度</a>`                |                       |
-| a(class='button', href='baidu.com') 百度                     | `<a class="button" href="baidu.com">百度</a>`                | 可以加入,号作为分隔符 |
-| a(style={color:'red'})                                       | `<a style="color: red;"></a>`                                |                       |
-| - var authenticated = true<br/>body(class=authenticated ? 'authed' : 'anon') | `<body class="authed"></body>`                               |                       |
-| input(<br/>  type='checkbox'<br/>  name='agreement'<br/>  checked<br/>) | `<input type="checkbox" name="agreement" checked="checked" />` | 多行属性              |
+| Pug代码                                                                                | html                                                                                                  | 描述                  |
+| -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | --------------------- |
+| a(href='baidu.com') 百度                                                               | `<a href="baidu.com">百度</a>`                                                                        |                       |
+| a(class='button' href='baidu.com') 百度                                                | `<a class="button" href="baidu.com">百度</a>`                                                         |                       |
+| a(class='button', href='baidu.com') 百度                                               | `<a class="button" href="baidu.com">百度</a>`                                                         | 可以加入,号作为分隔符 |
+| a(style={color:'red'})                                                                 | `<a style="color: red;"></a>`                                                                         |                       |
+| - var authenticated = true<br/>body(class=authenticated ? 'authed' : 'anon')           | `<body class="authed"></body>`                                                                        |                       |
+| input(<br/> type='checkbox'<br/> name='agreement'<br/> checked<br/>)                   | `<input type="checkbox" name="agreement" checked="checked" />`                                        | 多行属性              |
 | div(class='div-class', (click)='play()')<br/>div(class='div-class' '(click)'='play()') | `<div class="div-class" (click)="play()"></div>`<br/>`<div class="div-class" (click)="play()"></div>` | 特殊字符              |
-| div(escaped="<code>">)<br>div(unescaped!="<code>")           | `<div escaped="&lt;code&gt;"></div>`<br>`<div unescaped="<code>"></div>` | 转义属性优先使用!=    |
+| div(escaped="<code>">)<br>div(unescaped!="<code>")                                     | `<div escaped="&lt;code&gt;"></div>`<br>`<div unescaped="<code>"></div>`                              | 转义属性优先使用!=    |
 
 ### 类和ID
 
@@ -102,9 +102,10 @@ input/
 ```
 
 ```html
-<img/>
-<input/><img/>
-<input/>
+<img />
+<input />
+<img />
+<input />
 ```
 
 ### 标签
@@ -128,8 +129,12 @@ p.
 
 ```html
 <p>
-   这是一个很长很长而且还很无聊的段落，还没有结束，是的，非常非常地长。
-  突然出现了一个 <strong> 充满力量感的单词</strong>，这确实让人难以 <em> 忽视</em>。
+  这是一个很长很长而且还很无聊的段落，还没有结束，是的，非常非常地长。
+  突然出现了一个
+  <strong>充满力量感的单词</strong>
+  ，这确实让人难以
+  <em>忽视</em>
+  。
 </p>
 ```
 
@@ -146,20 +151,24 @@ p
 ```
 
 ```html
-纯文本当然也可以包括 <strong>HTML</strong> 内容。
+纯文本当然也可以包括
+<strong>HTML</strong>
+内容。
 <p>但它必须单独起一行。</p>
 ```
 
 #### 标签内文本
 
 > - 一个空格
->
 > - ```pug
 >   p 纯文本当然也可以包括 <strong>HTML</strong> 内容。
 >   ```
->
 > - ```html
->   <p>纯文本当然也可以包括 <strong>HTML</strong> 内容。</p>
+>   <p>
+>     纯文本当然也可以包括
+>     <strong>HTML</strong>
+>     内容。
+>   </p>
 >   ```
 
 #### 嵌入大文本
@@ -217,7 +226,8 @@ body
 <![endif]-->
 <!--[if gt IE 8]><!-->
 <html lang="en">
-<!--<![endif]-->
+  <!--<![endif]-->
+</html>
 ```
 
 ## 逻辑语法
@@ -228,9 +238,9 @@ body
 ```
 
 ```html
- <li>item</li>
- <li>item</li>
- <li>item</li>
+<li>item</li>
+<li>item</li>
+<li>item</li>
 ```
 
 ### 变量
@@ -302,14 +312,14 @@ case friends
 ### 循环
 
 > - 目前支持each 和while
->
+
 #### each
 
 ```pug
 ul
  each val,index in [1, 2, 3, 4, 5]
   li= val +  ':' + index
-  
+
 ul
   each val, index in {1:'一',2:'二',3:'三'}
     li= index + ': ' + val
@@ -340,7 +350,7 @@ ul
 
 ### 混入mixin
 
-> - `+link(class='btn')`  等价于 `+link()(class="btn')`
+> - `+link(class='btn')` 等价于 `+link()(class="btn')`
 
 ```
 //- 定义
@@ -474,13 +484,13 @@ html
 ```json
 //- data.json
 {
-    "documentTitle":"测试文档",
-    "tel":"400-888-8888",
-    "mainNavItem":['登录','注册','关于','帮助'],
-    "baseStyle":'style',
-    "srcStyles":['bootstrap.css','main.css'],
-    "baseScript":'/js',
-    "srcScripts":['jquery.js','app.js']
+  "documentTitle": "测试文档",
+  "tel": "400-888-8888",
+  "mainNavItem": ["登录", "注册", "关于", "帮助"],
+  "baseStyle": "style",
+  "srcStyles": ["bootstrap.css", "main.css"],
+  "baseScript": "/js",
+  "srcScripts": ["jquery.js", "app.js"]
 }
 ```
 

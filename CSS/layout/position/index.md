@@ -7,38 +7,37 @@
 
 ```css
 div.static {
-    position: static;
-    border: 3px solid #73AD21;
+  position: static;
+  border: 3px solid #73ad21;
 }
 ```
 
 2. fixed 固定定位： 元素的位置相对于浏览器窗口是固定位置。即使窗口是滚动的它也不会移动。Fixed定位使元素的位置与文档流无关，因此不占据空间。Fixed定位的元素和其他元素重叠。
 
 ```css
-p.pos_fixed{
-    position:fixed;
-    top:30px;
-    right:5px;
+p.pos_fixed {
+  position: fixed;
+  top: 30px;
+  right: 5px;
 }
 ```
 
 3. relative 相对定位： 相对定位元素的定位是以自身为参照物。对象不可层叠、不脱离文档流，移动相对定位元素，但它原本所占的空间不会改变。通过 top,bottom,left,right 定位。
 
 ```css
-h2.pos_top
-{
-    position:relative;
-    top:-50px;
+h2.pos_top {
+  position: relative;
+  top: -50px;
 }
 ```
 
 4. absolute 绝对定位 absolute 定位使元素的位置与文档流无关，因此不占据空间。元素和其他元素重叠。通过 top,bottom,left,right 定位。选取其最近一个最有定位设置的父级对象进行绝对定位，如果对象的父级没有设置定位属性，absolute元素将以body坐标原点进行定位。
 
 ```css
-h2{
-    position:absolute;
-    left:100px;
-    top:150px;
+h2 {
+  position: absolute;
+  left: 100px;
+  top: 150px;
 }
 ```
 
@@ -46,11 +45,11 @@ h2{
 
 ```css
 div.sticky {
-    position: -webkit-sticky; /* Safari */
-    position: sticky;
-    top: 0;
-    background-color: green;
-    border: 2px solid #4CAF50;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  background-color: green;
+  border: 2px solid #4caf50;
 }
 ```
 

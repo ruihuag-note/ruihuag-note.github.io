@@ -1,5 +1,3 @@
-
-
 # 虚线材质(LineDashedMaterial)
 
 一种用于绘制虚线样式几何体的材质。
@@ -7,13 +5,13 @@
 ## 代码示例
 
 ```js
-const material = new THREE.LineDashedMaterial( { 
-	color: 0xffffff,
-	linewidth: 1, 
-	scale: 1, 
-	dashSize: 3, 
-	gapSize: 1, 
-} );
+const material = new THREE.LineDashedMaterial({
+  color: 0xffffff,
+  linewidth: 1,
+  scale: 1,
+  dashSize: 3,
+  gapSize: 1,
+})
 ```
 
 ## 例子

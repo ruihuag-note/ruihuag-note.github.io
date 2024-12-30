@@ -9,11 +9,11 @@
 > 1、下载完成后，解压缩，运行cmd，使用命令进行操作，不要直接双击nginx.exe，不要直接双击nginx.exe，不要直接双击nginx.exe
 > 一定要在dos窗口启动，不要直接双击nginx.exe，这样会导致修改配置后重启、停止nginx无效，需要手动关闭任务管理器内的所有!nginx进程，再启动才可以
 > 2、使用命令到达nginx的加压缩后的目录
-`cd c:\nginx-1.15.2`
+> `cd c:\nginx-1.15.2`
 > 3、启动nginx服务，启动时会一闪而过是正常的
-`start nginx`
+> `start nginx`
 > 4、查看任务进程是否存在，dos或打开任务管理器都行
-`tasklist /fi "imagename eq nginx.exe"`
+> `tasklist /fi "imagename eq nginx.exe"`
 
 ### 启动nginx服务
 
@@ -69,7 +69,7 @@ nginx -t -c /nginx/conf/nginx.conf
 │   ├── fastcgi.conf                 # fastcgi相关参数的配置文件
 │   ├── fastcgi.conf.default         # fastcgi.conf的原始备份文件
 │   ├── fastcgi_params               # fastcgi的参数文件
-│   ├── fastcgi_params.default       
+│   ├── fastcgi_params.default
 │   ├── koi-utf
 │   ├── koi-win
 │   ├── mime.types                   # 媒体类型
@@ -77,7 +77,7 @@ nginx -t -c /nginx/conf/nginx.conf
 │   ├── nginx.conf                   # Nginx主配置文件
 │   ├── nginx.conf.default
 │   ├── scgi_params                  # scgi相关参数文件
-│   ├── scgi_params.default  
+│   ├── scgi_params.default
 │   ├── uwsgi_params                 # uwsgi相关参数文件
 │   ├── uwsgi_params.default
 │   └── win-utf
@@ -100,7 +100,7 @@ nginx -t -c /nginx/conf/nginx.conf
 
 > conf //nginx所有配置文件目录
 > nginx.conf //这个是Nginx的核心配置文件，这个文件非常重要，也是我们即将要学习的重点
-> nginx.conf.default //nginx.conf的备份文件  
+> nginx.conf.default //nginx.conf的备份文件
 
 ### 日志
 
@@ -115,7 +115,7 @@ nginx -t -c /nginx/conf/nginx.conf
 
 ### 备份文件
 
-> fastcgi.conf:fastcgi  //相关配置文件
+> fastcgi.conf:fastcgi //相关配置文件
 > fastcgi.conf.default //fastcgi.conf的备份文件
 > fastcgi_params //fastcgi的参数文件
 > fastcgi_params.default //fastcgi的参数备份文件
@@ -164,7 +164,7 @@ http {                              # HTTP区块开始
   location = /50x.html {                   # location区块开始，访问50x.html
    root   html；                       # 指定对应的站点目录为html
   }
- }  
+ }
  ......
 ```
 
@@ -172,7 +172,7 @@ http {                              # HTTP区块开始
 
 > 通过include 引入其他(子)配置文件
 >
-![](/__assets__/img/2022-01-25-16-40-39.png)
+> ![](/__assets__/img/2022-01-25-16-40-39.png)
 
 ### 子配置文件
 
@@ -189,7 +189,7 @@ location[ = | ~ | ~* | ^~] url{
 > location 指令说明，该语法用来匹配 url，语法如上：
 > =：用于不含正则表达式的 url 前，要求字符串与 url 严格匹配，匹配成功就停止向下搜索并处理请求。
 > ~：用于表示 url 包含正则表达式，并且区分大小写。
-> ~*：用于表示 url 包含正则表达式，并且不区分大小写。
+> ~\*：用于表示 url 包含正则表达式，并且不区分大小写。
 > ^~：用于不含正则表达式的 url 前，要求 Nginx 服务器找到表示 url 和字符串匹配度最高的 location 后，立即使用此 location 处理请求，而不再匹配。
 > 如果有 url 包含正则表达式，不需要有 ~ 开头标识。
 
@@ -230,7 +230,7 @@ location / {
 ```shell
 # constPolling 作为存放负载均衡的变量
 upstream constPolling {
-    server localhost:10001; 
+    server localhost:10001;
     server localhost:10002;
 }
 server {
@@ -251,7 +251,7 @@ server {
 ```shell
 # constPolling 作为存放负载均衡的变量
 upstream constPolling {
-    server localhost:10001 weight=1; 
+    server localhost:10001 weight=1;
     server localhost:10002 weight=2;
 }
 server {

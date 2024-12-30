@@ -32,8 +32,8 @@ webpack ./src/index.js -o ./build/built.js --mode=production
 `npm run dev --aaa=/webpack/src`
 
 ```js
-const serverPath = process.env.npm_config_aaa;
-console.log(serverPath);  // 输出结果：/webpack/src
+const serverPath = process.env.npm_config_aaa
+console.log(serverPath) // 输出结果：/webpack/src
 ```
 
 ### 添加到package.json的script里面
@@ -48,8 +48,8 @@ console.log(serverPath);  // 输出结果：/webpack/src
 ```
 
 ```js
-const arg = process.argv;
-console.log(process.argv);
+const arg = process.argv
+console.log(process.argv)
 /**
 输出结果是个数组（需要什么）：
 [
@@ -70,7 +70,7 @@ console.log(process.argv);
 
 ```js
 // resolve用来拼接绝对路径的方法
-const { resolve } = require('path');
+const { resolve } = require('path')
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -78,7 +78,7 @@ module.exports = {
     path: resolve(__dirname, 'build'),
   },
   // loader 配置
-  module:{
+  module: {
     rules: [
       // 详细配置
       {
@@ -88,26 +88,26 @@ module.exports = {
           // 创建style标签, 将js中的样式资源引入进行, 添加到head中生效
           'style-loader',
           // 将css文件变成commonjs模块加载js中, 里面的内容是格式样式字符串
-          'css-loader'
-        ]
-      }, 
+          'css-loader',
+        ],
+      },
       {
         test: /\.less$/,
-        use:[
+        use: [
           'style-loader',
           'css-loader',
           // 将less文件编译成css文件资源
           'less-loader',
-        ]
-      }     
-    ]
+        ],
+      },
+    ],
   },
   plugins: [
-    // 详细配置 
-  ], 
+    // 详细配置
+  ],
   // 模式
   // mode: 'development',
-  mode: 'production'
+  mode: 'production',
 }
 ```
 
@@ -121,7 +121,7 @@ module.exports = {
 
 ```js
 // resolve用来拼接绝对路径的方法
-const { resolve } = require('path');
+const { resolve } = require('path')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
@@ -131,7 +131,7 @@ module.exports = {
     path: resolve(__dirname, 'build'),
   },
   // loader 配置
-  module:{
+  module: {
     rules: [
       // 详细配置
       {
@@ -141,33 +141,33 @@ module.exports = {
           // 创建style标签, 将js中的样式资源引入进行, 添加到head中生效
           'style-loader',
           // 将css文件变成commonjs模块加载js中, 里面的内容是格式样式字符串
-          'css-loader'
-        ]
-      }, 
+          'css-loader',
+        ],
+      },
       {
         test: /\.less$/,
-        use:[
+        use: [
           'style-loader',
           'css-loader',
           // 将less文件编译成css文件资源
           'less-loader',
-        ]
-      }     
-    ]
+        ],
+      },
+    ],
   },
   plugins: [
-    // 详细配置 
+    // 详细配置
     // html-webpack-plugin
     // 功能: 默认创建一个空的HTML, 动引入输出的所有资源(JS/CSS)
     // 需求: 需要有结构的HTML文件
     new HtmlWebpackPlugin({
       // 复制 './src/index.hmlt' , 并自动引入打包输出的所有资源(JS/CSS)
-      template:'./src/index.html'
-    })
-  ], 
+      template: './src/index.html',
+    }),
+  ],
   // 模式
   // mode: 'development',
-  mode: 'production'
+  mode: 'production',
 }
 ```
 
@@ -188,7 +188,7 @@ module:{
         test: /\.(jpg|png|gif)$/,
         // 使用一个loader
         // 下载url-loader file-loader
-        loader: 'url-loader', 
+        loader: 'url-loader',
         options: {
           /**
            * 图片大小小于8kb, 就会被base64处理
@@ -214,7 +214,7 @@ module:{
     ]
   },
   plugins: [
-    // 详细配置 
+    // 详细配置
     // html-webpack-plugin
     // 功能: 默认创建一个空的HTML, 动引入输出的所有资源(JS/CSS)
     // 需求: 需要有结构的HTML文件
@@ -222,7 +222,7 @@ module:{
       // 复制 './src/index.hmlt' , 并自动引入打包输出的所有资源(JS/CSS)
       template:'./src/index.html'
     })
-  ], 
+  ],
   // 模式
   // mode: 'development',
   mode: 'production'
@@ -235,14 +235,13 @@ module:{
 
 ```js
 module: {
- rules:[
-     // 打包其他资源(除了html/js/css资源以外的资源)
-      {
-        // 排除css/js/html资源
-        exclude: /\.(css|js|html|json|less|jpg)$/,
-        loader: 'file-loader',
-      }
-
+  rules: [
+    // 打包其他资源(除了html/js/css资源以外的资源)
+    {
+      // 排除css/js/html资源
+      exclude: /\.(css|js|html|json|less|jpg)$/,
+      loader: 'file-loader',
+    },
   ]
 }
 ```
@@ -276,7 +275,7 @@ module: {
 
 ```js
 // resolve用来拼接绝对路径的方法
-const { resolve } = require('path');
+const { resolve } = require('path')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
@@ -286,7 +285,7 @@ module.exports = {
     path: resolve(__dirname, 'build'),
   },
   // loader 配置
-  module:{
+  module: {
     rules: [
       // 详细配置
       {
@@ -296,12 +295,12 @@ module.exports = {
           // 创建style标签, 将js中的样式资源引入进行, 添加到head中生效
           'style-loader',
           // 将css文件变成commonjs模块加载js中, 里面的内容是格式样式字符串
-          'css-loader'
+          'css-loader',
         ],
-      }, 
+      },
       {
         test: /\.less$/,
-        use:[
+        use: [
           'style-loader',
           'css-loader',
           // 将less文件编译成css文件资源
@@ -315,10 +314,10 @@ module.exports = {
         test: /\.(jpg|png|gif)$/,
         // 使用一个loader
         // 下载url-loader file-loader
-        loader: 'url-loader', 
+        loader: 'url-loader',
         options: {
           // 设置输出文件夹
-          outputPath: 'image'
+          outputPath: 'image',
           // name: '[hash:10].[ext]',
           /**
            * 图片大小小于8kb, 就会被base64处理
@@ -332,12 +331,12 @@ module.exports = {
            * 解决: 关闭url-loader模块化, 使用commonjs解析
            */
           // esModule:false,
-        }
+        },
       },
       {
         test: /\.html$/,
         // 处理html文件中的img图片(负责引入img, 从而能被url-loader进行处理)
-        loader: 'html-loader'
+        loader: 'html-loader',
       },
       // 打包其他资源(除了html/js/css资源以外的资源)
       {
@@ -345,23 +344,21 @@ module.exports = {
         exclude: /\.(css|js|html|json|less|jpg)$/,
         loader: 'file-loader',
         options: {
-          outputPath: 'media'
-        }
-      }
-
-
-    ]
+          outputPath: 'media',
+        },
+      },
+    ],
   },
   plugins: [
-    // 详细配置 
+    // 详细配置
     // html-webpack-plugin
     // 功能: 默认创建一个空的HTML, 动引入输出的所有资源(JS/CSS)
     // 需求: 需要有结构的HTML文件
     new HtmlWebpackPlugin({
       // 复制 './src/index.hmlt' , 并自动引入打包输出的所有资源(JS/CSS)
-      template:'./src/index.html'
-    })
-  ], 
+      template: './src/index.html',
+    }),
+  ],
   // 模式
   // mode: 'development',
   mode: 'production',
@@ -382,22 +379,22 @@ module.exports = {
   // 关闭webpack 的性能提示
   performance: {
     hints: false,
-  } 
+  },
 }
 ```
 
 ### 提取css文件为单独css文件
 
 ```js
-const { resolve } = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   entry: './src/js/index.js',
   output: {
     filename: 'js/built.js',
-    path: resolve(__dirname, 'build')
+    path: resolve(__dirname, 'build'),
   },
   module: {
     rules: [
@@ -405,35 +402,34 @@ module.exports = {
         test: /\.css$/,
         use: [
           // 创建style标签，将样式放入
-          // 'style-loader', 
+          // 'style-loader',
           // 这个loader取代style-loader。作用：提取js中的css成单独文件
           MiniCssExtractPlugin.loader,
           // 将css文件整合到js文件中
-          'css-loader'
-        ]
-      }
-    ]
+          'css-loader',
+        ],
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html'
+      template: './src/index.html',
     }),
     new MiniCssExtractPlugin({
       // 对输出的css文件进行重命名
-      filename: 'css/built.css'
-    })
+      filename: 'css/built.css',
+    }),
   ],
-  mode: 'development'
-};
-
+  mode: 'development',
+}
 ```
 
 ### css兼容性处理
 
 ```js
-const { resolve } = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 // 设置nodejs环境变量
 // process.env.NODE_ENV = 'development';
@@ -442,7 +438,7 @@ module.exports = {
   entry: './src/js/index.js',
   output: {
     filename: 'js/built.js',
-    path: resolve(__dirname, 'build')
+    path: resolve(__dirname, 'build'),
   },
   module: {
     rules: [
@@ -480,32 +476,32 @@ module.exports = {
               ident: 'postcss',
               plugins: () => [
                 // postcss的插件
-                require('postcss-preset-env')()
-              ]
-            }
-          }
-        ]
-      }
-    ]
+                require('postcss-preset-env')(),
+              ],
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html'
+      template: './src/index.html',
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/built.css'
-    })
+      filename: 'css/built.css',
+    }),
   ],
-  mode: 'development'
-};
+  mode: 'development',
+}
 ```
 
 ### 压缩css
 
 ```js
-const { resolve } = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 
 // 设置nodejs环境变量
@@ -515,7 +511,7 @@ module.exports = {
   entry: './src/js/index.js',
   output: {
     filename: 'js/built.js',
-    path: resolve(__dirname, 'build')
+    path: resolve(__dirname, 'build'),
   },
   module: {
     rules: [
@@ -530,39 +526,39 @@ module.exports = {
               ident: 'postcss',
               plugins: () => [
                 // postcss的插件
-                require('postcss-preset-env')()
-              ]
-            }
-          }
-        ]
-      }
-    ]
+                require('postcss-preset-env')(),
+              ],
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html'
+      template: './src/index.html',
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/built.css'
+      filename: 'css/built.css',
     }),
     // 压缩css
-    new OptimizeCssAssetsWebpackPlugin()
+    new OptimizeCssAssetsWebpackPlugin(),
   ],
-  mode: 'development'
-};
+  mode: 'development',
+}
 ```
 
 ### js语法检查
 
 ```js
-const { resolve } = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: './src/js/index.js',
   output: {
     filename: 'js/built.js',
-    path: resolve(__dirname, 'build')
+    path: resolve(__dirname, 'build'),
   },
   module: {
     rules: [
@@ -582,32 +578,31 @@ module.exports = {
         loader: 'eslint-loader',
         options: {
           // 自动修复eslint的错误
-          fix: true
-        }
-      }
-    ]
+          fix: true,
+        },
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html'
-    })
+      template: './src/index.html',
+    }),
   ],
-  mode: 'development'
-};
-
+  mode: 'development',
+}
 ```
 
 ### js兼容性处理
 
 ```js
-const { resolve } = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: './src/js/index.js',
   output: {
     filename: 'js/built.js',
-    path: resolve(__dirname, 'build')
+    path: resolve(__dirname, 'build'),
   },
   module: {
     rules: [
@@ -618,7 +613,7 @@ module.exports = {
           2. 全部js兼容性处理 --> @babel/polyfill  
             问题：我只要解决部分兼容性问题，但是将所有兼容性代码全部引入，体积太大了~
           3. 需要做兼容性处理的就做：按需加载  --> core-js
-      */  
+      */
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -633,7 +628,7 @@ module.exports = {
                 useBuiltIns: 'usage',
                 // 指定core-js版本
                 corejs: {
-                  version: 3
+                  version: 3,
                 },
                 // 指定兼容性做到哪个版本浏览器
                 targets: {
@@ -641,59 +636,57 @@ module.exports = {
                   firefox: '60',
                   ie: '9',
                   safari: '10',
-                  edge: '17'
-                }
-              }
-            ]
-          ]
-        }
-      }
-    ]
+                  edge: '17',
+                },
+              },
+            ],
+          ],
+        },
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html'
-    })
+      template: './src/index.html',
+    }),
   ],
-  mode: 'development'
-};
-
+  mode: 'development',
+}
 ```
 
 ### js压缩
 
 ```js
-const { resolve } = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: './src/js/index.js',
   output: {
     filename: 'js/built.js',
-    path: resolve(__dirname, 'build')
+    path: resolve(__dirname, 'build'),
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html'
-    })
+      template: './src/index.html',
+    }),
   ],
   // 生产环境下会自动压缩js代码
-  mode: 'production'
-};
-
+  mode: 'production',
+}
 ```
 
 ### html压缩
 
 ```js
-const { resolve } = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: './src/js/index.js',
   output: {
     filename: 'js/built.js',
-    path: resolve(__dirname, 'build')
+    path: resolve(__dirname, 'build'),
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -703,24 +696,24 @@ module.exports = {
         // 移除空格
         collapseWhitespace: true,
         // 移除注释
-        removeComments: true
-      }
-    })
+        removeComments: true,
+      },
+    }),
   ],
-  mode: 'production'
-};
+  mode: 'production',
+}
 ```
 
 ### 生产环境配置
 
 ```js
-const { resolve } = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { resolve } = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 // 定义nodejs环境变量：决定使用browserslist的哪个环境
-process.env.NODE_ENV = 'production';
+process.env.NODE_ENV = 'production'
 
 // 复用loader
 const commonCssLoader = [
@@ -731,26 +724,26 @@ const commonCssLoader = [
     loader: 'postcss-loader',
     options: {
       ident: 'postcss',
-      plugins: () => [require('postcss-preset-env')()]
-    }
-  }
-];
+      plugins: () => [require('postcss-preset-env')()],
+    },
+  },
+]
 
 module.exports = {
   entry: './src/js/index.js',
   output: {
     filename: 'js/built.js',
-    path: resolve(__dirname, 'build')
+    path: resolve(__dirname, 'build'),
   },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [...commonCssLoader]
+        use: [...commonCssLoader],
       },
       {
         test: /\.less$/,
-        use: [...commonCssLoader, 'less-loader']
+        use: [...commonCssLoader, 'less-loader'],
       },
       /*
         正常来讲，一个文件只能被一个loader处理。
@@ -765,8 +758,8 @@ module.exports = {
         enforce: 'pre',
         loader: 'eslint-loader',
         options: {
-          fix: true
-        }
+          fix: true,
+        },
       },
       {
         test: /\.js$/,
@@ -778,15 +771,15 @@ module.exports = {
               '@babel/preset-env',
               {
                 useBuiltIns: 'usage',
-                corejs: {version: 3},
+                corejs: { version: 3 },
                 targets: {
                   chrome: '60',
-                  firefox: '50'
-                }
-              }
-            ]
-          ]
-        }
+                  firefox: '50',
+                },
+              },
+            ],
+          ],
+        },
       },
       {
         test: /\.(jpg|png|gif)/,
@@ -795,38 +788,37 @@ module.exports = {
           limit: 8 * 1024,
           name: '[hash:10].[ext]',
           outputPath: 'imgs',
-          esModule: false
-        }
+          esModule: false,
+        },
       },
       {
         test: /\.html$/,
-        loader: 'html-loader'
+        loader: 'html-loader',
       },
       {
         exclude: /\.(js|css|less|html|jpg|png|gif)/,
         loader: 'file-loader',
         options: {
-          outputPath: 'media'
-        }
-      }
-    ]
+          outputPath: 'media',
+        },
+      },
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'css/built.css'
+      filename: 'css/built.css',
     }),
     new OptimizeCssAssetsWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       minify: {
         collapseWhitespace: true,
-        removeComments: true
-      }
-    })
+        removeComments: true,
+      },
+    }),
   ],
-  mode: 'production'
-};
-
+  mode: 'production',
+}
 ```
 
 ### webpack优化配置
@@ -850,14 +842,14 @@ module.exports = {
         解决：修改entry入口，将html文件引入
 */
 
-const { resolve } = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: ['./src/js/index.js', './src/index.html'],
   output: {
     filename: 'js/built.js',
-    path: resolve(__dirname, 'build')
+    path: resolve(__dirname, 'build'),
   },
   module: {
     rules: [
@@ -865,12 +857,12 @@ module.exports = {
       {
         // 处理less资源
         test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader']
+        use: ['style-loader', 'css-loader', 'less-loader'],
       },
       {
         // 处理css资源
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader'],
       },
       {
         // 处理图片资源
@@ -881,13 +873,13 @@ module.exports = {
           name: '[hash:10].[ext]',
           // 关闭es6模块化
           esModule: false,
-          outputPath: 'imgs'
-        }
+          outputPath: 'imgs',
+        },
       },
       {
         // 处理html中img资源
         test: /\.html$/,
-        loader: 'html-loader'
+        loader: 'html-loader',
       },
       {
         // 处理其他资源
@@ -895,16 +887,16 @@ module.exports = {
         loader: 'file-loader',
         options: {
           name: '[hash:10].[ext]',
-          outputPath: 'media'
-        }
-      }
-    ]
+          outputPath: 'media',
+        },
+      },
+    ],
   },
   plugins: [
     // plugins的配置
     new HtmlWebpackPlugin({
-      template: './src/index.html'
-    })
+      template: './src/index.html',
+    }),
   ],
   mode: 'development',
   devServer: {
@@ -914,10 +906,9 @@ module.exports = {
     open: true,
     // 开启HMR功能
     // 当修改了webpack配置，新配置要想生效，必须重新webpack服务
-    hot: true
-  }
-};
-
+    hot: true,
+  },
+}
 ```
 
 ##### 优化代码调试
@@ -925,14 +916,14 @@ module.exports = {
 ##### source-map
 
 ```js
-const { resolve } = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: ['./src/js/index.js', './src/index.html'],
   output: {
     filename: 'js/built.js',
-    path: resolve(__dirname, 'build')
+    path: resolve(__dirname, 'build'),
   },
   module: {
     rules: [
@@ -940,12 +931,12 @@ module.exports = {
       {
         // 处理less资源
         test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader']
+        use: ['style-loader', 'css-loader', 'less-loader'],
       },
       {
         // 处理css资源
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader'],
       },
       {
         // 处理图片资源
@@ -956,13 +947,13 @@ module.exports = {
           name: '[hash:10].[ext]',
           // 关闭es6模块化
           esModule: false,
-          outputPath: 'imgs'
-        }
+          outputPath: 'imgs',
+        },
       },
       {
         // 处理html中img资源
         test: /\.html$/,
-        loader: 'html-loader'
+        loader: 'html-loader',
       },
       {
         // 处理其他资源
@@ -970,16 +961,16 @@ module.exports = {
         loader: 'file-loader',
         options: {
           name: '[hash:10].[ext]',
-          outputPath: 'media'
-        }
-      }
-    ]
+          outputPath: 'media',
+        },
+      },
+    ],
   },
   plugins: [
     // plugins的配置
     new HtmlWebpackPlugin({
-      template: './src/index.html'
-    })
+      template: './src/index.html',
+    }),
   ],
   mode: 'development',
   devServer: {
@@ -987,10 +978,10 @@ module.exports = {
     compress: true,
     port: 3000,
     open: true,
-    hot: true
+    hot: true,
   },
-  devtool: 'eval-source-map'
-};
+  devtool: 'eval-source-map',
+}
 
 /*
   source-map: 一种 提供源代码到构建后代码映射 技术 （如果构建后代码出错了，通过映射可以追踪源代码错误）
@@ -1037,7 +1028,6 @@ module.exports = {
 
       --> source-map / cheap-module-souce-map
 */
-
 ```
 
 ### 生产环境性能优化
@@ -1047,13 +1037,13 @@ module.exports = {
 ##### oneOf
 
 ```js
-const { resolve } = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { resolve } = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 // 定义nodejs环境变量：决定使用browserslist的哪个环境
-process.env.NODE_ENV = 'production';
+process.env.NODE_ENV = 'production'
 
 // 复用loader
 const commonCssLoader = [
@@ -1064,16 +1054,16 @@ const commonCssLoader = [
     loader: 'postcss-loader',
     options: {
       ident: 'postcss',
-      plugins: () => [require('postcss-preset-env')()]
-    }
-  }
-];
+      plugins: () => [require('postcss-preset-env')()],
+    },
+  },
+]
 
 module.exports = {
   entry: './src/js/index.js',
   output: {
     filename: 'js/built.js',
-    path: resolve(__dirname, 'build')
+    path: resolve(__dirname, 'build'),
   },
   module: {
     rules: [
@@ -1085,8 +1075,8 @@ module.exports = {
         enforce: 'pre',
         loader: 'eslint-loader',
         options: {
-          fix: true
-        }
+          fix: true,
+        },
       },
       {
         // 以下loader只会匹配一个
@@ -1094,11 +1084,11 @@ module.exports = {
         oneOf: [
           {
             test: /\.css$/,
-            use: [...commonCssLoader]
+            use: [...commonCssLoader],
           },
           {
             test: /\.less$/,
-            use: [...commonCssLoader, 'less-loader']
+            use: [...commonCssLoader, 'less-loader'],
           },
           /*
             正常来讲，一个文件只能被一个loader处理。
@@ -1115,15 +1105,15 @@ module.exports = {
                   '@babel/preset-env',
                   {
                     useBuiltIns: 'usage',
-                    corejs: {version: 3},
+                    corejs: { version: 3 },
                     targets: {
                       chrome: '60',
-                      firefox: '50'
-                    }
-                  }
-                ]
-              ]
-            }
+                      firefox: '50',
+                    },
+                  },
+                ],
+              ],
+            },
           },
           {
             test: /\.(jpg|png|gif)/,
@@ -1132,49 +1122,48 @@ module.exports = {
               limit: 8 * 1024,
               name: '[hash:10].[ext]',
               outputPath: 'imgs',
-              esModule: false
-            }
+              esModule: false,
+            },
           },
           {
             test: /\.html$/,
-            loader: 'html-loader'
+            loader: 'html-loader',
           },
           {
             exclude: /\.(js|css|less|html|jpg|png|gif)/,
             loader: 'file-loader',
             options: {
-              outputPath: 'media'
-            }
-          }
-        ]
-      }
-    ]
+              outputPath: 'media',
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'css/built.css'
+      filename: 'css/built.css',
     }),
     new OptimizeCssAssetsWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       minify: {
         collapseWhitespace: true,
-        removeComments: true
-      }
-    })
+        removeComments: true,
+      },
+    }),
   ],
-  mode: 'production'
-};
-
+  mode: 'production',
+}
 ```
 
 ##### babel缓存
 
 ```js
-const { resolve } = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { resolve } = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 /*
   缓存：
@@ -1193,7 +1182,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 */
 
 // 定义nodejs环境变量：决定使用browserslist的哪个环境
-process.env.NODE_ENV = 'production';
+process.env.NODE_ENV = 'production'
 
 // 复用loader
 const commonCssLoader = [
@@ -1204,16 +1193,16 @@ const commonCssLoader = [
     loader: 'postcss-loader',
     options: {
       ident: 'postcss',
-      plugins: () => [require('postcss-preset-env')()]
-    }
-  }
-];
+      plugins: () => [require('postcss-preset-env')()],
+    },
+  },
+]
 
 module.exports = {
   entry: './src/js/index.js',
   output: {
     filename: 'js/built.[contenthash:10].js',
-    path: resolve(__dirname, 'build')
+    path: resolve(__dirname, 'build'),
   },
   module: {
     rules: [
@@ -1225,8 +1214,8 @@ module.exports = {
         enforce: 'pre',
         loader: 'eslint-loader',
         options: {
-          fix: true
-        }
+          fix: true,
+        },
       },
       {
         // 以下loader只会匹配一个
@@ -1234,11 +1223,11 @@ module.exports = {
         oneOf: [
           {
             test: /\.css$/,
-            use: [...commonCssLoader]
+            use: [...commonCssLoader],
           },
           {
             test: /\.less$/,
-            use: [...commonCssLoader, 'less-loader']
+            use: [...commonCssLoader, 'less-loader'],
           },
           /*
             正常来讲，一个文件只能被一个loader处理。
@@ -1258,15 +1247,15 @@ module.exports = {
                     corejs: { version: 3 },
                     targets: {
                       chrome: '60',
-                      firefox: '50'
-                    }
-                  }
-                ]
+                      firefox: '50',
+                    },
+                  },
+                ],
               ],
               // 开启babel缓存
               // 第二次构建时，会读取之前的缓存
-              cacheDirectory: true
-            }
+              cacheDirectory: true,
+            },
           },
           {
             test: /\.(jpg|png|gif)/,
@@ -1275,51 +1264,50 @@ module.exports = {
               limit: 8 * 1024,
               name: '[hash:10].[ext]',
               outputPath: 'imgs',
-              esModule: false
-            }
+              esModule: false,
+            },
           },
           {
             test: /\.html$/,
-            loader: 'html-loader'
+            loader: 'html-loader',
           },
           {
             exclude: /\.(js|css|less|html|jpg|png|gif)/,
             loader: 'file-loader',
             options: {
-              outputPath: 'media'
-            }
-          }
-        ]
-      }
-    ]
+              outputPath: 'media',
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'css/built.[contenthash:10].css'
+      filename: 'css/built.[contenthash:10].css',
     }),
     new OptimizeCssAssetsWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       minify: {
         collapseWhitespace: true,
-        removeComments: true
-      }
-    })
+        removeComments: true,
+      },
+    }),
   ],
   mode: 'production',
-  devtool: 'source-map'
-};
-
+  devtool: 'source-map',
+}
 ```
 
 #### 多进程打包
 
 ```js
-const { resolve } = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+const { resolve } = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
 
 /*
   PWA: 渐进式网络开发应用程序(离线可访问)
@@ -1327,7 +1315,7 @@ const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 */
 
 // 定义nodejs环境变量：决定使用browserslist的哪个环境
-process.env.NODE_ENV = 'production';
+process.env.NODE_ENV = 'production'
 
 // 复用loader
 const commonCssLoader = [
@@ -1338,16 +1326,16 @@ const commonCssLoader = [
     loader: 'postcss-loader',
     options: {
       ident: 'postcss',
-      plugins: () => [require('postcss-preset-env')()]
-    }
-  }
-];
+      plugins: () => [require('postcss-preset-env')()],
+    },
+  },
+]
 
 module.exports = {
   entry: './src/js/index.js',
   output: {
     filename: 'js/built.[contenthash:10].js',
-    path: resolve(__dirname, 'build')
+    path: resolve(__dirname, 'build'),
   },
   module: {
     rules: [
@@ -1359,8 +1347,8 @@ module.exports = {
         enforce: 'pre',
         loader: 'eslint-loader',
         options: {
-          fix: true
-        }
+          fix: true,
+        },
       },
       {
         // 以下loader只会匹配一个
@@ -1368,11 +1356,11 @@ module.exports = {
         oneOf: [
           {
             test: /\.css$/,
-            use: [...commonCssLoader]
+            use: [...commonCssLoader],
           },
           {
             test: /\.less$/,
-            use: [...commonCssLoader, 'less-loader']
+            use: [...commonCssLoader, 'less-loader'],
           },
           /*
             正常来讲，一个文件只能被一个loader处理。
@@ -1391,8 +1379,8 @@ module.exports = {
               {
                 loader: 'thread-loader',
                 options: {
-                  workers: 2 // 进程2个
-                }
+                  workers: 2, // 进程2个
+                },
               },
               {
                 loader: 'babel-loader',
@@ -1405,17 +1393,17 @@ module.exports = {
                         corejs: { version: 3 },
                         targets: {
                           chrome: '60',
-                          firefox: '50'
-                        }
-                      }
-                    ]
+                          firefox: '50',
+                        },
+                      },
+                    ],
                   ],
                   // 开启babel缓存
                   // 第二次构建时，会读取之前的缓存
-                  cacheDirectory: true
-                }
-              }
-            ]
+                  cacheDirectory: true,
+                },
+              },
+            ],
           },
           {
             test: /\.(jpg|png|gif)/,
@@ -1424,35 +1412,35 @@ module.exports = {
               limit: 8 * 1024,
               name: '[hash:10].[ext]',
               outputPath: 'imgs',
-              esModule: false
-            }
+              esModule: false,
+            },
           },
           {
             test: /\.html$/,
-            loader: 'html-loader'
+            loader: 'html-loader',
           },
           {
             exclude: /\.(js|css|less|html|jpg|png|gif)/,
             loader: 'file-loader',
             options: {
-              outputPath: 'media'
-            }
-          }
-        ]
-      }
-    ]
+              outputPath: 'media',
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'css/built.[contenthash:10].css'
+      filename: 'css/built.[contenthash:10].css',
     }),
     new OptimizeCssAssetsWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       minify: {
         collapseWhitespace: true,
-        removeComments: true
-      }
+        removeComments: true,
+      },
     }),
     new WorkboxWebpackPlugin.GenerateSW({
       /*
@@ -1462,39 +1450,37 @@ module.exports = {
         生成一个 serviceworker 配置文件~
       */
       clientsClaim: true,
-      skipWaiting: true
-    })
+      skipWaiting: true,
+    }),
   ],
   mode: 'production',
-  devtool: 'source-map'
-};
-
+  devtool: 'source-map',
+}
 ```
 
 #### externals
 
 ```js
-const { resolve } = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: './src/js/index.js',
   output: {
     filename: 'js/built.js',
-    path: resolve(__dirname, 'build')
+    path: resolve(__dirname, 'build'),
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html'
-    })
+      template: './src/index.html',
+    }),
   ],
   mode: 'production',
   externals: {
     // 拒绝jQuery被打包进来
-    jquery: 'jQuery'
-  }
-};
-
+    jquery: 'jQuery',
+  },
+}
 ```
 
 #### dll
@@ -1502,26 +1488,26 @@ module.exports = {
 webpack.config.js
 
 ```js
-const { resolve } = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: './src/js/index.js',
   output: {
     filename: 'js/built.js',
-    path: resolve(__dirname, 'build')
+    path: resolve(__dirname, 'build'),
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html'
-    })
+      template: './src/index.html',
+    }),
   ],
   mode: 'production',
   externals: {
     // 拒绝jQuery被打包进来
-    jquery: 'jQuery'
-  }
-};
+    jquery: 'jQuery',
+  },
+}
 ```
 
 webpack.dll.js
@@ -1534,8 +1520,8 @@ webpack.dll.js
       --> webpack --config webpack.dll.js
 */
 
-const { resolve } = require('path');
-const webpack = require('webpack');
+const { resolve } = require('path')
+const webpack = require('webpack')
 
 module.exports = {
   entry: {
@@ -1546,17 +1532,17 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: resolve(__dirname, 'dll'),
-    library: '[name]_[hash]' // 打包的库里面向外暴露出去的内容叫什么名字
+    library: '[name]_[hash]', // 打包的库里面向外暴露出去的内容叫什么名字
   },
   plugins: [
     // 打包生成一个 manifest.json --> 提供和jquery映射
     new webpack.DllPlugin({
       name: '[name]_[hash]', // 映射库的暴露的内容名称
-      path: resolve(__dirname, 'dll/manifest.json') // 输出文件路径
-    })
+      path: resolve(__dirname, 'dll/manifest.json'), // 输出文件路径
+    }),
   ],
-  mode: 'production'
-};
+  mode: 'production',
+}
 ```
 
 #### 优化代码运行的性能
@@ -1566,10 +1552,10 @@ module.exports = {
 #### tree shaking
 
 ```js
-const { resolve } = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { resolve } = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 /*
   tree shaking：去除无用代码
@@ -1583,7 +1569,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 */
 
 // 定义nodejs环境变量：决定使用browserslist的哪个环境
-process.env.NODE_ENV = 'production';
+process.env.NODE_ENV = 'production'
 
 // 复用loader
 const commonCssLoader = [
@@ -1594,16 +1580,16 @@ const commonCssLoader = [
     loader: 'postcss-loader',
     options: {
       ident: 'postcss',
-      plugins: () => [require('postcss-preset-env')()]
-    }
-  }
-];
+      plugins: () => [require('postcss-preset-env')()],
+    },
+  },
+]
 
 module.exports = {
   entry: './src/js/index.js',
   output: {
     filename: 'js/built.[contenthash:10].js',
-    path: resolve(__dirname, 'build')
+    path: resolve(__dirname, 'build'),
   },
   module: {
     rules: [
@@ -1615,8 +1601,8 @@ module.exports = {
         enforce: 'pre',
         loader: 'eslint-loader',
         options: {
-          fix: true
-        }
+          fix: true,
+        },
       },
       {
         // 以下loader只会匹配一个
@@ -1624,11 +1610,11 @@ module.exports = {
         oneOf: [
           {
             test: /\.css$/,
-            use: [...commonCssLoader]
+            use: [...commonCssLoader],
           },
           {
             test: /\.less$/,
-            use: [...commonCssLoader, 'less-loader']
+            use: [...commonCssLoader, 'less-loader'],
           },
           /*
             正常来讲，一个文件只能被一个loader处理。
@@ -1648,15 +1634,15 @@ module.exports = {
                     corejs: { version: 3 },
                     targets: {
                       chrome: '60',
-                      firefox: '50'
-                    }
-                  }
-                ]
+                      firefox: '50',
+                    },
+                  },
+                ],
               ],
               // 开启babel缓存
               // 第二次构建时，会读取之前的缓存
-              cacheDirectory: true
-            }
+              cacheDirectory: true,
+            },
           },
           {
             test: /\.(jpg|png|gif)/,
@@ -1665,40 +1651,40 @@ module.exports = {
               limit: 8 * 1024,
               name: '[hash:10].[ext]',
               outputPath: 'imgs',
-              esModule: false
-            }
+              esModule: false,
+            },
           },
           {
             test: /\.html$/,
-            loader: 'html-loader'
+            loader: 'html-loader',
           },
           {
             exclude: /\.(js|css|less|html|jpg|png|gif)/,
             loader: 'file-loader',
             options: {
-              outputPath: 'media'
-            }
-          }
-        ]
-      }
-    ]
+              outputPath: 'media',
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'css/built.[contenthash:10].css'
+      filename: 'css/built.[contenthash:10].css',
     }),
     new OptimizeCssAssetsWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       minify: {
         collapseWhitespace: true,
-        removeComments: true
-      }
-    })
+        removeComments: true,
+      },
+    }),
   ],
   mode: 'production',
-  devtool: 'source-map'
-};
+  devtool: 'source-map',
+}
 ```
 
 #### code split
@@ -1706,8 +1692,8 @@ module.exports = {
 demo1
 
 ```js
-const { resolve } = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   // 单入口
@@ -1715,52 +1701,52 @@ module.exports = {
   entry: {
     // 多入口：有一个入口，最终输出就有一个bundle
     index: './src/js/index.js',
-    test: './src/js/test.js'
+    test: './src/js/test.js',
   },
   output: {
     // [name]：取文件名
     filename: 'js/[name].[contenthash:10].js',
-    path: resolve(__dirname, 'build')
+    path: resolve(__dirname, 'build'),
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
       minify: {
         collapseWhitespace: true,
-        removeComments: true
-      }
-    })
+        removeComments: true,
+      },
+    }),
   ],
-  mode: 'production'
-};
+  mode: 'production',
+}
 ```
 
 demo2
 
 ```js
-const { resolve } = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   // 单入口
   // entry: './src/js/index.js',
   entry: {
     index: './src/js/index.js',
-    test: './src/js/test.js'
+    test: './src/js/test.js',
   },
   output: {
     // [name]：取文件名
     filename: 'js/[name].[contenthash:10].js',
-    path: resolve(__dirname, 'build')
+    path: resolve(__dirname, 'build'),
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
       minify: {
         collapseWhitespace: true,
-        removeComments: true
-      }
-    })
+        removeComments: true,
+      },
+    }),
   ],
   /*
     1. 可以将node_modules中代码单独打包一个chunk最终输出
@@ -1768,18 +1754,18 @@ module.exports = {
   */
   optimization: {
     splitChunks: {
-      chunks: 'all'
-    }
+      chunks: 'all',
+    },
   },
-  mode: 'production'
-};
+  mode: 'production',
+}
 ```
 
 demo3
 
 ```js
-const { resolve } = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   // 单入口
@@ -1787,16 +1773,16 @@ module.exports = {
   output: {
     // [name]：取文件名
     filename: 'js/[name].[contenthash:10].js',
-    path: resolve(__dirname, 'build')
+    path: resolve(__dirname, 'build'),
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
       minify: {
         collapseWhitespace: true,
-        removeComments: true
-      }
-    })
+        removeComments: true,
+      },
+    }),
   ],
   /*
     1. 可以将node_modules中代码单独打包一个chunk最终输出
@@ -1804,53 +1790,52 @@ module.exports = {
   */
   optimization: {
     splitChunks: {
-      chunks: 'all'
-    }
+      chunks: 'all',
+    },
   },
-  mode: 'production'
-};
+  mode: 'production',
+}
 ```
 
 #### 懒加载/预加载
 
 ```js
-const { resolve } = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   // 单入口
   entry: './src/js/index.js',
   output: {
     filename: 'js/[name].[contenthash:10].js',
-    path: resolve(__dirname, 'build')
+    path: resolve(__dirname, 'build'),
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
       minify: {
         collapseWhitespace: true,
-        removeComments: true
-      }
-    })
+        removeComments: true,
+      },
+    }),
   ],
   optimization: {
     splitChunks: {
-      chunks: 'all'
-    }
+      chunks: 'all',
+    },
   },
-  mode: 'production'
-};
-
+  mode: 'production',
+}
 ```
 
 #### pwa
 
 ```js
-const { resolve } = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+const { resolve } = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
 
 /*
   PWA: 渐进式网络开发应用程序(离线可访问)
@@ -1858,7 +1843,7 @@ const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 */
 
 // 定义nodejs环境变量：决定使用browserslist的哪个环境
-process.env.NODE_ENV = 'production';
+process.env.NODE_ENV = 'production'
 
 // 复用loader
 const commonCssLoader = [
@@ -1869,16 +1854,16 @@ const commonCssLoader = [
     loader: 'postcss-loader',
     options: {
       ident: 'postcss',
-      plugins: () => [require('postcss-preset-env')()]
-    }
-  }
-];
+      plugins: () => [require('postcss-preset-env')()],
+    },
+  },
+]
 
 module.exports = {
   entry: './src/js/index.js',
   output: {
     filename: 'js/built.[contenthash:10].js',
-    path: resolve(__dirname, 'build')
+    path: resolve(__dirname, 'build'),
   },
   module: {
     rules: [
@@ -1890,8 +1875,8 @@ module.exports = {
         enforce: 'pre',
         loader: 'eslint-loader',
         options: {
-          fix: true
-        }
+          fix: true,
+        },
       },
       {
         // 以下loader只会匹配一个
@@ -1899,11 +1884,11 @@ module.exports = {
         oneOf: [
           {
             test: /\.css$/,
-            use: [...commonCssLoader]
+            use: [...commonCssLoader],
           },
           {
             test: /\.less$/,
-            use: [...commonCssLoader, 'less-loader']
+            use: [...commonCssLoader, 'less-loader'],
           },
           /*
             正常来讲，一个文件只能被一个loader处理。
@@ -1923,15 +1908,15 @@ module.exports = {
                     corejs: { version: 3 },
                     targets: {
                       chrome: '60',
-                      firefox: '50'
-                    }
-                  }
-                ]
+                      firefox: '50',
+                    },
+                  },
+                ],
               ],
               // 开启babel缓存
               // 第二次构建时，会读取之前的缓存
-              cacheDirectory: true
-            }
+              cacheDirectory: true,
+            },
           },
           {
             test: /\.(jpg|png|gif)/,
@@ -1940,35 +1925,35 @@ module.exports = {
               limit: 8 * 1024,
               name: '[hash:10].[ext]',
               outputPath: 'imgs',
-              esModule: false
-            }
+              esModule: false,
+            },
           },
           {
             test: /\.html$/,
-            loader: 'html-loader'
+            loader: 'html-loader',
           },
           {
             exclude: /\.(js|css|less|html|jpg|png|gif)/,
             loader: 'file-loader',
             options: {
-              outputPath: 'media'
-            }
-          }
-        ]
-      }
-    ]
+              outputPath: 'media',
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'css/built.[contenthash:10].css'
+      filename: 'css/built.[contenthash:10].css',
     }),
     new OptimizeCssAssetsWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       minify: {
         collapseWhitespace: true,
-        removeComments: true
-      }
+        removeComments: true,
+      },
     }),
     new WorkboxWebpackPlugin.GenerateSW({
       /*
@@ -1978,12 +1963,12 @@ module.exports = {
         生成一个 serviceworker 配置文件~
       */
       clientsClaim: true,
-      skipWaiting: true
-    })
+      skipWaiting: true,
+    }),
   ],
   mode: 'production',
-  devtool: 'source-map'
-};
+  devtool: 'source-map',
+}
 ```
 
 ## webpack配置详解
@@ -1991,8 +1976,8 @@ module.exports = {
 ### entry
 
 ```js
-const { resolve } = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 /*
   entry: 入口起点
@@ -2020,24 +2005,23 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    index: ['./src/index.js', './src/count.js'], 
-    add: './src/add.js'
+    index: ['./src/index.js', './src/count.js'],
+    add: './src/add.js',
   },
   output: {
     filename: '[name].js',
-    path: resolve(__dirname, 'build')
+    path: resolve(__dirname, 'build'),
   },
   plugins: [new HtmlWebpackPlugin()],
-  mode: 'development'
-};
-
+  mode: 'development',
+}
 ```
 
 ### output
 
 ```js
-const { resolve } = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: './src/index.js',
@@ -2055,22 +2039,21 @@ module.exports = {
     // libraryTarget: 'commonjs'
   },
   plugins: [new HtmlWebpackPlugin()],
-  mode: 'development'
-};
-
+  mode: 'development',
+}
 ```
 
 ### module
 
 ```js
-const { resolve } = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'js/[name].js',
-    path: resolve(__dirname, 'build')
+    path: resolve(__dirname, 'build'),
   },
   module: {
     rules: [
@@ -2078,7 +2061,7 @@ module.exports = {
       {
         test: /\.css$/,
         // 多个loader用use
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.js$/,
@@ -2092,39 +2075,38 @@ module.exports = {
         // enforce: 'post',
         // 单个loader用loader
         loader: 'eslint-loader',
-        options: {}
+        options: {},
       },
       {
         // 以下配置只会生效一个
-        oneOf: []
-      }
-    ]
+        oneOf: [],
+      },
+    ],
   },
   plugins: [new HtmlWebpackPlugin()],
-  mode: 'development'
-};
-
+  mode: 'development',
+}
 ```
 
 ### resolve
 
 ```js
-const { resolve } = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: './src/js/index.js',
   output: {
     filename: 'js/[name].js',
-    path: resolve(__dirname, 'build')
+    path: resolve(__dirname, 'build'),
   },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
-      }
-    ]
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
   },
   plugins: [new HtmlWebpackPlugin()],
   mode: 'development',
@@ -2132,45 +2114,44 @@ module.exports = {
   resolve: {
     // 配置解析模块路径别名: 优点简写路径 缺点路径没有提示
     alias: {
-      $css: resolve(__dirname, 'src/css')
+      $css: resolve(__dirname, 'src/css'),
     },
     // 配置省略文件路径的后缀名
     extensions: ['.js', '.json', '.jsx', '.css'],
     // 告诉 webpack 解析模块是去找哪个目录
-    modules: [resolve(__dirname, '../../node_modules'), 'node_modules']
-  }
-};
-
+    modules: [resolve(__dirname, '../../node_modules'), 'node_modules'],
+  },
+}
 ```
 
 ### dev server
 
 ```js
-const { resolve } = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: './src/js/index.js',
   output: {
     filename: 'js/[name].js',
-    path: resolve(__dirname, 'build')
+    path: resolve(__dirname, 'build'),
   },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
-      }
-    ]
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
   },
   plugins: [new HtmlWebpackPlugin()],
   mode: 'development',
   resolve: {
     alias: {
-      $css: resolve(__dirname, 'src/css')
+      $css: resolve(__dirname, 'src/css'),
     },
     extensions: ['.js', '.json', '.jsx', '.css'],
-    modules: [resolve(__dirname, '../../node_modules'), 'node_modules']
+    modules: [resolve(__dirname, '../../node_modules'), 'node_modules'],
   },
   devServer: {
     // 运行代码的目录
@@ -2179,7 +2160,7 @@ module.exports = {
     watchContentBase: true,
     watchOptions: {
       // 忽略文件
-      ignored: /node_modules/
+      ignored: /node_modules/,
     },
     // 启动gzip压缩
     compress: true,
@@ -2204,20 +2185,19 @@ module.exports = {
         target: 'http://localhost:3000',
         // 发送请求时，请求路径重写：将 /api/xxx --> /xxx （去掉/api）
         pathRewrite: {
-          '^/api': ''
-        }
-      }
-    }
-  }
-};
-
+          '^/api': '',
+        },
+      },
+    },
+  },
+}
 ```
 
 ### optimization
 
 ```js
-const { resolve } = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
 
 module.exports = {
@@ -2225,28 +2205,28 @@ module.exports = {
   output: {
     filename: 'js/[name].[contenthash:10].js',
     path: resolve(__dirname, 'build'),
-    chunkFilename: 'js/[name].[contenthash:10]_chunk.js'
+    chunkFilename: 'js/[name].[contenthash:10]_chunk.js',
   },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
-      }
-    ]
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
   },
   plugins: [new HtmlWebpackPlugin()],
   mode: 'production',
   resolve: {
     alias: {
-      $css: resolve(__dirname, 'src/css')
+      $css: resolve(__dirname, 'src/css'),
     },
     extensions: ['.js', '.json', '.jsx', '.css'],
-    modules: [resolve(__dirname, '../../node_modules'), 'node_modules']
+    modules: [resolve(__dirname, '../../node_modules'), 'node_modules'],
   },
   optimization: {
     splitChunks: {
-      chunks: 'all'
+      chunks: 'all',
       // 默认值，可以不写~
       /* minSize: 30 * 1024, // 分割的chunk最小为30kb
       maxSiza: 0, // 最大没有限制
@@ -2277,7 +2257,7 @@ module.exports = {
     // 将当前模块的记录其他模块的hash单独打包为一个文件 runtime
     // 解决：修改a文件导致b文件的contenthash变化
     runtimeChunk: {
-      name: entrypoint => `runtime-${entrypoint.name}`
+      name: (entrypoint) => `runtime-${entrypoint.name}`,
     },
     minimizer: [
       // 配置生产环境的压缩方案：js和css
@@ -2287,10 +2267,9 @@ module.exports = {
         // 开启多进程打包
         parallel: true,
         // 启动source-map
-        sourceMap: true
-      })
-    ]
-  }
-};
-
+        sourceMap: true,
+      }),
+    ],
+  },
+}
 ```

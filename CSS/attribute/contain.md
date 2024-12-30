@@ -43,7 +43,7 @@ contain: size: 设定了 `contain: size` 的元素的渲染不会受到其子元
 
 ```HTML
 <div class="container">
-   
+
 </div>
 
 .container {
@@ -63,10 +63,9 @@ p {
 并且，借助 jQuery 实现每次点击容器添加一个 `<p>Coco</p>` 结构：
 
 ```javascript
-$('.container').on('click', e => {
-    $('.container').append('<p>Coco</p>')
+$('.container').on('click', (e) => {
+  $('.container').append('<p>Coco</p>')
 })
-
 ```
 
 那么会得到如下结果：
@@ -215,7 +214,7 @@ body {
 
 ## Can i Use -- CSS Contain
 
-截止至 2021-04-27，Can i Use  上的 CSS Contain 兼容性，已经可以开始使用起来：
+截止至 2021-04-27，Can i Use 上的 CSS Contain 兼容性，已经可以开始使用起来：
 
 ![img](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c34ec138a05b4cc6916aad01600ed651~tplv-k3u1fbpfcp-watermark.awebp)
 

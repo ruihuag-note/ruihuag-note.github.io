@@ -16,4 +16,3 @@ use admin;
 db.shutdownServer();
 exit
 ```
-

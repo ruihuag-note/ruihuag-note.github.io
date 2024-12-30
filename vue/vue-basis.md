@@ -58,11 +58,11 @@ destroyed
 
   ```js
   module.exports = {
-   devServer: {
-    // 项目运行时候的端口号
-    port: 8000
-   }
-  };
+    devServer: {
+      // 项目运行时候的端口号
+      port: 8000,
+    },
+  }
   ```
 
 ## computed 和 watch
@@ -163,7 +163,7 @@ props: {
 2. ### v-text
 
    1. ```js
-      <p v-text="str"></p>
+      <p v-text='str'></p>
       ```
 
    2. 可以插入内容
@@ -171,7 +171,7 @@ props: {
 3. ### v-html
 
    1. ```js
-      <p v-text="str"></p>
+      <p v-text='str'></p>
       ```
 
    2. 不建议使用,容易受到xss攻击
@@ -202,13 +202,13 @@ props: {
 
       ```js
       :class = "[class1, class2, class3...]"
-      
+
       三目运算符操作以上数组
       :class="[boolean? 'trueClass' : 'falseClass', ...]"
-      
+
       使用对象(json)来表达以上三目运算符的操作
       :class = "[{'style_class':flag}]"
-      
+
       ```
 
    7. 常用的使用方式
@@ -241,16 +241,16 @@ props: {
       - `<p v-for="(item, index) in arrayList" :key = index>{{item.id}}---{{item.name}}</p>`
    3. 遍历对象的属性和属性值
       - `(value[属性值], key(属性名)) in 对象`
-      - ``<p v-for="(value, key, index) in arrayList" :key = index>{{value}}</p>``
+      - `<p v-for="(value, key, index) in arrayList" :key = index>{{value}}</p>`
    4. 遍历整形数字
-      - ``<p v-for="index in 10" :key = index>{{index}}</p>``
+      - `<p v-for="index in 10" :key = index>{{index}}</p>`
 
 9. v-show ,v-if , v-else-if, v-else
 
    - v-xxx="true":展示元素内容(创建该元素) false: 去除该元素
-   - v-if="true" : 创建条件元素   false : 去除该元素
+   - v-if="true" : 创建条件元素 false : 去除该元素
      - 每次切换true都会重新创建元素, 降低元素的效率
-   - v-show="true" :  展现条件元素   false: 隐藏该元素
+   - v-show="true" : 展现条件元素 false: 隐藏该元素
      - 频繁切换boolean建议使用
 
 ### 自定义全局指令
@@ -263,32 +263,28 @@ props: {
 >   - update:元素更新
 
 ```js
-<div id="app">
- <input type = "text" v-dt/>
+;<div id='app'>
+  <input type='text' v-dt />
 </div>
 
-Vue.directive("dt",{
+Vue.directive('dt', {
   //绑定时, 就可以触发
   //还没有插入到dom
   //binding 是传递过来的数据, 即v-dt="数据"
-  bind: function(el,binding){
-   el.style.color = "red";
+  bind: function (el, binding) {
+    el.style.color = 'red'
   },
   //inserted函数, 表示元素插入到dom中,
-  inserted: function(el){
-  
- },
+  inserted: function (el) {},
   //表示元素更新时候触发, 可以随时触发
- update:function(el){
-    
-  }
+  update: function (el) {},
 })
 
 var vm = new Vue({
- el: "#app",
- data: {
-  str : "str"
- }
+  el: '#app',
+  data: {
+    str: 'str',
+  },
 })
 ```
 
@@ -345,9 +341,9 @@ d.self : 阻止自身冒泡行为的行为,(它不会真正阻止冒泡行为)
 
 e.once : 只会触发一次事件处理函数,
 
- >  .once 需要结合.prevent来使用
- >
- >  语法: @click.prevent.once 
+> .once 需要结合.prevent来使用
+>
+> 语法: @click.prevent.once
 
 #### 自定义私有指令
 
@@ -368,11 +364,11 @@ Vue.directive("dt",{
   },
   //inserted函数, 表示元素插入到dom中,
   inserted: function(el){
-  
+
  },
   //表示元素更新时候触发, 可以随时触发
  update:function(el){
-    
+
   }
 })
 
@@ -400,7 +396,6 @@ var vm = new Vue({
 ### 全局过滤器
 
 > - 所有VM对象都能共此案使用的过滤器
->
 > - ```js
 >   单个过滤器的使用
 >   <p>{{str | myfilter}}</p>
@@ -414,10 +409,10 @@ var vm = new Vue({
 >     data: {
 >       str: "aaa"
 >     }
->      
+>
 >   })
 >   </script>
->     
+>
 >   连续使用多个过滤器
 >   <p>{{str | myfilter1 | myfilter2 | ... }}</p>
 >   ```
@@ -425,9 +420,7 @@ var vm = new Vue({
 ### 私有过滤器
 
 > - 在VM对象定义过滤器
->
 > - 只能在vm对象中作用
->
 > - ```js
 >   <p>{{str | myfilter}}</p>
 >   <script>
@@ -446,7 +439,7 @@ var vm = new Vue({
 >           return outValue;
 >        }
 >     }
->      
+>
 >   })
 >   </script>
 >   ```
@@ -465,7 +458,7 @@ this.$http.get("请求路径" , "请求参数").then(function (data){...}) )
 
 this.$http.get("请求路径?name=data" , "请求参数").then(function (data){...}) )
 
-this.$http.get("请求路径" ,  {name: data } ,{ emulateJSON : true }).then(function (data){...}) )
+this.$http.get("请求路径" , {name: data } ,{ emulateJSON : true }).then(function (data){...}) )
 
 ### axios
 
@@ -475,7 +468,7 @@ this.$http.get("请求路径" ,  {name: data } ,{ emulateJSON : true }).then(fun
 
 ```js
 axios({
- method : "get", 
+ method : "get",
   url : "url",
   params : {"name":"data"},//传递参数
 }).then(function(result){
@@ -484,14 +477,14 @@ axios({
 
 //使用箭头函数
 axios({
- method : "get", 
+ method : "get",
   url : "url"
 }).then(result=>{
   console.log(result.data.key)
 })
 
 axios.get("url", {params : { "name" : "data"}).then(result => {
- console.log(result.data.key);                 
+ console.log(result.data.key);
 })
 ```
 
@@ -500,7 +493,7 @@ axios.get("url", {params : { "name" : "data"}).then(result => {
 ```js
 //使用箭头函数
 axios({
- method : "post", 
+ method : "post",
   url : "url",
   params : { "key" : "data" }
 }).then(result=>{
@@ -508,7 +501,7 @@ axios({
 })
 
 axios.post("url", "key = data".then(result => {
- console.log(result.data.key);                 
+ console.log(result.data.key);
 })
 ```
 
@@ -517,9 +510,11 @@ axios.post("url", "key = data".then(result => {
 jsonp来处理
 
 ```js
-this.$http.jsonp("http://localhost: 8080/projectName/getData.do").then(result=>{
-  data = result.body
-})
+this.$http
+  .jsonp('http://localhost: 8080/projectName/getData.do')
+  .then((result) => {
+    data = result.body
+  })
 ```
 
 ## Vue动画
@@ -530,7 +525,7 @@ Enter(信息进入阶段)
 
 v-enter : 进去前
 
-v-enter-active :  进入过程
+v-enter-active : 进入过程
 
 v-enter-to : 进去后
 
@@ -544,14 +539,16 @@ v-leave-to :离开后
 
 ```html
 <transition>
-  <p v-show="flag" >aaa</p>
+  <p v-show="flag">aaa</p>
 </transition>
 <style>
-  .v-enter, .v-leave-to{
+  .v-enter,
+  .v-leave-to {
     opacity: 0;
     transform: opacity;
   }
-  .v-enter-active, .v-leave-active{
+  .v-enter-active,
+  .v-leave-active {
     transition: all 0.8s ease;
   }
 </style>
@@ -561,14 +558,16 @@ v-leave-to :离开后
 
 ```html
 <transition name="tran1">
-  <p v-show="flag" >aaa</p>
+  <p v-show="flag">aaa</p>
 </transition>
 <style>
-  .tran1-enter, .tran1-leave-to{
+  .tran1-enter,
+  .tran1-leave-to {
     opacity: 0;
     transform: opacity;
   }
-  .tran1-enter-active, .tran1-leave-active{
+  .tran1-enter-active,
+  .tran1-leave-active {
     transition: all 0.8s ease;
   }
 </style>

@@ -13,7 +13,7 @@
 比如：
 
 ```js
-import { Router, Route, routerRedux } from 'dva/router';
+import { Router, Route, routerRedux } from 'dva/router'
 ```
 
 ### [#](https://dvajs.com/api/#dva-fetch)dva/fetch
@@ -31,15 +31,13 @@ import { Router, Route, routerRedux } from 'dva/router';
 比如：
 
 ```js
-import dynamic from 'dva/dynamic';
+import dynamic from 'dva/dynamic'
 
 const UserPageComponent = dynamic({
   app,
-  models: () => [
-    import('./models/users'),
-  ],
+  models: () => [import('./models/users')],
   component: () => import('./routes/UserPage'),
-});
+})
 ```
 
 `opts` 包含：
@@ -62,10 +60,10 @@ const UserPageComponent = dynamic({
 如果要配置 history 为 `browserHistory`，可以这样：
 
 ```js
-import createHistory from 'history/createBrowserHistory';
+import createHistory from 'history/createBrowserHistory'
 const app = dva({
   history: createHistory(),
-});
+})
 ```
 
 另外，出于易用性的考虑，`opts` 里也可以配所有的 [hooks](https://dvajs.com/api/#appusehooks) ，下面包含全部的可配属性：
@@ -82,7 +80,7 @@ const app = dva({
   onHmr,
   extraReducers,
   extraEnhancers,
-});
+})
 ```
 
 ### [#](https://dvajs.com/api/#app-use-hooks)`app.use(hooks)`
@@ -109,21 +107,21 @@ app.use(createLoading(opts));
 app.model({
   subscriptions: {
     setup({ dispatch }, done) {
-      done(e);
+      done(e)
     },
   },
-});
+})
 ```
 
 如果我们用 antd，那么最简单的全局错误处理通常会这么做：
 
 ```js
-import { message } from 'antd';
+import { message } from 'antd'
 const app = dva({
   onError(e) {
-    message.error(e.message, /* duration */3);
+    message.error(e.message, /* duration */ 3)
   },
-});
+})
 ```
 
 #### [#](https://dvajs.com/api/#onaction-fn-fn)`onAction(fn | fn[])`
@@ -133,10 +131,10 @@ const app = dva({
 例如我们要通过 [redux-logger](https://github.com/evgenyrodionov/redux-logger) 打印日志：
 
 ```js
-import createLogger from 'redux-logger';
+import createLogger from 'redux-logger'
 const app = dva({
   onAction: createLogger(opts),
-});
+})
 ```
 
 #### [#](https://dvajs.com/api/#onstatechange-fn)`onStateChange(fn)`
@@ -179,7 +177,7 @@ const app = dva({
   extraReducers: {
     form: formReducer,
   },
-});
+})
 ```
 
 #### [#](https://dvajs.com/api/#extraenhancers)`extraEnhancers`
@@ -187,11 +185,11 @@ const app = dva({
 指定额外的 [StoreEnhancer](https://github.com/reactjs/redux/blob/master/docs/Glossary.md#store-enhancer) ，比如结合 [redux-persist](https://github.com/rt2zz/redux-persist) 的使用：
 
 ```js
-import { persistStore, autoRehydrate } from 'redux-persist';
+import { persistStore, autoRehydrate } from 'redux-persist'
 const app = dva({
   extraEnhancers: [autoRehydrate()],
-});
-persistStore(app._store);
+})
+persistStore(app._store)
 ```
 
 ### [#](https://dvajs.com/api/#app-model-model)`app.model(model)`
@@ -217,26 +215,26 @@ persistStore(app._store);
 通常是这样的：
 
 ```js
-import { Router, Route } from 'dva/router';
+import { Router, Route } from 'dva/router'
 app.router(({ history }) => {
   return (
     <Router history={history}>
-      <Route path="/" component={App} />
+      <Route path='/' component={App} />
     </Router>
-  );
-});
+  )
+})
 ```
 
 推荐把路由信息抽成一个单独的文件，这样结合 [babel-plugin-dva-hmr](https://github.com/dvajs/babel-plugin-dva-hmr) 可实现路由和组件的热加载，比如：
 
 ```js
-app.router(require('./router'));
+app.router(require('./router'))
 ```
 
 而有些场景可能不使用路由，比如多页应用，所以也可以传入返回 JSX 元素的函数。比如：
 
 ```js
-app.router(() => <App />);
+app.router(() => <App />)
 ```
 
 ### [#](https://dvajs.com/api/#app-start-selector)`app.start(selector?)`
@@ -244,7 +242,7 @@ app.router(() => <App />);
 启动应用。`selector` 可选，如果没有 `selector` 参数，会返回一个返回 JSX 元素的函数。
 
 ```js
-app.start('#root');
+app.start('#root')
 ```
 
 那么什么时候不加 `selector`？常见场景有测试、node 端、react-native 和 i18n 国际化支持。
@@ -269,14 +267,14 @@ app.model({
   reducers: {
     add(state, { payload: todo }) {
       // 保存数据到 state
-      return [...state, todo];
+      return [...state, todo]
     },
   },
   effects: {
     *save({ payload: todo }, { put, call }) {
       // 调用 saveTodoToServer，成功后触发 `add` action 保存到 state
-      yield call(saveTodoToServer, todo);
-      yield put({ type: 'add', payload: todo });
+      yield call(saveTodoToServer, todo)
+      yield put({ type: 'add', payload: todo })
     },
   },
   subscriptions: {
@@ -284,12 +282,12 @@ app.model({
       // 监听 history 变化，当进入 `/` 时触发 `load` action
       return history.listen(({ pathname }) => {
         if (pathname === '/') {
-          dispatch({ type: 'load' });
+          dispatch({ type: 'load' })
         }
-      });
+      })
     },
   },
-});
+})
 ```
 
 model 包含 5 个属性：
@@ -307,11 +305,11 @@ model 的命名空间，同时也是他在全局 state 上的属性，只能用�
 ```js
 const app = dva({
   initialState: { count: 1 },
-});
+})
 app.model({
   namespace: 'count',
   state: 0,
-});
+})
 ```
 
 此时，在 `app.start()` 后 state.count 为 1 。

@@ -4,17 +4,15 @@
 
 #### 字符方法
 
-> - charAt([要查询下标])    根据下标查找指定字符,超出范围返回空字符串
->
-> - charCodeAt([要查询下标])     返回Unicode编码  超出范围返回NaN
->
-> - fromCharCode()                根据字符编码创建字符串
+> - charAt([要查询下标]) 根据下标查找指定字符,超出范围返回空字符串
+> - charCodeAt([要查询下标]) 返回Unicode编码 超出范围返回NaN
+> - fromCharCode() 根据字符编码创建字符串
 
 #### 位置方法
 
 > - 根据指定字符串查找下标
 >   - 没有找到返回 -1
->   - indexOf()    : 首次出现的下标
+>   - indexOf() : 首次出现的下标
 >   - lastIndexOf() : 最后一次出现的下标
 
 #### 匹配方法
@@ -42,7 +40,6 @@
 > - replace()
 >
 >   - 替换一个与正则表达式匹配的字串
->
 >   - 参数
 >
 >     - 参数1: 需要进行替换正则表达式或字符串
@@ -51,9 +48,7 @@
 >   - 特性:
 >
 >     - 要想全局替换要加全局标记g
->
 >     - 如果参数2位字符串这可使用特殊字符序列
->
 >     - ```js
 >       $$  $
 >       $& 匹配整个模式的子字符串
@@ -87,22 +82,19 @@
 #### 空格处理
 
 > - trim() 清除前后的空格
->
 > - trimLeft() 清除前置空格
->
 > - trimRight() 清除后缀空格
 
 #### 填充处理
 
 > - padStart: 长度不够在前面填充
->
 > - padEnd: 长度不够就在后面填充
 >
 >   ```javascript
->     'x'.padstart(5, 'ab'); //ababx
->     'x'.padstart(4, 'ab'); //abax
->     'x'.padEnd(5, 'ab'); //xabab
->     'x'.padEnd(4, 'ab'); //xaba
+>   'x'.padstart(5, 'ab') //ababx
+>   'x'.padstart(4, 'ab') //abax
+>   'x'.padEnd(5, 'ab') //xabab
+>   'x'.padEnd(4, 'ab') //xaba
 >   ```
 
 #### 比较方法

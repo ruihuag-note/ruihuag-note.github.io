@@ -22,6 +22,5 @@ pause
 ## 执行
 
 > 1. `CMD`: 文件名.bat
->
 > 2. `powershell`: ./文件名.bat
 > 3. 直接点击运行

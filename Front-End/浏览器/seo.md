@@ -29,7 +29,7 @@
 
 ```html
 <head>
- <meta name="keywords" content="快速排序,quick sort" data-rh="true">
+  <meta name="keywords" content="快速排序,quick sort" data-rh="true" />
 </head>
 ```
 
@@ -48,12 +48,17 @@
 技术上的实现如下:
 
 ```html
-
 <head>
   <title>快速排序 | 前端面试手册</title>
-  <meta name="description" content="使用快速排序，对数组进行排序" data-rh="true">
-  <meta property="og:title" content="快速排序 | 前端面试手册" data-rh="true">
-  <meta property="og:description" content="使用快速排序，对数组进行排序" data-rh="true">
+  <meta
+    name="description"
+    content="使用快速排序，对数组进行排序"
+    data-rh="true" />
+  <meta property="og:title" content="快速排序 | 前端面试手册" data-rh="true" />
+  <meta
+    property="og:description"
+    content="使用快速排序，对数组进行排序"
+    data-rh="true" />
 </head>
 ```
 

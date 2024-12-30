@@ -20,7 +20,7 @@
 
 ```js
 disableCSSModules: true,
-  
+
 //1.
 {
   disableCSSModules: true,

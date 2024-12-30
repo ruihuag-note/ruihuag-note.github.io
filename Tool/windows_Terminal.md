@@ -3,20 +3,20 @@
 ## 常用指令
 
 | 指令                     | 描述                               |
-| ------------------------ | ---------------------------------- |
+| ------------------------ | ---------------------------------- | ---------------- |
 | `ls`                     | 查看当前目录下的文件和文件夹       |
 | `dir`                    | 和`ls`一样                         |
 | `mkdir`                  | 创建文件夹                         |
 | `echo 'hello'>index.txt` | 创建一个文件, 里面 的内容为'hello' |
 | `cls`                    | 清理控制台                         |
-| `ctrl +|-`               | 放大 \| 缩小字体                   |
+| `ctrl +                  | -`                                 | 放大 \| 缩小字体 |
 | `ctrl+shift+t`           | 新建tap                            |
 | `ctrl+tap`               | tap页面切换                        |
 | `ctrl+shift+n`           | 新建窗口                           |
 
 ## 分屏
 
-> `shift alt +|-`  :  水平 | 垂直 分屏
+> `shift alt +|-` : 水平 | 垂直 分屏
 >
 > `alt + 方向键`: 光标移动到对应的窗口
 >
@@ -101,7 +101,7 @@
       "brightRed": "#E74856",
       "brightWhite": "#F2F2F2",
       "brightYellow": "#F9F1A5"
-    },
+    }
   ],
   // Add custom actions and keybindings to this array.
   // To unbind a key combination from your defaults.json, set the command to "unbound".

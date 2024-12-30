@@ -8,8 +8,8 @@
 
 ```json
 {
- "optionalDependencies": {
-  "colors": "^1.4.0"
- }
+  "optionalDependencies": {
+    "colors": "^1.4.0"
+  }
 }
 ```

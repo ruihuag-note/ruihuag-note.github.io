@@ -87,7 +87,7 @@ ispixel(url(...)); // false
 
 ## isem
 
-- *em
+- \*em
 
 ```less
 

@@ -15,12 +15,12 @@ import { ElTable } from 'element-plus'
 
 const table = ref();
 
-onMounted(() => { 
-    const entries = Object.entries(table.value); 
-    for (const [method, fn] of entries) { 
-        expose[method] = fn; 
-    } 
-}); 
+onMounted(() => {
+    const entries = Object.entries(table.value);
+    for (const [method, fn] of entries) {
+        expose[method] = fn;
+    }
+});
 defineExpose(expose);
 ```
 
@@ -33,20 +33,20 @@ defineExpose(expose);
   </div>
 </template>
 
-<Script>
-export default {
-  mounted() {
-    this.extendMethod()
-  },
-  methods: {
-    extendMethod() {
-      const refMethod = Object.entries(this.$refs['el-table'])
-      for (const [key, value] of refMethod) {
-        if (!(key.includes('$') || key.includes('_'))) {
-          this[key] = value
+<script>
+  export default {
+    mounted() {
+      this.extendMethod()
+    },
+    methods: {
+      extendMethod() {
+        const refMethod = Object.entries(this.$refs['el-table'])
+        for (const [key, value] of refMethod) {
+          if (!(key.includes('$') || key.includes('_'))) {
+            this[key] = value
+        }
       }
-    }
-  },
-};
-</Script>
+    },
+  };
+</script>
 ```

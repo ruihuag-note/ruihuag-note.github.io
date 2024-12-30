@@ -2,8 +2,8 @@
 
 ```html
 <script setup>
-import { getCurrentInstance } from 'vue'
-const inst = getCurrentInstance()
-const children = inst.slots.default()
+  import { getCurrentInstance } from 'vue'
+  const inst = getCurrentInstance()
+  const children = inst.slots.default()
 </script>
 ```

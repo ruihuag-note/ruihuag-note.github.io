@@ -4,18 +4,16 @@
 
 ```js
 class Animal {
-    constructor(type) {
-        this.type = type
-    }
-    walk() {
-        console.log( `I am walking` )
-    }
+  constructor(type) {
+    this.type = type
+  }
+  walk() {
+    console.log(`I am walking`)
+  }
 }
 let dog = new Animal('dog')
 let monkey = new Animal('monkey')
 ```
-
-
 
 ## Setters & Getters
 
@@ -23,65 +21,56 @@ let monkey = new Animal('monkey')
 
 ```js
 class Animal {
-    constructor(type, age) {
-        this.type = type
-        this._age = age
-    }
-    get age() {
-        return this._age
-    }
-    set age(val) {
-        this._age = val
-    }
+  constructor(type, age) {
+    this.type = type
+    this._age = age
+  }
+  get age() {
+    return this._age
+  }
+  set age(val) {
+    this._age = val
+  }
 }
 ```
-
-
 
 ## 静态方法
 
-
-
 ```js
 class Animal {
-    constructor(type) {
-        this.type = type
-    }
-    walk() {
-        console.log( `I am walking` )
-    }
-    static eat() {
-        console.log( `I am eating` )
-    }
+  constructor(type) {
+    this.type = type
+  }
+  walk() {
+    console.log(`I am walking`)
+  }
+  static eat() {
+    console.log(`I am eating`)
+  }
 }
 ```
 
-
-
 ## 继承
-
-
 
 ```js
 class Animal {
-    constructor(type) {
-        this.type = type
-    }
-    walk() {
-        console.log( `I am walking` )
-    }
-    static eat() {
-        console.log( `I am eating` )
-    }
+  constructor(type) {
+    this.type = type
+  }
+  walk() {
+    console.log(`I am walking`)
+  }
+  static eat() {
+    console.log(`I am eating`)
+  }
 }
 
 class Dog extends Animal {
-  constructor () {
+  constructor() {
     super('dog')
   }
-  run () {
+  run() {
     console.log('I can run')
   }
 }
 ```
-

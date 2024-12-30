@@ -9,8 +9,8 @@
 用法：
 
 ```html
-<Meta http-equiv="Content-Type" Content="text/html; Charset=gb2312">
-<Meta http-equiv="Content-Language" Content="zh-CN">
+<meta http-equiv="Content-Type" content="text/html; Charset=gb2312" />
+<meta http-equiv="Content-Language" content="zh-CN" />
 ```
 
 - 注意：该META标签定义了HTML页面所使用的字符集为GB2132，就是国标汉字码。如果将其中的“charset=GB2312”替换成“BIG5”，则该页面所用的字符集就是繁体中文Big5码。当你浏览一些国外的站点时，IE浏览器会提示你要正确显示该页面需要下载xx语支持。这个功能就是通过读取HTML页面META标签的Content-Type属性而得知需要使用哪种字符集显示该页面的。如果系统里没有装相应的字符集，则IE就提示下载。其他的语言也对应不同的charset，比如日文的字符集是“iso-2022-jp ”，韩文的是“ks_c_5601”。
@@ -26,8 +26,8 @@ Charset选项：ISO-8859-1（英文）、BIG5、UTF-8、SHIFT-Jis、Euc、Koi8-2
 用法：
 
 ```html
-<Meta http-equiv="Refresh" Content="30">
-<Meta http-equiv="Refresh" Content="5; Url=http://www.xia8.net">
+<meta http-equiv="Refresh" content="30" />
+<meta http-equiv="Refresh" content="5; Url=http://www.xia8.net" />
 ```
 
 - 注意：其中的5是指停留5秒钟后自动刷新到URL网址。
@@ -39,8 +39,8 @@ Charset选项：ISO-8859-1（英文）、BIG5、UTF-8、SHIFT-Jis、Euc、Koi8-2
 用法：
 
 ```html
-<Meta http-equiv="Expires" Content="0">
-<Meta http-equiv="Expires" Content="Wed, 26 Feb 1997 08:21:57 GMT">
+<meta http-equiv="Expires" content="0" />
+<meta http-equiv="Expires" content="Wed, 26 Feb 1997 08:21:57 GMT" />
 ```
 
 注意：必须使用GMT的时间格式，或直接设为0（数字表示多少时间后过期）。
@@ -62,7 +62,9 @@ Charset选项：ISO-8859-1（英文）、BIG5、UTF-8、SHIFT-Jis、Euc、Koi8-2
 用法：
 
 ```html
-<Meta http-equiv="Set-Cookie" Content="cookievalue=xxx; expires=Wednesday,21-Oct-98 16:14:21 GMT; path=/">
+<meta
+  http-equiv="Set-Cookie"
+  content="cookievalue=xxx; expires=Wednesday,21-Oct-98 16:14:21 GMT; path=/" />
 ```
 
 注意：必须使用GMT的时间格式。
@@ -74,10 +76,10 @@ Charset选项：ISO-8859-1（英文）、BIG5、UTF-8、SHIFT-Jis、Euc、Koi8-2
 用法：
 
 ```html
-<Meta http-equiv="Widow-target" Content="_top">
+<meta http-equiv="Widow-target" content="_top" />
 ```
 
-注意：这个属性是用来防止别人在框架里调用你的页面。Content选项：_blank、_top、_self、_parent.
+注意：这个属性是用来防止别人在框架里调用你的页面。Content选项：\_blank、\_top、\_self、\_parent.
 
 ## Pics-label （网页RSAC等级评定）
 
@@ -86,7 +88,9 @@ Charset选项：ISO-8859-1（英文）、BIG5、UTF-8、SHIFT-Jis、Euc、Koi8-2
 用法：
 
 ```html
-<META http-equiv="Pics-label" Contect="(PICS－1.1'http://www.rsac.org/ratingsv01.html'I gen comment 'RSACi North America Sever' by 'inet@microsoft.com'for 'http://www.microsoft.com' on '1997.06.30T14:21－0500' r(n0 s0 v0 l0))">
+<meta
+  http-equiv="Pics-label"
+  Contect="(PICS－1.1'http://www.rsac.org/ratingsv01.html'I gen comment 'RSACi North America Sever' by 'inet@microsoft.com'for 'http://www.microsoft.com' on '1997.06.30T14:21－0500' r(n0 s0 v0 l0))" />
 ```
 
 注意：不要将级别设置的太高。RSAC的评估系统提供了一种用来评价Web站点内容的标准。用户可以设置Microsoft Internet Explorer（IE3.0以上）来排除包含有色情和暴力内容的站点。上面这个例子中的HTML取自Microsoft的主页。代码中的（n 0 s 0 v 0 l 0）表示该站点不包含不健康内容。级别的评定是由RSAC，即美国娱乐委员会的评级机构评定的，如果你想进一步了解RSAC评估系统的等级内容，或者你需要评价自己的网站，可以访问RSAC的站点：<http://www.rsac.org/>.
@@ -98,6 +102,6 @@ Charset选项：ISO-8859-1（英文）、BIG5、UTF-8、SHIFT-Jis、Euc、Koi8-2
 用法：
 
 ```html
-<Meta http-equiv="Page-Enter" Content="blendTrans(Duration=0.5)">
-<Meta http-equiv="Page-Exit" Content="blendTrans(Duration=0.5)">
+<meta http-equiv="Page-Enter" content="blendTrans(Duration=0.5)" />
+<meta http-equiv="Page-Exit" content="blendTrans(Duration=0.5)" />
 ```

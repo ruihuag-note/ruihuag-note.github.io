@@ -37,7 +37,6 @@ npm install --save-dev typescript ts-loader
     "allowSyntheticDefaultImports": true
   }
 }
-
 ```
 
 ## 4.配置webpack相关
@@ -136,7 +135,6 @@ const prodConfig = {
 }
 
 module.exports = webpackMerge.merge(baseConfig, prodConfig)
-
 ```
 
 ## 5. 配置babel
@@ -152,12 +150,8 @@ npm i babel-loader babel-plugin-import @babel/cli @babel/core @babel/preset-env 
 
 ```json
 {
-  "presets": [
-    "@babel/preset-env",
-    "@babel/preset-react"
-  ]
+  "presets": ["@babel/preset-env", "@babel/preset-react"]
 }
-
 ```
 
 `webpack.config.base.js`中添加mode配置
@@ -192,27 +186,22 @@ npm i @types/react @types/react-dom @types/react-router-dom --dev
 ```html
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>
-    <%= htmlWebpackPlugin.options.title %>
-  </title>
-</head>
-
-<body>
-  <div id="root"></div>
-</body>
-
+  <body>
+    <div id="root"></div>
+  </body>
 </html>
-
 ```
 
 ### 新建工程入口文件
 
-新建`src` 目录下新建`App.tsx`  `index.tsx`
+新建`src` 目录下新建`App.tsx` `index.tsx`
 
 ```jsx
 // App.tsx
@@ -230,7 +219,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 ReactDOM.render(<App />, document.getElementById('root'))
-
 ```
 
 ## 7. 功能性配置
@@ -309,7 +297,6 @@ module.exports = {
     }),
   ],
 }
-
 ```
 
 ### 图片地址解析
@@ -413,7 +400,6 @@ module.exports = {
     name: 'development-cache',
   },
 }
-
 ```
 
 ### webpack.config.dev.js
@@ -448,7 +434,6 @@ const devConfig = {
 }
 
 module.exports = webpackMerge.merge(baseConfig, devConfig)
-
 ```
 
 ### webpack.config.prod.js
@@ -465,7 +450,6 @@ const prodConfig = {
 }
 
 module.exports = webpackMerge.merge(baseConfig, prodConfig)
-
 ```
 
 ## 10. css提取成单独的打包文件
@@ -512,7 +496,7 @@ npm i webpack-dev-server --dev
 
 ```json
 "scripts": {
-  
+
     "start": "webpack serve --config ./config/webpack.config.dev.js",
     "build": "webpack --mode=production --config ./config/webpack.config.prod.js"
   },
@@ -537,7 +521,6 @@ declare module '*.scss' {
   const content: Record<string, string>
   export default content
 }
-
 ```
 
 ## 13. 获取良好的css 代码提示
@@ -552,11 +535,10 @@ npm install -D typescript-plugin-css-modules
 配置tsconfig.json
 
 ```json
-{ 
-    "compilerOptions": 
-	{ 
-            "plugins": [{ "name": "typescript-plugin-css-modules" }]
-	 }
+{
+  "compilerOptions": {
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+  }
 }
 ```
 
@@ -567,12 +549,10 @@ npm install -D typescript-plugin-css-modules
 在文件中写入
 
 ```json
-
 {
-	"typescript.tsdk": "node_modules/typescript/lib",
-	"typescript.enablePromptUseWorkspaceTsdk":true
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }
-
 ```
 
 从工作区设置`TypeScript`版本，从而读取`tsconfig.json`文件

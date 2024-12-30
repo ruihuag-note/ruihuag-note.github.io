@@ -1,7 +1,7 @@
 # VScode Plugin
 
 ## 配置
->
+
 > 在`package.json`
 
 ```js
@@ -112,10 +112,10 @@ export const hover = vscode.languages.registerHoverProvider('javascript', {
       2. 第二项：
         - 第一个元素
         - 第二个元素
-  `)
-  }
-}
-)
+  `,
+    )
+  },
+})
 ```
 
 ### tree.ts
@@ -124,12 +124,12 @@ export const hover = vscode.languages.registerHoverProvider('javascript', {
 import * as vscode from 'vscode'
 
 const c1Tree = {
-  'Snippets': {
-    'vue': {
-      'st': 'script-template',
-      'stts': 'script-template-ts',
-    }
-  }
+  Snippets: {
+    vue: {
+      st: 'script-template',
+      stts: 'script-template-ts',
+    },
+  },
 }
 
 const aNodeWithIdTreeDataProvider = {
@@ -139,14 +139,14 @@ const aNodeWithIdTreeDataProvider = {
       treeItem = {
         label: el,
         collapsibleState: 0,
-        tooltip: "hover: 单纯的字符串 ",
+        tooltip: 'hover: 单纯的字符串 ',
         // id: new Date().getTime()
       }
     } else {
       treeItem = {
         label: el._cc_key,
         collapsibleState: 1,
-        tooltip: "hover: 可展开 ",
+        tooltip: 'hover: 可展开 ',
         // id: new Date().getTime()
       }
     }
@@ -160,9 +160,11 @@ const aNodeWithIdTreeDataProvider = {
       if (typeof activeItem !== 'object') {
         arr.push(`${item}：${activeItem}`)
       } else {
-        Object.defineProperty(activeItem, "_cc_key", {
-          get: function () { return item },
-          enumerable: false
+        Object.defineProperty(activeItem, '_cc_key', {
+          get: function () {
+            return item
+          },
+          enumerable: false,
         })
         arr.push(activeItem)
       }
@@ -171,7 +173,6 @@ const aNodeWithIdTreeDataProvider = {
   },
 }
 
-
 export const tree = vscode.window.createTreeView('c1', {
   treeDataProvider: aNodeWithIdTreeDataProvider,
   showCollapseAll: true,
@@ -179,67 +180,77 @@ export const tree = vscode.window.createTreeView('c1', {
 ```
 
 ### progress.ts
->
+
 > 带有状态的弹框
 
 ```ts
 import * as vscode from 'vscode'
 import { namespace } from './constant'
-export const progress = vscode.commands.registerCommand(namespace + '.progress', function () {
-  vscode.window.withProgress({
-    location: vscode.ProgressLocation.Notification,
-    title: "载入xxxx的进度...",
-    cancellable: true
-  }, (progress) => {
-    // 初始化进度
-    progress.report({ increment: 0 })
+export const progress = vscode.commands.registerCommand(
+  namespace + '.progress',
+  function () {
+    vscode.window.withProgress(
+      {
+        location: vscode.ProgressLocation.Notification,
+        title: '载入xxxx的进度...',
+        cancellable: true,
+      },
+      (progress) => {
+        // 初始化进度
+        progress.report({ increment: 0 })
 
-    setTimeout(() => {
-      progress.report({ increment: 10, message: "在努力。。。." })
-    }, 1000)
+        setTimeout(() => {
+          progress.report({ increment: 10, message: '在努力。。。.' })
+        }, 1000)
 
-    setTimeout(() => {
-      progress.report({ increment: 40, message: "马上了..." })
-    }, 2000)
+        setTimeout(() => {
+          progress.report({ increment: 40, message: '马上了...' })
+        }, 2000)
 
-    setTimeout(() => {
-      progress.report({ increment: 50, message: "这就结束..." })
-    }, 3000)
+        setTimeout(() => {
+          progress.report({ increment: 50, message: '这就结束...' })
+        }, 3000)
 
-    const p = new Promise(resolve => {
-      setTimeout(() => {
-        resolve({})
-      }, 5000)
-    })
+        const p = new Promise((resolve) => {
+          setTimeout(() => {
+            resolve({})
+          }, 5000)
+        })
 
-    return p
-  })
-})
+        return p
+      },
+    )
+  },
+)
 ```
 
 ### navigation.ts
->
+
 > 弹出信息框
 
 ```ts
 import * as vscode from 'vscode'
 import { namespace } from './constant'
 
-export const nav = vscode.commands.registerCommand(namespace + '.nav', function () {
-  let day = new Date()
-  day.setTime(day.getTime() + 24 * 60 * 60 * 1000)
-  let date = day.getFullYear() + "-" + (day.getMonth() + 1) + "-" + day.getDate()
-  vscode.window.showInformationMessage(`明天是: ${date}`)
-/**
+export const nav = vscode.commands.registerCommand(
+  namespace + '.nav',
+  function () {
+    let day = new Date()
+    day.setTime(day.getTime() + 24 * 60 * 60 * 1000)
+    let date =
+      day.getFullYear() + '-' + (day.getMonth() + 1) + '-' + day.getDate()
+    vscode.window.showInformationMessage(`明天是: ${date}`)
+    /**
   vscode.window.showInformationMessage('第一个demo弹出信息!')
   vscode.window.showWarningMessage('第一个警告信息')
   vscode.window.showErrorMessage('第一个错误信息!')
  */
-})
+  },
+)
 ```
 
 ### extension.ts
->
+
 > 事件挂载处
 
 ```js

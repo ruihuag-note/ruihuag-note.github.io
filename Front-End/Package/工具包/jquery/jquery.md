@@ -93,8 +93,6 @@ html
 > $(“#btnShow”) // 获取id属性为btnShow的元素
 > $(“div”) // 获取所有的div标签元素
 > ```
->
->
 
 ## 选择器
 
@@ -110,7 +108,7 @@ html
 
 ![img](http://img.smyhvae.com/20180204_2150.png)
 
-> `:not(selector)`  : 除了selector都要选择$(":not(selector)")
+> `:not(selector)` : 除了selector都要选择$(":not(selector)")
 >
 > `:header`: 选择标题元素(就是h标签)$(":header")
 
@@ -141,7 +139,7 @@ html
 
 ### 可见过滤器
 
-> :hidden   不可见元素
+> :hidden 不可见元素
 >
 > :visible 可见元素
 
@@ -213,13 +211,13 @@ $(selector).toggle(function(){},function(){},function(){}....);
 
 ```js
 //绑定一个事件
-$(selector).bind(event(事件名称),[data,] function(){})  
-//可以绑定多个事件 
-$(selector).bind(event1(事件名称) event2(事件名称) event3(事件名称),[data,] function(){})  
+$(selector).bind(event(事件名称),[data,] function(){})
+//可以绑定多个事件
+$(selector).bind(event1(事件名称) event2(事件名称) event3(事件名称),[data,] function(){})
 //可以绑定多个事件和方法
 $(selector).bind({
-    event1(事件名称),[data,] function(){},     
-    event2(事件名称),[data,] function(){},    
+    event1(事件名称),[data,] function(){},
+    event2(事件名称),[data,] function(){},
     event3(事件名称),[data,] function(){}}
   )
 ```
@@ -241,11 +239,11 @@ $(selector).on(event,[childSelector,] [data,] function)
 ```js
 //unbind()
 
-$(selector).unbind([event] [,function]) 
+$(selector).unbind([event] [,function])
 
 //undelegate
 
-$(selector).undelegate([childSelector] [,event] [,function]) 
+$(selector).undelegate([childSelector] [,event] [,function])
 
 //off()
 
@@ -345,7 +343,7 @@ before():在指定元素之前添加内容
 #### 删除remove()
 
 ```js
-$("p").remove(".style01");//删除class="style01"所有的p标签
+$('p').remove('.style01') //删除class="style01"所有的p标签
 ```
 
 #### 清空empty()
@@ -357,7 +355,7 @@ $("p").remove(".style01");//删除class="style01"所有的p标签
 #### 类属性
 
 ```js
-addClass()//添加class
+addClass() //添加class
 removeClass()
 toggleClass()
 ```
@@ -365,8 +363,7 @@ toggleClass()
 #### 尺寸
 
 ```js
-width:
-height
+width: height
 innerWidth包括内边距
 innerHeight
 outerWidth包括内边距和边框
@@ -378,9 +375,9 @@ outerHeight
 **后代遍历**
 
 ```js
-$(selector).children([selector2] [".style1"])
-$(selector).find(selector2)//查找后代全部元素
-$(selector).filter(selector2)//过滤器,只会选择符合selector2的元素
+$(selector).children([selector2]['.style1'])
+$(selector).find(selector2) //查找后代全部元素
+$(selector).filter(selector2) //过滤器,只会选择符合selector2的元素
 ```
 
 **同胞遍历(具有相同的父元素)**
@@ -410,9 +407,7 @@ parentsUntil():指定元素向上指定范围的所有祖先元素
 > $(selector).load(URL [, data] [, callback])
 >
 > - URL规定获取数据的URL地址,可以是文本,XML,JSON
->
 > - data:用于规定与请求一起发送给服务器的字符串(该字符串以键/值对合集)
->
 > - callback:load()完成后执行的函数
 
 ```js
@@ -420,17 +415,17 @@ $("#demo").load("test.txt")
 
 $("#demo").load("test.txt div.style01")
 
-$(selector).load(URL [, data] ,function(response, status,xhr){    
-  //回调函数代码    
-  //response:调用成功时的结果内容    
-  //status:调用状态,eg:success 和 error    
-  //xhr:表示XMLHttpRequest对象 
+$(selector).load(URL [, data] ,function(response, status,xhr){
+  //回调函数代码
+  //response:调用成功时的结果内容
+  //status:调用状态,eg:success 和 error
+  //xhr:表示XMLHttpRequest对象
 })
 ```
 
 ### **get()方法**
 
-> $.get(URL  [, data] [, success] [, dataType]);
+> $.get(URL [, data] [, success] [, dataType]);
 >
 > ​ dataType规定从服务器端获取的数据类型,eg:XML,JSON,HTML等
 
@@ -441,12 +436,16 @@ $(selector).load(URL [, data] ,function(response, status,xhr){
 ### **ajax()方法**
 
 ```js
-$.ajax({    
-  url: "demo.php",    
-  method:"POST",    
-  data:{username:"admin", password:"123"},    
-  dataType: "json",    
-  success:function(){alert("请求成功");},    
-  error: function(){alert("请求失败");} 
-});
+$.ajax({
+  url: 'demo.php',
+  method: 'POST',
+  data: { username: 'admin', password: '123' },
+  dataType: 'json',
+  success: function () {
+    alert('请求成功')
+  },
+  error: function () {
+    alert('请求失败')
+  },
+})
 ```

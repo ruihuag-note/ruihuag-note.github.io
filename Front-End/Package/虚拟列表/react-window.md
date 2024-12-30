@@ -1,7 +1,6 @@
 # [react-window]()
 
-> [源码](https://github.com/bvaughn/react-window)
-> [api](https://react-window.vercel.app/#/examples/list/fixed-size)
+> [源码](https://github.com/bvaughn/react-window) > [api](https://react-window.vercel.app/#/examples/list/fixed-size)
 
 1、不用全部加载出所有的DOM节点。默认只渲染可视区域及可视区域外的一个节点，此属性可自定义设置。
 2、可用于处理大型数据列表。当使用在大型数据列表中，可避免因为数据的更新而导致大量的重新渲染。
@@ -9,15 +8,12 @@
 ## FixedSizeList（固定尺寸的列表）
 
 ```js
-
-import { FixedSizeList } from 'react-window';
+import { FixedSizeList } from 'react-window'
 /**
-    * 每个列表项的组件
-    * @param index：列表项的下标；style：列表项的样式（此参数必须传入列表项的组件中，否则会出现滚动到下方出现空白的情况）
-    **/
-const Row = ({ index, style }) => (
-  <div style={style}>Row {index}</div>
-);
+ * 每个列表项的组件
+ * @param index：列表项的下标；style：列表项的样式（此参数必须传入列表项的组件中，否则会出现滚动到下方出现空白的情况）
+ **/
+const Row = ({ index, style }) => <div style={style}>Row {index}</div>
 
 const Example = () => (
   <FixedSizeList
@@ -28,7 +24,7 @@ const Example = () => (
   >
     {Row}
   </FixedSizeList>
-);
+)
 ```
 
 ## VariableSizeList （可变尺寸列表）
@@ -61,7 +57,7 @@ const Example = () => (
     {Row}
   <VariableSizeList>
 );
-````
+```
 
 ## 结合`react-virtualized-auto-sizer`使列表自适应当前页面的宽高
 
@@ -70,19 +66,19 @@ const Example = () => (
 import { FixedSizeList } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
 const Example = () => (
-  <AutoSizer>
-    {({ height, width }) => (
-      <FixedSizeList
+<AutoSizer>
+{({ height, width }) => (
+<FixedSizeList
         className="List"
         height={height}
         itemCount={1000}
         itemSize={35}
         width={width}
       >
-        {Row}
-      </FixedSizeList>
-    )}
-  </AutoSizer>
+{Row}
+</FixedSizeList>
+)}
+</AutoSizer>
 );
 
 ## 常见问题

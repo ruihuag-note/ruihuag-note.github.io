@@ -25,9 +25,9 @@ node my-koa-app.js
 要在 node < 7.6 版本的 Koa 中使用 `async` 方法, 我们推荐使用 [babel's require hook](https://www.babeljs.cn/docs/usage/babel-register/).
 
 ```js
-require('babel-register');
+require('babel-register')
 // 应用的其余 require 需要被放到 hook 后面
-const app = require('./app');
+const app = require('./app')
 ```
 
 要解析和编译 async 方法, 你至少应该有 [transform-async-to-generator](https://www.babeljs.cn/docs/plugins/transform-async-to-generator/) 或 [transform-async-to-module-method](https://www.babeljs.cn/docs/plugins/transform-async-to-module-method/) 插件.
@@ -51,14 +51,14 @@ Koa 应用程序是一个包含一组中间件函数的对象，它是按照类�
 必修的 hello world 应用:
 
 ```js
-const Koa = require('koa');
-const app = new Koa();
+const Koa = require('koa')
+const app = new Koa()
 
-app.use(async ctx => {
-  ctx.body = 'Hello World';
-});
+app.use(async (ctx) => {
+  ctx.body = 'Hello World'
+})
 
-app.listen(3000);
+app.listen(3000)
 ```
 
 ### 级联
@@ -68,33 +68,33 @@ Koa 中间件以更传统的方式级联，您可能习惯使用类似的工具 
 下面以 “Hello World” 的响应作为示例，当请求开始时首先请求流通过 `x-response-time` 和 `logging` 中间件，然后继续移交控制给 `response` 中间件。当一个中间件调用 `next()` 则该函数暂停并将控制传递给定义的下一个中间件。当在下游没有更多的中间件执行后，堆栈将展开并且每个中间件恢复执行其上游行为。
 
 ```js
-const Koa = require('koa');
-const app = new Koa();
+const Koa = require('koa')
+const app = new Koa()
 
 // logger
 
 app.use(async (ctx, next) => {
-  await next();
-  const rt = ctx.response.get('X-Response-Time');
-  console.log(`${ctx.method} ${ctx.url} - ${rt}`);
-});
+  await next()
+  const rt = ctx.response.get('X-Response-Time')
+  console.log(`${ctx.method} ${ctx.url} - ${rt}`)
+})
 
 // x-response-time
 
 app.use(async (ctx, next) => {
-  const start = Date.now();
-  await next();
-  const ms = Date.now() - start;
-  ctx.set('X-Response-Time', `${ms}ms`);
-});
+  const start = Date.now()
+  await next()
+  const ms = Date.now() - start
+  ctx.set('X-Response-Time', `${ms}ms`)
+})
 
 // response
 
-app.use(async ctx => {
-  ctx.body = 'Hello World';
-});
+app.use(async (ctx) => {
+  ctx.body = 'Hello World'
+})
 
-app.listen(3000);
+app.listen(3000)
 ```
 
 ### 设置
@@ -111,16 +111,16 @@ app.listen(3000);
 您可以将设置传递给构造函数:
 
 ```js
-  const Koa = require('koa');
-  const app = new Koa({ proxy: true });
+const Koa = require('koa')
+const app = new Koa({ proxy: true })
 ```
 
 或动态的:
 
 ```js
-  const Koa = require('koa');
-  const app = new Koa();
-  app.proxy = true;
+const Koa = require('koa')
+const app = new Koa()
+app.proxy = true
 ```
 
 ### app.listen(...)
@@ -132,29 +132,29 @@ Koa 应用程序不是 HTTP 服务器的1对1展现。 可以将一个或多个 
 以下是一个无作用的 Koa 应用程序被绑定到 `3000` 端口：
 
 ```js
-const Koa = require('koa');
-const app = new Koa();
-app.listen(3000);
+const Koa = require('koa')
+const app = new Koa()
+app.listen(3000)
 ```
 
 这里的 `app.listen(...)` 方法只是以下方法的语法糖:
 
 ```js
-const http = require('http');
-const Koa = require('koa');
-const app = new Koa();
-http.createServer(app.callback()).listen(3000);
+const http = require('http')
+const Koa = require('koa')
+const app = new Koa()
+http.createServer(app.callback()).listen(3000)
 ```
 
 这意味着您可以将同一个应用程序同时作为 HTTP 和 HTTPS 或多个地址：
 
 ```js
-const http = require('http');
-const https = require('https');
-const Koa = require('koa');
-const app = new Koa();
-http.createServer(app.callback()).listen(3000);
-https.createServer(app.callback()).listen(3001);
+const http = require('http')
+const https = require('https')
+const Koa = require('koa')
+const app = new Koa()
+http.createServer(app.callback()).listen(3000)
+https.createServer(app.callback()).listen(3001)
 ```
 
 ### app.callback()
@@ -174,9 +174,7 @@ app.listen(3000)
 它等同于
 
 ```js
-app.use(someMiddleware)
-  .use(someOtherMiddleware)
-  .listen(3000)
+app.use(someMiddleware).use(someOtherMiddleware).listen(3000)
 ```
 
 参阅 [Middleware](https://github.com/koajs/koa/wiki#middleware) 获取更多信息.
@@ -190,14 +188,14 @@ app.use(someMiddleware)
 例如，以下是可以接受的：
 
 ```js
-app.keys = ['im a newer secret', 'i like turtle'];
-app.keys = new KeyGrip(['im a newer secret', 'i like turtle'], 'sha256');
+app.keys = ['im a newer secret', 'i like turtle']
+app.keys = new KeyGrip(['im a newer secret', 'i like turtle'], 'sha256')
 ```
 
 这些密钥可以倒换，并在使用 `{ signed: true }` 参数签名 Cookie 时使用。
 
 ```js
-ctx.cookies.set('name', 'tobi', { signed: true });
+ctx.cookies.set('name', 'tobi', { signed: true })
 ```
 
 ### app.context
@@ -207,11 +205,11 @@ ctx.cookies.set('name', 'tobi', { signed: true });
 例如，要从 `ctx` 添加对数据库的引用：
 
 ```js
-app.context.db = db();
+app.context.db = db()
 
-app.use(async ctx => {
-  console.log(ctx.db);
-});
+app.use(async (ctx) => {
+  console.log(ctx.db)
+})
 ```
 
 注意:
@@ -224,9 +222,9 @@ app.use(async ctx => {
 默认情况下，将所有错误输出到 stderr，除非 `app.silent` 为 `true`。 当 `err.status` 是 `404` 或 `err.expose` 是 `true` 时默认错误处理程序也不会输出错误。 要执行自定义错误处理逻辑，如集中式日志记录，您可以添加一个 “error” 事件侦听器：
 
 ```js
-app.on('error', err => {
+app.on('error', (err) => {
   log.error('server error', err)
-});
+})
 ```
 
 如果 req/res 期间出现错误，并且 _无法_ 响应客户端，`Context`实例仍然被传递：
@@ -234,7 +232,7 @@ app.on('error', err => {
 ```js
 app.on('error', (err, ctx) => {
   log.error('server error', err, ctx)
-});
+})
 ```
 
 当发生错误 _并且_ 仍然可以响应客户端时，也没有数据被写入 socket 中，Koa 将用一个 500 “内部服务器错误” 进行适当的响应。在任一情况下，为了记录目的，都会发出应用级 “错误”。
@@ -246,11 +244,11 @@ Koa Context 将 node 的 `request` 和 `response` 对象封装到单个对象中
 _每个_ 请求都将创建一个 `Context`，并在中间件中作为接收器引用，或者 `ctx` 标识符，如以下代码片段所示：
 
 ```js
-app.use(async ctx => {
-  ctx; // 这是 Context
-  ctx.request; // 这是 koa Request
-  ctx.response; // 这是 koa Response
-});
+app.use(async (ctx) => {
+  ctx // 这是 Context
+  ctx.request // 这是 koa Request
+  ctx.response // 这是 koa Response
+})
 ```
 
 为方便起见许多上下文的访问器和方法直接委托给它们的 `ctx.request`或 `ctx.response` ，不然的话它们是相同的。 例如 `ctx.type` 和 `ctx.length` 委托给 `response` 对象，`ctx.path` 和 `ctx.method` 委托给 `request`。
@@ -287,7 +285,7 @@ koa 的 `Response` 对象.
 推荐的命名空间，用于通过中间件传递信息和你的前端视图。
 
 ```js
-ctx.state.user = await User.find(id);
+ctx.state.user = await User.find(id)
 ```
 
 ### ctx.app
@@ -340,18 +338,18 @@ koa 使用传递简单参数的 [cookies](https://github.com/pillarjs/cookies) �
 允许以下组合：
 
 ```js
-ctx.throw(400);
-ctx.throw(400, 'name required');
-ctx.throw(400, 'name required', { user: user });
+ctx.throw(400)
+ctx.throw(400, 'name required')
+ctx.throw(400, 'name required', { user: user })
 ```
 
 例如 `ctx.throw(400, 'name required')` 等效于:
 
 ```js
-const err = new Error('name required');
-err.status = 400;
-err.expose = true;
-throw err;
+const err = new Error('name required')
+err.status = 400
+err.expose = true
+throw err
 ```
 
 请注意，这些是用户级错误，并用 `err.expose` 标记，这意味着消息适用于客户端响应，这通常不是错误消息的内容，因为您不想泄漏故障详细信息。
@@ -359,7 +357,7 @@ throw err;
 你可以根据需要将 `properties` 对象传递到错误中，对于装载上传给请求者的机器友好的错误是有用的。这用于修饰其人机友好型错误并向上游的请求者报告非常有用。
 
 ```js
-ctx.throw(401, 'access_denied', { user: user });
+ctx.throw(401, 'access_denied', { user: user })
 ```
 
 koa 使用 [http-errors](https://github.com/jshttp/http-errors) 来创建错误。`status` 只应作为第一个参数传递。
@@ -369,7 +367,7 @@ koa 使用 [http-errors](https://github.com/jshttp/http-errors) 来创建错误�
 当 `!value` 时抛出一个类似 `.throw` 错误的帮助方法。这与 node 的 [assert()](http://nodejs.org/api/assert.html) 方法类似.
 
 ```js
-ctx.assert(ctx.state.user, 401, 'User not found. Please login!');
+ctx.assert(ctx.state.user, 401, 'User not found. Please login!')
 ```
 
 koa 使用 [http-assert](https://github.com/jshttp/http-assert) 作为断言。
@@ -499,7 +497,7 @@ ctx.request.origin
 获取完整的请求URL，包括 `protocol`，`host` 和 `url`。
 
 ```js
-ctx.request.href;
+ctx.request.href
 // => http://example.com/foo/bar?q=1
 ```
 
@@ -548,7 +546,7 @@ ctx.request.href;
 > 译者注: 这里其实是只获取 _mime-type_, 详见[源码及其注释](https://github.com/koajs/koa/blob/eda27608f7d39ede86d7b402aae64b1867ce31c6/lib/request.js#L639)
 
 ```js
-const ct = ctx.request.type;
+const ct = ctx.request.type
 // => "image/png"
 ```
 
@@ -557,7 +555,7 @@ const ct = ctx.request.type;
 存在时获取请求字符集，或者 `undefined`：
 
 ```js
-ctx.request.charset;
+ctx.request.charset
 // => "utf-8"
 ```
 
@@ -579,7 +577,7 @@ ctx.request.charset;
 将查询字符串设置为给定对象。 请注意，此 setter _不_ 支持嵌套对象。
 
 ```js
-ctx.query = { next: '/login' };
+ctx.query = { next: '/login' }
 ```
 
 ### request.fresh
@@ -588,18 +586,18 @@ ctx.query = { next: '/login' };
 
 ```js
 // 新鲜度检查需要状态20x或304
-ctx.status = 200;
-ctx.set('ETag', '123');
+ctx.status = 200
+ctx.set('ETag', '123')
 
 // 缓存是好的
 if (ctx.fresh) {
-  ctx.status = 304;
-  return;
+  ctx.status = 304
+  return
 }
 
 // 缓存是陈旧的
 // 获取新数据
-ctx.body = await db.find('something');
+ctx.body = await db.find('something')
 ```
 
 ### request.stale
@@ -634,7 +632,7 @@ Koa 提供了两种方式来避免被绕过。
 const app = new Koa({
   proxy: true,
   proxyIpHeader: 'X-Real-IP',
-});
+})
 ```
 
 如果您确切知道服务器前面有多少个反向代理，则可以通过配置 `app.maxIpsCount` 来避免读取用户的伪造的请求头：
@@ -643,7 +641,7 @@ const app = new Koa({
 const app = new Koa({
   proxy: true,
   maxIpsCount: 1, // 服务器前只有一个代理
-});
+})
 
 // request.header['X-Forwarded-For'] === [ '127.0.0.1', '127.0.0.2' ];
 // ctx.ips === [ '127.0.0.2' ];
@@ -665,16 +663,16 @@ const app = new Koa({
 
 ```js
 // 使用 Content-Type: text/html; charset=utf-8
-ctx.is('html'); // => 'html'
-ctx.is('text/html'); // => 'text/html'
-ctx.is('text/*', 'text/html'); // => 'text/html'
+ctx.is('html') // => 'html'
+ctx.is('text/html') // => 'text/html'
+ctx.is('text/*', 'text/html') // => 'text/html'
 
 // 当 Content-Type 是 application/json 时
-ctx.is('json', 'urlencoded'); // => 'json'
-ctx.is('application/json'); // => 'application/json'
-ctx.is('html', 'application/*'); // => 'application/json'
+ctx.is('json', 'urlencoded') // => 'json'
+ctx.is('application/json') // => 'application/json'
+ctx.is('html', 'application/*') // => 'application/json'
 
-ctx.is('html'); // => false
+ctx.is('html') // => false
 ```
 
 例如，如果要确保仅将图像发送到给定路由：
@@ -683,7 +681,7 @@ ctx.is('html'); // => false
 if (ctx.is('image/*')) {
   // 处理
 } else {
-  ctx.throw(415, 'images only!');
+  ctx.throw(415, 'images only!')
 }
 ```
 
@@ -710,33 +708,33 @@ Koa 的 `request` 对象包括由 [accepts](http://github.com/expressjs/accepts)
 
 ```js
 // Accept: text/html
-ctx.accepts('html');
+ctx.accepts('html')
 // => "html"
 
 // Accept: text/*, application/json
-ctx.accepts('html');
+ctx.accepts('html')
 // => "html"
-ctx.accepts('text/html');
+ctx.accepts('text/html')
 // => "text/html"
-ctx.accepts('json', 'text');
+ctx.accepts('json', 'text')
 // => "json"
-ctx.accepts('application/json');
+ctx.accepts('application/json')
 // => "application/json"
 
 // Accept: text/*, application/json
-ctx.accepts('image/png');
-ctx.accepts('png');
+ctx.accepts('image/png')
+ctx.accepts('png')
 // => false
 
 // Accept: text/*;q=.5, application/json
-ctx.accepts(['html', 'json']);
-ctx.accepts('html', 'json');
+ctx.accepts(['html', 'json'])
+ctx.accepts('html', 'json')
 // => "json"
 
 // No Accept header
-ctx.accepts('html', 'json');
+ctx.accepts('html', 'json')
 // => "html"
-ctx.accepts('json', 'html');
+ctx.accepts('json', 'html')
 // => "json"
 ```
 
@@ -744,10 +742,14 @@ ctx.accepts('json', 'html');
 
 ```js
 switch (ctx.accepts('json', 'html', 'text')) {
-  case 'json': break;
-  case 'html': break;
-  case 'text': break;
-  default: ctx.throw(406, 'json, html, or text only');
+  case 'json':
+    break
+  case 'html':
+    break
+  case 'text':
+    break
+  default:
+    ctx.throw(406, 'json, html, or text only')
 }
 ```
 
@@ -757,10 +759,10 @@ switch (ctx.accepts('json', 'html', 'text')) {
 
 ```js
 // Accept-Encoding: gzip
-ctx.acceptsEncodings('gzip', 'deflate', 'identity');
+ctx.acceptsEncodings('gzip', 'deflate', 'identity')
 // => "gzip"
 
-ctx.acceptsEncodings(['gzip', 'deflate', 'identity']);
+ctx.acceptsEncodings(['gzip', 'deflate', 'identity'])
 // => "gzip"
 ```
 
@@ -768,7 +770,7 @@ ctx.acceptsEncodings(['gzip', 'deflate', 'identity']);
 
 ```js
 // Accept-Encoding: gzip, deflate
-ctx.acceptsEncodings();
+ctx.acceptsEncodings()
 // => ["gzip", "deflate", "identity"]
 ```
 
@@ -780,10 +782,10 @@ ctx.acceptsEncodings();
 
 ```js
 // Accept-Charset: utf-8, iso-8859-1;q=0.2, utf-7;q=0.5
-ctx.acceptsCharsets('utf-8', 'utf-7');
+ctx.acceptsCharsets('utf-8', 'utf-7')
 // => "utf-8"
 
-ctx.acceptsCharsets(['utf-7', 'utf-8']);
+ctx.acceptsCharsets(['utf-7', 'utf-8'])
 // => "utf-8"
 ```
 
@@ -791,7 +793,7 @@ ctx.acceptsCharsets(['utf-7', 'utf-8']);
 
 ```js
 // Accept-Charset: utf-8, iso-8859-1;q=0.2, utf-7;q=0.5
-ctx.acceptsCharsets();
+ctx.acceptsCharsets()
 // => ["utf-8", "utf-7", "iso-8859-1"]
 ```
 
@@ -801,10 +803,10 @@ ctx.acceptsCharsets();
 
 ```js
 // Accept-Language: en;q=0.8, es, pt
-ctx.acceptsLanguages('es', 'en');
+ctx.acceptsLanguages('es', 'en')
 // => "es"
 
-ctx.acceptsLanguages(['en', 'es']);
+ctx.acceptsLanguages(['en', 'es'])
 // => "es"
 ```
 
@@ -812,7 +814,7 @@ ctx.acceptsLanguages(['en', 'es']);
 
 ```js
 // Accept-Language: en;q=0.8, es, pt
-ctx.acceptsLanguages();
+ctx.acceptsLanguages()
 // => ["es", "pt", "en"]
 ```
 
@@ -918,10 +920,10 @@ Koa `Response` 对象是在 node 的原生响应对象之上的抽象，提供�
 由于 `response.status` 默认设置为 `404`，因此发送没有 body 且状态不同的响应的操作如下：
 
 ```js
-ctx.response.status = 200;
+ctx.response.status = 200
 
 // 或其他任何状态
-ctx.response.status = 204;
+ctx.response.status = 204
 ```
 
 ### response.message
@@ -985,11 +987,13 @@ Content-Type 默认为 `application/octet-stream`。
 以下是流错误处理的示例，而不会自动破坏流：
 
 ```js
-const PassThrough = require('stream').PassThrough;
+const PassThrough = require('stream').PassThrough
 
-app.use(async ctx => {
-  ctx.body = someHTTPStream.on('error', (err) => ctx.onerror(err)).pipe(PassThrough());
-});
+app.use(async (ctx) => {
+  ctx.body = someHTTPStream
+    .on('error', (err) => ctx.onerror(err))
+    .pipe(PassThrough())
+})
 ```
 
 #### Object
@@ -1001,7 +1005,7 @@ Content-Type 默认为 `application/json`. 这包括普通的对象 `{ foo: 'bar
 不区分大小写获取响应头字段值 `field`。
 
 ```js
-const etag = ctx.response.get('ETag');
+const etag = ctx.response.get('ETag')
 ```
 
 ### response.has(field)
@@ -1009,7 +1013,7 @@ const etag = ctx.response.get('ETag');
 如果当前在响应头中设置了由名称标识的消息头，则返回 `true`. 消息头名称匹配不区分大小写.
 
 ```js
-const rateLimited = ctx.response.has('X-RateLimit-Limit');
+const rateLimited = ctx.response.has('X-RateLimit-Limit')
 ```
 
 ### response.set(field, value)
@@ -1017,7 +1021,7 @@ const rateLimited = ctx.response.has('X-RateLimit-Limit');
 设置响应头 `field` 到 `value`:
 
 ```js
-ctx.set('Cache-Control', 'no-cache');
+ctx.set('Cache-Control', 'no-cache')
 ```
 
 ### response.append(field, value)
@@ -1025,7 +1029,7 @@ ctx.set('Cache-Control', 'no-cache');
 用值 `val` 附加额外的消息头 `field`。
 
 ```js
-ctx.append('Link', '<http://127.0.0.1/>');
+ctx.append('Link', '<http://127.0.0.1/>')
 ```
 
 ### response.set(fields)
@@ -1034,9 +1038,9 @@ ctx.append('Link', '<http://127.0.0.1/>');
 
 ```js
 ctx.set({
-  'Etag': '1234',
-  'Last-Modified': date
-});
+  Etag: '1234',
+  'Last-Modified': date,
+})
 ```
 
 这将委托给 [setHeader](https://nodejs.org/dist/latest/docs/api/http.html#http_request_setheader_name_value) ，它通过指定的键设置或更新消息头，并且不重置整个消息头。
@@ -1052,7 +1056,7 @@ ctx.set({
 > 译者注: 这里其实是只获取 _mime-type_, 详见[源码及其注释](https://github.com/koajs/koa/blob/eda27608f7d39ede86d7b402aae64b1867ce31c6/lib/response.js#L371)
 
 ```js
-const ct = ctx.type;
+const ct = ctx.type
 // => "image/png"
 ```
 
@@ -1061,10 +1065,10 @@ const ct = ctx.type;
 设置响应 `Content-Type` 通过 mime 字符串或文件扩展名。
 
 ```js
-ctx.type = 'text/plain; charset=utf-8';
-ctx.type = 'image/png';
-ctx.type = '.png';
-ctx.type = 'png';
+ctx.type = 'text/plain; charset=utf-8'
+ctx.type = 'image/png'
+ctx.type = '.png'
+ctx.type = 'png'
 ```
 
 注意: 在适当的情况下为你选择 `charset`, 比如 `response.type = 'html'` 将默认是 "utf-8". 如果你想覆盖 `charset`, 使用 `ctx.set('Content-Type', 'text/html')` 将响应头字段设置为直接值。
@@ -1076,19 +1080,19 @@ ctx.type = 'png';
 例如, 这是一个中间件，可以削减除流之外的所有HTML响应。
 
 ```js
-const minify = require('html-minifier');
+const minify = require('html-minifier')
 
 app.use(async (ctx, next) => {
-  await next();
+  await next()
 
-  if (!ctx.response.is('html')) return;
+  if (!ctx.response.is('html')) return
 
-  let body = ctx.body;
-  if (!body || body.pipe) return;
+  let body = ctx.body
+  if (!body || body.pipe) return
 
-  if (Buffer.isBuffer(body)) body = body.toString();
-  ctx.body = minify(body);
-});
+  if (Buffer.isBuffer(body)) body = body.toString()
+  ctx.body = minify(body)
+})
 ```
 
 ### response.redirect(url, [alt])
@@ -1098,18 +1102,18 @@ app.use(async (ctx, next) => {
 字符串 “back” 是特别提供 Referrer 支持的，当 Referrer 不存在时，使用 `alt` 或 “/”。
 
 ```js
-ctx.redirect('back');
-ctx.redirect('back', '/index.html');
-ctx.redirect('/login');
-ctx.redirect('http://google.com');
+ctx.redirect('back')
+ctx.redirect('back', '/index.html')
+ctx.redirect('/login')
+ctx.redirect('http://google.com')
 ```
 
 要更改 “302” 的默认状态，只需在该调用之前或之后给 `status` 赋值。要变更主体请在此调用之后:
 
 ```js
-ctx.status = 301;
-ctx.redirect('/cart');
-ctx.body = 'Redirecting to shopping cart';
+ctx.status = 301
+ctx.redirect('/cart')
+ctx.body = 'Redirecting to shopping cart'
 ```
 
 ### response.attachment([filename], [options])
@@ -1129,7 +1133,7 @@ ctx.body = 'Redirecting to shopping cart';
 将 `Last-Modified` 消息头设置为适当的 UTC 字符串。您可以将其设置为 `Date` 或日期字符串。
 
 ```js
-ctx.response.lastModified = new Date();
+ctx.response.lastModified = new Date()
 ```
 
 ### response.etag=
@@ -1137,7 +1141,7 @@ ctx.response.lastModified = new Date();
 设置包含 `"` 包裹的 ETag 响应， 请注意，没有相应的 `response.etag` getter。
 
 ```js
-ctx.response.etag = crypto.createHash('md5').update(ctx.body).digest('hex');
+ctx.response.etag = crypto.createHash('md5').update(ctx.body).digest('hex')
 ```
 
 ### response.vary(field)

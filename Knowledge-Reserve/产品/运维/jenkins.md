@@ -9,11 +9,11 @@
 > <https://www.jenkins.io/download/>
 > 端口: 8989
 > 第一次打开可能要解锁jenkins，页面如下图。在C:\ProgramData\Jenkins\.jenkins\secrets\initialAdminPassword输入框，点击继续即可进行下一步操作
-> admin  1234
+> admin 1234
 > <http://localhost:8989/jenkins>
 
 ## 使用
->
+
 > - 新建job
 > - 自定义项目空间
 > - 指定工作项目空间

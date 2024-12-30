@@ -1,7 +1,6 @@
 # canvas
 
-> [Canvas API](https://www.canvasapi.cn/CanvasRenderingContext2D/arc#&introduction)
-> [Canvas - Web API 接口参考 | MDN (mozilla.org)](https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API)
+> [Canvas API](https://www.canvasapi.cn/CanvasRenderingContext2D/arc#&introduction) > [Canvas - Web API 接口参考 | MDN (mozilla.org)](https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API)
 >
 > - 用于绘制图像, 通常用javascript绘制
 
@@ -10,19 +9,17 @@
 ### canvas表示使用
 
 ```html
-<canvas width="300" height="150">
- 不支持canvas标签会显示该内容
-</canvas>
+<canvas width="300" height="150">不支持canvas标签会显示该内容</canvas>
 ```
 
 ### canvas方法检查支持性
 
 ```js
-var canvas = document.getElementById("target")
-if ( canvas.getContext ) {
-  var ctx = canvas.getContext("2d")
-}else{
-  console.log("该浏览器版本过低, 请更换")
+var canvas = document.getElementById('target')
+if (canvas.getContext) {
+  var ctx = canvas.getContext('2d')
+} else {
+  console.log('该浏览器版本过低, 请更换')
 }
 ```
 
@@ -30,7 +27,7 @@ if ( canvas.getContext ) {
 
 ```js
 fillStyle = color
-strokeStyle = color 
+strokeStyle = color
 //color 可以为颜色值、渐变对象(并非样式！！！！)
 lineWidth  = value  线宽
 lineCap = type （butt 、 round 、square）线条末端样式   依次是方形、圆形&突出、方形&突出
@@ -69,7 +66,7 @@ ctx.globalAlpha = value (0~1)
 fillText( text , x , y , [,maxWidth]) 在(x,y)位置绘制text文本  最大宽度为maxWidth(可选)
 strokeText( text ,x ,y ,[,maxWidth]) 在(x,y)位置绘制text文本边框  最大宽度为maxWidth(可选)
 
-font = value               eg:"100px sans-serif"  
+font = value               eg:"100px sans-serif"
 ```
 
 ## 绘制图片

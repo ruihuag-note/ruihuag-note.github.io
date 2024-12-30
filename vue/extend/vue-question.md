@@ -29,11 +29,11 @@ get http://localhost:8080/sockjs-node/info?t=1462183700002 net::ERR_CONNECTION_R
 
 ```javascript
 try {
-        // self.xhr.send(payload);  //本行注释
-    } catch (e) {
-        self.emit('finish', 0, '');
-        self._cleanup(false);
-    }
+  // self.xhr.send(payload);  //本行注释
+} catch (e) {
+  self.emit('finish', 0, '')
+  self._cleanup(false)
+}
 ```
 
 3. 重启项目

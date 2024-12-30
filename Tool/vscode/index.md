@@ -19,7 +19,7 @@ New Color Theme // 颜色主题
 New Language Support // 语言支持
 New Code Snippets // 代码片段
 New Keymap // 键值映射
-New Extension Pack 
+New Extension Pack
 New Lanuage Pack(Localization) // 语言包
 New Notebook Renderer(TypeScript)
 ```

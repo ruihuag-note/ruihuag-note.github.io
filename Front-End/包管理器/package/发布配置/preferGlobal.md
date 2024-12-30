@@ -4,6 +4,6 @@
 
 ```json
 {
- "preferGlobal": true
+  "preferGlobal": true
 }
 ```

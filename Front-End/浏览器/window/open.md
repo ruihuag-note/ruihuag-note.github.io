@@ -1,7 +1,11 @@
 ## 开启一个新弹框
 
 ```js
-window.open ('page.html', 'newwindow', 'height=100, width=400, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no')
+window.open(
+  'page.html',
+  'newwindow',
+  'height=100, width=400, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no',
+)
 ```
 
 【1、最基本的弹出窗口代码】
@@ -44,6 +48,7 @@ status=no 是否显示状态栏内的信息（通常是文件已经打开），y
 【3、用函数控制弹出窗口】
 
 下面是一个完整的代码。
+
 <html>
 <head>
 <script LANGUAGE=”JavaScript”>
@@ -81,12 +86,14 @@ window.open (“page2.html”, “newwindow2″, “height=100, width=100, top=1
 }
 //–>
 </script>
+
 为避免弹出的2个窗口覆盖，用top和left控制一下弹出的位置不要相互覆盖即可 。最后用上面说过的四种方法调用即可。
 注意：2个窗口的name(newwindows和newwindow2)不要相同，或者干脆全部为空。
 
 【5、主窗口打开文件1.htm，同时弹出小窗口page.html】
 
 如下代码加入主窗口<head>区：
+
 <script language=”javascript”>
 <!–
 function openwin() {
@@ -94,6 +101,7 @@ window.open(“page.html”,””,”width=200,height=200″)
 }
 //–>
 </script>
+
 加入<body>区：
 <a href=”1.htm” οnclick=”openwin()”>open</a>即可。
 
@@ -101,10 +109,12 @@ window.open(“page.html”,””,”width=200,height=200″)
 
 下面我们再对弹出的窗口进行一些控制，效果就更好了。如果我们再将一小段 代码加入弹出的页面(注意是加入page.html的HTML中，不是主页面中)，让它10秒后自动关闭是不是更酷了？
 首先，将如下代码加入page.html文件的<head>区：
+
 <script language=”JavaScript”>
 function closeit()
 {
 setTimeout(“self.close()”,10000) //毫秒
 }
 </script>
+
 然后，再用<body οnlοad=”closeit()”> 这一句话代替page.html中原有的<BODY>这一句就可以了。(这一句话千万不要忘记写啊！这一句的作用是调用关闭窗口的代码，10秒钟后就自行关闭该窗口。)

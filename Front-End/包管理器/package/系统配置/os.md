@@ -4,6 +4,6 @@
 
 ```json
 {
- "os": ["darwin", "linux"]
+  "os": ["darwin", "linux"]
 }
 ```

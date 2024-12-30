@@ -26,7 +26,7 @@
 
 ### U/V模式
 
-> `U`模式 : `uyouyouyouyou` =>  叕
+> `U`模式 : `uyouyouyouyou` => 叕
 >
 > `V`模式 : `v1024*1024`=> 1048576
 
@@ -36,14 +36,13 @@
 
 ## 键盘锁
 
-> `win + r`  输入 `osk`
+> `win + r` 输入 `osk`
 
 ## 模式
 
 > - 卓越性能代码：
 >   - 打开powershell 输入以下指令, 然后可以去设置中找到打开
 >   - “powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61”
->
 > - 上帝模式代码：
 >   - 新建一个文件夹, 将名字命名为以下
 >   - “GodMode.{ED7BA470-8E54-465E-825C-99712043E01C}”

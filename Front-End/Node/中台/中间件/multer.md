@@ -14,7 +14,7 @@ Multer 会添加一个 `body` 对象 以及 `file` 或 `files` 对象 到 expres
 
 ```js
 var express = require('express')
-var multer  = require('multer')
+var multer = require('multer')
 var upload = multer({ dest: 'uploads/' })
 
 var app = express()
@@ -24,12 +24,19 @@ app.post('/profile', upload.single('avatar'), function (req, res, next) {
   // req.body 将具有文本域数据，如果存在的话
 })
 
-app.post('/photos/upload', upload.array('photos', 12), function (req, res, next) {
-  // req.files 是 `photos` 文件数组的信息
-  // req.body 将具有文本域数据，如果存在的话
-})
+app.post(
+  '/photos/upload',
+  upload.array('photos', 12),
+  function (req, res, next) {
+    // req.files 是 `photos` 文件数组的信息
+    // req.body 将具有文本域数据，如果存在的话
+  },
+)
 
-var cpUpload = upload.fields([{ name: 'avatar', maxCount: 1 }, { name: 'gallery', maxCount: 8 }])
+var cpUpload = upload.fields([
+  { name: 'avatar', maxCount: 1 },
+  { name: 'gallery', maxCount: 8 },
+])
 app.post('/cool-profile', cpUpload, function (req, res, next) {
   // req.files 是一个对象 (String -> Array) 键是文件名，值是文件数组
   //
@@ -46,7 +53,7 @@ app.post('/cool-profile', cpUpload, function (req, res, next) {
 ```js
 var express = require('express')
 var app = express()
-var multer  = require('multer')
+var multer = require('multer')
 var upload = multer()
 
 app.post('/profile', upload.none(), function (req, res, next) {
@@ -112,9 +119,9 @@ var upload = multer({ dest: 'uploads/' })
 Example:
 
 ```js
-[
+;[
   { name: 'avatar', maxCount: 1 },
-  { name: 'gallery', maxCount: 8 }
+  { name: 'gallery', maxCount: 8 },
 ]
 ```
 
@@ -141,7 +148,7 @@ var storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     cb(null, file.fieldname + '-' + Date.now())
-  }
+  },
 })
 
 var upload = multer({ storage: storage })
@@ -197,8 +204,7 @@ var upload = multer({ storage: storage })
 设置一个函数来控制什么文件可以上传以及什么文件应该跳过，这个函数应该看起来像这样：
 
 ```js
-function fileFilter (req, file, cb) {
-
+function fileFilter(req, file, cb) {
   // 这个函数应该调用 `cb` 用boolean值来
   // 指示是否应接受该文件
 
@@ -209,8 +215,7 @@ function fileFilter (req, file, cb) {
   cb(null, true)
 
   // 如果有问题，你可以总是这样发送一个错误:
-  cb(new Error('I don\'t have a clue!'))
-
+  cb(new Error("I don't have a clue!"))
 }
 ```
 

@@ -4,6 +4,6 @@
 
 ```json
 {
- "bugs": "https://github.com/vuejs/core/issues"
+  "bugs": "https://github.com/vuejs/core/issues"
 }
 ```

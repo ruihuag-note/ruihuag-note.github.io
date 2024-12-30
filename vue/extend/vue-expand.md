@@ -57,17 +57,24 @@ findAllRoles({ commit }) {
 在路由管理中通过 `router.beforeEach` 钩子中判断当前的路由权限是否为空，是的话则可执行获取权限路由的接口：
 
 ```javascript
-store.dispatch("getUserInfoAndAuthorityInfo").then(res => {
-  // 根据后端返回的路由权限格式转成前端路由配置格式
-  const rolesRoute = setAsyncRouterMap(res.menuList, asyncRouterMap, mainChildrenAsyncRoutes)
-  store.commit(Vue.VUEX_TYPES.ROLESROUTE, rolesRoute);
-  // 添加路由
-  router.addRoutes(rolesRoute);
-  next({ ...to })
-}).catch(() => {
-  Message.error("验证失败")
-  next('/login')
-})
+store
+  .dispatch('getUserInfoAndAuthorityInfo')
+  .then((res) => {
+    // 根据后端返回的路由权限格式转成前端路由配置格式
+    const rolesRoute = setAsyncRouterMap(
+      res.menuList,
+      asyncRouterMap,
+      mainChildrenAsyncRoutes,
+    )
+    store.commit(Vue.VUEX_TYPES.ROLESROUTE, rolesRoute)
+    // 添加路由
+    router.addRoutes(rolesRoute)
+    next({ ...to })
+  })
+  .catch(() => {
+    Message.error('验证失败')
+    next('/login')
+  })
 ```
 
 ### 常量枚举值管理
@@ -83,22 +90,22 @@ store.dispatch("getUserInfoAndAuthorityInfo").then(res => {
  * "2" 已停用 DISABLE_CODE
  */
 
-const NOTUSED_CODE = "0";
-const ENABLE_CODE = "1";
-const DISABLE_CODE = "2";
+const NOTUSED_CODE = '0'
+const ENABLE_CODE = '1'
+const DISABLE_CODE = '2'
 
 const ACCOUNT_TYPE = {
-  [NOTUSED_CODE]: "未启用",
-  [ENABLE_CODE]: "已启用",
-  [DISABLE_CODE]: "已停用"
-};
+  [NOTUSED_CODE]: '未启用',
+  [ENABLE_CODE]: '已启用',
+  [DISABLE_CODE]: '已停用',
+}
 
 export default Object.freeze({
   NOTUSED_CODE,
   ENABLE_CODE,
   DISABLE_CODE,
-  ACCOUNT_TYPE
-});
+  ACCOUNT_TYPE,
+})
 ```
 
 ### 组件设计
@@ -166,7 +173,7 @@ css: {
 本地开发服务器配置
 
 ```js
-devServer: { 
+devServer: {
     //配置开发服务器
     host: "0.0.0.0",
     //是否启用热加载，就是每次更新代码，是否需要重新刷新浏览器才能看到新代码效果
@@ -176,7 +183,7 @@ devServer: {
     //是否自动打开浏览器默认为false
     open: false,
     //配置http代理
-    proxy: { 
+    proxy: {
       "/api": { //如果ajax请求的地址是http://192.168.0.118:9999/api1那么你就可以在jajx中使用/api/api1路径,其请求路径会解析
         // http://192.168.0.118:9999/api1，当然你在浏览器上开到的还是http://localhost:8080/api/api1;
         target: "http://192.168.0.118:9999",
@@ -216,7 +223,7 @@ devServer: {
 是一个函数，会接收一个基于 webpack-chain 的 ChainableConfig 实例。允许对内部的 webpack 配置进行更细粒度的修改。例如：
 
 ```js
-chainWebpack(config) { 
+chainWebpack(config) {
 //添加一个路径别名 假设有在assets/img/menu/目录下有十张图片，如果全路径require("/assets/img/menu/img1.png")
 //去引入在不同的层级下实在是太不方便了，这时候向下方一样定义一个路劲别名就很实用了
     config.resolve.alias
@@ -315,12 +322,12 @@ export default class HelloWorld extends Vue {
   export default {
  name: 'helloWorld',
 }
-</script> 
+</script>
 ```
 
 #### 引入组件
 
-````javascript
+```javascript
 //typescript
 <template>
   <div class="main">
@@ -354,9 +361,9 @@ export default class HelloWorld extends Vue{
     components : {
       Project
     }
-  } 
+  }
 </script>
-````
+```
 
 #### Data, props, computed, methods, watchers, emit
 
@@ -373,7 +380,7 @@ export default class HelloWorld extends Vue{
       age : '23',
     },
     {
-      name : 'ruihua', 
+      name : 'ruihua',
       age : '30',
     }
   ]
@@ -390,7 +397,7 @@ export default {
           age : '23',
         },
         {
-          name : 'ruihua', 
+          name : 'ruihua',
           age : '30'
         }
       ]
@@ -430,7 +437,7 @@ props:{
     type: String,
     default: 'Developer'
   }
-    
+
 }
 ```
 
@@ -458,7 +465,7 @@ export default{
 export default{
  fullName() {
     get: function(){
-     return this.firstName + '' + this.lastName  
+     return this.firstName + '' + this.lastName
     }
    set: function( newValue ){
       let names = newValue.split(' ')
@@ -504,8 +511,8 @@ nameChange(newVal: string){
   this.name = newVal
 }
 
-@Watch('project', { 
-  immediate: true, deep: true 
+@Watch('project', {
+  immediate: true, deep: true
 })
 projectChanged(newVal: Person, oldVal: Person) {
   // do something

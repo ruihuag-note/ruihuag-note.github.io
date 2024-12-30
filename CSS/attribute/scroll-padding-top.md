@@ -5,23 +5,23 @@
 ```html
 <header>
   <div>
-  <h1>Some website</h1>
-  <nav>
-  <ul>
-    <li>
-      <a href="#section-first">Section 1</a>
-    </li>
+    <h1>Some website</h1>
+    <nav>
+      <ul>
         <li>
-      <a href="#section-second">Section 2</a>
-    </li>
-            <li>
-      <a href="#section-third">Section 3</a>
-    </li>
-            <li>
-      <a href="#section-fourth">Section 4</a>
-    </li>
-  </ul>
-  </nav>
+          <a href="#section-first">Section 1</a>
+        </li>
+        <li>
+          <a href="#section-second">Section 2</a>
+        </li>
+        <li>
+          <a href="#section-third">Section 3</a>
+        </li>
+        <li>
+          <a href="#section-fourth">Section 4</a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </header>
 
@@ -29,36 +29,62 @@
   <section id="section-first">
     <h2>Lorem ipsum title 1</h2>
     <article>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ullamcorper, massa eu rhoncus porttitor, enim dui scelerisque augue, sed eleifend quam dolor rhoncus dolor. Nunc sit amet ornare mi, eu vestibulum lectus. Mauris ac ultricies felis. Praesent ut orci vestibulum, tincidunt purus in, malesuada elit. Phasellus tempor dolor at accumsan suscipit. Maecenas efficitur hendrerit enim id pellentesque. Nunc placerat nibh sit amet malesuada vestibulum. Ut scelerisque sit amet velit in mattis. Mauris erat augue, eleifend nec posuere nec, vehicula vitae nibh. In hac habitasse platea dictumst.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+      ullamcorper, massa eu rhoncus porttitor, enim dui scelerisque augue, sed
+      eleifend quam dolor rhoncus dolor. Nunc sit amet ornare mi, eu vestibulum
+      lectus. Mauris ac ultricies felis. Praesent ut orci vestibulum, tincidunt
+      purus in, malesuada elit. Phasellus tempor dolor at accumsan suscipit.
+      Maecenas efficitur hendrerit enim id pellentesque. Nunc placerat nibh sit
+      amet malesuada vestibulum. Ut scelerisque sit amet velit in mattis. Mauris
+      erat augue, eleifend nec posuere nec, vehicula vitae nibh. In hac
+      habitasse platea dictumst.
     </article>
-    
   </section>
-    <section id="section-second">
+  <section id="section-second">
     <h2>Lorem ipsum title 2</h2>
     <article>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ullamcorper, massa eu rhoncus porttitor, enim dui scelerisque augue, sed eleifend quam dolor rhoncus dolor. Nunc sit amet ornare mi, eu vestibulum lectus. Mauris ac ultricies felis. Praesent ut orci vestibulum, tincidunt purus in, malesuada elit. Phasellus tempor dolor at accumsan suscipit. Maecenas efficitur hendrerit enim id pellentesque. Nunc placerat nibh sit amet malesuada vestibulum. Ut scelerisque sit amet velit in mattis. Mauris erat augue, eleifend nec posuere nec, vehicula vitae nibh. In hac habitasse platea dictumst.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+      ullamcorper, massa eu rhoncus porttitor, enim dui scelerisque augue, sed
+      eleifend quam dolor rhoncus dolor. Nunc sit amet ornare mi, eu vestibulum
+      lectus. Mauris ac ultricies felis. Praesent ut orci vestibulum, tincidunt
+      purus in, malesuada elit. Phasellus tempor dolor at accumsan suscipit.
+      Maecenas efficitur hendrerit enim id pellentesque. Nunc placerat nibh sit
+      amet malesuada vestibulum. Ut scelerisque sit amet velit in mattis. Mauris
+      erat augue, eleifend nec posuere nec, vehicula vitae nibh. In hac
+      habitasse platea dictumst.
     </article>
-    
   </section>
-    <section id="section-third">
+  <section id="section-third">
     <h2>Lorem ipsum title 3</h2>
     <article>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ullamcorper, massa eu rhoncus porttitor, enim dui scelerisque augue, sed eleifend quam dolor rhoncus dolor. Nunc sit amet ornare mi, eu vestibulum lectus. Mauris ac ultricies felis. Praesent ut orci vestibulum, tincidunt purus in, malesuada elit. Phasellus tempor dolor at accumsan suscipit. Maecenas efficitur hendrerit enim id pellentesque. Nunc placerat nibh sit amet malesuada vestibulum. Ut scelerisque sit amet velit in mattis. Mauris erat augue, eleifend nec posuere nec, vehicula vitae nibh. In hac habitasse platea dictumst.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+      ullamcorper, massa eu rhoncus porttitor, enim dui scelerisque augue, sed
+      eleifend quam dolor rhoncus dolor. Nunc sit amet ornare mi, eu vestibulum
+      lectus. Mauris ac ultricies felis. Praesent ut orci vestibulum, tincidunt
+      purus in, malesuada elit. Phasellus tempor dolor at accumsan suscipit.
+      Maecenas efficitur hendrerit enim id pellentesque. Nunc placerat nibh sit
+      amet malesuada vestibulum. Ut scelerisque sit amet velit in mattis. Mauris
+      erat augue, eleifend nec posuere nec, vehicula vitae nibh. In hac
+      habitasse platea dictumst.
     </article>
-    
   </section>
-    <section id="section-fourth">
+  <section id="section-fourth">
     <h2>Lorem ipsum title 4</h2>
     <article>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ullamcorper, massa eu rhoncus porttitor, enim dui scelerisque augue, sed eleifend quam dolor rhoncus dolor. Nunc sit amet ornare mi, eu vestibulum lectus. Mauris ac ultricies felis. Praesent ut orci vestibulum, tincidunt purus in, malesuada elit. Phasellus tempor dolor at accumsan suscipit. Maecenas efficitur hendrerit enim id pellentesque. Nunc placerat nibh sit amet malesuada vestibulum. Ut scelerisque sit amet velit in mattis. Mauris erat augue, eleifend nec posuere nec, vehicula vitae nibh. In hac habitasse platea dictumst.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+      ullamcorper, massa eu rhoncus porttitor, enim dui scelerisque augue, sed
+      eleifend quam dolor rhoncus dolor. Nunc sit amet ornare mi, eu vestibulum
+      lectus. Mauris ac ultricies felis. Praesent ut orci vestibulum, tincidunt
+      purus in, malesuada elit. Phasellus tempor dolor at accumsan suscipit.
+      Maecenas efficitur hendrerit enim id pellentesque. Nunc placerat nibh sit
+      amet malesuada vestibulum. Ut scelerisque sit amet velit in mattis. Mauris
+      erat augue, eleifend nec posuere nec, vehicula vitae nibh. In hac
+      habitasse platea dictumst.
     </article>
-    
   </section>
 </main>
 
-<footer>
-  Footer
-</footer>
+<footer>Footer</footer>
 ```
 
 ```css

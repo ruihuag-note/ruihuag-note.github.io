@@ -6,21 +6,24 @@
 
 ```html
 <aside class="success">
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor tellus ac tempus sollicitudin. Mauris quam eros, viverra eget pulvinar at, scelerisque non velit.
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor tellus
+  ac tempus sollicitudin. Mauris quam eros, viverra eget pulvinar at,
+  scelerisque non velit.
 </aside>
 
 <aside class="warning">
-Vestibulum dapibus, libero non venenatis suscipit, elit libero scelerisque odio, nec laoreet ipsum sem sed nibh. Nulla facilisi.  
+  Vestibulum dapibus, libero non venenatis suscipit, elit libero scelerisque
+  odio, nec laoreet ipsum sem sed nibh. Nulla facilisi.
 </aside>
 
 <aside class="error">
-Vivamus rhoncus dignissim diam, id dictum lorem tincidunt sit amet. Cras et eros urna. Proin pulvinar enim a congue porttitor.
+  Vivamus rhoncus dignissim diam, id dictum lorem tincidunt sit amet. Cras et
+  eros urna. Proin pulvinar enim a congue porttitor.
 </aside>
 ```
 
 ```css
-<style>
- aside {
+<style > aside {
   border-left: 5px solid currentColor;
   box-shadow: 5px 5px 10px currentColor;
   margin-bottom: 20px;

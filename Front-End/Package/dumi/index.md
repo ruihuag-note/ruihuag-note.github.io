@@ -62,21 +62,21 @@ $ npm start
 
 举几个例子方便理解：
 
-| 磁盘路径| 解析结果 |
-|:----|:----|
-| `/path/to/.dumi/pages/hello.tsx`  | - 导航：Hello <br/> - 页面路由：/hello |
-| `/path/to/docs/hello.md` | - 导航：Hello<br/> - 页面路由：/hello|
-| `/path/to/docs/hello/index.md` | - 导航：Hello <br/> - 页面路由：/hello |
-| `/path/to/docs/hello/world/dumi.md` | - 导航：Hello <br/> - 页面路由：`/hello/world/dumi` |
-| `/path/to/src/hello.md` | - 导航：`Components` <br/> - 页面路由：`/components/hello` |
-| `/path/to/src/hello/index.md` | - 导航：`Components` <br/> - 页面路由：`/components/hello` |
-| `/path/to/src/hello/world.md` | 不识别 |
-| `/path/to/src/hello/another/world.md` | 不识别 |
+| 磁盘路径                              | 解析结果                                                   |
+| :------------------------------------ | :--------------------------------------------------------- |
+| `/path/to/.dumi/pages/hello.tsx`      | - 导航：Hello <br/> - 页面路由：/hello                     |
+| `/path/to/docs/hello.md`              | - 导航：Hello<br/> - 页面路由：/hello                      |
+| `/path/to/docs/hello/index.md`        | - 导航：Hello <br/> - 页面路由：/hello                     |
+| `/path/to/docs/hello/world/dumi.md`   | - 导航：Hello <br/> - 页面路由：`/hello/world/dumi`        |
+| `/path/to/src/hello.md`               | - 导航：`Components` <br/> - 页面路由：`/components/hello` |
+| `/path/to/src/hello/index.md`         | - 导航：`Components` <br/> - 页面路由：`/components/hello` |
+| `/path/to/src/hello/world.md`         | 不识别                                                     |
+| `/path/to/src/hello/another/world.md` | 不识别                                                     |
 
 除此之外，以下内容也不会被识别：
 
 - 以 . 开头的目录及文档
-- 以 _ 开头的目录及文档
+- 以 \_ 开头的目录及文档
 
 ### 自定义导航、分组和标题
 

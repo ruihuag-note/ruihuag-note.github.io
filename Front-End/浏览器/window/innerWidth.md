@@ -21,14 +21,14 @@ let intViewportWidth = window.innerWidth
 
 ```js
 // 返回视口的宽度
-var intFrameWidth = window.innerWidth;
+var intFrameWidth = window.innerWidth
 
 // 返回一个框架集内的框架的视口宽度
-var intFrameWidth = self.innerWidth;
+var intFrameWidth = self.innerWidth
 
 // 返回最近的父级框架集的视口宽度
-var intFramesetWidth = parent.innerWidth;
+var intFramesetWidth = parent.innerWidth
 
 // 返回最外层框架集的视口宽度
-var intOuterFramesetWidth = top.innerWidth;
+var intOuterFramesetWidth = top.innerWidth
 ```

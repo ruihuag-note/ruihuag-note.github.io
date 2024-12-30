@@ -9,6 +9,7 @@
 > 首先，需要安装 eslint-webpack-plugin：
 
 `npm install eslint-webpack-plugin --save-dev`
+
 > 注意: 如果未安装 eslint >= 7 ，你还需先通过 npm 安装：
 
 `npm install eslint --save-dev`
@@ -16,14 +17,13 @@
 然后把插件添加到你的 webpack 配置。例如：
 
 ```js
-
-const ESLintPlugin = require('eslint-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin')
 
 module.exports = {
   // ...
   plugins: [new ESLintPlugin(options)],
   // ...
-};
+}
 ```
 
 ## 选项

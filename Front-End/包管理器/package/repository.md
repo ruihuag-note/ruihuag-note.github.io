@@ -6,10 +6,10 @@
 {
   "repository": "https://github.com/facebook/react.git",
   // or
- "repository": {
-  "type": "git",
-  "url": "https://github.com/facebook/react.git",
-  "directory": "packages/react"
- }
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/facebook/react.git",
+    "directory": "packages/react"
+  }
 }
 ```

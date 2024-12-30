@@ -11,9 +11,9 @@ frameList = window.frames
 - 在 window.frames 类数组中的每一项都代表了窗口对应给定对象的`<frame>`或`<iframe>`的内容，而不是 `(i)frame DOM` 元素（即 `window.frames[0]` 与 `document.getElementsByTagName["iframe"](0).contentWindow` 是相同的）
 
 ```js
-var frames = window.frames; // 或 // var frames = window.parent.frames;
+var frames = window.frames // 或 // var frames = window.parent.frames;
 for (var i = 0; i < frames.length; i++) {
   // 在这对 frames 的一个 frame 做点什么
-  frames[i].document.body.style.background = "red";
+  frames[i].document.body.style.background = 'red'
 }
 ```

@@ -16,7 +16,7 @@
 
 ```java
 private string name；
-private string pass; 
+private string pass;
 private string age;
 ```
 

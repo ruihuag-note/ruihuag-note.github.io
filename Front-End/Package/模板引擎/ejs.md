@@ -10,7 +10,6 @@
 > - JavaScript 中间结果静态缓存
 > - 模板静态缓存
 > - 兼容 [Express](http://expressjs.com/) 视图系统
->
 
 ## 入门
 
@@ -26,8 +25,8 @@ npm install ejs
 
 ```javascript
 let ejs = require('ejs'),
-    people = ['geddy', 'neil', 'alex'],
-    html = ejs.render('<%= people.join(", "); %>', {people: people});
+  people = ['geddy', 'neil', 'alex'],
+  html = ejs.render('<%= people.join(", "); %>', { people: people })
 ```
 
 ### 浏览器支持
@@ -55,16 +54,16 @@ let ejs = require('ejs'),
 ### 用法
 
 ```javascript
-let template = ejs.compile(str, options);
-template(data);
+let template = ejs.compile(str, options)
+template(data)
 // => 输出渲染后的 HTML 字符串
 
-ejs.render(str, data, options);
+ejs.render(str, data, options)
 // => 输出渲染后的 HTML 字符串
 
-ejs.renderFile(filename, data, options, function(err, str){
-    // str => 输出渲染后的 HTML 字符串
-});
+ejs.renderFile(filename, data, options, function (err, str) {
+  // str => 输出渲染后的 HTML 字符串
+})
 ```
 
 ### 参数
@@ -115,16 +114,15 @@ ejs.renderFile(filename, data, options, function(err, str){
 
 ```javascript
 let ejs = require('ejs'),
-    users = ['geddy', 'neil', 'alex'];
+  users = ['geddy', 'neil', 'alex']
 
 // 单个模板文件
-ejs.render('<?= users.join(" | "); ?>', {users: users},
-    {delimiter: '?'});
+ejs.render('<?= users.join(" | "); ?>', { users: users }, { delimiter: '?' })
 // => 'geddy | neil | alex'
 
 // 全局
-ejs.delimiter = '$';
-ejs.render('<$= users.join(" | "); $>', {users: users});
+ejs.delimiter = '$'
+ejs.render('<$= users.join(" | "); $>', { users: users })
 // => 'geddy | neil | alex'
 ```
 
@@ -134,8 +132,8 @@ EJS 附带了一个基本的进程内缓存，用于缓在渲染模板过程中�
 
 ```javascript
 let ejs = require('ejs'),
-    LRU = require('lru-cache');
-ejs.cache = LRU(100); // 具有 100 条内容限制的 LRU 缓存
+  LRU = require('lru-cache')
+ejs.cache = LRU(100) // 具有 100 条内容限制的 LRU 缓存
 ```
 
 如果要清除 EJS 缓存，调用 `ejs.clearCache` 即可。如果你正在使用的是 LRU 缓存并且需要设置不同的限额，则只需要将 `ejs.cache` 重置为 一个新的 LRU 实例即可。
@@ -145,12 +143,12 @@ ejs.cache = LRU(100); // 具有 100 条内容限制的 LRU 缓存
 默认的文件加载器是 `fs.readFileSync`，如果你想要的自定义它, 设置`ejs.fileLoader` 即可。
 
 ```javascript
-let ejs = require('ejs');
+let ejs = require('ejs')
 let myFileLoader = function (filePath) {
-  return 'myFileLoader: ' + fs.readFileSync(filePath);
-};
+  return 'myFileLoader: ' + fs.readFileSync(filePath)
+}
 
-ejs.fileLoader = myFileLoad;
+ejs.fileLoader = myFileLoad
 ```
 
 使用此功能，您可以在读取模板之前对其进行预处理。
@@ -200,41 +198,41 @@ EJS 并未对块（blocks）提供专门的支持，但是可以通过 包含页
 
 ```javascript
 let str = "Hello <%= include('file', {person: 'John'}); %>",
-      fn = ejs.compile(str, {client: true});
+  fn = ejs.compile(str, { client: true })
 
-fn(data, null, function(path, d){ // include callback
+fn(data, null, function (path, d) {
+  // include callback
   // path -> 'file'
   // d -> {person: 'John'}
   // Put your code here
   // Return the contents of file as a string
-}); // returns rendered string
+}) // returns rendered string
 ```
 
 ### 在 Express 中使用 EJS
 
 ```javascript
-let express = require('express');
-let app = express();
+let express = require('express')
+let app = express()
 
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs')
 // 配置选项
-app.set('view options', {delimiter: '?'});
-
+app.set('view options', { delimiter: '?' })
 
 app.get('/', (req, res) => {
-  res.render('index', {foo: 'FOO'});
-});
+  res.render('index', { foo: 'FOO' })
+})
 
-app.listen(4000, () => console.log('Example app listening on port 4000!'));
+app.listen(4000, () => console.log('Example app listening on port 4000!'))
 ```
 
 #### 自定义渲染功能
 
 ```js
-let ejsOptions = {delimiter: '?'};
+let ejsOptions = { delimiter: '?' }
 app.engine('ejs', (path, data, cb) => {
-  ejs.renderFile(path, data, ejsOptions, cb);
-});
+  ejs.renderFile(path, data, ejsOptions, cb)
+})
 ```
 
 #### 应用程序局部变量
@@ -253,14 +251,14 @@ app.locals.delimiter = '?'
 
 ```js
 app.get('/', (req, res) => {
-  res.render('index', {foo: 'FOO', delimiter: '?'});
-});
+  res.render('index', { foo: 'FOO', delimiter: '?' })
+})
 ```
 
 此方法意味着您必须在每个渲染调用中传递 EJS 选项，并且不能使用不安全的选项，如 。`root`
 
 ```js
-app.get("/", function(request, response){
-   response.render("index.ejs", {list: "lists"});
-});
+app.get('/', function (request, response) {
+  response.render('index.ejs', { list: 'lists' })
+})
 ```

@@ -66,7 +66,6 @@ background-color: unset;
   background-color: lightSkyBlue;
   background-position: -60px -20px;
 }
-
 ```
 
 > `background-image`的绘制方向在Z轴上堆叠方式，先指定的图像会在后指定图像上面
@@ -100,14 +99,14 @@ background-color: unset;
   - `left`、`right`指定图片放置于X轴的左右边缘
   - `top`、`bottom`指定图片放置于Y轴的上下边缘
 - length 数值+ 'px'，指定相对于X,Y坐标的位置
-- percentage  百比分，指定相对于X,Y坐标的位置
+- percentage 百比分，指定相对于X,Y坐标的位置
 
 #### 值个数
 
 - 关键字取单个值，另外一个位置默认为 center
 - length、percentage取一个值 当前值同时指定X轴与Y轴的坐标
 - length、percentage取两个值，第一个值定义X轴的方向、第二值定义Y轴的方向
-- 四个值 position: bottom 10px right 20px;  关键字定义位置，length/percentage定义距离
+- 四个值 position: bottom 10px right 20px; 关键字定义位置，length/percentage定义距离
 
 #### 扩展
 
@@ -118,8 +117,8 @@ background-color: unset;
   百分比值的偏移指定图片的相对位置和容器相对位置重合。值0%表示图片的(左上)边界与容器(左上)边界重合，值100%代表图片的右边界（或下边界）和容器的右边界（或下边界）重合。值50%则代表图片的中点和容器的中点重合。
 
 percentage公式：
-  `(container width - image width) * (position x%) = (x offset value)`
-  `(container height - image height) * (position y%) = (y offset value)`  
+ `(container width - image width) * (position x%) = (x offset value)`
+ `(container height - image height) * (position y%) = (y offset value)`  
 
 ![img](https://user-gold-cdn.xitu.io/2020/3/20/170f5c2c5723acd3?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
@@ -172,16 +171,16 @@ percentage公式：
 
   `background-repeat`属性定义背景图像的重复方式。背景图像可以沿着水平轴，垂直轴，两个轴重复，或者根本不重复。
 
-| 属性      | 定义                                                         |
-| :-------- | :----------------------------------------------------------- |
-| repeat    | 图像会按需**重复来覆盖整个背景图片所在的区域**. 最后一个图像会被裁剪, 如果它的大小不合适的话. repeat-x、repeat-y指定单方向重复 |
+| 属性      | 定义                                                                                                                                                                                                                                                                            |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| repeat    | 图像会按需**重复来覆盖整个背景图片所在的区域**. 最后一个图像会被裁剪, 如果它的大小不合适的话. repeat-x、repeat-y指定单方向重复                                                                                                                                                  |
 | space     | 图像会尽可能得重复, 但是不会裁剪. 第一个和最后一个图像会被固定在元素(element)的相应的边上, 同时空白会均匀地分布在图像之间. background-position属性会被忽视, 除非只有一个图像能被无裁剪地显示. 只在一种情况下裁剪会发生, 那就是图像太大了以至于没有足够的空间来完整显示一个图像. |
-| round     | 随着允许的空间在尺寸上的增长, 被重复的图像将会伸展(没有空隙), 直到有足够的空间来添加一个图像. 当下一个图像被添加后, 所有的当前的图像会被压缩来腾出空间. 例如, 一个图像原始大小是260px, 重复三次之后, 可能会被伸展到300px, 直到另一个图像被加进来. 这样他们就可能被压缩到225px. |
-| no-repeat | 图像不会被重复(因为背景图像所在的区域将可能没有完全被覆盖). 那个没有被重复的背景图像的位置是由background-position属性来决定. |
+| round     | 随着允许的空间在尺寸上的增长, 被重复的图像将会伸展(没有空隙), 直到有足够的空间来添加一个图像. 当下一个图像被添加后, 所有的当前的图像会被压缩来腾出空间. 例如, 一个图像原始大小是260px, 重复三次之后, 可能会被伸展到300px, 直到另一个图像被加进来. 这样他们就可能被压缩到225px.  |
+| no-repeat | 图像不会被重复(因为背景图像所在的区域将可能没有完全被覆盖). 那个没有被重复的背景图像的位置是由background-position属性来决定.                                                                                                                                                    |
 
 | <img src="https://user-gold-cdn.xitu.io/2020/3/20/170f60a5313a224c?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="round" style="zoom: 33%;" /> | <img src="https://user-gold-cdn.xitu.io/2020/3/20/170f609015dc74b3?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="space" style="zoom: 33%;" /> |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-|                                                              |                                                              |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|                                                                                                                                                            |                                                                                                                                                            |
 
 ### background-attachment
 
@@ -256,8 +255,11 @@ percentage公式：
   height: 580px;
   border: 1px solid yellowgreen;
   text-align: center;
-  background: url(https://user-gold-cdn.xitu.io/2020/3/20/170f5f4c42de2970?w=672&h=299&f=png&s=146779) 0px 0px,
-              url(https://user-gold-cdn.xitu.io/2020/3/19/170f20b3c106f518?w=642&h=339&f=png&s=107259) 0px 250px;
+  background:
+    url(https://user-gold-cdn.xitu.io/2020/3/20/170f5f4c42de2970?w=672&h=299&f=png&s=146779)
+      0px 0px,
+    url(https://user-gold-cdn.xitu.io/2020/3/19/170f20b3c106f518?w=642&h=339&f=png&s=107259)
+      0px 250px;
   background-size: contain 250px;
   background-repeat: no-repeat;
 }
@@ -267,7 +269,7 @@ percentage公式：
   line-height: 200px;
   margin: 30px auto;
   text-align: center;
-  background-color: rgba(0,0,0, .8);
+  background-color: rgba(0, 0, 0, 0.8);
   color: #fff;
 }
 ```
@@ -295,7 +297,8 @@ body {
 
 ```css
 body {
-  background-image: url(https://image.flaticon.com/icons/svg/748/748122.svg), url(https://images.unsplash.com/photo-1478719059408-592965723cbc?ixlib=rb-1.2.1&auto=format&fit=crop&w=2212&q=80);
+  background-image: url(https://image.flaticon.com/icons/svg/748/748122.svg),
+    url(https://images.unsplash.com/photo-1478719059408-592965723cbc?ixlib=rb-1.2.1&auto=format&fit=crop&w=2212&q=80);
   background-position: center, top;
   background-repeat: repeat, no-repeat;
   background-size: contain, cover;
@@ -332,13 +335,13 @@ div {
 }
 
 .day {
-  background-image: url("https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2613&q=80");
+  background-image: url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2613&q=80');
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 .night {
-  background-image: url("https://images.unsplash.com/photo-1493540447904-49763eecf55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80");
+  background-image: url('https://images.unsplash.com/photo-1493540447904-49763eecf55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80');
   background-size: cover;
   background-repeat: no-repeat;
   clip-path: polygon(100vw 0, 0% 0vh, 100vw 100vh);
@@ -365,13 +368,17 @@ div {
 
 ```css
 body {
-  background-image: 
-    linear-gradient(4deg, rgba(38,8,31,0.75) 30%, rgba(213,49,127,0.3) 45%, rgba(232,120,12,0.3) 100%),
-    url("https://images.unsplash.com/photo-1503803548695-c2a7b4a5b875?ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80");
+  background-image: linear-gradient(
+      4deg,
+      rgba(38, 8, 31, 0.75) 30%,
+      rgba(213, 49, 127, 0.3) 45%,
+      rgba(232, 120, 12, 0.3) 100%
+    ),
+    url('https://images.unsplash.com/photo-1503803548695-c2a7b4a5b875?ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center
+  background-position: center;
 }
 ```
 
@@ -382,20 +389,20 @@ body {
 ```css
 @keyframes background-overlay-animation {
   0%   {
-      background-image: 
+      background-image:
         linear-gradient(4deg, rgba(255,78,36,0.3) 50%, rgba(255,78,36,0.3) 100%), url("https://images.unsplash.com/photo-1559310589-2673bfe16970?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80");
   }
   25%  {
-      background-image: 
+      background-image:
          linear-gradient(4deg, rgba(213,49,127,0.3) 50%, rgba(213,49,127,0.3) 100%), url("https://images.unsplash.com/photo-1559310589-2673bfe16970?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80");
   }
   50%  {
-    background-image: 
+    background-image:
        linear-gradient(4deg, rgba(36,182,255,0.3) 50%, rgba(36,182,255,1) 100%),
      url("https://images.unsplash.com/photo-1559310589-2673bfe16970?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80");
   }
   100% {
-    background-image: 
+    background-image:
         linear-gradient(4deg, rgba(0,255,254,0.3) 50%, rgba(0,255,254,0.3) 100%),
         url("https://images.unsplash.com/photo-1559310589-2673bfe16970?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80");
   }
@@ -403,24 +410,24 @@ body {
 
 @-webkit-keyframes background-overlay-animation {
   0%   {
-      background-image: 
+      background-image:
         linear-gradient(4deg, rgba(255,78,36,0.3) 50%, rgba(255,78,36,0.3) 100%)
         url("https://images.unsplash.com/photo-1559310589-2673bfe16970?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80");
   }
   25%  {
-      background-image: 
+      background-image:
          linear-gradient(4deg, rgba(213,49,127,0.3) 50%, rgba(213,49,127,0.3) 100%),
         url("https://images.unsplash.com/photo-1559310589-2673bfe16970?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80");
   }
   50%  {
-    background-image: 
+    background-image:
        linear-gradient(4deg, rgba(36,182,255,0.3) 50%, rgba(36,182,255,1) 100%),
      url("https://images.unsplash.com/photo-1559310589-2673bfe16970?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80");
   }
   100% {
-    background-image: 
+    background-image:
         linear-gradient(4deg, rgba(0,255,254,0.3) 50%, rgba(0,255,254,0.3) 100%),
-  
+
 ```
 
 ![图片描述](https://segmentfault.com/img/bVbHhtY)
@@ -431,44 +438,44 @@ body {
 
 ```html
 <body>
-<div class="container">
-  <div class="item_img"></div>
-  <div class="item"></div>
-  <div class="item_img"></div>
-  <div class="item"></div>
-  <div class="item"></div>
-  <div class="item_img"></div>
-  <div class="item"></div>
-  <div class="item_img"></div>
-  <div class="item"></div>
-  <div class="item"></div>
-  <div class="item_img"></div>
-  <div class="item"></div>
-  <div class="item_img"></div>
-  <div class="item"></div>
-  <div class="item_img"></div>
-  <div class="item"></div>
-</div>
+  <div class="container">
+    <div class="item_img"></div>
+    <div class="item"></div>
+    <div class="item_img"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item_img"></div>
+    <div class="item"></div>
+    <div class="item_img"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item_img"></div>
+    <div class="item"></div>
+    <div class="item_img"></div>
+    <div class="item"></div>
+    <div class="item_img"></div>
+    <div class="item"></div>
+  </div>
 </body>
 ```
 
 ```scss
 body {
- margin: 0;
+  margin: 0;
   padding: 0;
 }
 
 .container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: black;
-    display: grid;
-    grid-template-columns: 25fr 30fr 40fr 15fr;
-    grid-template-rows: 20fr 45fr 5fr 30fr;
-    grid-gap: 20px;
-    .item_img {
-      background-image: url('https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2207&q=80');
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: grid;
+  grid-template-columns: 25fr 30fr 40fr 15fr;
+  grid-template-rows: 20fr 45fr 5fr 30fr;
+  grid-gap: 20px;
+  .item_img {
+    background-image: url('https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2207&q=80');
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
@@ -481,7 +488,7 @@ body {
 
 ### 将背景图像设置为文本颜色
 
-使用`background-image`与` background-clip `，可以实现背景图像对文字的优美效果。 在某些情况下，它可能非常有用，尤其是当我们想创建一个较大的文本标题而又不如普通颜色那么枯燥的情况。
+使用`background-image`与`background-clip`，可以实现背景图像对文字的优美效果。 在某些情况下，它可能非常有用，尤其是当我们想创建一个较大的文本标题而又不如普通颜色那么枯燥的情况。
 
 ![图片描述](https://segmentfault.com/img/bVbHhuz)
 
@@ -501,11 +508,11 @@ body {
   text-align: center;
   min-height: 100vh;
   font-size: 120px;
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 h1 {
-   background-image: url("https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2600&q=80");
+  background-image: url('https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2600&q=80');
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;

@@ -7,9 +7,10 @@ BoxGeometry是四边形的原始几何类，它通常使用构造函数所提供
 ## 代码示例
 
 ```js
-const geometry = new THREE.BoxGeometry( 1, 1, 1 ); 
-const material = new THREE.MeshBasicMaterial( {color: 0x00ff00} ); 
-const cube = new THREE.Mesh( geometry, material ); scene.add( cube );
+const geometry = new THREE.BoxGeometry(1, 1, 1)
+const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
+const cube = new THREE.Mesh(geometry, material)
+scene.add(cube)
 ```
 
 ## 构造器
@@ -34,9 +35,9 @@ const cube = new THREE.Mesh( geometry, material ); scene.add( cube );
 使用上面的示例代码来作为基础：
 
 ```js
-geometry.parameters; // outputs an object {width: 1, height: 1, depth: 1, widthSegments: undefined, heightSegments: undefined}  
-cube.geometry.parameters; // as above  
-cube.geometry.parameters.width; // === 1  
+geometry.parameters // outputs an object {width: 1, height: 1, depth: 1, widthSegments: undefined, heightSegments: undefined}
+cube.geometry.parameters // as above
+cube.geometry.parameters.width // === 1
 cube.geometry.parameters.widthSegments // === undefined.
 ```
 

@@ -9,10 +9,9 @@ var frameEl = window.frameElement
 ## example
 
 ```js
-var frameEl = window.frameElement;
+var frameEl = window.frameElement
 // 如果当前窗口被包含在一个框架里面，则将该框架的地址跳到'http://mozilla.org/'
-if (frameEl)
-  frameEl.src = 'http://mozilla.org/';
+if (frameEl) frameEl.src = 'http://mozilla.org/'
 ```
 
 > 虽然该属性名为frameElement,但该属性也会返回其他类型比如 `<object>` 或者其他可嵌入窗口的元素

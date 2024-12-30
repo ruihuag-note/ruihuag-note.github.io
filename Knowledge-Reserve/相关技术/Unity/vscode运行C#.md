@@ -72,8 +72,7 @@ dotnet new console -o D:\study\NetCore
 
 1. 打开VS Code, 定位到你想要的文件夹 D:\study\NetCore\MVC
 
-![](/__assets__/img/2021-12-28-22-07-35.png)
-2. 使用快捷键 Ctrl + `, 这时候右下角会弹出终端窗口
+![](/__assets__/img/2021-12-28-22-07-35.png) 2. 使用快捷键 Ctrl + `, 这时候右下角会弹出终端窗口
 ![](/__assets__/img/2021-12-28-22-07-26.png)
 
 3、使用 dotnet new mvc -n myapp

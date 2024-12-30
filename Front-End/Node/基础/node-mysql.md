@@ -15,20 +15,20 @@ cnpm install mysql
 ## test.js 文件代码
 
 ```javascript
-var mysql      = require('mysql');
+var mysql = require('mysql')
 var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '123456',
-  database : 'test'
-});
- 
-connection.connect();
- 
+  host: 'localhost',
+  user: 'root',
+  password: '123456',
+  database: 'test',
+})
+
+connection.connect()
+
 connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
-  if (error) throw error;
-  console.log('The solution is: ', results[0].solution);
-});
+  if (error) throw error
+  console.log('The solution is: ', results[0].solution)
+})
 ```
 
 执行以下命令输出结果为：
@@ -45,32 +45,32 @@ connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
 ## 查询数据
 
 ```javascript
-var mysql  = require('mysql');  
- 
-var connection = mysql.createConnection({     
-  host     : 'localhost',       
-  user     : 'root',              
-  password : '123456',       
-  port: '3306',                   
-  database: 'test' 
-}); 
- 
-connection.connect();
- 
-var  sql = 'SELECT * FROM websites';
+var mysql = require('mysql')
+
+var connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '123456',
+  port: '3306',
+  database: 'test',
+})
+
+connection.connect()
+
+var sql = 'SELECT * FROM websites'
 //查
-connection.query(sql,function (err, result) {
-        if(err){
-          console.log('[SELECT ERROR] - ',err.message);
-          return;
-        }
- 
-       console.log('------SELECT------');
-       console.log(result);
-       console.log('------------------');  
-});
- 
-connection.end();
+connection.query(sql, function (err, result) {
+  if (err) {
+    console.log('[SELECT ERROR] - ', err.message)
+    return
+  }
+
+  console.log('------SELECT------')
+  console.log(result)
+  console.log('------------------')
+})
+
+connection.end()
 ```
 
 执行以下命令输出就结果为：
@@ -101,34 +101,34 @@ $ node test.js
 ## 插入数据
 
 ```javascript
-var mysql  = require('mysql');  
- 
-var connection = mysql.createConnection({     
-  host     : 'localhost',       
-  user     : 'root',              
-  password : '123456',       
-  port: '3306',                   
-  database: 'test' 
-}); 
- 
-connection.connect();
- 
-var  addSql = 'INSERT INTO websites(Id,name,url,alexa,country) VALUES(0,?,?,?,?)';
-var  addSqlParams = ['工具', 'https://c.sxb.com','23453', 'CN'];
-//增
-connection.query(addSql,addSqlParams,function (err, result) {
-  if(err){
-    console.log('[INSERT ERROR] - ',err.message);
-    return;
-  }        
+var mysql = require('mysql')
 
-  console.log('------INSERT------');
-  //console.log('INSERT ID:',result.insertId);        
-  console.log('INSERT ID:',result);        
-  console.log('--------------\n\n');  
-});
- 
-connection.end();
+var connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '123456',
+  port: '3306',
+  database: 'test',
+})
+
+connection.connect()
+
+var addSql = 'INSERT INTO websites(Id,name,url,alexa,country) VALUES(0,?,?,?,?)'
+var addSqlParams = ['工具', 'https://c.sxb.com', '23453', 'CN']
+//增
+connection.query(addSql, addSqlParams, function (err, result) {
+  if (err) {
+    console.log('[INSERT ERROR] - ', err.message)
+    return
+  }
+
+  console.log('------INSERT------')
+  //console.log('INSERT ID:',result.insertId);
+  console.log('INSERT ID:', result)
+  console.log('--------------\n\n')
+})
+
+connection.end()
 ```
 
 执行以下命令输出就结果为：
@@ -157,32 +157,32 @@ INSERT ID: OkPacket {
 ## 更新数据
 
 ```javascript
-var mysql  = require('mysql');  
- 
-var connection = mysql.createConnection({     
-  host     : 'localhost',       
-  user     : 'root',              
-  password : '123456',       
-  port: '3306',                   
-  database: 'test' 
-}); 
- 
-connection.connect();
- 
-var modSql = 'UPDATE websites SET name = ?,url = ? WHERE Id = ?';
-var modSqlParams = ['移动站', 'https://m.sxt.com',6];
+var mysql = require('mysql')
+
+var connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '123456',
+  port: '3306',
+  database: 'test',
+})
+
+connection.connect()
+
+var modSql = 'UPDATE websites SET name = ?,url = ? WHERE Id = ?'
+var modSqlParams = ['移动站', 'https://m.sxt.com', 6]
 //改
-connection.query(modSql,modSqlParams,function (err, result) {
-   if(err){
-         console.log('[UPDATE ERROR] - ',err.message);
-         return;
-   }        
-  console.log('--------UPDATE--------');
-  console.log('UPDATE affectedRows',result.affectedRows);
-  console.log('----------\n\n');
-});
- 
-connection.end();
+connection.query(modSql, modSqlParams, function (err, result) {
+  if (err) {
+    console.log('[UPDATE ERROR] - ', err.message)
+    return
+  }
+  console.log('--------UPDATE--------')
+  console.log('UPDATE affectedRows', result.affectedRows)
+  console.log('----------\n\n')
+})
+
+connection.end()
 ```
 
 执行以下命令输出就结果为：
@@ -202,32 +202,32 @@ UPDATE affectedRows 1
 ## 删除数据
 
 ```javascript
-var mysql  = require('mysql');  
- 
-var connection = mysql.createConnection({     
-  host     : 'localhost',       
-  user     : 'root',              
-  password : '123456',       
-  port: '3306',                   
-  database: 'test' 
-}); 
- 
-connection.connect();
- 
-var delSql = 'DELETE FROM websites where id=6';
-//删
-connection.query(delSql,function (err, result) {
-  if(err){
-    console.log('[DELETE ERROR] - ',err.message);
-    return;
-  }        
+var mysql = require('mysql')
 
-  console.log('-----DELETE-------');
-  console.log('DELETE affectedRows',result.affectedRows);
-  console.log('----------------\n\n');  
-});
- 
-connection.end();
+var connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '123456',
+  port: '3306',
+  database: 'test',
+})
+
+connection.connect()
+
+var delSql = 'DELETE FROM websites where id=6'
+//删
+connection.query(delSql, function (err, result) {
+  if (err) {
+    console.log('[DELETE ERROR] - ', err.message)
+    return
+  }
+
+  console.log('-----DELETE-------')
+  console.log('DELETE affectedRows', result.affectedRows)
+  console.log('----------------\n\n')
+})
+
+connection.end()
 ```
 
 执行以下命令输出就结果为：

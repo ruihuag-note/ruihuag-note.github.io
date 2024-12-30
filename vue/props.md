@@ -7,20 +7,17 @@
 ```html
 <template>
   <div>
-    <button v-bind="rest">
-     btn
-    </button>
+    <button v-bind="rest">btn</button>
   </div>
 </template>
 
 <script setup>
-import { useAttrs } from 'vue'
-/**
- * 若没有 <div> , 就不需要这样子操作, vue会 属性透传
- */
-// eslint-disable-next-line
-const { cname, change, ...rest } = useAttrs()
-
+  import { useAttrs } from 'vue'
+  /**
+   * 若没有 <div> , 就不需要这样子操作, vue会 属性透传
+   */
+  // eslint-disable-next-line
+  const { cname, change, ...rest } = useAttrs()
 </script>
 ```
 
@@ -36,11 +33,11 @@ const { cname, change, ...rest } = useAttrs()
 
 ```html
 <template>
- <div v-model="attrs" />
+  <div v-model="attrs" />
 </template>
 
 <script setup>
-import { useAttrs } from 'vue'
-const attrs = useAttrs
+  import { useAttrs } from 'vue'
+  const attrs = useAttrs
 </script>
 ```

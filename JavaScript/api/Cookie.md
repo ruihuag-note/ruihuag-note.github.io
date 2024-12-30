@@ -6,40 +6,41 @@
 > - 经常用来做一些用户会话状态管理、个性化设置等等
 > - 前端可以通过document.cookie来访问cookie
 > - cookie是跨域的，也就是在不同的域名中，访问的cookie的时候，只能访问对应的域名的cookie
-> 特性:
+>   特性:
 > - http: 会自动懈怠Cookie
 > - 携带的Cookie, 还是请求所在域名的Cookie
 
 ```js
 export const setCookie = function setCookie(name, value) {
-    // var Days = 30; 
-    var exp = new Date();
-    exp.setTime(exp.getTime() + 120 * 60 * 1000);
-    document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString() + ";path=/";
+  // var Days = 30;
+  var exp = new Date()
+  exp.setTime(exp.getTime() + 120 * 60 * 1000)
+  document.cookie =
+    name + '=' + escape(value) + ';expires=' + exp.toGMTString() + ';path=/'
 }
 
-//读取cookies 
+//读取cookies
 export const getCookie = function getCookie(name) {
-    var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-    if (arr = document.cookie.match(reg))
-        return unescape(arr[2]);
-    else
-        return null;
+  var arr,
+    reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)')
+  if ((arr = document.cookie.match(reg))) return unescape(arr[2])
+  else return null
 }
 
-//删除cookies 
+//删除cookies
 export const delCookie = function delCookie(name) {
-    var exp = new Date();
-    exp.setTime(exp.getTime() - 1);
-    var cval = getCookie(name);
-    if (cval != null)
-        document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString() + ";path=/brand";
-    document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString() + ";path=/   ";
-
+  var exp = new Date()
+  exp.setTime(exp.getTime() - 1)
+  var cval = getCookie(name)
+  if (cval != null)
+    document.cookie =
+      name + '=' + cval + ';expires=' + exp.toGMTString() + ';path=/brand'
+  document.cookie =
+    name + '=' + cval + ';expires=' + exp.toGMTString() + ';path=/   '
 }
-//使用示例 
-// setCookie("name","hayden"); 
-// alert(getCookie("name")); 
+//使用示例
+// setCookie("name","hayden");
+// alert(getCookie("name"));
 ```
 
 ## Cookie 和 CSRF

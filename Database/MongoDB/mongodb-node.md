@@ -10,7 +10,7 @@
 cnpm install mongodb
 ```
 
-------
+---
 
 ## 创建数据库
 
@@ -21,16 +21,16 @@ cnpm install mongodb
 ## 创建连接
 
 ```js
-var MongoClient = require('mongodb').MongoClient; 
-var url = "mongodb://localhost:27017/runoob";  
-MongoClient.connect(url, function(err, db) {  
-  if (err) throw err;  
-  console.log("数据库已创建!");  
-  db.close(); 
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/runoob'
+MongoClient.connect(url, function (err, db) {
+  if (err) throw err
+  console.log('数据库已创建!')
+  db.close()
+})
 ```
 
-------
+---
 
 ## 创建集合
 
@@ -39,21 +39,21 @@ MongoClient.connect(url, function(err, db) {
 ## 创建集合
 
 ```js
-var MongoClient = require('mongodb').MongoClient; 
-var url = 'mongodb://localhost:27017/runoob'; 
-MongoClient.connect(url, function (err, db) {    
-  if (err) throw err;    
-  console.log('数据库已创建');    
-  var dbase = db.db("runoob");    
-  dbase.createCollection('site', function (err, res) {        
-    if (err) throw err;        
-    console.log("创建集合!");        
-    db.close();    
-  }); 
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/runoob'
+MongoClient.connect(url, function (err, db) {
+  if (err) throw err
+  console.log('数据库已创建')
+  var dbase = db.db('runoob')
+  dbase.createCollection('site', function (err, res) {
+    if (err) throw err
+    console.log('创建集合!')
+    db.close()
+  })
+})
 ```
 
-------
+---
 
 ## 数据库操作( CURD )
 
@@ -66,18 +66,18 @@ MongoClient.connect(url, function (err, db) {
 ## 插入一条数据
 
 ```js
-var MongoClient = require('mongodb').MongoClient; 
-var url = "mongodb://localhost:27017/";  
-MongoClient.connect(url, function(err, db) {    
-  if (err) throw err;    
-  var dbo = db.db("site");    
-  var myobj = { name: "grh", url: "ruihua" };    
-  dbo.collection("site").insertOne(myobj, function(err, res) {        
-    if (err) throw err;        
-    console.log("文档插入成功");        
-    db.close();    
-  }); 
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/'
+MongoClient.connect(url, function (err, db) {
+  if (err) throw err
+  var dbo = db.db('site')
+  var myobj = { name: 'grh', url: 'ruihua' }
+  dbo.collection('site').insertOne(myobj, function (err, res) {
+    if (err) throw err
+    console.log('文档插入成功')
+    db.close()
+  })
+})
 ```
 
 执行以下命令输出就结果为：
@@ -98,7 +98,7 @@ runoob  0.000GB          # 自动创建了 runoob 数据库
 site                     # 自动创建了 site 集合（数据表）
 > db.site.find()
 { "_id" : ObjectId("5a794e36763eb821b24db854"), "name" : "菜鸟教程", "url" : "www.runoob" }
-> 
+>
 ```
 
 如果要插入多条数据可以使用 **insertMany()**：
@@ -106,22 +106,22 @@ site                     # 自动创建了 site 集合（数据表）
 ## 插入多条数据
 
 ```js
-var MongoClient = require('mongodb').MongoClient; 
-var url = "mongodb://localhost:27017/";  
-MongoClient.connect(url, function(err, db) {    
-  if (err) throw err;    
-  var dbo = db.db("koadb");    
-  var myobj =  [        
-    { name: 'grh', url: 'https://github.com', type: 'cn'},        
-    { name: 'Google', url: 'https://www.google.com', type: 'en'},        
-    { name: 'Facebook', url: 'https://www.google.com', type: 'en'}       
-  ];    
-  dbo.collection("site").insertMany(myobj, function(err, res) {        
-    if (err) throw err;        
-    console.log("插入的文档数量为: " + res.insertedCount);        
-    db.close();    
-  }); 
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/'
+MongoClient.connect(url, function (err, db) {
+  if (err) throw err
+  var dbo = db.db('koadb')
+  var myobj = [
+    { name: 'grh', url: 'https://github.com', type: 'cn' },
+    { name: 'Google', url: 'https://www.google.com', type: 'en' },
+    { name: 'Facebook', url: 'https://www.google.com', type: 'en' },
+  ]
+  dbo.collection('site').insertMany(myobj, function (err, res) {
+    if (err) throw err
+    console.log('插入的文档数量为: ' + res.insertedCount)
+    db.close()
+  })
+})
 ```
 
 res.insertedCount 为插入的条数。
@@ -133,18 +133,21 @@ res.insertedCount 为插入的条数。
 ## find()
 
 ```js
-var MongoClient = require('mongodb').MongoClient; 
-var url = "mongodb://localhost:27017/";  
-MongoClient.connect(url, function(err, db) {    
-  if (err) throw err;    
-  var dbo = db.db("koadb");    
-  dbo.collection("site"). find({}).toArray(function(err, result) { 
-    // 返回集合中所有数据        
-    if (err) throw err;        
-    console.log(result);        
-    db.close();    
-  }); 
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/'
+MongoClient.connect(url, function (err, db) {
+  if (err) throw err
+  var dbo = db.db('koadb')
+  dbo
+    .collection('site')
+    .find({})
+    .toArray(function (err, result) {
+      // 返回集合中所有数据
+      if (err) throw err
+      console.log(result)
+      db.close()
+    })
+})
 ```
 
 以下实例检索 name 为 "菜鸟教程" 的实例：
@@ -152,18 +155,21 @@ MongoClient.connect(url, function(err, db) {
 ## 查询指定条件的数据
 
 ```js
-var MongoClient = require('mongodb').MongoClient; 
-var url = "mongodb://localhost:27017/";  
-MongoClient.connect(url, function(err, db) {    
-  if (err) throw err;    
-  var dbo = db.db("koadb");     
-  var whereStr = {"name":'菜鸟教程'};  // 查询条件 
-  dbo.collection("site").find(whereStr).toArray(function(err, result) {        
-    if (err) throw err;        
-    console.log(result);        
-    db.close();    
-  }); 
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/'
+MongoClient.connect(url, function (err, db) {
+  if (err) throw err
+  var dbo = db.db('koadb')
+  var whereStr = { name: '菜鸟教程' } // 查询条件
+  dbo
+    .collection('site')
+    .find(whereStr)
+    .toArray(function (err, result) {
+      if (err) throw err
+      console.log(result)
+      db.close()
+    })
+})
 ```
 
 执行以下命令输出就结果为：
@@ -181,20 +187,20 @@ MongoClient.connect(url, function(err, db) {
 ## 更新一条数据
 
 ```js
-var MongoClient = require('mongodb').MongoClient; 
-var url = "mongodb://localhost:27017/";  
-MongoClient.connect(url, function(err, db) {    
-  if (err) throw err;    
-  var dbo = db.db("runoob");    
-  var whereStr = {"name":'菜鸟教程'};  
-  // 查询条件    
-  var updateStr = {$set: { "url" : "https://www.runoob.com" }};    
-  dbo.collection("site").updateOne(whereStr, updateStr, function(err, res) {        
-    if (err) throw err;        
-    console.log("文档更新成功");        
-    db.close();    
-  }); 
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/'
+MongoClient.connect(url, function (err, db) {
+  if (err) throw err
+  var dbo = db.db('runoob')
+  var whereStr = { name: '菜鸟教程' }
+  // 查询条件
+  var updateStr = { $set: { url: 'https://www.runoob.com' } }
+  dbo.collection('site').updateOne(whereStr, updateStr, function (err, res) {
+    if (err) throw err
+    console.log('文档更新成功')
+    db.close()
+  })
+})
 ```
 
 执行成功后，进入 mongo 管理工具查看数据已修改：
@@ -213,18 +219,19 @@ MongoClient.connect(url, function(err, db) {
 ## 更新多条数据
 
 ```js
-var MongoClient = require('mongodb').MongoClient; 
-var url = "mongodb://localhost:27017/";  
-MongoClient.connect(url, function(err, db) {    
-  if (err) throw err;    
-  var dbo = db.db("runoob");    
-  var whereStr = {"type":'en'};  // 查询条件    
-  var updateStr = {$set: { "url" : "https://www.runoob.com" }};    dbo.collection("site").updateMany(whereStr, updateStr, function(err, res) {        
-    if (err) throw err;         
-    console.log(res.result.nModified + " 条文档被更新");        
-    db.close();    
-  }); 
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/'
+MongoClient.connect(url, function (err, db) {
+  if (err) throw err
+  var dbo = db.db('runoob')
+  var whereStr = { type: 'en' } // 查询条件
+  var updateStr = { $set: { url: 'https://www.runoob.com' } }
+  dbo.collection('site').updateMany(whereStr, updateStr, function (err, res) {
+    if (err) throw err
+    console.log(res.result.nModified + ' 条文档被更新')
+    db.close()
+  })
+})
 ```
 
 result.nModified 为更新的条数。
@@ -236,25 +243,25 @@ result.nModified 为更新的条数。
 ## 删除一条数据
 
 ```js
-var MongoClient = require('mongodb').MongoClient; 
-var url = "mongodb://localhost:27017/";  
-MongoClient.connect(url, function(err, db) {    
-  if (err) throw err;    
-  var dbo = db.db("runoob");    
-  var whereStr = {"name":'菜鸟教程'};  // 查询条件 
-  dbo.collection("site").deleteOne(whereStr, function(err, obj) {        
-    if (err) throw err;        
-    console.log("文档删除成功");        
-    db.close();    
-  }); 
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/'
+MongoClient.connect(url, function (err, db) {
+  if (err) throw err
+  var dbo = db.db('runoob')
+  var whereStr = { name: '菜鸟教程' } // 查询条件
+  dbo.collection('site').deleteOne(whereStr, function (err, obj) {
+    if (err) throw err
+    console.log('文档删除成功')
+    db.close()
+  })
+})
 ```
 
 执行成功后，进入 mongo 管理工具查看数据已删除：
 
 ```shell
 > db.site.find()
-> 
+>
 ```
 
 如果要删除多条语句可以使用 **deleteMany()** 方法
@@ -264,18 +271,18 @@ MongoClient.connect(url, function(err, db) {
 ## 删除多条数据
 
 ```js
-var MongoClient = require('mongodb').MongoClient; 
-var url = "mongodb://localhost:27017/";  
-MongoClient.connect(url, function(err, db) {    
-  if (err) throw err;    
-  var dbo = db.db("runoob");    
-  var whereStr = { type: "en" };  // 查询条件   
-  dbo.collection("site").deleteMany(whereStr, function(err, obj) {        
-    if (err) throw err;        
-    console.log(obj.result.n + " 条文档被删除");        
-    db.close();    
-  }); 
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/'
+MongoClient.connect(url, function (err, db) {
+  if (err) throw err
+  var dbo = db.db('runoob')
+  var whereStr = { type: 'en' } // 查询条件
+  dbo.collection('site').deleteMany(whereStr, function (err, obj) {
+    if (err) throw err
+    console.log(obj.result.n + ' 条文档被删除')
+    db.close()
+  })
+})
 ```
 
 obj.result.n 删除的条数。
@@ -296,18 +303,22 @@ obj.result.n 删除的条数。
 ## 排序
 
 ```js
-var MongoClient = require('mongodb').MongoClient; 
-var url = "mongodb://localhost:27017/";  
-MongoClient.connect(url, function(err, db) {    
-  if (err) throw err;    
-  var dbo = db.db("runoob");    
-  var mysort = { type: 1 };    
-  dbo.collection("site").find().sort(mysort).toArray(function(err, result) {        
-    if (err) throw err;        
-    console.log(result);        
-    db.close();    
-  }); 
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/'
+MongoClient.connect(url, function (err, db) {
+  if (err) throw err
+  var dbo = db.db('runoob')
+  var mysort = { type: 1 }
+  dbo
+    .collection('site')
+    .find()
+    .sort(mysort)
+    .toArray(function (err, result) {
+      if (err) throw err
+      console.log(result)
+      db.close()
+    })
+})
 ```
 
 ### 查询分页
@@ -317,17 +328,21 @@ MongoClient.connect(url, function(err, db) {
 ## limit()：读取两条数据
 
 ```js
-var MongoClient = require('mongodb').MongoClient; 
-var url = "mongodb://localhost:27017/";  
-MongoClient.connect(url, function(err, db) {    
-  if (err) throw err;    
-  var dbo = db.db("runoob");    
-  dbo.collection("site").find().limit(2).toArray(function(err, result) {        
-    if (err) throw err;        
-    console.log(result);        
-    db.close();  
-  }); 
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/'
+MongoClient.connect(url, function (err, db) {
+  if (err) throw err
+  var dbo = db.db('runoob')
+  dbo
+    .collection('site')
+    .find()
+    .limit(2)
+    .toArray(function (err, result) {
+      if (err) throw err
+      console.log(result)
+      db.close()
+    })
+})
 ```
 
 如果要指定跳过的条数，可以使用 **skip()** 方法。
@@ -335,17 +350,22 @@ MongoClient.connect(url, function(err, db) {
 ## skip(): 跳过前面两条数据，读取两条数据
 
 ```js
-var MongoClient = require('mongodb').MongoClient; 
-var url = "mongodb://localhost:27017/";  
-MongoClient.connect(url, function(err, db) {    
-  if (err) throw err;    
-  var dbo = db.db("runoob");    
-  dbo.collection("site").find().skip(2).limit(2).toArray(function(err, result) {        
-    if (err) throw err;        
-    console.log(result);        
-    db.close();  
-  }); 
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/'
+MongoClient.connect(url, function (err, db) {
+  if (err) throw err
+  var dbo = db.db('runoob')
+  dbo
+    .collection('site')
+    .find()
+    .skip(2)
+    .limit(2)
+    .toArray(function (err, result) {
+      if (err) throw err
+      console.log(result)
+      db.close()
+    })
+})
 ```
 
 ### 连接操作
@@ -357,44 +377,45 @@ mongoDB 不是一个关系型数据库，但我们可以使用 **$lookup** 来�
 集合1：orders
 
 ```js
-[
-  { _id: 1, product_id: 154, status: 1 }
-]
+;[{ _id: 1, product_id: 154, status: 1 }]
 ```
 
 集合2：products
 
 ```js
-[
+;[
   { _id: 154, name: '笔记本电脑' },
   { _id: 155, name: '耳机' },
-  { _id: 156, name: '台式电脑' }
+  { _id: 156, name: '台式电脑' },
 ]
 ```
 
 ## $lookup 实现左连接
 
 ```js
-var MongoClient = require('mongodb').MongoClient; 
-var url = "mongodb://127.0.0.1:27017/";  
-MongoClient.connect(url, function(err, db) {  
-  if (err) throw err;  
-  var dbo = db.db("runoob");  
-  dbo.collection('orders').aggregate([    
-    { 
-      $lookup:{         
-        from: 'products',            // 右集合         
-         localField: 'product_id',    // 左集合 join 字段         
-         foreignField: '_id',         // 右集合 join 字段         
-         as: 'orderdetails'           // 新生成字段（类型array）       
-       }     
-    }    
-  ]).toArray(function(err, res) {    
-    if (err) throw err;    
-    console.log(JSON.stringify(res));    
-    db.close();  
-  }); 
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://127.0.0.1:27017/'
+MongoClient.connect(url, function (err, db) {
+  if (err) throw err
+  var dbo = db.db('runoob')
+  dbo
+    .collection('orders')
+    .aggregate([
+      {
+        $lookup: {
+          from: 'products', // 右集合
+          localField: 'product_id', // 左集合 join 字段
+          foreignField: '_id', // 右集合 join 字段
+          as: 'orderdetails', // 新生成字段（类型array）
+        },
+      },
+    ])
+    .toArray(function (err, res) {
+      if (err) throw err
+      console.log(JSON.stringify(res))
+      db.close()
+    })
+})
 ```
 
 ### 删除集合
@@ -404,20 +425,21 @@ MongoClient.connect(url, function(err, db) {
 ## drop()
 
 ```js
-var MongoClient = require('mongodb').MongoClient; 
-var url = "mongodb://localhost:27017/";  
-MongoClient.connect(url, function(err, db) {    
-  if (err) throw err;    
-  var dbo = db.db("test");    // 删除 test 集合
-  dbo.collection("test").drop(function(err, delOK) {  // 执行成功 delOK 返回 true，否则返回 false        
-    if (err) throw err;        
-    if (delOK) console.log("集合已删除");        
-    db.close();    
-  }); 
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/'
+MongoClient.connect(url, function (err, db) {
+  if (err) throw err
+  var dbo = db.db('test') // 删除 test 集合
+  dbo.collection('test').drop(function (err, delOK) {
+    // 执行成功 delOK 返回 true，否则返回 false
+    if (err) throw err
+    if (delOK) console.log('集合已删除')
+    db.close()
+  })
+})
 ```
 
-------
+---
 
 ## 使用 Promise
 
@@ -430,21 +452,27 @@ Promise 是一个 ECMAScript 6 提供的类，目的是更加优雅地书写复�
 ## 实例
 
 ```js
-const MongoClient = require("mongodb").MongoClient; 
-const url = "mongodb://localhost/runoob"; 
-MongoClient.connect(url).then((conn) => {    
-  console.log("数据库已连接");    
-  var dbase = conn.db("runoob");    
-  dbase.createCollection("site").then((res) => {        
-    console.log("已创建集合");    
-  }).catch((err) => {        
-    console.log("数据库操作错误");    
-  }).finally(() => {        
-    conn.close();    
-  }); 
-}).catch((err) => {    
-  console.log("数据库连接失败"); 
-});
+const MongoClient = require('mongodb').MongoClient
+const url = 'mongodb://localhost/runoob'
+MongoClient.connect(url)
+  .then((conn) => {
+    console.log('数据库已连接')
+    var dbase = conn.db('runoob')
+    dbase
+      .createCollection('site')
+      .then((res) => {
+        console.log('已创建集合')
+      })
+      .catch((err) => {
+        console.log('数据库操作错误')
+      })
+      .finally(() => {
+        conn.close()
+      })
+  })
+  .catch((err) => {
+    console.log('数据库连接失败')
+  })
 ```
 
 ### Promise 数据操作
@@ -454,35 +482,62 @@ MongoClient.connect(url).then((conn) => {
 ## 实例
 
 ```js
-const MongoClient = require("mongodb").MongoClient; 
-const url = "mongodb://localhost/"; 
-MongoClient.connect(url).then((conn) => {    
-  console.log("数据库已连接");    
-  const test = conn.db("testdb").collection("test");    // 增加    
-  test.insertOne({ "site": "runoob.com" }).then((res) => {        // 查询        
-    return test.find().toArray().then((arr) => {            
-      console.log(arr);        
-    });    
-  }).then(() => {        // 更改        
-    return test.updateMany({ "site": "runoob.com" },{ $set: { "site": "example.com" } }); 
-  }).then((res) => {        // 查询        
-    return test.find().toArray().then((arr) => {            
-      console.log(arr);        
-    });    
-  }).then(() => {        // 删除        
-    return test.deleteMany({ "site": "example.com" });   
-  }).then((res) => {        // 查询        
-    return test.find().toArray().then((arr) => {            
-      console.log(arr);        
-    });    
-  }).catch((err) => {        
-    console.log("数据操作失败" + err.message);    
-  }).finally(() => {        
-    conn.close();    
-  }); 
-}).catch((err) => {    
-  console.log("数据库连接失败"); 
-});
+const MongoClient = require('mongodb').MongoClient
+const url = 'mongodb://localhost/'
+MongoClient.connect(url)
+  .then((conn) => {
+    console.log('数据库已连接')
+    const test = conn.db('testdb').collection('test') // 增加
+    test
+      .insertOne({ site: 'runoob.com' })
+      .then((res) => {
+        // 查询
+        return test
+          .find()
+          .toArray()
+          .then((arr) => {
+            console.log(arr)
+          })
+      })
+      .then(() => {
+        // 更改
+        return test.updateMany(
+          { site: 'runoob.com' },
+          { $set: { site: 'example.com' } },
+        )
+      })
+      .then((res) => {
+        // 查询
+        return test
+          .find()
+          .toArray()
+          .then((arr) => {
+            console.log(arr)
+          })
+      })
+      .then(() => {
+        // 删除
+        return test.deleteMany({ site: 'example.com' })
+      })
+      .then((res) => {
+        // 查询
+        return test
+          .find()
+          .toArray()
+          .then((arr) => {
+            console.log(arr)
+          })
+      })
+      .catch((err) => {
+        console.log('数据操作失败' + err.message)
+      })
+      .finally(() => {
+        conn.close()
+      })
+  })
+  .catch((err) => {
+    console.log('数据库连接失败')
+  })
 ```
 
 执行结果：
@@ -499,35 +554,38 @@ MongoClient.connect(url).then((conn) => {
 ## 实例
 
 ```js
-const MongoClient = require("mongodb").MongoClient; 
-const url = "mongodb://localhost/";  
-async function dataOperate() {    
-  var conn = null;    
-  try {        
-    conn = await MongoClient.connect(url);        
-    console.log("数据库已连接");        
-    const test = conn.db("testdb").collection("test");        
-    // 增加        
-    await test.insertOne({ "site": "runoob.com" });        
-    // 查询        
-    var arr = await test.find().toArray();        
-    console.log(arr);        
-    // 更改        
-    await test.updateMany({ "site": "runoob.com" },{ $set: { "site": "example.com" } });     // 查询        
-    arr = await test.find().toArray();        
-    console.log(arr);        
-    // 删除        
-    await test.deleteMany({ "site": "example.com" });        
-    // 查询        
-    arr = await test.find().toArray();        
-    console.log(arr);    
-  } catch (err) {        
-    console.log("错误：" + err.message);    
-  } finally {        
-    if (conn != null) conn.close();    
-  } 
-}  
-dataOperate();
+const MongoClient = require('mongodb').MongoClient
+const url = 'mongodb://localhost/'
+async function dataOperate() {
+  var conn = null
+  try {
+    conn = await MongoClient.connect(url)
+    console.log('数据库已连接')
+    const test = conn.db('testdb').collection('test')
+    // 增加
+    await test.insertOne({ site: 'runoob.com' })
+    // 查询
+    var arr = await test.find().toArray()
+    console.log(arr)
+    // 更改
+    await test.updateMany(
+      { site: 'runoob.com' },
+      { $set: { site: 'example.com' } },
+    ) // 查询
+    arr = await test.find().toArray()
+    console.log(arr)
+    // 删除
+    await test.deleteMany({ site: 'example.com' })
+    // 查询
+    arr = await test.find().toArray()
+    console.log(arr)
+  } catch (err) {
+    console.log('错误：' + err.message)
+  } finally {
+    if (conn != null) conn.close()
+  }
+}
+dataOperate()
 ```
 
 运行结果：

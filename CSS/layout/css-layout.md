@@ -15,58 +15,55 @@
 ```html
 <section class="layout float">
   <style type="text/css" media="screen">
-    .layout.float .wrapper>div{
+    .layout.float .wrapper > div {
       min-height: 100px;
     }
-    .layout.float .left{
+    .layout.float .left {
       float: left;
       width: 300px;
       background: red;
     }
-    .layout.float .center{
+    .layout.float .center {
       background: yellow;
     }
-    .layout.float .right{
+    .layout.float .right {
       float: right;
       width: 300px;
       background: blue;
     }
-
   </style>
   <article class="wrapper">
     <div class="left"></div>
     <div class="right"></div>
     <div class="center">
       <h1>float布局</h1>
-      1.我是float布局的中间部分
-      2.我是float布局的中间部分
+      1.我是float布局的中间部分 2.我是float布局的中间部分
     </div>
   </article>
 </section>
 
-
 <section class="layout absolute">
   <style type="text/css" media="screen">
-    .layout.absolute .wrapper{
+    .layout.absolute .wrapper {
       width: 100%;
       margin-top: 20px;
     }
-    .layout.absolute .wrapper>div{
+    .layout.absolute .wrapper > div {
       min-height: 100px;
     }
-    .layout.absolute .left{
+    .layout.absolute .left {
       position: absolute;
       left: 0;
       width: 300px;
       background: red;
     }
-    .layout.absolute .center{
+    .layout.absolute .center {
       position: absolute;
       left: 300px;
       right: 300px;
       background: yellow;
     }
-    .layout.absolute .right{
+    .layout.absolute .right {
       position: absolute;
       right: 0;
       width: 300px;
@@ -77,31 +74,29 @@
     <div class="left"></div>
     <div class="center">
       <h1>absolute布局</h1>
-      1.我是absolute布局的中间部分
-      2.我是absolute布局的中间部分
+      1.我是absolute布局的中间部分 2.我是absolute布局的中间部分
     </div>
     <div class="right"></div>
   </article>
 </section>
 
-
 <section class="layout flex">
   <style type="text/css" media="screen">
-    .layout.flex .wrapper{
+    .layout.flex .wrapper {
       width: 100%;
       min-height: 100px;
       display: flex;
       margin-top: 140px;
     }
-    .layout.flex .left{
+    .layout.flex .left {
       width: 300px;
       background: red;
     }
-    .layout.flex .center{
+    .layout.flex .center {
       flex: 1;
       background: yellow;
     }
-    .layout.flex .right{
+    .layout.flex .right {
       width: 300px;
       background: blue;
     }
@@ -110,81 +105,73 @@
     <div class="left"></div>
     <div class="center">
       <h1>flex布局</h1>
-      1.我是flex布局的中间部分
-      2.我是flex布局的中间部分
+      1.我是flex布局的中间部分 2.我是flex布局的中间部分
     </div>
     <div class="right"></div>
   </article>
 </section>
 
-
 <section class="layout table">
   <style type="text/css" media="screen">
-    .layout.table .wrapper{
+    .layout.table .wrapper {
       display: table;
       width: 100%;
       min-height: 100px;
       margin-top: 20px;
     }
-    .layout.table .left{
+    .layout.table .left {
       display: table-cell;
       width: 300px;
       background: red;
     }
-    .layout.table .center{
+    .layout.table .center {
       display: table-cell;
       background: yellow;
     }
-    .layout.table .right{
+    .layout.table .right {
       display: table-cell;
       width: 300px;
       background: blue;
     }
-
   </style>
   <article class="wrapper">
     <div class="left"></div>
     <div class="center">
       <h1>table布局</h1>
-      1.我是table布局的中间部分
-      2.我是table布局的中间部分
+      1.我是table布局的中间部分 2.我是table布局的中间部分
     </div>
     <div class="right"></div>
   </article>
 </section>
 
-
 <section class="layout grid">
   <style type="text/css" media="screen">
-    .layout.grid .wrapper{
+    .layout.grid .wrapper {
       display: grid;
       grid-template-columns: 300px auto 300px;
       grid-template-rows: 100px;
       width: 100%;
       margin-top: 20px;
     }
-    .layout.grid .left{
+    .layout.grid .left {
       background: red;
     }
-    .layout.grid .center{
+    .layout.grid .center {
       background: yellow;
     }
-    .layout.grid .right{
+    .layout.grid .right {
       background: blue;
     }
-
   </style>
   <article class="wrapper">
     <div class="left"></div>
     <div class="center">
       <h1>grid布局</h1>
-      1.我是grid布局的中间部分
-      2.我是grid布局的中间部分
+      1.我是grid布局的中间部分 2.我是grid布局的中间部分
     </div>
     <div class="right"></div>
   </article>
 </section>
-
 ```
 
 ## 浮动布局
@@ -192,39 +179,39 @@
 浮动布局进行调用浮动属性改变页面中元素的位置，浮动布局应该是目前各大网站用的最多的一种布局方式了，但是也特别复杂。浮动元素是脱离文档流的，但不脱离文本流。浮动元素有左浮动（float : left）和右浮动（float : right）两种
 
 ```css
-.lian{
- width: 90%;
- padding-left: 5%;
+.lian {
+  width: 90%;
+  padding-left: 5%;
 }
-.lian img{
- float: right;
- margin-top: -180px;
+.lian img {
+  float: right;
+  margin-top: -180px;
 }
-.phone ul li{
- list-style: none;
-    margin-top: 50px;
-    margin-left: 70px;
-    color: #808080;
+.phone ul li {
+  list-style: none;
+  margin-top: 50px;
+  margin-left: 70px;
+  color: #808080;
 }
-.phone ul li img{
- position: absolute;
- margin-left: -80px;
- float: left;
- margin-top: -5px;
+.phone ul li img {
+  position: absolute;
+  margin-left: -80px;
+  float: left;
+  margin-top: -5px;
 }
-.view{
- margin-top: 50px;
- margin-left: -5px;
- float: left;
+.view {
+  margin-top: 50px;
+  margin-left: -5px;
+  float: left;
 }
-.view input{
- width: 120px;
- height: 40px;
- border-radius: 6px;
- border: 1px solid #3CB371;
- background-color: #3CB371;
- font-size: 16px;
- color: white;
+.view input {
+  width: 120px;
+  height: 40px;
+  border-radius: 6px;
+  border: 1px solid #3cb371;
+  background-color: #3cb371;
+  font-size: 16px;
+  color: white;
 }
 ```
 
@@ -247,46 +234,45 @@
 
 ```css
 /* pc width > 1024px */
-    body {
-        background-color: yellow;
-    }
+body {
+  background-color: yellow;
+}
 /* ipad pro */
 @media screen and (max-width: 1024px) {
-    body {
-        background-color: #FF00FF;
-    }
+  body {
+    background-color: #ff00ff;
+  }
 }
 /* ipad */
 @media screen and (max-width: 768px) {
-    body {
-        background-color: green;
-    }
+  body {
+    background-color: green;
+  }
 }
 /* iphone6 7 8 plus */
 @media screen and (max-width: 414px) {
-    body {
-        background-color: blue;
-    }
+  body {
+    background-color: blue;
+  }
 }
 /* iphoneX */
 @media screen and (max-width: 375px) and (-webkit-device-pixel-ratio: 3) {
-    body {
-        background-color: #0FF000;
-    }
+  body {
+    background-color: #0ff000;
+  }
 }
 /* iphone6 7 8 */
 @media screen and (max-width: 375px) and (-webkit-device-pixel-ratio: 2) {
-    body {
-        background-color: #0FF000;
-    }
+  body {
+    background-color: #0ff000;
+  }
 }
 /* iphone5 */
 @media screen and (max-width: 320px) {
-    body {
-        background-color: #0FF000;
-    }
+  body {
+    background-color: #0ff000;
+  }
 }
-
 ```
 
 #### 移动端优先
@@ -294,45 +280,44 @@
 ```css
 /* iphone6 7 8 */
 body {
-    background-color: yellow;
+  background-color: yellow;
 }
 /* iphone 5 */
 @media screen and (max-width: 320px) {
-    body {
-      background-color: red;
-    }
+  body {
+    background-color: red;
+  }
 }
 /* iphoneX */
 @media screen and (min-width: 375px) and (-webkit-device-pixel-ratio: 3) {
-    body {
-      background-color: #0FF000;
-    }
+  body {
+    background-color: #0ff000;
+  }
 }
 /* iphone6 7 8 plus */
 @media screen and (min-width: 414px) {
-    body {
-      background-color: blue;
-    }
+  body {
+    background-color: blue;
+  }
 }
 /* ipad */
 @media screen and (min-width: 768px) {
-    body {
-      background-color: green;
-    }
+  body {
+    background-color: green;
+  }
 }
 /* ipad pro */
 @media screen and (min-width: 1024px) {
-    body {
-      background-color: #FF00FF;
-    }
+  body {
+    background-color: #ff00ff;
+  }
 }
 /* pc */
 @media screen and (min-width: 1100px) {
-    body {
-      background-color: black;
-    }
+  body {
+    background-color: black;
+  }
 }
-
 ```
 
 ### **2.百分比布局**
@@ -341,91 +326,96 @@ body {
 
 ```css
 /* pc width > 1100px */
-html, body { margin: 0;padding: 0;width: 100%;height: 100%;}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
 aside {
-    width: 10%;
-    height: 100%;
-    background-color: red;
-    float: left;
+  width: 10%;
+  height: 100%;
+  background-color: red;
+  float: left;
 }
 main {
-    height: 100%;
-    background-color: blue;
-    overflow: hidden;
+  height: 100%;
+  background-color: blue;
+  overflow: hidden;
 }
 /* ipad pro */
 @media screen and (max-width: 1024px) {
-    aside {
-      width: 8%;
-      background-color: yellow;
-    }
+  aside {
+    width: 8%;
+    background-color: yellow;
+  }
 }
 /* ipad */
 @media screen and (max-width: 768px) {
-    aside {
-      float: none;
-      width: 100%;
-      height: 10%;
-      background-color: green;
-    }
-    main {
-      height: calc(100vh - 10%);
-      background-color: red;
-    }
+  aside {
+    float: none;
+    width: 100%;
+    height: 10%;
+    background-color: green;
+  }
+  main {
+    height: calc(100vh - 10%);
+    background-color: red;
+  }
 }
 /* iphone6 7 8 plus */
 @media screen and (max-width: 414px) {
-    aside {
-      float: none;
-      width: 100%;
-      height: 5%;
-      background-color: yellow;
-    }
-    main {
-      height: calc(100vh - 5%);
-      background-color: red;
-    }
+  aside {
+    float: none;
+    width: 100%;
+    height: 5%;
+    background-color: yellow;
+  }
+  main {
+    height: calc(100vh - 5%);
+    background-color: red;
+  }
 }
 /* iphoneX */
 @media screen and (max-width: 375px) and (-webkit-device-pixel-ratio: 3) {
-    aside {
-      float: none;
-      width: 100%;
-      height: 10%;
-      background-color: blue;
-    }
-    main {
-      height: calc(100vh - 10%);
-      background-color: red;
-    }
+  aside {
+    float: none;
+    width: 100%;
+    height: 10%;
+    background-color: blue;
+  }
+  main {
+    height: calc(100vh - 10%);
+    background-color: red;
+  }
 }
 /* iphone6 7 8 */
 @media screen and (max-width: 375px) and (-webkit-device-pixel-ratio: 2) {
-    aside {
-      float: none;
-      width: 100%;
-      height: 3%;
-      background-color: black;
-    }
-    main {
-      height: calc(100vh - 3%);
-      background-color: red;
-    }
+  aside {
+    float: none;
+    width: 100%;
+    height: 3%;
+    background-color: black;
+  }
+  main {
+    height: calc(100vh - 3%);
+    background-color: red;
+  }
 }
 /* iphone5 */
 @media screen and (max-width: 320px) {
-    aside {
-      float: none;
-      width: 100%;
-      height: 7%;
-      background-color: green;
-    }
-    main {
-      height: calc(100vh - 7%);
-      background-color: red;
-    }
+  aside {
+    float: none;
+    width: 100%;
+    height: 7%;
+    background-color: green;
+  }
+  main {
+    height: calc(100vh - 7%);
+    background-color: red;
+  }
 }
-
 ```
 
 ### **3.rem布局**
@@ -464,52 +454,54 @@ rem布局适配多屏幕适配的最佳方式
 
 ```css
 /* pc width > 1100px */
-html{ font-size: 100%;}
+html {
+  font-size: 100%;
+}
 body {
-    background-color: yellow;
-    font-size: 1.5rem;
+  background-color: yellow;
+  font-size: 1.5rem;
 }
 /* ipad pro */
 @media screen and (max-width: 1024px) {
-    body {
-      background-color: #FF00FF;
-      font-size: 1.4rem;
-    }
+  body {
+    background-color: #ff00ff;
+    font-size: 1.4rem;
+  }
 }
 /* ipad */
 @media screen and (max-width: 768px) {
-    body {
-      background-color: green;
-      font-size: 1.3rem;
-    }
+  body {
+    background-color: green;
+    font-size: 1.3rem;
+  }
 }
 /* iphone6 7 8 plus */
 @media screen and (max-width: 414px) {
-    body {
-      background-color: blue;
-      font-size: 1.25rem;
-    }
+  body {
+    background-color: blue;
+    font-size: 1.25rem;
+  }
 }
 /* iphoneX */
 @media screen and (max-width: 375px) and (-webkit-device-pixel-ratio: 3) {
-    body {
-      background-color: #0FF000;
-      font-size: 1.125rem;
-    }
+  body {
+    background-color: #0ff000;
+    font-size: 1.125rem;
+  }
 }
 /* iphone6 7 8 */
 @media screen and (max-width: 375px) and (-webkit-device-pixel-ratio: 2) {
-    body {
-      background-color: #0FF000;
-      font-size: 1rem;
-    }
+  body {
+    background-color: #0ff000;
+    font-size: 1rem;
+  }
 }
 /* iphone5 */
 @media screen and (max-width: 320px) {
-    body {
-      background-color: #0FF000;
-      font-size: 0.75rem;
-    }
+  body {
+    background-color: #0ff000;
+    font-size: 0.75rem;
+  }
 }
 ```
 
@@ -526,7 +518,7 @@ body {
 
 用视口单位度量，视口宽度为100vw，高度为100vh（左侧为竖屏情况，右侧为横屏情况）。
 
-例如，在桌面端浏览器视口尺寸为650px，那么 1vw = 650 * 1% = 6.5px（这是理论推算的出，如果浏览器不支持0.5px，那么实际渲染结果可能是7px）。
+例如，在桌面端浏览器视口尺寸为650px，那么 1vw = 650 \* 1% = 6.5px（这是理论推算的出，如果浏览器不支持0.5px，那么实际渲染结果可能是7px）。
 
 使用视口单位来实现响应式有两种做法：
 

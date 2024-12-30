@@ -1,15 +1,14 @@
-
 # 透视相机（PerspectiveCamera）
 
-这一摄像机使用[perspective projection](https://en.wikipedia.org/wiki/Perspective_(graphical))（透视投影）来进行投影。
+这一摄像机使用[perspective projection](<https://en.wikipedia.org/wiki/Perspective_(graphical)>)（透视投影）来进行投影。
 
 这一投影模式被用来模拟人眼所看到的景象，它是3D场景的渲染中使用得最普遍的投影模式。
 
 ## 代码示例
 
 ```js
-const camera = new THREE.PerspectiveCamera( 45, width / height, 1, 1000 ); 
-scene.add( camera );
+const camera = new THREE.PerspectiveCamera(45, width / height, 1, 1000)
+scene.add(camera)
 ```
 
 ## 例子
@@ -130,22 +129,22 @@ height — 副摄像机的高度
 那对于每个显示器，你可以这样来设置、调用：
 
 ```js
-const w = 1920; 
-const h = 1080; 
-const fullWidth = w * 3; 
-const fullHeight = h * 2; 
-// A 
-camera.setViewOffset( fullWidth, fullHeight, w * 0, h * 0, w, h ); 
-// B 
-camera.setViewOffset( fullWidth, fullHeight, w * 1, h * 0, w, h ); 
-// C 
-camera.setViewOffset( fullWidth, fullHeight, w * 2, h * 0, w, h ); 
-// D 
-camera.setViewOffset( fullWidth, fullHeight, w * 0, h * 1, w, h ); 
-// E 
-camera.setViewOffset( fullWidth, fullHeight, w * 1, h * 1, w, h ); 
-// F 
-camera.setViewOffset( fullWidth, fullHeight, w * 2, h * 1, w, h );
+const w = 1920
+const h = 1080
+const fullWidth = w * 3
+const fullHeight = h * 2
+// A
+camera.setViewOffset(fullWidth, fullHeight, w * 0, h * 0, w, h)
+// B
+camera.setViewOffset(fullWidth, fullHeight, w * 1, h * 0, w, h)
+// C
+camera.setViewOffset(fullWidth, fullHeight, w * 2, h * 0, w, h)
+// D
+camera.setViewOffset(fullWidth, fullHeight, w * 0, h * 1, w, h)
+// E
+camera.setViewOffset(fullWidth, fullHeight, w * 1, h * 1, w, h)
+// F
+camera.setViewOffset(fullWidth, fullHeight, w * 2, h * 1, w, h)
 ```
 
 请注意，显示器的不必具有相同的大小，或者不必在网格中。

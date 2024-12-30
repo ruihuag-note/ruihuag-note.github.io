@@ -2,7 +2,7 @@
 
 ## 前言
 
-> 工具:  [TortoiseGit](https://gitee.com/enterprises?utm_source=baidu&utm_medium=sem&utm_term=110206&utm_campaign=enterprise&bd_vid=8015310045877046198)
+> 工具: [TortoiseGit](https://gitee.com/enterprises?utm_source=baidu&utm_medium=sem&utm_term=110206&utm_campaign=enterprise&bd_vid=8015310045877046198)
 >
 > 工作流程: 工作目录 -> 暂存区 -> GIT仓库
 
@@ -27,7 +27,7 @@ git status // 查看代码状态
 git checkout [ 分支名称 ] // 查看分支的状态
 git add . // 添加修改
 git commit -m "[描述]" //添加到本地换成
-git push 
+git push
 git push -u origin master
 git config user.name "[username]" // 配置用户名
 git config user.email "[eamil]" // 配置邮箱
@@ -51,7 +51,7 @@ git commit -m "first commit"
 git branch -M main
 git remote add origin git@github.com:guanruihua/note.git
 git push -u origin main
-                
+
 ```
 
 ```shell
@@ -64,7 +64,7 @@ git push -u origin main
 
 ```shell
 # 和远程仓库建立连接
-git remote add origin https://github.com/Jacob-xyb/Projiect  
+git remote add origin https://github.com/Jacob-xyb/Projiect
 git remote remove origin https://github.com/Jacob-xyb/Projiect # 删除远程仓库
 ```
 
@@ -226,7 +226,7 @@ git reflog // 查看已经回退过的版本记录
 功能分支（feature）：作为开发具体功能的分支，基于开发分支创建。
 查看本地和远程分支
 
-### 查看本地分支（*为当前分支）
+### 查看本地分支（\*为当前分支）
 
 git branch == git branch --list == git branch -l
 
@@ -256,19 +256,19 @@ git branch -m [oldName] [newName]
 
 ### 创建分支
 
-git branch 分支名称   # 创建分支（基于所在分支创建）
+git branch 分支名称 # 创建分支（基于所在分支创建）
 git checkout -b branchName commitId # 根据指定版本号创建分支
 
 #### 合并和删除分支
 
 ##### 合并
 
-git merge 来源分支   # 合并分支（将来源分支合并到当前分支）
+git merge 来源分支 # 合并分支（将来源分支合并到当前分支）
 
 ##### 删除
 
-git branch -d 分支名称  # 删除本地分支（如果删除的分支没有被合并是不能删除的）
-git branch -D 分支名称  # 强制删除本地分支
+git branch -d 分支名称 # 删除本地分支（如果删除的分支没有被合并是不能删除的）
+git branch -D 分支名称 # 强制删除本地分支
 git push origin -d 分支名称 # 删除远程分支[Git > v1.7.0](推荐)
 git push origin :分支名称 # 删除远程分支(":"代表删除)
 
@@ -278,7 +278,7 @@ git push origin :分支名称 # 删除远程分支(":"代表删除)
 
 使用场景：分支临时切
 
-git stash  # 临时保存
+git stash # 临时保存
 git stash pop # 恢复保存
 
 ##### 分支管理
@@ -289,8 +289,8 @@ git push origin develop:master -f
 
 ### 重置的方法
 
-git checkout master  # 切换到旧分支
-git reset --hard develop  # 将本地的旧分支master重置成develop
+git checkout master # 切换到旧分支
+git reset --hard develop # 将本地的旧分支master重置成develop
 git push origin master --force # 强制推送
 
 ### 删除远程分支

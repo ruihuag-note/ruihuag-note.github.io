@@ -7,4 +7,3 @@
 > 3. 根据需要选择对应的依赖
 > 4. `cd hello-world`
 > 5. `npm run serve`
-

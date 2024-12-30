@@ -9,7 +9,7 @@
 > 你可以在脚本中使用`location.ancestorOrigins`来检测你的网页是否被你不希望的对象嵌入了。你也可以使用它让网页在被特定站点嵌入时做出不同的表现。
 
 ```js
-const ancestors = location.ancestorOrigins;
+const ancestors = location.ancestorOrigins
 ```
 
 ### hash
@@ -34,21 +34,20 @@ const ancestors = location.ancestorOrigins;
 > Location 接口的 host 属性是包含了主机的一段 USVString，其中包含：主机名，如果 URL 的端口号是非空的，还会跟上一个 ':' ，最后是 URL 的端口号。
 
 ```js
-
 // string = object.host;
 // object.host = string;
 
-var anchor = document.createElement("a");
+var anchor = document.createElement('a')
 
-anchor.href = "https://developer.mozilla.org/en-US/Location.host"
-anchor.host == "developer.mozilla.org"
+anchor.href = 'https://developer.mozilla.org/en-US/Location.host'
+anchor.host == 'developer.mozilla.org'
 
-anchor.href = "https://developer.mozilla.org:443/en-US/Location.host"
-anchor.host == "developer.mozilla.org"
+anchor.href = 'https://developer.mozilla.org:443/en-US/Location.host'
+anchor.host == 'developer.mozilla.org'
 // 这里 host 中没有包含端口号，因为 443 是 https协议的默认端口号
 
-anchor.href = "https://developer.mozilla.org:4097/en-US/Location.host"
-anchor.host == "developer.mozilla.org:4097"
+anchor.href = 'https://developer.mozilla.org:4097/en-US/Location.host'
+anchor.host == 'developer.mozilla.org:4097'
 ```
 
 ### hostname
@@ -60,8 +59,8 @@ anchor.host == "developer.mozilla.org:4097"
 // object.hostname = string;
 
 // 在文档流中声明了一个元素： <a id="myAnchor" href="https://developer.mozilla.org/en-US/docs/Location.hostname">
-var anchor = document.getElementById("myAnchor");
-var result = anchor.hostname; // Returns:'developer.mozilla.org'
+var anchor = document.getElementById('myAnchor')
+var result = anchor.hostname // Returns:'developer.mozilla.org'
 ```
 
 ### href
@@ -73,8 +72,8 @@ var result = anchor.hostname; // Returns:'developer.mozilla.org'
 // object.href = string;
 
 // 假设文档中包含标签： <a id="myAnchor" href="https://developer.mozilla.org/en-US/Location/href">
-var anchor = document.getElementById("myAnchor");
-var result = anchor.href; // 返回: 'https://developer.mozilla.org/en-US/Location/href'
+var anchor = document.getElementById('myAnchor')
+var result = anchor.href // 返回: 'https://developer.mozilla.org/en-US/Location/href'
 ```
 
 ### origin
@@ -90,7 +89,7 @@ var result = anchor.href; // 返回: 'https://developer.mozilla.org/en-US/Locati
 // string = object.origin;
 // Copy to Clipboard
 // On this page, returns the origin
-var result = window.location.origin; // Returns:'https://developer.mozilla.org'
+var result = window.location.origin // Returns:'https://developer.mozilla.org'
 ```
 
 ### password
@@ -105,8 +104,8 @@ var result = window.location.origin; // Returns:'https://developer.mozilla.org'
 // string = object.password;
 // object.password = string;
 // Let's <a id="myAnchor" href="https://anonymous:flabada@developer.mozilla.org/en-US/docs/location.username"> be in the document
-var anchor = document.getElementByID("myAnchor");
-var result = anchor.password; // Returns:'flabada'
+var anchor = document.getElementByID('myAnchor')
+var result = anchor.password // Returns:'flabada'
 ```
 
 ### pathname
@@ -117,8 +116,8 @@ var result = anchor.password; // Returns:'flabada'
 // string = object.pathname;
 // object.pathname = string;
 // Let's an <a id="myAnchor" href="/en-US/docs/Location.pathname"> element be in the document
-var anchor = document.getElementById("myAnchor");
-var result = anchor.pathname; // Returns:'/en-US/docs/Location.pathname'
+var anchor = document.getElementById('myAnchor')
+var result = anchor.pathname // Returns:'/en-US/docs/Location.pathname'
 ```
 
 ### port
@@ -129,8 +128,8 @@ var result = anchor.pathname; // Returns:'/en-US/docs/Location.pathname'
 // string = object.port;
 // object.port = string;
 // Let's an <a id="myAnchor" href="https://developer.mozilla.org:443/en-US/docs/Location.port"> element be in the document
-var anchor = document.getElementByID("myAnchor");
-var result = anchor.port; // Returns:'443'
+var anchor = document.getElementByID('myAnchor')
+var result = anchor.port // Returns:'443'
 ```
 
 ### protocol
@@ -141,8 +140,8 @@ var result = anchor.port; // Returns:'443'
 // string = object.protocol;
 // object.protocol = string;
 // Let's an <a id="myAnchor" href="https://developer.mozilla.org/en-US/Location.protocol"> element be in the document
-var anchor = document.getElementById("myAnchor");
-var result = anchor.protocol; // Returns:'https:'
+var anchor = document.getElementById('myAnchor')
+var result = anchor.protocol // Returns:'https:'
 ```
 
 ### search
@@ -152,14 +151,14 @@ var result = anchor.protocol; // Returns:'https:'
 > Modern browsers provide URLSearchParams and URL.searchParams to make it easy to parse out the parameters from the querystring.
 
 ```js
-string = object.search;
-object.search = string;
+string = object.search
+object.search = string
 // Let an <a id="myAnchor" href="/en-US/docs/Location.search?q=123"> element be in the document
-var anchor = document.getElementById("myAnchor");
-var queryString = anchor.search; // Returns:'?q=123'
+var anchor = document.getElementById('myAnchor')
+var queryString = anchor.search // Returns:'?q=123'
 // Further parsing:
-let params = new URLSearchParams(queryString);
-let q = parseInt(params.get("q")); // is the number 123
+let params = new URLSearchParams(queryString)
+let q = parseInt(params.get('q')) // is the number 123
 ```
 
 ### username
@@ -169,11 +168,11 @@ let q = parseInt(params.get("q")); // is the number 123
 > The username property of the Location interface is a USVString containing the username specified before the domain name.
 
 ```js
-string = object.username;
-object.username = string;
+string = object.username
+object.username = string
 // Let's <a id="myAnchor" href="https://anonymous:flabada@developer.mozilla.org/en-US/docs/Location.username"> be in the document
-var anchor = document.getElementByID("myAnchor");
-var result = anchor.username; // Returns:'anonymous'
+var anchor = document.getElementByID('myAnchor')
+var result = anchor.username // Returns:'anonymous'
 ```
 
 ## 方法
@@ -185,9 +184,11 @@ var result = anchor.username; // Returns:'anonymous'
 > 如果传入了一个无效的 URL，则会抛出一个 SYNTAX_ERROR 类型的 DOMException。
 
 ```js
-location.assign(url);
+location.assign(url)
 // 跳转到 Location.reload() 这篇文章
-  document.location.assign('https://developer.mozilla.org/zh-CN/docs/Web/API/Location/reload');
+document.location.assign(
+  'https://developer.mozilla.org/zh-CN/docs/Web/API/Location/reload',
+)
 ```
 
 ### Location.reload()
@@ -196,11 +197,11 @@ location.assign(url);
 > 该方法在跨域调用（执行该方法的脚本文件的域和 Location 对象所在页面的跨不同）时，将会抛出 DOMException 异常。
 
 ```js
-object.reload(forcedReload);
+object.reload(forcedReload)
 
 // 无缓存刷新页面（但页面引用的资源还是可能使用缓存，
 // 大多数浏览器可以通过设置在打开开发者工具时禁用缓存实现无缓存需求）
-window.location.reload(true);
+window.location.reload(true)
 // forcedReload 可选
 // 该参数要求为 布尔 (en-US) 类型，当取值为 true 时，将强制浏览器从服务器重新获取当前页面资源，而不是从浏览器的缓存中读取，如果取值为 false 或不传该参数时，浏览器则可能会从缓存中读取当前页面。
 ```
@@ -229,6 +230,6 @@ window.location.replace('https://developer.mozilla.org/en-US/docs/Web/API/Locati
 // string = object.toString();
 // 例子
 // Let's imagine an <a id="myAnchor" href="https://developer.mozilla.org/en-US/docs/Location/toString"> element is in the document
-var anchor = document.getElementById("myAnchor");
-var result = anchor.toString(); // Returns: 'https://developer.mozilla.org/en-US/docs/Location/toString'
+var anchor = document.getElementById('myAnchor')
+var result = anchor.toString() // Returns: 'https://developer.mozilla.org/en-US/docs/Location/toString'
 ```

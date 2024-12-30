@@ -39,7 +39,7 @@
 ```txt
 if 表达式:
   # 语句块1
-else 
+else
   # 语句块2
 ```
 
@@ -48,7 +48,7 @@ if 表达式:
   # 语句块1
 elif
   # 语句块2
-else 
+else
   # 语句块3
 ```
 
@@ -62,7 +62,7 @@ else
 a = -9
 if a > 0:
  b = a
-else: 
+else:
  b = -a
 print(b)
 ```
@@ -78,13 +78,13 @@ print(b)
 ### while
 
 ```py
-while 条件表达式: 
+while 条件表达式:
  循环体
 ```
 
 ### for
 
 ```py
-for 迭代变量 in 对象: 
+for 迭代变量 in 对象:
  循环体
 ```

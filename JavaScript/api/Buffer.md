@@ -2,7 +2,7 @@
 
 > buffer 即缓存，是对二进制数据处理的一种方式
 
-## Uint*Array / ArrayBuffer
+## Uint\*Array / ArrayBuffer
 
 > ArrayBuffer: 基础的二进制对象, 对固定长度的连续内存控件的引用
 > 视图: `Uint8Array`, `Uint16Array`,`Uint32Array`
@@ -13,12 +13,12 @@
 
 ```js
 // 通过 BYTES_PER_ELEMENT 静态属性来得之视图单位的大小
-const buf8 = new Uint8Array();
-const buf16 = new Uint16Array();
-const buf32 = new Uint32Array();
-console.log(buf8.BYTES_PER_ELEMENT); // 1
-console.log(buf16.BYTES_PER_ELEMENT); // 2
-console.log(buf32.BYTES_PER_ELEMENT); // 4
+const buf8 = new Uint8Array()
+const buf16 = new Uint16Array()
+const buf32 = new Uint32Array()
+console.log(buf8.BYTES_PER_ELEMENT) // 1
+console.log(buf16.BYTES_PER_ELEMENT) // 2
+console.log(buf32.BYTES_PER_ELEMENT) // 4
 ```
 
 ## Blob
@@ -30,16 +30,16 @@ console.log(buf32.BYTES_PER_ELEMENT); // 4
 > 一种底层,更灵活读取`ArrayBuffer`的视图
 
 ```js
-const buffer = new ArrayBuffer(16); // 分配一个内存空间
-const view = new DataView(buffer); // 创建 DataView 视图
-view.setUint32(0, 4294967295); // 从第 0 个空间开始，以 32 位的形式写入数据
+const buffer = new ArrayBuffer(16) // 分配一个内存空间
+const view = new DataView(buffer) // 创建 DataView 视图
+view.setUint32(0, 4294967295) // 从第 0 个空间开始，以 32 位的形式写入数据
 
 // 有时候我想以 8 位的形式 “翻译” 这个内存空间，从偏移量 0 开始翻译
-console.log(view.getUint8(0)); // 255
+console.log(view.getUint8(0)) // 255
 // 今天心情好，想以 16 位的形式 “翻译” 这个内存空间，从偏移量 0 开始读
-console.log(view.getUint16(0)); // 65535
+console.log(view.getUint16(0)) // 65535
 // 今天心情超好，想以 32 位的形式 “翻译” 这个内存空间，从偏移量 0 开始读
-console.log(view.getUint32(0)); // 4294967295
+console.log(view.getUint32(0)) // 4294967295
 ```
 
 ## Node 中 Buffer

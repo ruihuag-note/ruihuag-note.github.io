@@ -10,14 +10,14 @@ npm i express
 
 ```js
 //server.js
-var express = require('express');
-var app = express();
+var express = require('express')
+var app = express()
 
-app.get('/',function(req, res){
-    res.send('this is the homepage');
+app.get('/', function (req, res) {
+  res.send('this is the homepage')
 })
 
-app.listen(3000);
+app.listen(3000)
 ```
 
 运行 `nodemon server.js`
@@ -27,27 +27,27 @@ app.listen(3000);
 ## id的使用
 
 ```js
-var express = require('express');
-var app = express();
-app.get('/user/:id/and/:name',function(req,res){
-    console.log(req.params);
-    res.send(req.params.id+"  "+req.params.name);
+var express = require('express')
+var app = express()
+app.get('/user/:id/and/:name', function (req, res) {
+  console.log(req.params)
+  res.send(req.params.id + '  ' + req.params.name)
   //可以输出id和name的值
 })
-app.listen(3000);
+app.listen(3000)
 ```
 
 ## url中使用正则
 
 ```js
-var express = require('express');
-var app = express();
+var express = require('express')
+var app = express()
 //这里的?就是正则表达式
-app.get('/user/ab?cd',function(req,res){
-    console.log(req.params);
-    res.send("匹配成功");
+app.get('/user/ab?cd', function (req, res) {
+  console.log(req.params)
+  res.send('匹配成功')
 })
-app.listen(3000);
+app.listen(3000)
 //输入http://localhost:3000/acd也可以匹配成功
 ```
 
@@ -55,15 +55,15 @@ app.listen(3000);
 
 ```js
 //server.js
-var express = require('express');
-var app = express();
+var express = require('express')
+var app = express()
 
-app.get('/',function(req, res){
-   console.log(req.query);
-    res.send('this is a epage'+ req.query.user);
-   //req.query.user可以拿到值
+app.get('/', function (req, res) {
+  console.log(req.query)
+  res.send('this is a epage' + req.query.user)
+  //req.query.user可以拿到值
 })
-app.listen(3000);
+app.listen(3000)
 ```
 
 > `http://localhost:3000/?user=grh` req.query可以返回{user:'grh'}
@@ -146,11 +146,11 @@ app.use(bodyParser.text({ type: 'text/html' }))
 
 ## HTML 5 `<form>` enctype 属性
 
-| 值                                | 描述                                                         |
-| :-------------------------------- | :----------------------------------------------------------- |
-| application/x-www-form-urlencoded | 在发送前对所有字符进行编码（默认）。                         |
+| 值                                | 描述                                                           |
+| :-------------------------------- | :------------------------------------------------------------- |
+| application/x-www-form-urlencoded | 在发送前对所有字符进行编码（默认）。                           |
 | multipart/form-data               | 不对字符编码。当使用有==文件上传==控件的表单时，该值是必需的。 |
-| text/plain                        | 将空格转换为 "+" 符号，但不编码特殊字符。                    |
+| text/plain                        | 将空格转换为 "+" 符号，但不编码特殊字符。                      |
 
 ## req.params,req.query,req.body的差别
 
@@ -169,27 +169,27 @@ Multer 是一个 node.js 中间件，用于处理 `multipart/form-data` 类型�
 server.js
 
 ```javascript
-var express = require('express');
-var app = express();
+var express = require('express')
+var app = express()
 
 //上传文件
-app.post('/form_file', upload.single('logo') , function(req,res,next){
-    // var form = fs.readFileSync('./form.html', { encoding: "utf8"});
-    // res.send(form);
-    console.log(req.file);
-    res.send({'ret_code': 0 });
+app.post('/form_file', upload.single('logo'), function (req, res, next) {
+  // var form = fs.readFileSync('./form.html', { encoding: "utf8"});
+  // res.send(form);
+  console.log(req.file)
+  res.send({ ret_code: 0 })
 })
 
 // 通过http://localhost:3000/form 打开formhtml
-app.get('/form', function(req,res){
-    // 方法一
-    // var form = fs.readFileSync('./form.html', {encoding:"utf8"});
-    // res.send(form);
-    // 方法二
-    res.sendFile(__dirname + '/form.html');
+app.get('/form', function (req, res) {
+  // 方法一
+  // var form = fs.readFileSync('./form.html', {encoding:"utf8"});
+  // res.send(form);
+  // 方法二
+  res.sendFile(__dirname + '/form.html')
 })
 
-app.listen(3000);
+app.listen(3000)
 ```
 
 form.html
@@ -197,20 +197,23 @@ form.html
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Comptatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Comptatible" content="ie=edge" />
     <title>Document</title>
-</head>
-<body>
-   <!--这里的action填/form_file也是可以的-->
-    <form action="http://localhost:3000/form_file" method="post" enctype="multipart/form-data">
-        <h2>单图上传</h2>
-        <input type="file" name="logo">
-        <input type="submit" value="提交">
+  </head>
+  <body>
+    <!--这里的action填/form_file也是可以的-->
+    <form
+      action="http://localhost:3000/form_file"
+      method="post"
+      enctype="multipart/form-data">
+      <h2>单图上传</h2>
+      <input type="file" name="logo" />
+      <input type="submit" value="提交" />
     </form>
-</body>
+  </body>
 </html>
 ```
 
@@ -219,17 +222,17 @@ form.html
 ### 安装`npm install ejs --save`
 
 ```js
-var express = require('express');
-var app = express();
+var express = require('express')
+var app = express()
 
-app.set('view engine', 'ejs');
-app.get('/ejs/:name',function(req,res){
-    var myname = req.params.name;
+app.set('view engine', 'ejs')
+app.get('/ejs/:name', function (req, res) {
+  var myname = req.params.name
   //这里也可以传输对象等数据类型
-    res.render('ejs_text',{pn: myname });
-})//这里的ejs_text是指向iview的文件
+  res.render('ejs_text', { pn: myname })
+}) //这里的ejs_text是指向iview的文件
 
-app.listen(3000);
+app.listen(3000)
 ```
 
 ejs_text.ejs
@@ -237,16 +240,14 @@ ejs_text.ejs
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <h1>
-        <%= pn %>
-    </h1>
-</body>
+  </head>
+  <body>
+    <h1><%= pn %></h1>
+  </body>
 </html>
 ```
 
@@ -301,63 +302,61 @@ http://localhost:3000/hello.html
 
 ```javascript
 var express = require('express')
-var app = express();
-app.get('/home', function(req, res, next){
-  res.send('home');
+var app = express()
+app.get('/home', function (req, res, next) {
+  res.send('home')
 })
 
-app.get('/users', function(req, res, next){
-  res.send('users');
+app.get('/users', function (req, res, next) {
+  res.send('users')
 })
 
-app.get('/', function(req, res, next){
-  res.send('root');
+app.get('/', function (req, res, next) {
+  res.send('root')
 })
-app.listen(3000);
+app.listen(3000)
 ```
 
 ### 使用路由中间件后
 
 > 1. 先新建routes文件夹
->
 > 2. 然后再在这文件夹下,建立模块index.js,users,js
 > 3. 再在server.js引入这两个路由
 
 index.js
 
 ```javascript
-var express = require('express');
-var router =  express.Router();
-router.get('/', function(req, res, next){
-  res.send('root');
+var express = require('express')
+var router = express.Router()
+router.get('/', function (req, res, next) {
+  res.send('root')
 })
 
-module.exports = router;
+module.exports = router
 ```
 
 users.js
 
 ```javascript
-var express = require('express');
-var router =  express.Router();
-router.get('/', function(req, res, next){
-  res.send('users');
+var express = require('express')
+var router = express.Router()
+router.get('/', function (req, res, next) {
+  res.send('users')
 })
 
-module.exports = router;
+module.exports = router
 ```
 
 server.js
 
 ```javascript
-var express =  require('express')
-var app  = express();
+var express = require('express')
+var app = express()
 var indexRouter = require('./routes/index')
 var userRouter = require('./route/users')
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', indexRouter)
+app.use('/users', usersRouter)
 
-
-app.listen(3000);
+app.listen(3000)
 ```

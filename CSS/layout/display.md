@@ -56,5 +56,4 @@ display: initial;
 display: revert;
 display: revert-layer;
 display: unset;
-
 ```

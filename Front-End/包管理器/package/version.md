@@ -60,7 +60,7 @@ npm view react versions
   - 还能跟踪每个 npm 包的确切版本
   - 以确保产品可以拥有完整且相同的 node_modules 树，产品的表现形式一致
 - 正如上述关于 package.json 依赖工作的描述，package.json 一直都存在着一个比较尴尬的问题，即在运行 npm update 或者 npm install 的时候，会尽可能地安装最新的依赖，如果虽然补丁版本和次版本不应该引入重大的更改，但并不是所有的开源项目的作者都是遵守 semver 规则（我相信有些人可能都还不知道这东东），免不了的，还是有可能会产生 bug。 那如果在服务器的 ci 服务器，每次都是先 npm install 安装依赖再执行打包构建的时候，不就有可能会产生问题了吗？ 这里就不得不先提一下 npm ci 这个命令了，npm ci 跟 npm install 不同。看到 ci，也应该能想到持续集成中的这个 ci。没错啦，这个就是专门用于 CI/CD 中的安装依赖操作。
- npm ci 相比 npm install 命令，有几个特点： npm 版本要 ≥ v5.7.1
+  npm ci 相比 npm install 命令，有几个特点： npm 版本要 ≥ v5.7.1
 
 - 不会更改 package.json 、package-lock.json 文件
 - 执行的之前如果存在 node_modules ，会先将之删除

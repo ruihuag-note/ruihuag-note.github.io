@@ -9,32 +9,31 @@
 ```html
 <!-- 没有声明 -->
 <html>
-<head lang="ch">
-    <meta charset="UTF-8">
+  <head lang="ch">
+    <meta charset="UTF-8" />
     <title></title>
     <style>
-        .box{
-            float:left;
-            width: 100px;
-            height: 100px;
-            background-color: #ff9000;
-        }
-        .container{
-            width: 200px;
-            padding: 10px;
-            background-color: #f00;
-            overflow: hidden;
-        }
+      .box {
+        float: left;
+        width: 100px;
+        height: 100px;
+        background-color: #ff9000;
+      }
+      .container {
+        width: 200px;
+        padding: 10px;
+        background-color: #f00;
+        overflow: hidden;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <div class="box"></div>
-        <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
     </div>
-<script>
-</script>
-</body>
+    <script></script>
+  </body>
 </html>
 ```
 
@@ -45,17 +44,15 @@
 但是给container添加padding
 
 ```css
-.container{
-    width: 200px;
-    background-color: #f00;
-    overflow: hidden;
-    padding: 10px;
+.container {
+  width: 200px;
+  background-color: #f00;
+  overflow: hidden;
+  padding: 10px;
 }
 ```
 
 则其在非IE下的样式为：
-
-
 
 ![W3C](W3C和IE盒模型.assets/20150629103146025)
 

@@ -54,10 +54,10 @@ parameters - (可选) 该对象的属性定义了渲染器的行为。也可以�
 > - isWebGL2: **true** if the context in use is a WebGL2RenderingContext object.
 > - logarithmicDepthBuffer: 如果logarithmicDepthBuffer在构造器中被设为true且 环境支持[EXT_frag_depth](https://developer.mozilla.org/en-US/docs/Web/API/EXT_frag_depth)扩展，则此值为**true**
 > - maxAttributes: **gl.MAX_VERTEX_ATTRIBS**的值
-> - maxCubemapSize: **gl.MAX_CUBE_MAP_TEXTURE_SIZE** 的值，着色器可使用的立方体贴图纹理的最大宽度*高度
+> - maxCubemapSize: **gl.MAX_CUBE_MAP_TEXTURE_SIZE** 的值，着色器可使用的立方体贴图纹理的最大宽度\*高度
 > - maxFragmentUniforms: **gl.MAX_FRAGMENT_UNIFORM_VECTORS**的值，片元着色器可使用的全局变量(uniforms)数量
-> - maxTextureSize: **gl.MAX_TEXTURE_SIZE**的值，着色器可使用纹理的最大宽度*高度
-> - maxTextures: *gl.MAX_TEXTURE_IMAGE_UNITS的值，着色器可使用的纹理数量
+> - maxTextureSize: **gl.MAX_TEXTURE_SIZE**的值，着色器可使用纹理的最大宽度\*高度
+> - maxTextures: \*gl.MAX_TEXTURE_IMAGE_UNITS的值，着色器可使用的纹理数量
 > - maxVaryings: **gl.MAX_VARYING_VECTORS**的值，着色器可使用矢量的数量
 > - maxVertexTextures: **gl.MAX_VERTEX_TEXTURE_IMAGE_UNITS**的值，顶点着色器可使用的纹理数量。
 > - maxVertexUniforms: **gl.MAX_VERTEX_UNIFORM_VECTORS**的值，顶点着色器可使用的全局变量(uniforms)数量
@@ -71,8 +71,8 @@ parameters - (可选) 该对象的属性定义了渲染器的行为。也可以�
 ### .domElement : DOMElement
 
 > 一个[canvas](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas)，渲染器在其上绘制输出。
-渲染器的构造函数会自动创建(如果没有传入canvas参数);你需要做的仅仅是像下面这样将它加页面里去:
-`document.body.appendChild( renderer.domElement );`
+> 渲染器的构造函数会自动创建(如果没有传入canvas参数);你需要做的仅仅是像下面这样将它加页面里去:
+> `document.body.appendChild( renderer.domElement );`
 
 ### .extensions : Object
 

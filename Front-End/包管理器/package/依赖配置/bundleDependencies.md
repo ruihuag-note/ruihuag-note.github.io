@@ -1,14 +1,11 @@
 # [`bundleDependencies`]()
 
 > 打包依赖。它的值是一个数组，在发布包时，bundleDependencies 里面的依赖都会被一起打包
-比如指定 react 和 react-dom 为打包依赖：
+> 比如指定 react 和 react-dom 为打包依赖：
 
 ```json
 {
- "bundleDependencies": [
-  "react",
-  "react-dom"
-]
+  "bundleDependencies": ["react", "react-dom"]
 }
 ```
 

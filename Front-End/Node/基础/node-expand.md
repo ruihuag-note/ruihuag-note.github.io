@@ -93,8 +93,8 @@ request.get('请求地址', {
 axios优势会更明显，前后端通杀，前后端调用的方式一致。
 
 ```js
-axios.get('请求地址',参数对象).then(function (response) {
-    console.log(response);
+axios.get('请求地址', 参数对象).then(function (response) {
+  console.log(response)
 })
 ```
 
@@ -102,13 +102,12 @@ axios获取图片
 
 ```js
 axios({
-  method:'get',
-  url:'http://bit.ly/2mTM3nY',
-  responseType:'stream'
-})
-.then(function(response) {
+  method: 'get',
+  url: 'http://bit.ly/2mTM3nY',
+  responseType: 'stream',
+}).then(function (response) {
   response.data.pipe(fs.createWriteStream('ada_lovelace.jpg'))
-});
+})
 ```
 
 puppeteer:完全模拟浏览器
@@ -256,11 +255,11 @@ Telnet是TCP/IP中的一种应用协议，可以为终端仿真提供支持。�
 
 IPV4
 
-IP:1.1.1.1   ---   255.255.255.255  
+IP:1.1.1.1 --- 255.255.255.255
 
 IPV6
 
-10亿  10亿 10亿 10亿
+10亿 10亿 10亿 10亿
 
 **（3）FTP协议**
 
@@ -468,37 +467,37 @@ Content-Type: text/html; charset=UTF-8
 
 常见状态码：
 
-200 OK                        //客户端请求成功
+200 OK //客户端请求成功
 
-400 Bad Request               //客户端请求有语法错误，不能被服务器所理解
+400 Bad Request //客户端请求有语法错误，不能被服务器所理解
 
-401 Unauthorized              //请求未经授权，这个状态代码必须和WWW-Authenticate报头域一起使用
+401 Unauthorized //请求未经授权，这个状态代码必须和WWW-Authenticate报头域一起使用
 
-403 Forbidden                 //服务器收到请求，但是拒绝提供服务
+403 Forbidden //服务器收到请求，但是拒绝提供服务
 
-404 Not Found                 //请求资源不存在，eg：输入了错误的URL
+404 Not Found //请求资源不存在，eg：输入了错误的URL
 
-500 Internal Server Error     //服务器发生不可预期的错误
+500 Internal Server Error //服务器发生不可预期的错误
 
-503 Server Unavailable        //服务器当前不能处理客户端的请求，一段时间后可能恢复正常
+503 Server Unavailable //服务器当前不能处理客户端的请求，一段时间后可能恢复正常
 
 ### HTTP请求方法
 
 根据HTTP标准，HTTP请求可以使用多种请求方法。 HTTP1.0定义了三种请求方法： GET, POST 和 HEAD方法。 HTTP1.1新增了五种请求方法：OPTIONS, PUT, DELETE, TRACE 和 CONNECT 方法。
 
-GET     请求指定的页面信息，并返回实体主体。
+GET 请求指定的页面信息，并返回实体主体。
 
-HEAD     类似于get请求，只不过返回的响应中没有具体的内容，用于获取报头
+HEAD 类似于get请求，只不过返回的响应中没有具体的内容，用于获取报头
 
-POST     向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。
+POST 向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。
 
-PUT     从客户端向服务器传送的数据取代指定的文档的内容。
+PUT 从客户端向服务器传送的数据取代指定的文档的内容。
 
-DELETE      请求服务器删除指定的页面。
+DELETE 请求服务器删除指定的页面。
 
-CONNECT     HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。
+CONNECT HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。
 
-OPTIONS     允许客户端查看服务器的性能。 TRACE     回显服务器收到的请求，主要用于测试或诊断。`
+OPTIONS 允许客户端查看服务器的性能。 TRACE 回显服务器收到的请求，主要用于测试或诊断。`
 
 > HTTP工作原理
 
@@ -597,12 +596,12 @@ Http协议定义了很多与服务器交互的方法，最基本的有4种，分
 
 ## 工具模块
 
-| 序号 | 模块名 & 描述                                                |
-| :--- | :----------------------------------------------------------- |
-| 1    | **OS 模块** 提供基本的系统操作函数。                         |
-| 2    | **Path 模块** 提供了处理和转换文件路径的工具。               |
-| 3    | **Net 模块** 用于底层的网络通信。提供了服务端和客户端的的操作。 |
-| 4    | **DNS 模块** 用于解析域名。                                  |
+| 序号 | 模块名 & 描述                                                             |
+| :--- | :------------------------------------------------------------------------ |
+| 1    | **OS 模块** 提供基本的系统操作函数。                                      |
+| 2    | **Path 模块** 提供了处理和转换文件路径的工具。                            |
+| 3    | **Net 模块** 用于底层的网络通信。提供了服务端和客户端的的操作。           |
+| 4    | **DNS 模块** 用于解析域名。                                               |
 | 5    | **Domain 模块** 简化异步代码的异常处理，可以捕捉处理try catch无法捕捉的。 |
 
 ## web模块
@@ -619,41 +618,42 @@ Http协议定义了很多与服务器交互的方法，最基本的有4种，分
 server.js
 
 ```js
-var http = require('http');
-var fs = require('fs');
-var url = require('url');
- 
- 
+var http = require('http')
+var fs = require('fs')
+var url = require('url')
+
 // 创建服务器
-http.createServer( function (request, response) {  
-   // 解析请求，包括文件名
-   var pathname = url.parse(request.url).pathname;
-   
-   // 输出请求的文件名
-   console.log("Request for " + pathname + " received.");
-   
-   // 从文件系统中读取请求的文件内容
-   fs.readFile(pathname.substr(1), function (err, data) {
+http
+  .createServer(function (request, response) {
+    // 解析请求，包括文件名
+    var pathname = url.parse(request.url).pathname
+
+    // 输出请求的文件名
+    console.log('Request for ' + pathname + ' received.')
+
+    // 从文件系统中读取请求的文件内容
+    fs.readFile(pathname.substr(1), function (err, data) {
       if (err) {
-         console.log(err);
-         // HTTP 状态码: 404 : NOT FOUND
-         // Content Type: text/html
-         response.writeHead(404, {'Content-Type': 'text/html'});
-      }else{             
-         // HTTP 状态码: 200 : OK
-         // Content Type: text/html
-         response.writeHead(200, {'Content-Type': 'text/html'});    
-         
-         // 响应文件内容
-         response.write(data.toString());        
+        console.log(err)
+        // HTTP 状态码: 404 : NOT FOUND
+        // Content Type: text/html
+        response.writeHead(404, { 'Content-Type': 'text/html' })
+      } else {
+        // HTTP 状态码: 200 : OK
+        // Content Type: text/html
+        response.writeHead(200, { 'Content-Type': 'text/html' })
+
+        // 响应文件内容
+        response.write(data.toString())
       }
       //  发送响应数据
-      response.end();
-   });   
-}).listen(8080);
- 
+      response.end()
+    })
+  })
+  .listen(8080)
+
 // 控制台会输出以下信息
-console.log('Server running at http://127.0.0.1:8080/');
+console.log('Server running at http://127.0.0.1:8080/')
 ```
 
 index.html
@@ -677,31 +677,31 @@ index.html
 client.js
 
 ```js
-var http = require('http');
- 
+var http = require('http')
+
 // 用于请求的选项
 var options = {
-   host: 'localhost',
-   port: '8080',
-   path: '/index.html'  
-};
- 
+  host: 'localhost',
+  port: '8080',
+  path: '/index.html',
+}
+
 // 处理响应的回调函数
-var callback = function(response){
-   // 不断更新数据
-   var body = '';
-   response.on('data', function(data) {
-      body += data;
-   });
-   
-   response.on('end', function() {
-      // 数据接收完成
-      console.log(body);
-   });
+var callback = function (response) {
+  // 不断更新数据
+  var body = ''
+  response.on('data', function (data) {
+    body += data
+  })
+
+  response.on('end', function () {
+    // 数据接收完成
+    console.log(body)
+  })
 }
 // 向服务端发送请求
-var req = http.request(options, callback);
-req.end();
+var req = http.request(options, callback)
+req.end()
 ```
 
 ## Express框架
@@ -734,25 +734,23 @@ cnpm install multer --save
 
 ```js
 //express_demo.js 文件
-var express = require('express');
-var app = express();
- 
+var express = require('express')
+var app = express()
+
 app.get('/', function (req, res) {
-   res.send('Hello World');
+  res.send('Hello World')
 })
- 
+
 var server = app.listen(8081, function () {
- 
   var host = server.address().address
   var port = server.address().port
- 
-  console.log("应用实例，访问地址为 http://%s:%s", host, port)
- 
+
+  console.log('应用实例，访问地址为 http://%s:%s', host, port)
 })
 ```
 
 ```shell
-$ node express_demo.js 
+$ node express_demo.js
 应用实例，访问地址为 http://0.0.0.0:8081
 ```
 
@@ -762,7 +760,7 @@ $ node express_demo.js
 
 ```js
 app.get('/', function (req, res) {
-   // --
+  // --
 })
 ```
 
@@ -815,63 +813,58 @@ app.get('/', function (req, res) {
 > 路由决定了由谁(指定脚本)去响应客户端请求。
 
 ```js
-var express = require('express');
-var app = express();
- 
+var express = require('express')
+var app = express()
+
 //  主页输出 "Hello World"
 app.get('/', function (req, res) {
-   console.log("主页 GET 请求");
-   res.send('Hello GET');
+  console.log('主页 GET 请求')
+  res.send('Hello GET')
 })
- 
- 
+
 //  POST 请求
 app.post('/', function (req, res) {
-   console.log("主页 POST 请求");
-   res.send('Hello POST');
+  console.log('主页 POST 请求')
+  res.send('Hello POST')
 })
- 
+
 //  /del_user 页面响应
 app.get('/del_user', function (req, res) {
-   console.log("/del_user 响应 DELETE 请求");
-   res.send('删除页面');
+  console.log('/del_user 响应 DELETE 请求')
+  res.send('删除页面')
 })
- 
+
 //  /list_user 页面 GET 请求
 app.get('/list_user', function (req, res) {
-   console.log("/list_user GET 请求");
-   res.send('用户列表页面');
+  console.log('/list_user GET 请求')
+  res.send('用户列表页面')
 })
- 
+
 // 对页面 abcd, abxcd, ab123cd, 等响应 GET 请求
-app.get('/ab*cd', function(req, res) {   
-   console.log("/ab*cd GET 请求");
-   res.send('正则匹配');
+app.get('/ab*cd', function (req, res) {
+  console.log('/ab*cd GET 请求')
+  res.send('正则匹配')
 })
- 
- 
+
 var server = app.listen(8081, function () {
- 
   var host = server.address().address
   var port = server.address().port
- 
-  console.log("应用实例，访问地址为 http://%s:%s", host, port)
- 
+
+  console.log('应用实例，访问地址为 http://%s:%s', host, port)
 })
 ```
 
 ### 静态文件
 
 > - Express 提供了内置的中间件 **express.static** 来设置静态文件如：图片， CSS, JavaScript 等。
->
 > - 使用 **express.static** 中间件来设置静态文件路径。
 >   - 例如，如果你将图片， CSS, JavaScript 文件放在 public 目录下
 
 ```js
-var express = require('express');
-var app = express();
- 
-app.use('/public', express.static('public'));
+var express = require('express')
+var app = express()
+
+app.use('/public', express.static('public'))
 /*
 node_modules
 server.js
@@ -879,18 +872,16 @@ public/
 public/images
 public/images/logo.png
 */
- 
+
 app.get('/', function (req, res) {
-   res.send('Hello World');
+  res.send('Hello World')
 })
- 
+
 var server = app.listen(8081, function () {
- 
   var host = server.address().address
   var port = server.address().port
- 
-  console.log("应用实例，访问地址为 http://%s:%s", host, port)
- 
+
+  console.log('应用实例，访问地址为 http://%s:%s', host, port)
 })
 ```
 
@@ -900,65 +891,62 @@ var server = app.listen(8081, function () {
 
 ```js
 <html>
-<head>
-<title>文件上传表单</title>
-</head>
-<body>
-<h3>文件上传：</h3>
-选择一个文件上传: <br />
-<form action="/file_upload" method="post" enctype="multipart/form-data">
-  <input type="file" name="image" size="50" />
-  <br />
-  <input type="submit" value="上传文件" />
-</form>
-</body>
+  <head>
+    <title>文件上传表单</title>
+  </head>
+  <body>
+    <h3>文件上传：</h3>
+    选择一个文件上传: <br />
+    <form action='/file_upload' method='post' enctype='multipart/form-data'>
+      <input type='file' name='image' size='50' />
+      <br />
+      <input type='submit' value='上传文件' />
+    </form>
+  </body>
 </html>
 ```
 
 ```js
-var express = require('express');
-var app = express();
-var fs = require("fs");
- 
-var bodyParser = require('body-parser');
-var multer  = require('multer');
- 
-app.use('/public', express.static('public'));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(multer({ dest: '/tmp/'}).array('image'));
- 
+var express = require('express')
+var app = express()
+var fs = require('fs')
+
+var bodyParser = require('body-parser')
+var multer = require('multer')
+
+app.use('/public', express.static('public'))
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(multer({ dest: '/tmp/' }).array('image'))
+
 app.get('/index.html', function (req, res) {
-   res.sendFile( __dirname + "/" + "index.html" );
+  res.sendFile(__dirname + '/' + 'index.html')
 })
- 
+
 app.post('/file_upload', function (req, res) {
- 
-   console.log(req.files[0]);  // 上传的文件信息
-  
-   var des_file = __dirname + "/" + req.files[0].originalname;
-   fs.readFile( req.files[0].path, function (err, data) {
-        fs.writeFile(des_file, data, function (err) {
-         if( err ){
-              console.log( err );
-         }else{
-               response = {
-                   message:'File uploaded successfully', 
-                   filename:req.files[0].originalname
-              };
-          }
-          console.log( response );
-          res.end( JSON.stringify( response ) );
-       });
-   });
+  console.log(req.files[0]) // 上传的文件信息
+
+  var des_file = __dirname + '/' + req.files[0].originalname
+  fs.readFile(req.files[0].path, function (err, data) {
+    fs.writeFile(des_file, data, function (err) {
+      if (err) {
+        console.log(err)
+      } else {
+        response = {
+          message: 'File uploaded successfully',
+          filename: req.files[0].originalname,
+        }
+      }
+      console.log(response)
+      res.end(JSON.stringify(response))
+    })
+  })
 })
- 
+
 var server = app.listen(8081, function () {
- 
   var host = server.address().address
   var port = server.address().port
- 
-  console.log("应用实例，访问地址为 http://%s:%s", host, port)
- 
+
+  console.log('应用实例，访问地址为 http://%s:%s', host, port)
 })
 ```
 
@@ -968,15 +956,15 @@ var server = app.listen(8081, function () {
 // express_cookie.js 文件
 var express = require('express')
 var cookieParser = require('cookie-parser')
-var util = require('util');
- 
+var util = require('util')
+
 var app = express()
 app.use(cookieParser())
- 
-app.get('/', function(req, res) {
-    console.log("Cookies: " + util.inspect(req.cookies));
+
+app.get('/', function (req, res) {
+  console.log('Cookies: ' + util.inspect(req.cookies))
 })
- 
+
 app.listen(8081)
 ```
 
@@ -1018,7 +1006,7 @@ child_process.exec(command[, options], callback)
 - encoding ，字符串，字符编码（默认： 'utf8'）
 - shell ，字符串，将要执行命令的 Shell（默认: 在 UNIX 中为`/bin/sh`， 在 Windows 中为`cmd.exe`， Shell 应当能识别 `-c`开关在 UNIX 中，或 `/s /c` 在 Windows 中。 在Windows 中，命令行解析应当能兼容`cmd.exe`）
 - timeout，数字，超时时间（默认： 0）
-- maxBuffer，数字， 在 stdout 或 stderr 中允许存在的最大缓冲（二进制），如果超出那么子进程将会被杀死 （默认: 200*1024）
+- maxBuffer，数字， 在 stdout 或 stderr 中允许存在的最大缓冲（二进制），如果超出那么子进程将会被杀死 （默认: 200\*1024）
 - killSignal ，字符串，结束信号（默认：'SIGTERM'）
 - uid，数字，设置用户进程的 ID
 - gid，数字，设置进程组的 ID
@@ -1036,42 +1024,45 @@ child_process.exec(command[, options], callback)
 #### master.js 文件代码
 
 ```js
-const fs = require('fs');
-const child_process = require('child_process');
- 
-for(var i=0; i<3; i++) {
-    var workerProcess = child_process.exec('node support.js '+i, function (error, stdout, stderr) {
-        if (error) {
-            console.log(error.stack);
-            console.log('Error code: '+error.code);
-            console.log('Signal received: '+error.signal);
-        }
-        console.log('stdout: ' + stdout);
-        console.log('stderr: ' + stderr);
-    });
- 
-    workerProcess.on('exit', function (code) {
-        console.log('子进程已退出，退出码 '+code);
-    });
+const fs = require('fs')
+const child_process = require('child_process')
+
+for (var i = 0; i < 3; i++) {
+  var workerProcess = child_process.exec(
+    'node support.js ' + i,
+    function (error, stdout, stderr) {
+      if (error) {
+        console.log(error.stack)
+        console.log('Error code: ' + error.code)
+        console.log('Signal received: ' + error.signal)
+      }
+      console.log('stdout: ' + stdout)
+      console.log('stderr: ' + stderr)
+    },
+  )
+
+  workerProcess.on('exit', function (code) {
+    console.log('子进程已退出，退出码 ' + code)
+  })
 }
 ```
 
 执行以上代码，输出结果为：
 
 ```
-$ node master.js 
+$ node master.js
 子进程已退出，退出码 0
 stdout: 进程 1 执行。
 
-stderr: 
+stderr:
 子进程已退出，退出码 0
 stdout: 进程 0 执行。
 
-stderr: 
+stderr:
 子进程已退出，退出码 0
 stdout: 进程 2 执行。
 
-stderr: 
+stderr:
 ```
 
 ### spawn()方法
@@ -1110,23 +1101,23 @@ spawn() 方法返回流 (stdout & stderr)，在进程返回大量数据时使用
 #### master.js 文件代码
 
 ```js
-const fs = require('fs');
-const child_process = require('child_process');
- 
-for(var i=0; i<3; i++) {
-   var workerProcess = child_process.spawn('node', ['support.js', i]);
- 
-   workerProcess.stdout.on('data', function (data) {
-      console.log('stdout: ' + data);
-   });
- 
-   workerProcess.stderr.on('data', function (data) {
-      console.log('stderr: ' + data);
-   });
- 
-   workerProcess.on('close', function (code) {
-      console.log('子进程已退出，退出码 '+code);
-   });
+const fs = require('fs')
+const child_process = require('child_process')
+
+for (var i = 0; i < 3; i++) {
+  var workerProcess = child_process.spawn('node', ['support.js', i])
+
+  workerProcess.stdout.on('data', function (data) {
+    console.log('stdout: ' + data)
+  })
+
+  workerProcess.stderr.on('data', function (data) {
+    console.log('stderr: ' + data)
+  })
+
+  workerProcess.on('close', function (code) {
+    console.log('子进程已退出，退出码 ' + code)
+  })
 }
 ```
 
@@ -1181,22 +1172,22 @@ child_process.fork(modulePath[, args][, options])
 #### master.js 文件代码
 
 ```js
-const fs = require('fs');
-const child_process = require('child_process');
- 
-for(var i=0; i<3; i++) {
-   var worker_process = child_process.fork("support.js", [i]);    
- 
-   worker_process.on('close', function (code) {
-      console.log('子进程已退出，退出码 ' + code);
-   });
+const fs = require('fs')
+const child_process = require('child_process')
+
+for (var i = 0; i < 3; i++) {
+  var worker_process = child_process.fork('support.js', [i])
+
+  worker_process.on('close', function (code) {
+    console.log('子进程已退出，退出码 ' + code)
+  })
 }
 ```
 
 执行以上代码，输出结果为：
 
 ```
-$ node master.js 
+$ node master.js
 进程 0 执行。
 子进程已退出，退出码 0
 进程 1 执行。
@@ -1213,7 +1204,7 @@ $ node master.js
 cnpm install mongodb
 ```
 
-------
+---
 
 ### 创建数据库
 
@@ -1224,57 +1215,57 @@ cnpm install mongodb
 ### 创建连接
 
 ```js
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/grh";
- 
-MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
-  if (err) throw err;
-  console.log("数据库已创建!");
-  db.close();
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/grh'
+
+MongoClient.connect(url, { useNewUrlParser: true }, function (err, db) {
+  if (err) throw err
+  console.log('数据库已创建!')
+  db.close()
 })
 ```
 
-------
+---
 
 ### 创建集合
 
 我们可以使用 createCollection() 方法来创建集合：
 
 ```js
-var MongoClient = require('mongodb').MongoClient;
-var url = 'mongodb://localhost:27017/grh';
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/grh'
 MongoClient.connect(url, { useNewUrlParser: true }, function (err, db) {
-    if (err) throw err;
-    console.log('数据库已创建');
-    var dbase = db.db("grh");
-    dbase.createCollection('site', function (err, res) {
-        if (err) throw err;
-        console.log("创建集合!");
-        db.close();
-    });
-});
+  if (err) throw err
+  console.log('数据库已创建')
+  var dbase = db.db('grh')
+  dbase.createCollection('site', function (err, res) {
+    if (err) throw err
+    console.log('创建集合!')
+    db.close()
+  })
+})
 ```
 
-------
+---
 
 ### 数据库操作( CURD )
 
 #### 插入一条数据insertOne()
 
 ```js
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
- 
-MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
-    if (err) throw err;
-    var dbo = db.db("grh");
-    var myobj = { name: "grh", url: "www.grh" };
-    dbo.collection("site").insertOne(myobj, function(err, res) {
-        if (err) throw err;
-        console.log("文档插入成功");
-        db.close();
-    });
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/'
+
+MongoClient.connect(url, { useNewUrlParser: true }, function (err, db) {
+  if (err) throw err
+  var dbo = db.db('grh')
+  var myobj = { name: 'grh', url: 'www.grh' }
+  dbo.collection('site').insertOne(myobj, function (err, res) {
+    if (err) throw err
+    console.log('文档插入成功')
+    db.close()
+  })
+})
 ```
 
 执行以下命令输出就结果为：
@@ -1295,29 +1286,29 @@ grh  0.000GB          # 自动创建了 grh 数据库
 site                     # 自动创建了 site 集合（数据表）
 > db.site.find()
 { "_id" : ObjectId("5a794e36763eb821b24db854"), "name" : "grh", "url" : "www.grh" }
-> 
+>
 ```
 
 #### 插入多条数据 **insertMany()**
 
 ```js
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
- 
-MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
-    if (err) throw err;
-    var dbo = db.db("grh");
-    var myobj =  [
-        { name: '菜鸟工具', url: 'https://c.grh.com', type: 'cn'},
-        { name: 'Google', url: 'https://www.google.com', type: 'en'},
-        { name: 'Facebook', url: 'https://www.google.com', type: 'en'}
-       ];
-    dbo.collection("site").insertMany(myobj, function(err, res) {
-        if (err) throw err;
-        console.log("插入的文档数量为: " + res.insertedCount);
-        db.close();
-    });
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/'
+
+MongoClient.connect(url, { useNewUrlParser: true }, function (err, db) {
+  if (err) throw err
+  var dbo = db.db('grh')
+  var myobj = [
+    { name: '菜鸟工具', url: 'https://c.grh.com', type: 'cn' },
+    { name: 'Google', url: 'https://www.google.com', type: 'en' },
+    { name: 'Facebook', url: 'https://www.google.com', type: 'en' },
+  ]
+  dbo.collection('site').insertMany(myobj, function (err, res) {
+    if (err) throw err
+    console.log('插入的文档数量为: ' + res.insertedCount)
+    db.close()
+  })
+})
 ```
 
 res.insertedCount 为插入的条数。
@@ -1325,18 +1316,22 @@ res.insertedCount 为插入的条数。
 #### 查询数据 find()
 
 ```js
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
- 
-MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
-    if (err) throw err;
-    var dbo = db.db("grh");
-    dbo.collection("site"). find({}).toArray(function(err, result) { // 返回集合中所有数据
-        if (err) throw err;
-        console.log(result);
-        db.close();
-    });
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/'
+
+MongoClient.connect(url, { useNewUrlParser: true }, function (err, db) {
+  if (err) throw err
+  var dbo = db.db('grh')
+  dbo
+    .collection('site')
+    .find({})
+    .toArray(function (err, result) {
+      // 返回集合中所有数据
+      if (err) throw err
+      console.log(result)
+      db.close()
+    })
+})
 ```
 
 #### 查询指定条件的数据
@@ -1344,19 +1339,22 @@ MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
 > 以下实例检索 name 为 "grh" 的实例：
 
 ```js
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
- 
-MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
-    if (err) throw err;
-    var dbo = db.db("grh");
-     var whereStr = {"name":'grh'};  // 查询条件
-    dbo.collection("site").find(whereStr).toArray(function(err, result) {
-        if (err) throw err;
-        console.log(result);
-        db.close();
-    });
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/'
+
+MongoClient.connect(url, { useNewUrlParser: true }, function (err, db) {
+  if (err) throw err
+  var dbo = db.db('grh')
+  var whereStr = { name: 'grh' } // 查询条件
+  dbo
+    .collection('site')
+    .find(whereStr)
+    .toArray(function (err, result) {
+      if (err) throw err
+      console.log(result)
+      db.close()
+    })
+})
 ```
 
 执行以下命令输出就结果为：
@@ -1372,20 +1370,20 @@ MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
 > 将 name 为 "grh" 的 url 改为`https://www.grh.com`：
 
 ```js
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
- 
-MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
-    if (err) throw err;
-    var dbo = db.db("grh");
-    var whereStr = {"name":'grh'};  // 查询条件
-    var updateStr = {$set: { "url" : "https://www.grh.com" }};
-    dbo.collection("site").updateOne(whereStr, updateStr, function(err, res) {
-        if (err) throw err;
-        console.log("文档更新成功");
-        db.close();
-    });
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/'
+
+MongoClient.connect(url, { useNewUrlParser: true }, function (err, db) {
+  if (err) throw err
+  var dbo = db.db('grh')
+  var whereStr = { name: 'grh' } // 查询条件
+  var updateStr = { $set: { url: 'https://www.grh.com' } }
+  dbo.collection('site').updateOne(whereStr, updateStr, function (err, res) {
+    if (err) throw err
+    console.log('文档更新成功')
+    db.close()
+  })
+})
 ```
 
 执行成功后，进入 mongo 管理工具查看数据已修改：
@@ -1404,44 +1402,44 @@ MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
 #### 更新多条数据
 
 ```js
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
- 
-MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
-    if (err) throw err;
-    var dbo = db.db("grh");
-    var whereStr = {"type":'en'};  // 查询条件
-    var updateStr = {$set: { "url" : "https://www.grh.com" }};
-    dbo.collection("site").updateMany(whereStr, updateStr, function(err, res) {
-        if (err) throw err;
-         console.log(res.result.nModified + " 条文档被更新");
-        db.close();
-    });
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/'
+
+MongoClient.connect(url, { useNewUrlParser: true }, function (err, db) {
+  if (err) throw err
+  var dbo = db.db('grh')
+  var whereStr = { type: 'en' } // 查询条件
+  var updateStr = { $set: { url: 'https://www.grh.com' } }
+  dbo.collection('site').updateMany(whereStr, updateStr, function (err, res) {
+    if (err) throw err
+    console.log(res.result.nModified + ' 条文档被更新')
+    db.close()
+  })
+})
 ```
 
 result.nModified 为更新的条数。
 
-------
+---
 
 #### 删除一条数据
 
 > 将 name 为 "grh" 的数据删除 :
 
 ```js
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
- 
-MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
-    if (err) throw err;
-    var dbo = db.db("grh");
-    var whereStr = {"name":'grh'};  // 查询条件
-    dbo.collection("site").deleteOne(whereStr, function(err, obj) {
-        if (err) throw err;
-        console.log("文档删除成功");
-        db.close();
-    });
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/'
+
+MongoClient.connect(url, { useNewUrlParser: true }, function (err, db) {
+  if (err) throw err
+  var dbo = db.db('grh')
+  var whereStr = { name: 'grh' } // 查询条件
+  dbo.collection('site').deleteOne(whereStr, function (err, obj) {
+    if (err) throw err
+    console.log('文档删除成功')
+    db.close()
+  })
+})
 ```
 
 执行成功后，进入 mongo 管理工具查看数据已删除：
@@ -1451,7 +1449,7 @@ MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
 >
 ```
 
-------
+---
 
 #### 删除多条数据
 
@@ -1460,19 +1458,19 @@ MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
 > 删除多条语句可以使用 **deleteMany()** 方法
 
 ```js
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
- 
-MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
-    if (err) throw err;
-    var dbo = db.db("grh");
-    var whereStr = { type: "en" };  // 查询条件
-    dbo.collection("site").deleteMany(whereStr, function(err, obj) {
-        if (err) throw err;
-        console.log(obj.result.n + " 条文档被删除");
-        db.close();
-    });
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/'
+
+MongoClient.connect(url, { useNewUrlParser: true }, function (err, db) {
+  if (err) throw err
+  var dbo = db.db('grh')
+  var whereStr = { type: 'en' } // 查询条件
+  dbo.collection('site').deleteMany(whereStr, function (err, obj) {
+    if (err) throw err
+    console.log(obj.result.n + ' 条文档被删除')
+    db.close()
+  })
+})
 ```
 
 obj.result.n 删除的条数。
@@ -1489,19 +1487,23 @@ obj.result.n 删除的条数。
 按 type 升序排列:
 
 ```js
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
- 
-MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
-    if (err) throw err;
-    var dbo = db.db("grh");
-    var mysort = { type: 1 };
-    dbo.collection("site").find().sort(mysort).toArray(function(err, result) {
-        if (err) throw err;
-        console.log(result);
-        db.close();
-    });
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/'
+
+MongoClient.connect(url, { useNewUrlParser: true }, function (err, db) {
+  if (err) throw err
+  var dbo = db.db('grh')
+  var mysort = { type: 1 }
+  dbo
+    .collection('site')
+    .find()
+    .sort(mysort)
+    .toArray(function (err, result) {
+      if (err) throw err
+      console.log(result)
+      db.close()
+    })
+})
 ```
 
 #### 查询分页
@@ -1511,18 +1513,22 @@ MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
 ##### limit()：读取两条数据
 
 ```js
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
- 
-MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
-    if (err) throw err;
-    var dbo = db.db("grh");
-    dbo.collection("site").find().limit(2).toArray(function(err, result) {
-        if (err) throw err;
-        console.log(result);
-        db.close();
-  });
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/'
+
+MongoClient.connect(url, { useNewUrlParser: true }, function (err, db) {
+  if (err) throw err
+  var dbo = db.db('grh')
+  dbo
+    .collection('site')
+    .find()
+    .limit(2)
+    .toArray(function (err, result) {
+      if (err) throw err
+      console.log(result)
+      db.close()
+    })
+})
 ```
 
 如果要指定跳过的条数，可以使用 **skip()** 方法。
@@ -1530,18 +1536,23 @@ MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
 ##### skip(): 跳过前面两条数据，读取两条数据
 
 ```js
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
- 
-MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
-    if (err) throw err;
-    var dbo = db.db("grh");
-    dbo.collection("site").find().skip(2).limit(2).toArray(function(err, result) {
-        if (err) throw err;
-        console.log(result);
-        db.close();
-  });
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/'
+
+MongoClient.connect(url, { useNewUrlParser: true }, function (err, db) {
+  if (err) throw err
+  var dbo = db.db('grh')
+  dbo
+    .collection('site')
+    .find()
+    .skip(2)
+    .limit(2)
+    .toArray(function (err, result) {
+      if (err) throw err
+      console.log(result)
+      db.close()
+    })
+})
 ```
 
 #### 连接操作
@@ -1571,43 +1582,47 @@ mongoDB 不是一个关系型数据库，但我们可以使用 **$lookup** 来�
 #### $lookup 实现左连接
 
 ```js
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://127.0.0.1:27017/";
- 
-MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
-  if (err) throw err;
-  var dbo = db.db("grh");
-  dbo.collection('orders').aggregate([
-    { $lookup:
-       {
-         from: 'products',            // 右集合
-         localField: 'product_id',    // 左集合 join 字段
-         foreignField: '_id',         // 右集合 join 字段
-         as: 'orderdetails'           // 新生成字段（类型array）
-       }
-     }
-    ]).toArray(function(err, res) {
-    if (err) throw err;
-    console.log(JSON.stringify(res));
-    db.close();
-  });
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://127.0.0.1:27017/'
+
+MongoClient.connect(url, { useNewUrlParser: true }, function (err, db) {
+  if (err) throw err
+  var dbo = db.db('grh')
+  dbo
+    .collection('orders')
+    .aggregate([
+      {
+        $lookup: {
+          from: 'products', // 右集合
+          localField: 'product_id', // 左集合 join 字段
+          foreignField: '_id', // 右集合 join 字段
+          as: 'orderdetails', // 新生成字段（类型array）
+        },
+      },
+    ])
+    .toArray(function (err, res) {
+      if (err) throw err
+      console.log(JSON.stringify(res))
+      db.close()
+    })
+})
 ```
 
 #### 删除集合 drop()
 
 ```js
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
- 
-MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
-    if (err) throw err;
-    var dbo = db.db("grh");
-    // 删除 test 集合
-    dbo.collection("test").drop(function(err, delOK) {  // 执行成功 delOK 返回 true，否则返回 false
-        if (err) throw err;
-        if (delOK) console.log("集合已删除");
-        db.close();
-    });
-});
+var MongoClient = require('mongodb').MongoClient
+var url = 'mongodb://localhost:27017/'
+
+MongoClient.connect(url, { useNewUrlParser: true }, function (err, db) {
+  if (err) throw err
+  var dbo = db.db('grh')
+  // 删除 test 集合
+  dbo.collection('test').drop(function (err, delOK) {
+    // 执行成功 delOK 返回 true，否则返回 false
+    if (err) throw err
+    if (delOK) console.log('集合已删除')
+    db.close()
+  })
+})
 ```

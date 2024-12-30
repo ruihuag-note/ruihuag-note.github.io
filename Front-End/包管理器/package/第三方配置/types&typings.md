@@ -4,8 +4,8 @@
 
 ```json
 {
- "types": "./index.d.ts",
- // or
- "typeings": "./index.d.ts",
+  "types": "./index.d.ts",
+  // or
+  "typeings": "./index.d.ts"
 }
 ```

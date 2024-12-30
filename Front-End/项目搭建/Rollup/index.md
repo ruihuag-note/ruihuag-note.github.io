@@ -16,22 +16,22 @@
 
 ```js
 // rollup.config.js
-import resolve from 'rollup-plugin-node-resolve';
-import babel from 'rollup-plugin-babel';
+import resolve from 'rollup-plugin-node-resolve'
+import babel from 'rollup-plugin-babel'
 
 export default {
   input: 'src/main.js',
   output: {
     file: 'bundle.js',
-    format: 'cjs'
+    format: 'cjs',
   },
   plugins: [
     resolve(),
     babel({
-      exclude: 'node_modules/**' // 只编译我们的源代码
-    })
-  ]
-};
+      exclude: 'node_modules/**', // 只编译我们的源代码
+    }),
+  ],
+}
 ```
 
 ```js
@@ -63,30 +63,31 @@ export default {
 
 ```js
 // rollup.config.js
-import resolve from 'rollup-plugin-node-resolve';
+import resolve from 'rollup-plugin-node-resolve'
 
 export default {
   input: 'src/main.js',
   output: {
     file: 'bundle.js',
-    format: 'cjs'
+    format: 'cjs',
   },
-  plugins: [resolve({
-    // 将自定义选项传递给解析插件
-    customResolveOptions: {
-      moduleDirectory: 'node_modules'
-    }
-  })],
+  plugins: [
+    resolve({
+      // 将自定义选项传递给解析插件
+      customResolveOptions: {
+        moduleDirectory: 'node_modules',
+      },
+    }),
+  ],
   // 指出应将哪些模块视为外部模块
-  external: ['lodash']
-};
+  external: ['lodash'],
+}
 ```
 
 ### json相关
 
 > 解析json文件
-> `rollup-plugin-json`
-> `@rollup/plugin-json` (推荐)
+> `rollup-plugin-json` > `@rollup/plugin-json` (推荐)
 
 ```js
 import json from "rollup-plugin-json"
@@ -190,13 +191,11 @@ watcher.close();
 ## 选项表
 
 ### 监听参数 (watchOptions)
->
+
 > - 输入(input -i/--input)​
 > - String 这个包的入口点 (例如：你的 main.js 或者 app.js 或者 index.js)
->
 > - 文件(file -o/--output.file)​
 > - String 要写入的文件。也可用于生成 sourcemaps，如果适用
->
 > - 格式(format -f/--output.format)​
 > - String 生成包的格式。 下列之一:
 >   - amd – 异步模块定义，用于像RequireJS这样的模块加载器
@@ -205,7 +204,7 @@ watcher.close();
 >   - iife – 一个自动执行的功能，适合作为`<script>`标签。（如果要为应用程序创建一个捆绑包，您可能想要使用它，因为它会使文件大小变小。）
 >   - umd – 通用模块定义，以amd，cjs 和 iife 为一体
 >   - system - SystemJS 加载器格式
->
+
 ### 生成包名称(name -n/--name)​
 
 String 变量名，代表你的 iife/umd 包，同一页上的其他脚本可以访问它。
@@ -230,16 +229,13 @@ export default {
 
 ```js
 // rollup.config.js
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
+import resolve from 'rollup-plugin-node-resolve'
+import commonjs from 'rollup-plugin-commonjs'
 
 export default {
   entry: 'main.js',
-  plugins: [
-    resolve(),
-    commonjs()
-  ]
-};
+  plugins: [resolve(), commonjs()],
+}
 ```
 
 ### 外链(external -e/--external)​
@@ -306,9 +302,9 @@ const watchOptions = {
   watch: {
     chokidar,
     include,
-    exclude
-  }
-};
+    exclude,
+  },
+}
 ```
 
 ### 路径(paths)
@@ -318,8 +314,8 @@ const watchOptions = {
 
 ```js
 // app.js
-import { selectAll } from 'd3';
-selectAll('p').style('color', 'purple');
+import { selectAll } from 'd3'
+selectAll('p').style('color', 'purple')
 // ...
 
 // rollup.config.js
@@ -330,18 +326,16 @@ export default {
     file: 'bundle.js',
     format: 'amd',
     paths: {
-      d3: 'https://d3js.org/d3.v4.min'
-    }
-  }
-};
+      d3: 'https://d3js.org/d3.v4.min',
+    },
+  },
+}
 
 // bundle.js
 define(['https://d3js.org/d3.v4.min'], function (d3) {
-
-  d3.selectAll('p').style('color', 'purple');
+  d3.selectAll('p').style('color', 'purple')
   // ...
-
-});
+})
 ```
 
 ### intro/outro​
@@ -455,7 +449,7 @@ export default {
 -o, --file <output>         输出的文件 (如果没有这个参数，则直接输出到控制台)
 -f, --format <format>       输出的文件类型 (amd, cjs, esm, iife, umd)
 -e, --external <ids>        将模块ID的逗号分隔列表排除
--g, --globals <pairs>       以`module ID:Global` 键值对的形式，用逗号分隔开 
+-g, --globals <pairs>       以`module ID:Global` 键值对的形式，用逗号分隔开
                               任何定义在这里模块ID定义添加到外部依赖
 -n, --name <name>           生成UMD模块的名字
 -h, --help                  输出 help 信息

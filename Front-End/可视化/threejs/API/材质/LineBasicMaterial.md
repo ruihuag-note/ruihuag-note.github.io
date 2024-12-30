@@ -1,5 +1,3 @@
-
-
 # 基础线条材质（LineBasicMaterial）
 
 一种用于绘制线框样式几何体的材质。
@@ -7,12 +5,12 @@
 ## 代码示例
 
 ```js
-const material = new THREE.LineBasicMaterial( {
+const material = new THREE.LineBasicMaterial({
   color: 0xffffff,
   linewidth: 1,
-  linecap: 'round', //ignored by WebGLRenderer 
-	linejoin:  'round' //ignored by WebGLRenderer 
-} );
+  linecap: 'round', //ignored by WebGLRenderer
+  linejoin: 'round', //ignored by WebGLRenderer
+})
 ```
 
 ## 例子
@@ -73,4 +71,3 @@ parameters - (可选)用于定义材质外观的对象，具有一个或多个�
 ## 源码(Source)
 
 [src/materials/LineBasicMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/LineBasicMaterial.js)
-

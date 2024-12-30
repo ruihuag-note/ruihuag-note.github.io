@@ -32,29 +32,29 @@
 @mySelector: #wrap;
 @Wrap: wrap;
 
-@{mySelector}{ //变量名 必须使用大括号包裹
+@{mySelector} {
+  //变量名 必须使用大括号包裹
   color: #999;
   width: 50%;
 }
-.@{Wrap}{
-  color:#ccc;
+.@{Wrap} {
+  color: #ccc;
 }
-#@{Wrap}{
-  color:#666;
+#@{Wrap} {
+  color: #666;
 }
 
 /* 生成的 CSS */
-#wrap{
+#wrap {
   color: #999;
   width: 50%;
 }
-.wrap{
-  color:#ccc;
+.wrap {
+  color: #ccc;
 }
-#wrap{
-  color:#666;
+#wrap {
+  color: #666;
 }
-
 ```
 
 ### 属性变量
@@ -62,32 +62,30 @@
 ```less
 /* Less */
 @borderStyle: border-style;
-@Soild:solid;
-#wrap{
-  @{borderStyle}: @Soild;//变量名 必须使用大括号包裹
+@Soild: solid;
+#wrap {
+  @{borderStyle}: @Soild; //变量名 必须使用大括号包裹
 }
 
 /* 生成的 CSS */
-#wrap{
-  border-style:solid;
+#wrap {
+  border-style: solid;
 }
-
 ```
 
 ### url变量
 
 ```less
 /* Less */
-@images: "../img";//需要加引号
+@images: '../img'; //需要加引号
 body {
-  background: url("@{images}/dog.png");//变量名 必须使用大括号包裹
+  background: url('@{images}/dog.png'); //变量名 必须使用大括号包裹
 }
 
 /* 生成的 CSS */
 body {
-  background: url("../img/dog.png");
+  background: url('../img/dog.png');
 }
-
 ```
 
 ### 声明变量
@@ -96,24 +94,26 @@ body {
 > 使用: `@name();`
 
 ```less
-@background: {background:red;};
-#main{
-    @background();
-}
-@Rules:{
-    width: 200px;
-    height: 200px;
-    border: solid 1px red;
+@background: {
+  background: red;
 };
-#con{
+#main {
+  @background();
+}
+@Rules: {
+  width: 200px;
+  height: 200px;
+  border: solid 1px red;
+};
+#con {
   @Rules();
 }
 
 /* 生成的 CSS */
-#main{
-  background:red;
+#main {
+  background: red;
 }
-#con{
+#con {
   width: 200px;
   height: 200px;
   border: solid 1px red;
@@ -127,25 +127,24 @@ body {
 
 ```less
 /* Less */
-@width:300px;
-@color:#222;
-#wrap{
-  width:@width-20;
-  height:@width-20*5;
-  margin:(@width-20)*5;
-  color:@color*2;
-  background-color:@color + #111;
+@width: 300px;
+@color: #222;
+#wrap {
+  width: @width-20;
+  height: @width-20*5;
+  margin: (@width-20) * 5;
+  color: @color*2;
+  background-color: @color + #111;
 }
 
 /* 生成的 CSS */
-#wrap{
-  width:280px;
-  height:200px;
-  margin:1400px;
-  color:#444;
-  background-color:#333;
+#wrap {
+  width: 280px;
+  height: 200px;
+  margin: 1400px;
+  color: #444;
+  background-color: #333;
 }
-
 ```
 
 ### 变量作用域
@@ -171,16 +170,15 @@ body {
 
 ```less
 /* Less */
-@fnord:  "I am fnord.";
-@var:    "fnord";
-#wrap::after{
+@fnord: 'I am fnord.';
+@var: 'fnord';
+#wrap::after {
   content: @@var; //将@var替换为其值 content:@fnord;
 }
 /* 生成的 CSS */
-#wrap::after{
-  content: "I am fnord.";
+#wrap::after {
+  content: 'I am fnord.';
 }
-
 ```
 
 ## 混合（Mixins）
@@ -249,8 +247,9 @@ body {
   display: block;
   zoom: 1;
 
-  &:after { //(& 表示当前选择器的父级）
-    content: " ";
+  &:after {
+    //(& 表示当前选择器的父级）
+    content: ' ';
     display: block;
     font-size: 0;
     height: 0;
@@ -269,7 +268,7 @@ body {
   width: 300px;
   @media (min-width: 768px) {
     width: 600px;
-    @media  (min-resolution: 192dpi) {
+    @media (min-resolution: 192dpi) {
       background-image: url(/img/retina2x.png);
     }
   }
@@ -304,7 +303,7 @@ body {
 
 ## 运算（Operations）
 
-### 算术运算符 +、-、*、/
+### 算术运算符 +、-、\*、/
 
 可以对任何数字、颜色或变量进行运算。如果可能的话，算术运算符在加、减或比较之前会进行单位换算。==计算的结果以最左侧操作数的单位类型为准==。如果单位换算无效或失去意义，则忽略单位。无效的单位换算例如：px 到 cm 或 rad 到 % 的转换。
 
@@ -343,7 +342,7 @@ background-color: #112244 + #111; // 结果是 #223355
 
 ```less
 @var: 50vh/2;
-width: calc(50% + (@var - 20px));  // 结果是 calc(50% + (25vh - 20px))
+width: calc(50% + (@var - 20px)); // 结果是 calc(50% + (25vh - 20px))
 ```
 
 ## 转义（Escaping）
@@ -351,7 +350,7 @@ width: calc(50% + (@var - 20px));  // 结果是 calc(50% + (25vh - 20px))
 > ==转义（Escaping）允许你使用任意字符串作为属性或变量值==。任何 `~"anything"` 或 `~'anything'` 形式的内容都将按原样输出，除非 interpolation。
 
 ```less
-@min768: ~"(min-width: 768px)";
+@min768: ~'(min-width: 768px)';
 .element {
   @media @min768 {
     font-size: 1.2rem;
@@ -397,37 +396,37 @@ width: calc(50% + (@var - 20px));  // 结果是 calc(50% + (25vh - 20px))
 }
 ```
 
-参见：[函数手册](https://less.bootcss.com/functions/)  
+参见：[函数手册](https://less.bootcss.com/functions/)
 
 ### 判断类型
 
-|函数名|描述|使用|
-|:----|:----|:----|
-|isnumber| 判断类型|`isnumber(1234) //true`|
-|iscolor| 是否为颜色|`iscolor(123) //false`|
-|isurl|是否为url|`isurl(123)//false`|
+| 函数名   | 描述       | 使用                    |
+| :------- | :--------- | :---------------------- |
+| isnumber | 判断类型   | `isnumber(1234) //true` |
+| iscolor  | 是否为颜色 | `iscolor(123) //false`  |
+| isurl    | 是否为url  | `isurl(123)//false`     |
 
 ### 颜色操作
 
-|函数名|描述|使用|
-|:----|:----|:----|
-|saturate| 增加一定数值的颜色饱和度|
-|lighten| 增加一定数值的颜色亮度|
-|darken| 降低一定数值的颜色亮度|
-|fade| 给颜色设定一定数值的透明度|
-|mix| 根据比例混合两种颜色|
+| 函数名   | 描述                       | 使用 |
+| :------- | :------------------------- | :--- |
+| saturate | 增加一定数值的颜色饱和度   |
+| lighten  | 增加一定数值的颜色亮度     |
+| darken   | 降低一定数值的颜色亮度     |
+| fade     | 给颜色设定一定数值的透明度 |
+| mix      | 根据比例混合两种颜色       |
 
 ### 数学相关
 
-|函数名|描述|使用|
-|:----|:----|:----|
-| ceil| 向上取整|
-| floor| 向下取整|
-| percentage| 将浮点数转换为百分比字符串|
-| round| 四舍五入|
-| sqrt| 计算一个数的平方根|
-| abs| 计算数字的绝对值，原样保持单位|
-| pow| 计算一个数的乘方|
+| 函数名     | 描述                           | 使用 |
+| :--------- | :----------------------------- | :--- |
+| ceil       | 向上取整                       |
+| floor      | 向下取整                       |
+| percentage | 将浮点数转换为百分比字符串     |
+| round      | 四舍五入                       |
+| sqrt       | 计算一个数的平方根             |
+| abs        | 计算数字的绝对值，原样保持单位 |
+| pow        | 计算一个数的乘方               |
 
 ## 命名空间和访问符
 
@@ -445,8 +444,12 @@ width: calc(50% + (@var - 20px));  // 结果是 calc(50% + (25vh - 20px))
       background-color: white;
     }
   }
-  .tab { ... }
-  .citation { ... }
+  .tab {
+    ...;
+  }
+  .citation {
+    ...;
+  }
 }
 ```
 
@@ -455,7 +458,7 @@ width: calc(50% + (@var - 20px));  // 结果是 calc(50% + (25vh - 20px))
 ```less
 #header a {
   color: orange;
-  #bundle.button();  // 还可以书写为 #bundle > .button 形式
+  #bundle.button(); // 还可以书写为 #bundle > .button 形式
 }
 ```
 
@@ -534,8 +537,8 @@ width: calc(50% + (@var - 20px));  // 结果是 calc(50% + (25vh - 20px))
 > “导入”的工作方式和你预期的一样。你可以导入一个 .less 文件，此文件中的所有变量就可以全部使用了。如果导入的文件是 .less 扩展名，则可以将扩展名省略掉：
 
 ```less
-@import "library"; // library.less
-@import "typo.css";
+@import 'library'; // library.less
+@import 'typo.css';
 ```
 
 ## 混合方法
@@ -563,7 +566,6 @@ width: calc(50% + (@var - 20px));  // 结果是 calc(50% + (25vh - 20px))
 .column-4 {
   width: 100%;
 }
-
 ```
 
 ### 无参方法
@@ -572,19 +574,20 @@ width: calc(50% + (@var - 20px));  // 结果是 calc(50% + (25vh - 20px))
 
 ```less
 /* Less */
-.card { // 等价于 .card()
-    background: #f6f6f6;
-    -webkit-box-shadow: 0 1px 2px rgba(151, 151, 151, .58);
-    box-shadow: 0 1px 2px rgba(151, 151, 151, .58);
+.card {
+  // 等价于 .card()
+  background: #f6f6f6;
+  -webkit-box-shadow: 0 1px 2px rgba(151, 151, 151, 0.58);
+  box-shadow: 0 1px 2px rgba(151, 151, 151, 0.58);
 }
-#wrap{
-  .card;//等价于.card();
+#wrap {
+  .card; //等价于.card();
 }
 /* 生成的 CSS */
-#wrap{
+#wrap {
   background: #f6f6f6;
-  -webkit-box-shadow: 0 1px 2px rgba(151, 151, 151, .58);
-  box-shadow: 0 1px 2px rgba(151, 151, 151, .58);
+  -webkit-box-shadow: 0 1px 2px rgba(151, 151, 151, 0.58);
+  box-shadow: 0 1px 2px rgba(151, 151, 151, 0.58);
 }
 ```
 
@@ -594,31 +597,31 @@ width: calc(50% + (@var - 20px));  // 结果是 calc(50% + (25vh - 20px))
 
 ```less
 /* Less */
-.border(@a:10px, @b:50px, @c:30px, @color:#000){
-  border:solid 1px @color;
-  box-shadow: @arguments;//指代的是 全部参数
+.border(@a:10px, @b:50px, @c:30px, @color:#000) {
+  border: solid 1px @color;
+  box-shadow: @arguments; //指代的是 全部参数
 }
-#main{
-  .border(0px,5px,30px,red);//必须带着单位
+#main {
+  .border(0px,5px,30px,red); //必须带着单位
 }
-#wrap{
+#wrap {
   .border(0px);
 }
-#content{
-  .border;//等价于 .border()
+#content {
+  .border; //等价于 .border()
 }
 
 /* 生成的 CSS */
-#main{
-  border:solid 1px red;
-  box-shadow:0px,5px,30px,red;
+#main {
+  border: solid 1px red;
+  box-shadow: 0px, 5px, 30px, red;
 }
-#wrap{
-  border:solid 1px #000;
+#wrap {
+  border: solid 1px #000;
   box-shadow: 0px 50px 30px #000;
 }
-#content{
-  border:solid 1px #000;
+#content {
+  border: solid 1px #000;
   box-shadow: 10px 50px 30px #000;
 }
 ```
@@ -629,31 +632,31 @@ width: calc(50% + (@var - 20px));  // 结果是 calc(50% + (25vh - 20px))
 
 ```less
 /* Less */
-.triangle(top,@width:20px,@color:#000){
-    border-color:transparent  transparent @color transparent ;
+.triangle(top,@width:20px,@color:#000) {
+  border-color: transparent transparent @color transparent;
 }
-.triangle(right,@width:20px,@color:#000){
-    border-color:transparent @color transparent  transparent ;
+.triangle(right,@width:20px,@color:#000) {
+  border-color: transparent @color transparent transparent;
 }
-.triangle(bottom,@width:20px,@color:#000){
-    border-color:@color transparent  transparent  transparent ;
+.triangle(bottom,@width:20px,@color:#000) {
+  border-color: @color transparent transparent transparent;
 }
-.triangle(left,@width:20px,@color:#000){
-    border-color:transparent  transparent  transparent @color;
-}
-
-.triangle(@_,@width:20px,@color:#000){
-    border-style: solid;
-    border-width: @width;
+.triangle(left,@width:20px,@color:#000) {
+  border-color: transparent transparent transparent @color;
 }
 
-#main{
-  .triangle(left, 50px, #999)
+.triangle(@_,@width:20px,@color:#000) {
+  border-style: solid;
+  border-width: @width;
+}
+
+#main {
+  .triangle(left, 50px, #999);
 }
 
 /* 生成的 CSS */
-#main{
-  border-color:transparent  transparent  transparent #999;
+#main {
+  border-color: transparent transparent transparent #999;
   border-style: solid;
   border-width: 50px;
 }
@@ -663,38 +666,38 @@ width: calc(50% + (@var - 20px));  // 结果是 calc(50% + (25vh - 20px))
 
 ```less
 /* Less */
-#card(){
-    background: #723232;
-    .d(@w:300px){
-        width: @w;
-        
-        #a(@h:300px){
-            height: @h;//可以使用上一层传进来的方法
-        }
+#card() {
+  background: #723232;
+  .d(@w:300px) {
+    width: @w;
+
+    #a(@h:300px) {
+      height: @h; //可以使用上一层传进来的方法
     }
+  }
 }
-#wrap{
-    #card > .d > #a(100px); // 父元素不能加 括号
+#wrap {
+  #card > .d > #a(100px); // 父元素不能加 括号
 }
-#main{
-    #card .d();
+#main {
+  #card .d();
 }
-#con{
-    //不得单独使用命名空间的方法
-    //.d() 如果前面没有引入命名空间 #card ，将会报错
-    
-    #card; // 等价于 #card();
-    .d(20px); //必须先引入 #card
+#con {
+  //不得单独使用命名空间的方法
+  //.d() 如果前面没有引入命名空间 #card ，将会报错
+
+  #card; // 等价于 #card();
+  .d(20px); //必须先引入 #card
 }
 /* 生成的 CSS */
-#wrap{
-  height:100px;
+#wrap {
+  height: 100px;
 }
-#main{
-  width:300px;
+#main {
+  width: 300px;
 }
-#con{
-  width:20px;
+#con {
+  width: 20px;
 }
 ```
 
@@ -702,35 +705,33 @@ width: calc(50% + (@var - 20px));  // 结果是 calc(50% + (25vh - 20px))
 
 ```less
 /* Less */
-#card{
-    
-    // and 运算符 ，相当于 与运算 &&，必须条件全部符合才会执行
-    .border(@width,@color,@style) when (@width>100px) and(@color=#999){
-        border:@style @color @width;
-    }
+#card {
+  // and 运算符 ，相当于 与运算 &&，必须条件全部符合才会执行
+  .border(@width,@color,@style) when (@width>100px) and(@color=#999) {
+    border: @style @color @width;
+  }
 
-    // not 运算符，相当于 非运算 !，条件为 不符合才会执行
-    .background(@color) when not (@color>=#222){
-        background:@color;
-    }
+  // not 运算符，相当于 非运算 !，条件为 不符合才会执行
+  .background(@color) when not (@color>=#222) {
+    background: @color;
+  }
 
-    // , 逗号分隔符：相当于 或运算 ||，只要有一个符合条件就会执行
-    .font(@size:20px) when (@size>50px) , (@size<100px){
-        font-size: @size;
-    }
+  // , 逗号分隔符：相当于 或运算 ||，只要有一个符合条件就会执行
+  .font(@size:20px) when (@size>50px) , (@size<100px) {
+    font-size: @size;
+  }
 }
-#main{
-    #card>.border(200px,#999,solid);
-    #card .background(#111);
-    #card > .font(40px);
+#main {
+  #card > .border(200px,#999,solid);
+  #card .background(#111);
+  #card > .font(40px);
 }
 /* 生成后的 CSS */
-#main{
-  border:solid #999 200px;
-  background:#111;
-  font-size:40px;
+#main {
+  border: solid #999 200px;
+  background: #111;
+  font-size: 40px;
 }
-
 ```
 
 ## 继承
@@ -739,51 +740,54 @@ width: calc(50% + (@var - 20px));  // 结果是 calc(50% + (25vh - 20px))
 
 ```less
 /* Less */
-.animation{
-    transition: all .3s ease-out;
-    .hide{
-      transform:scale(0);
-    }
+.animation {
+  transition: all 0.3s ease-out;
+  .hide {
+    transform: scale(0);
+  }
 }
-#main{
-    &:extend(.animation);
+#main {
+  &:extend(.animation);
 }
-#con{
-    &:extend(.animation .hide);
+#con {
+  &:extend(.animation .hide);
 }
 
 /* 生成后的 CSS */
-.animation,#main{
-  transition: all .3s ease-out;
+.animation,
+#main {
+  transition: all 0.3s ease-out;
 }
-.animation .hide , #con{
-    transform:scale(0);
+.animation .hide,
+#con {
+  transform: scale(0);
 }
-
 ```
 
 ### all
 
 ```less
 /* Less */
-#main{
+#main {
   width: 200px;
 }
 #main {
   &:after {
-    content:"Less is good!";
+    content: 'Less is good!';
   }
 }
-#wrap:extend(#main all) {}
+#wrap:extend(#main all) {
+}
 
 /* 生成的 CSS */
-#main,#wrap{
+#main,
+#wrap {
   width: 200px;
 }
-#main:after, #wrap:after {
-    content: "Less is good!";
+#main:after,
+#wrap:after {
+  content: 'Less is good!';
 }
-
 ```
 
 ## 导入
@@ -791,7 +795,7 @@ width: calc(50% + (@var - 20px));  // 结果是 calc(50% + (25vh - 20px))
 ### 导入less文件
 
 ```less
-import "main"; 
+import "main";
 //等价于
 import "main.less";
 #main{
@@ -808,9 +812,10 @@ import "main.less";
 
 ```less
 /* Less */
-@import (reference) "bootstrap.less"; 
+@import (reference) 'bootstrap.less';
 
-#wrap:extend(.navbar all){}
+#wrap:extend(.navbar all) {
+}
 ```
 
 ### once
@@ -818,8 +823,8 @@ import "main.less";
 > `@import`语句的默认行为。这表明相同的文件只会被导入一次，而随后的导入文件的重复代码都不会解析
 
 ```less
-@import (once) "foo.less";
-@import (once) "foo.less"; // this statement will be ignored
+@import (once) 'foo.less';
+@import (once) 'foo.less'; // this statement will be ignored
 ```
 
 ### multiple
@@ -834,8 +839,8 @@ import "main.less";
   color: green;
 }
 // file: main.less
-@import (multiple) "foo.less";
-@import (multiple) "foo.less";
+@import (multiple) 'foo.less';
+@import (multiple) 'foo.less';
 
 /*生成后的 CSS*/
 .a {
@@ -854,16 +859,15 @@ import "main.less";
 > `/   /` Less提供的一种注释，不会被编译在 CSS 文件中。
 
 ```less
-
 // 避免编译
 /*Less*/
-# main{
-  width:~'calc(300px-30px)';
+# main {
+  width: ~'calc(300px-30px)';
 }
 
 /*生成后的 CSS*/
-# main{
-  width:calc(300px-30px);
+# main {
+  width: calc(300px-30px);
 }
 ```
 
@@ -874,22 +878,21 @@ import "main.less";
 在平时工作中，这种需求 太常见了。 在下面例子中， 实现了不同的 transtion-delay、animation、@keyframes
 
 ```less
-.judge(@i) when(@i=1){
-  @size:15px;
+.judge(@i) when(@i=1) {
+  @size: 15px;
 }
-.judge(@i) when(@i>1){
-  @size:16px;
+.judge(@i) when(@i>1) {
+  @size: 16px;
 }
 .loopAnimation(@i) when (@i<16) {
-  
-  .circle:nth-child(@{i}){
-      .judeg(@i);
-      border-radius:@size @size 0 0;
-      animation: ~"circle-@{i}" @duration infinite @ease;
-      transition-delay:~"@{i}ms";
+  .circle:nth-child(@{i}) {
+    .judeg(@i);
+    border-radius: @size @size 0 0;
+    animation: ~'circle-@{i}' @duration infinite @ease;
+    transition-delay: ~'@{i}ms';
   }
   @keyframes ~"circle-@{i}" {
-      // do something...
+    // do something...
   }
   .loopAnimation(@i + 1);
 }
@@ -903,29 +906,29 @@ import "main.less";
 
 ```less
 /* Less */
-@content:`"aaa".toUpperCase()`;
-#randomColor{
-  @randomColor: ~"rgb(`Math.round(Math.random() * 256)`,`Math.round(Math.random() * 256)`,`Math.round(Math.random() * 256)`)";
+@content:` "aaa".toUpperCase()`;
+#randomColor {
+  @randomColor: ~'rgb(`Math.round(Math.random() * 256)`,`Math.round(Math.random() * 256)`,`Math.round(Math.random() * 256)`)';
 }
-#wrap{
-  width: ~"`Math.round(Math.random() * 100)`px";
-  &:after{
-      content:@content;
+#wrap {
+  width: ~'`Math.round(Math.random() * 100)`px';
+  &:after {
+    content: @content;
   }
-  height: ~"`window.innerHeight`px";
-  alert:~"`alert(1)`";
+  height: ~'`window.innerHeight`px';
+  alert: ~'`alert(1)`';
   #randomColor();
   background-color: @randomColor;
 }
 /* 生成后的 CSS */
 
 // 弹出 1
-#wrap{
+#wrap {
   width: 随机值（0~100）px;
-  height: 743px;//由电脑而异
+  height: 743px; //由电脑而异
   background: 随机颜色;
 }
-#wrap::after{
-  content:"AAA";
+#wrap::after {
+  content: 'AAA';
 }
 ```

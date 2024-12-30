@@ -14,8 +14,8 @@
 
 ```js
 {
-  let a = 10;
-  var b = 1;
+  let a = 10
+  var b = 1
 }
 
 a // ReferenceError: a is not defined.
@@ -25,7 +25,7 @@ b // 1
 > var 变量声明 window.variable === variable
 >
 > ```js
-> var age =14;
+> var age = 14
 > console.log(window.age) // 14
 > ```
 >
@@ -37,65 +37,64 @@ demo
 // 生成十个按钮, 每次点击的时候弹出对应的数字
 
 // 传统方法
-var i= 0;
-for (i =1; i <= 10; i++) {
-  (function(i){
-    var btn = document.createElement('button');
-    btn.innerText = i;
-    btn.onclick = function() {
-      alert(i);
+var i = 0
+for (i = 1; i <= 10; i++) {
+  ;(function (i) {
+    var btn = document.createElement('button')
+    btn.innerText = i
+    btn.onclick = function () {
+      alert(i)
     }
-    document.body.appendChild(btn);
-  })(i);
+    document.body.appendChild(btn)
+  })(i)
 }
 
 // 使用let 方法
-for (let = 1; i<=10; i++){
-  var btn = document.createElement('button');
-  btn.innerText = i;
-  btn.onclick = function() {
-  alert(i)
+for (let = 1; i <= 10; i++) {
+  var btn = document.createElement('button')
+  btn.innerText = i
+  btn.onclick = function () {
+    alert(i)
   }
-  document.body.appendChild(btn);
+  document.body.appendChild(btn)
 }
 ```
 
 ### const
 
 > - 声明一个只读的常量,常量的值不可以改变
->
 > - 一定要赋初值
 > - 对于符合类型的变量,变量不指向数据,而是指向数据所在的地址
 
 ```js
 // 使变量不可以更改
-var CST = { value: '张三' };
+var CST = { value: '张三' }
 Object.defineProperty(CST, 'value', {
-  writable: false
+  writable: false,
 })
 
-Object.seal(CST); // CST也不可以挂载任何变量/或拓展
+Object.seal(CST) // CST也不可以挂载任何变量/或拓展
 
-const PI = 3.1415;
+const PI = 3.1415
 PI // 3.1415
 
-PI = 3;
+PI = 3
 // TypeError: Assignment to constant variable.
 ```
 
 > cost变量还是可以赋值的
 
 ```js
-const foo = {};
-foo.prop = 123;
+const foo = {}
+foo.prop = 123
 
 foo.prop
 // 123
 
-const a = [];
-a.push('Hello'); // 可执行
-a.length = 0;    // 可执行
-a = ['Dave'];    // 报错
+const a = []
+a.push('Hello') // 可执行
+a.length = 0 // 可执行
+a = ['Dave'] // 报错
 ```
 
 ## 变量的解构赋值
@@ -103,28 +102,28 @@ a = ['Dave'];    // 报错
 ### 基本用法
 
 ```js
-var a = 1;
-var b = 2;
-var c = 3;
+var a = 1
+var b = 2
+var c = 3
 //可以写成
-var [a, b, c] = [1, 2, 3];
+var [a, b, c] = [1, 2, 3]
 //set结构
-let [x, y, z] = new Set(["a", "b", "c"]);
+let [x, y, z] = new Set(['a', 'b', 'c'])
 //默认值
-[x, y = 'b'] = ['a']; // x='a', y='b'
-[x, y = 'b'] = ['a', undefined]; // x='a', y='b'
+;[x, y = 'b'] = ['a'] // x='a', y='b'
+;[x, y = 'b'] = ['a', undefined] // x='a', y='b'
 //对象
-var { bar, foo } = { foo: "aaa", bar: "bbb" };
+var { bar, foo } = { foo: 'aaa', bar: 'bbb' }
 foo // "aaa"
 bar // "bbb"
 //字符串
-const [a, b, c, d, e] = 'hello';
+const [a, b, c, d, e] = 'hello'
 a // "h"
 b // "e"
 c // "l"
 d // "l"
 e // "o"
-let {length : len} = 'hello';
+let { length: len } = 'hello'
 len // 5
 ```
 
@@ -148,7 +147,7 @@ for(let [,value] of map){...}
 ### 输入模块的指定方法
 
 ```js
-const { SourceMapConsumer, SourceNode } = require("source-map");
+const { SourceMapConsumer, SourceNode } = require('source-map')
 ```
 
 ## 字符串拓展
@@ -158,9 +157,9 @@ const { SourceMapConsumer, SourceNode } = require("source-map");
 > `\u0000`——`\uFFFF`之间的字符。超出这个范围的字符，必须用两个双字节的形式表达
 
 ```js
-"\uD842\uDFB7"
+'\uD842\uDFB7'
 // "𠮷"
-"\u20BB7"
+'\u20BB7'
 // " 7"(这里js理解为"\u20BB+7"=>空格+7)
 //放进化括号可以解决以上问题
 '\u{1F680}' === '\uD83D\uDE80'
@@ -170,7 +169,7 @@ const { SourceMapConsumer, SourceNode } = require("source-map");
 #### 六种方式表示一个字符
 
 ```js
-'\z' === 'z'  // true
+'\z' === 'z' // true
 '\172' === 'z' // true
 '\x7A' === 'z' // true
 '\u007A' === 'z' // true
@@ -184,7 +183,7 @@ const { SourceMapConsumer, SourceNode } = require("source-map");
 > 特殊字符:4个字符(Unicode格式[Unicode码点>0xFFFF])
 
 ```js
-var s = "𠮷";//0xD842 0xDFB7
+var s = '𠮷' //0xD842 0xDFB7
 
 s.length // 2
 s.charAt(0) // ''
@@ -220,12 +219,11 @@ for (let codePoint of 'foo') {
 
 > - indexOf():用来确定一个字符串是否包含在另一个字符串中。
 > - **includes()**：返回布尔值，表示是否找到了参数字符串。
->
 > - **startsWith()**：返回布尔值，表示参数字符串是否在源字符串的头部。
 > - **endsWith()**：返回布尔值，表示参数字符串是否在源字符串的尾部。
 
 ```js
-var s = 'Hello world!';
+var s = 'Hello world!'
 
 s.startsWith('Hello') // true
 s.endsWith('!') // true
@@ -241,16 +239,16 @@ repest()
 > 返回一个字符重复n次的新字符
 
 ```js
- 'x'.repeat(3) // "xxx"
+'x'.repeat(3) // "xxx"
 ```
 
 ### 模板字符串
 
 ```js
 // 字符串中嵌入变量
-var name = "Bob", time = "today";
-`Hello ${name}, how are you ${time}?`
-
+var name = 'Bob',
+  time = 'today'
+;`Hello ${name}, how are you ${time}?`
 
 //标签模板
 alert`123`
@@ -264,19 +262,18 @@ alert(123)
 >   - 原来就有的字符串
 >   - 新增的Symbol类型
 > - 每一个symbol都是不相等的
->
 > -
 
 ```js
-let s = Symbol();
+let s = Symbol()
 
 typeof s
 // "symbol"
 
-var mySymbol = Symbol();
+var mySymbol = Symbol()
 
-var a = {};
-a[mySymbol] = 'Hello!';
+var a = {}
+a[mySymbol] = 'Hello!'
 ```
 
 ## set和Map数据结构
@@ -291,34 +288,34 @@ a[mySymbol] = 'Hello!';
 >   - forEach():使用回调函数遍历每一个成员
 
 ```js
-var s = new Set();
+var s = new Set()
 
-[2, 3, 5, 4, 5, 2, 2].map(x => s.add(x));
+;[2, 3, 5, 4, 5, 2, 2].map((x) => s.add(x))
 
 for (let i of s) {
-  console.log(i);
+  console.log(i)
 }
 // 2 3 5 4
 
 // 例一
-var set = new Set([1, 2, 3, 4, 4]);
-[...set]
+var set = new Set([1, 2, 3, 4, 4])
+;[...set]
 // [1, 2, 3, 4]
 
 // 例二
-var items = new Set([1, 2, 3, 4, 5, 5, 5, 5]);
+var items = new Set([1, 2, 3, 4, 5, 5, 5, 5])
 items.size // 5
 
 // 例三
-function divs () {
-  return [...document.querySelectorAll('div')];
+function divs() {
+  return [...document.querySelectorAll('div')]
 }
 
-var set = new Set(divs());
+var set = new Set(divs())
 set.size // 56
 
 // 类似于
-divs().forEach(div => set.add(div));
+divs().forEach((div) => set.add(div))
 set.size // 56
 ```
 
@@ -329,17 +326,16 @@ set.size // 56
 > - get(key):获取
 
 ```js
-var data = {};
-var element = document.getElementById('myDiv');
+var data = {}
+var element = document.getElementById('myDiv')
 
-data[element] = 'metadata';
+data[element] = 'metadata'
 data['[object HTMLDivElement]'] // "metadata"
-
 ```
 
 ```javascript
-var m = new Map();
-var o = {p: 'Hello World'};
+var m = new Map()
+var o = { p: 'Hello World' }
 
 m.set(o, 'content')
 m.get(o) // "content"
@@ -358,22 +354,25 @@ m.has(o) // false
 > Proxy 可以理解成，在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。Proxy 这个词的原意是代理，用在这里表示由它来“代理”某些操作，可以译为“代理器”。
 >
 > ```javascript
-> var proxy = new Proxy(target, handler);
-> target:拦截目标
-> handler:拦截行为
+> var proxy = new Proxy(target, handler)
+> target: 拦截目标
+> handler: 拦截行为
 > ```
 
 ```js
-var obj = new Proxy({}, {
-  get: function (target, key, receiver) {
-    console.log(`getting ${key}!`);
-    return Reflect.get(target, key, receiver);
+var obj = new Proxy(
+  {},
+  {
+    get: function (target, key, receiver) {
+      console.log(`getting ${key}!`)
+      return Reflect.get(target, key, receiver)
+    },
+    set: function (target, key, value, receiver) {
+      console.log(`setting ${key}!`)
+      return Reflect.set(target, key, value, receiver)
+    },
   },
-  set: function (target, key, value, receiver) {
-    console.log(`setting ${key}!`);
-    return Reflect.set(target, key, value, receiver);
-  }
-});
+)
 
 obj.count = 1
 //  setting count!
@@ -393,24 +392,22 @@ obj.count = 1
 >
 > ```js
 > var person = {
-> name: "张三"
-> };
-> 
-> var proxy = new Proxy(person, {
-> get: function(target, property) {
->  if (property in target) {
->    return target[property];
->  } else {
->    throw new ReferenceError("Property \"" + property + "\" does not exist.");
->  }
+>   name: '张三',
 > }
-> });
-> 
+>
+> var proxy = new Proxy(person, {
+>   get: function (target, property) {
+>     if (property in target) {
+>       return target[property]
+>     } else {
+>       throw new ReferenceError('Property "' + property + '" does not exist.')
+>     }
+>   },
+> })
+>
 > proxy.name // "张三"
 > proxy.age // 抛出一个错误
 > ```
->
->
 >
 > **（2）set(target, propKey, value, receiver)**
 >
@@ -418,25 +415,25 @@ obj.count = 1
 >
 > ```js
 > let validator = {
-> set: function(obj, prop, value) {
->  if (prop === 'age') {
->    if (!Number.isInteger(value)) {
->      throw new TypeError('The age is not an integer');
->    }
->    if (value > 200) {
->      throw new RangeError('The age seems invalid');
->    }
->  }
-> 
->  // 对于age以外的属性，直接保存
->  obj[prop] = value;
+>   set: function (obj, prop, value) {
+>     if (prop === 'age') {
+>       if (!Number.isInteger(value)) {
+>         throw new TypeError('The age is not an integer')
+>       }
+>       if (value > 200) {
+>         throw new RangeError('The age seems invalid')
+>       }
+>     }
+>
+>     // 对于age以外的属性，直接保存
+>     obj[prop] = value
+>   },
 > }
-> };
-> 
-> let person = new Proxy({}, validator);
-> 
-> person.age = 100;
-> 
+>
+> let person = new Proxy({}, validator)
+>
+> person.age = 100
+>
 > person.age // 100
 > person.age = 'young' // 报错
 > person.age = 300 // 报错
@@ -505,7 +502,7 @@ obj.count = 1
 >   get foo() { return this.bar(); },
 >   bar: function() { ... }
 > };
-> 
+>
 > // 下面语句会让 this.bar()
 > // 变成调用 wrapper.bar()
 > Reflect.get(obj, "foo", wrapper);
@@ -525,7 +522,6 @@ obj.count = 1
 ## Generator
 
 > - 提供异步变成解决方案
->
 > - 状态机:封装多个内部状态
 > - 特征
 >   - function:关键词和函数名之间有一个星号(没有规定位置,只要在这之间都可以)
@@ -533,9 +529,9 @@ obj.count = 1
 
 ```js
 function* helloWorldGenerator() {
-  yield 'hello';
-  yield 'world';
-  return 'ending';//结束
+  yield 'hello'
+  yield 'world'
+  return 'ending' //结束
 }
 /*
  建立后并不执行,
@@ -543,8 +539,7 @@ function* helloWorldGenerator() {
  而是一个指向内部状态指针对象(遍历对象Iterator Object)
 */
 
-
-var hw = helloWorldGenerator();
+var hw = helloWorldGenerator()
 //done:false;表示对象遍历没有结束
 hw.next()
 // { value: 'hello', done: false }
@@ -564,7 +559,7 @@ hw.next()
 ### 语法
 
 ```js
-let p = new Proxy(target, handler);
+let p = new Proxy(target, handler)
 ```
 
 > `target`: 一个目标对象( 可以是任何类型对象, 包括数组函数等, 甚至另一个代理 ) 用Proxy 来封装
@@ -575,15 +570,15 @@ let p = new Proxy(target, handler);
 
 ```js
 const obj = {
-  a: 10
+  a: 10,
 }
 let handler = {
-  get: function(target, name){
+  get: function (target, name) {
     console.log('test: ', target, name)
     // test:  {"a":10} a
     // test:  {"a":10} b
     return name in target ? target[name] : 37
-  }
+  },
 }
 let p = new Proxy(obj, handler)
 console.log(p.a, p.b) // 10 37
@@ -642,7 +637,7 @@ Object.assign(null) // 报错
 如果非对象参数出现在源对象的位置（即非首参数），那么处理规则有所不同。首先，这些参数都会转成对象，如果无法转成对象，就会跳过。这意味着，如果`undefined`和`null`不在首参数，就不会报错。
 
 ```jsx
-let obj = {a: 1};
+let obj = { a: 1 }
 Object.assign(obj, undefined) === obj // true
 Object.assign(obj, null) === obj // true
 ```
@@ -650,12 +645,12 @@ Object.assign(obj, null) === obj // true
 其他类型的值（即数值、字符串和布尔值）不在首参数，也不会报错。但是，除了字符串会以数组形式，拷贝入目标对象，其他值都不会产生效果。
 
 ```jsx
-const v1 = 'abc';
-const v2 = true;
-const v3 = 10;
+const v1 = 'abc'
+const v2 = true
+const v3 = 10
 
-const obj = Object.assign({}, v1, v2, v3);
-console.log(obj); // { "0": "a", "1": "b", "2": "c" }
+const obj = Object.assign({}, v1, v2, v3)
+console.log(obj) // { "0": "a", "1": "b", "2": "c" }
 ```
 
 上面代码中，`v1`、`v2`、`v3`分别是字符串、布尔值和数值，结果只有字符串合入目标对象（以字符数组的形式），数值和布尔值都会被忽略。这是因为只有字符串的包装对象，会产生可枚举属性。
@@ -689,7 +684,7 @@ Object.assign({ a: 'b' }, { [Symbol('c')]: 'd' })
 // { a: 'b', Symbol(c): 'd' }
 ```
 
-------
+---
 
 ### 注意点
 
@@ -739,9 +734,11 @@ Object.assign([1, 2, 3], [4, 5])
 
 ```jsx
 const source = {
-  get foo() { return 1 }
-};
-const target = {};
+  get foo() {
+    return 1
+  },
+}
+const target = {}
 
 Object.assign(target, source)
 // { foo: 1 }
@@ -758,7 +755,7 @@ Object.assign(target, source)
 ```jsx
 class Point {
   constructor(x, y) {
-    Object.assign(this, {x, y});
+    Object.assign(this, { x, y })
   }
 }
 ```
@@ -792,7 +789,7 @@ SomeClass.prototype.anotherMethod = function () {
 
 ```jsx
 function clone(origin) {
-  return Object.assign({}, origin);
+  return Object.assign({}, origin)
 }
 ```
 
@@ -802,8 +799,8 @@ function clone(origin) {
 
 ```jsx
 function clone(origin) {
-  let originProto = Object.getPrototypeOf(origin);
-  return Object.assign(Object.create(originProto), origin);
+  let originProto = Object.getPrototypeOf(origin)
+  return Object.assign(Object.create(originProto), origin)
 }
 ```
 
@@ -812,13 +809,13 @@ function clone(origin) {
 将多个对象合并到某个对象。
 
 ```jsx
-const merge = (target, ...sources) => Object.assign(target, ...sources);
+const merge = (target, ...sources) => Object.assign(target, ...sources)
 ```
 
 如果希望合并后返回一个新对象，可以改写上面函数，对一个空对象合并。
 
 ```jsx
-const merge = (...sources) => Object.assign({}, ...sources);
+const merge = (...sources) => Object.assign({}, ...sources)
 ```
 
 ### （5）为属性指定默认值
@@ -826,12 +823,12 @@ const merge = (...sources) => Object.assign({}, ...sources);
 ```jsx
 const DEFAULTS = {
   logLevel: 0,
-  outputFormat: 'html'
-};
+  outputFormat: 'html',
+}
 
 function processContent(options) {
-  options = Object.assign({}, DEFAULTS, options);
-  console.log(options);
+  options = Object.assign({}, DEFAULTS, options)
+  console.log(options)
   // ...
 }
 ```
@@ -861,28 +858,29 @@ processContent({ url: {port: 8000} })
 ```js
 //传统
 function Point(x, y) {
-  this.x = x;
-  this.y = y;
+  this.x = x
+  this.y = y
 }
 
 Point.prototype.toString = function () {
-  return '(' + this.x + ', ' + this.y + ')';
-};
+  return '(' + this.x + ', ' + this.y + ')'
+}
 
-var p = new Point(1, 2);
+var p = new Point(1, 2)
 
 //ES6
 class Point {
-  constructor(x, y) {//类似于java的构造函数
-    this.x = x;
-    this.y = y;
+  constructor(x, y) {
+    //类似于java的构造函数
+    this.x = x
+    this.y = y
   }
- // 私有方法
+  // 私有方法
   _bar(baz) {
-    return this.snaf = baz;
+    return (this.snaf = baz)
   }
   toString() {
-    return '(' + this.x + ', ' + this.y + ')';
+    return '(' + this.x + ', ' + this.y + ')'
   }
 }
 ```

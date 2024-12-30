@@ -5,6 +5,6 @@
 
 ```json
 {
- "description": "React is a JavaScript library for building user interfaces."
+  "description": "React is a JavaScript library for building user interfaces."
 }
 ```

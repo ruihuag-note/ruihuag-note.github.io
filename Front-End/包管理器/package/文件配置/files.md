@@ -7,10 +7,6 @@
 
 ```json
 {
-"files": [
-  "filename.js",
-  "directory/",
-  "glob/*.{js,json}"
- ]
+  "files": ["filename.js", "directory/", "glob/*.{js,json}"]
 }
 ```

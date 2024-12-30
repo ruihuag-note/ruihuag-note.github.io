@@ -1,7 +1,6 @@
 # axios
 
-> 相关: `axios-jsonp`, `axios-retry`
-> [axios中文文档|axios中文网 | axios (axios-js.com)](http://www.axios-js.com/zh-cn/docs/)
+> 相关: `axios-jsonp`, `axios-retry` > [axios中文文档|axios中文网 | axios (axios-js.com)](http://www.axios-js.com/zh-cn/docs/)
 
 ## 配置header
 
@@ -22,9 +21,9 @@ let param = new URLSearchParams()
 param.append('username', 'admin')
 param.append('pwd', 'admin')
 axios({
-    method: 'post',
-    url: '/api/lockServer/search',
-    data: param
+  method: 'post',
+  url: '/api/lockServer/search',
+  data: param,
 })
 ```
 
@@ -41,40 +40,43 @@ axios({
 ```js
 import Qs from 'qs'
 let data = {
-    "username": "cc",
-    "psd": "123456"
+  username: 'cc',
+  psd: '123456',
 }
 
 axios({
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    method: 'post',
-    url: '/api/lockServer/search',
-    data: Qs.stringify(data)
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+  },
+  method: 'post',
+  url: '/api/lockServer/search',
+  data: Qs.stringify(data),
 })
 ```
 
 ## **Content-Type: multipart/form-data**
 
 ```js
- let params = new FormData()
- params.append('file', this.file)
- params.append('id', localStorage.getItem('userID'))
- params.append('userName', this.name)
- params.append('sex', this.sex)
- params.append('mobile', this.phone)
- params.append('email', this.email)
- params.append('qq', this.qq)
- params.append('weChat', this.WeChat)
+let params = new FormData()
+params.append('file', this.file)
+params.append('id', localStorage.getItem('userID'))
+params.append('userName', this.name)
+params.append('sex', this.sex)
+params.append('mobile', this.phone)
+params.append('email', this.email)
+params.append('qq', this.qq)
+params.append('weChat', this.WeChat)
 
-axios.post(URL, params, {headers: {'Content-Type': 'multipart/form-data'}}).then(res => {
-  if (res.data.code === 0) {
-  this.$router.go(-1)
-  }
-  }).catch(error => {
-  alert('更新用户数据失败' + error)
-})
+axios
+  .post(URL, params, { headers: { 'Content-Type': 'multipart/form-data' } })
+  .then((res) => {
+    if (res.data.code === 0) {
+      this.$router.go(-1)
+    }
+  })
+  .catch((error) => {
+    alert('更新用户数据失败' + error)
+  })
 ```
 
 ## **Content-Type: application/json**
@@ -106,7 +108,6 @@ export async function request(url: string, config?: AxiosRequestConfig) {
 
 // 只有3次失败后才真正失败
 const data = request('http://example.com/test')
-
 ```
 
 ## axios-jsonp
@@ -115,7 +116,7 @@ const data = request('http://example.com/test')
 
 ```ts
 import Axios, { AxiosRequestConfig } from 'axios'
-import jsonpAdapter from 'axios-jsonp'
+import jsonpAdapter from 'axios-jsonp'
 
 const client = Axios.create({
   // 你的配置
@@ -129,10 +130,9 @@ export async function request(url: string, config?: AxiosRequestConfig) {
 }
 
 export function jsonp(url: string, config?: AxiosRequestConfig) {
-  return request(url, { ...config, adapter: jsonpAdapter })
+  return request(url, { ...config, adapter: jsonpAdapter })
 }
 
 // 你现在可以发送 jsonp 的请求了
 const data = jsonp('http://example.com/test-jsonp')
-
 ```

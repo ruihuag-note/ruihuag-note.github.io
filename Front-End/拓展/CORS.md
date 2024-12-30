@@ -48,7 +48,7 @@ Copy to Clipboard
 
 ```js
 fetch(url, {
-  credentials: 'include'
+  credentials: 'include',
 })
 ```
 
@@ -75,7 +75,7 @@ fetch(url, {
 >
 > `Access-Control-Allow-Methods: POST, GET, OPTIONS`
 >
-> `<method>` :  GET, POST, HEAD, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH
+> `<method>` : GET, POST, HEAD, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH
 
 ## [Access-Control-Expose-Headers](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Access-Control-Expose-Headers)
 
@@ -134,8 +134,8 @@ fetch(url, {
 >
 > `Origin: https://developer.mozilla.org`
 >
-> - `<scheme>`:  请求所使用的的协议, 通常是HTTP协议或他的安全版本HTTPS协议
-> - `<host>`:  服务器的域名或IP地址
+> - `<scheme>`: 请求所使用的的协议, 通常是HTTP协议或他的安全版本HTTPS协议
+> - `<host>`: 服务器的域名或IP地址
 > - `<port>`:(可选) 服务器正在监听的TCP端口号, 缺省为服务的默认蹲坑(HTTP请求而言, 默认端口为80)
 
 ## [Vary - HTTP](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Vary)
@@ -221,7 +221,7 @@ Location: /index.html
 
 > 禁止修改的消息首部: 不能再代码中修改的HTTP协议消息首部
 >
-> 用户代理对这些消息首部保留全部控制权,   应用程序无法设置它们
+> 用户代理对这些消息首部保留全部控制权, 应用程序无法设置它们
 >
 > `User-Agent`: 以及从列表冲移除
 

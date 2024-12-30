@@ -1,5 +1,3 @@
-
-
 # Promise原理模拟
 
 ## 核心逻辑分析
@@ -18,48 +16,48 @@
 7. then方法是可以被链式调用的, 后面then方法的回调函数拿到值的是上一个then方法的回调函数的返回值
 
 ```js
-const PENDING = 'pending'; // 等待
-const FULFILLED = 'fulfilled'; // 成功
-const REJECTED = 'rejected'; // 失败
+const PENDING = 'pending' // 等待
+const FULFILLED = 'fulfilled' // 成功
+const REJECTED = 'rejected' // 失败
 
 class MyPromise {
-    constructor(executor) {
-        executor(this.resolve, this.reject); 
-    }
+  constructor(executor) {
+    executor(this.resolve, this.reject)
+  }
 
-    status = PENDING; // 状态
-    value = undefined; // then函数成功回调需要的参数
-    reason = undefined; // then函数失败回调需要的参数
+  status = PENDING // 状态
+  value = undefined // then函数成功回调需要的参数
+  reason = undefined // then函数失败回调需要的参数
 
-    resolve = value => {
-        // 如果状态不是等待 阻止程序向下执行
-        if(this.status !== PENDING) return;
-        // 将状态更改为成功
-        this.status = FULFILLED;
-        // 保存成功之后的值
-        this.value = value;
-    }
+  resolve = (value) => {
+    // 如果状态不是等待 阻止程序向下执行
+    if (this.status !== PENDING) return
+    // 将状态更改为成功
+    this.status = FULFILLED
+    // 保存成功之后的值
+    this.value = value
+  }
 
-    reject = reason => {
-        // 如果状态不是等待 阻止程序向下执行
-        if(this.status !== PENDING) return;
-        // 将状态更改为失败
-        this.status = REJECTED;
-        // 保存失败后的原因
-        this.reason = reason;
-    }
+  reject = (reason) => {
+    // 如果状态不是等待 阻止程序向下执行
+    if (this.status !== PENDING) return
+    // 将状态更改为失败
+    this.status = REJECTED
+    // 保存失败后的原因
+    this.reason = reason
+  }
 
-    then = (successCallback, failCallback) => {
-        // 判断状态
-        if(this.status === FULFILLED) {
-            successCallback(this.value);
-        } else if(this.status === REJECTED) {
-            failCallback(this.reason);
-        }
+  then = (successCallback, failCallback) => {
+    // 判断状态
+    if (this.status === FULFILLED) {
+      successCallback(this.value)
+    } else if (this.status === REJECTED) {
+      failCallback(this.reason)
     }
+  }
 }
 
-module.exports = MyPromise;
+module.exports = MyPromise
 ```
 
 ## 异步调用解决
@@ -68,15 +66,18 @@ module.exports = MyPromise;
 
 ```js
 const promise = new MyPromise((resolve, reject) => {
-    setTimeout(() => {
-        resolve('成功');
-    }, 2000);
-});
-promise.then(value => {
-    console.log(value);
-}, reason => {
-    console.log(reason);
-});
+  setTimeout(() => {
+    resolve('成功')
+  }, 2000)
+})
+promise.then(
+  (value) => {
+    console.log(value)
+  },
+  (reason) => {
+    console.log(reason)
+  },
+)
 ```
 
 ### 2. 实现步骤分析
@@ -125,16 +126,15 @@ class MyPromise {
 ### 1. 场景
 
 ```js
-promise.then(value => {
-    console.log(value);
-});
-promise.then(value => {
-    console.log(value);
-});
-promise.then(value => {
-    console.log(value);
-});
-
+promise.then((value) => {
+  console.log(value)
+})
+promise.then((value) => {
+  console.log(value)
+})
+promise.then((value) => {
+  console.log(value)
+})
 ```
 
 ### 2. 实现步骤分析
@@ -185,15 +185,17 @@ class MyPromise {
 ### 1. 场景
 
 ```js
-promise.then(value => {
-    console.log(value);
-    return 100;
-}).then(value => {
-    console.log(value);
-}).then(value => {
-    console.log(value);
-});
-
+promise
+  .then((value) => {
+    console.log(value)
+    return 100
+  })
+  .then((value) => {
+    console.log(value)
+  })
+  .then((value) => {
+    console.log(value)
+  })
 ```
 
 ### 2. 实现步骤分析
@@ -247,11 +249,10 @@ function resolvePromise(x, resolve, reject) {
 ### 1. 场景
 
 ```js
-let p1 = promise.then(value => {
-    console.log(value);
-    return p1;
+let p1 = promise.then((value) => {
+  console.log(value)
+  return p1
 })
-
 ```
 
 ### 2. 实现步骤分析
@@ -410,10 +411,15 @@ class MyPromise {
 
 ```js
 const promise = new MyPromise((resolve, reject) => {
-    resolve(100);
-});
-promise.then().then().then(value => console.log(value), reason => console.log(reason));
-
+  resolve(100)
+})
+promise
+  .then()
+  .then()
+  .then(
+    (value) => console.log(value),
+    (reason) => console.log(reason),
+  )
 ```
 
 ### 2. 实现步骤分析
@@ -441,23 +447,22 @@ class MyPromise {
 ### 1. 场景
 
 ```js
-function p1 () {
+function p1() {
   return new MyPromise(function (resolve, reject) {
     setTimeout(function () {
       resolve('p1')
     }, 2000)
   })
 }
-function p2 () {
+function p2() {
   return new MyPromise(function (resolve, reject) {
     reject('失败')
-    // resolve('成功');  
+    // resolve('成功');
   })
 }
-MyPromise.all(['a', 'b', p1(), p2(), 'c']).then(result => {
+MyPromise.all(['a', 'b', p1(), p2(), 'c']).then((result) => {
   // result -> ['a', 'b', 'p1', 'p2', 'c']
 })
-
 ```
 
 ### 2. 实现步骤分析
@@ -500,8 +505,7 @@ static all (array) {
 ### 1. 场景
 
 ```js
-MyPromise.resolve(100).then(value => console.log(value)); // 100
-
+MyPromise.resolve(100).then((value) => console.log(value)) // 100
 ```
 
 ### 2. 实现步骤分析
@@ -521,8 +525,6 @@ static resolve (value) {
 ## 原型方法finally
 
 ### 1. 场景
-
- 
 
 ### 2. 实现步骤分析
 
@@ -546,15 +548,14 @@ finally (callback) {
 ### 1. 场景
 
 ```js
-function p1 () {
-    return new Promise(function (resolve, reject) {
-        reject('hello');
-    })
+function p1() {
+  return new Promise(function (resolve, reject) {
+    reject('hello')
+  })
 }
 p1()
-    .then(value => console.log(value))
-    .catch(reason => console.log(reason))
-
+  .then((value) => console.log(value))
+  .catch((reason) => console.log(reason))
 ```
 
 ### 2. 实现步骤分析
@@ -572,82 +573,86 @@ catch (failCallback) {
 
 ```js
 // 附上完整代码
-const PENDING = 'pending'; // 等待
-const FULFILLED = 'fulfilled'; // 成功
-const REJECTED = 'rejected'; // 失败
+const PENDING = 'pending' // 等待
+const FULFILLED = 'fulfilled' // 成功
+const REJECTED = 'rejected' // 失败
 
 class MyPromise {
-  constructor (executor) {
+  constructor(executor) {
     try {
       executor(this.resolve, this.reject)
     } catch (e) {
-      this.reject(e);
+      this.reject(e)
     }
   }
-  // promsie 状态 
-  status = PENDING;
+  // promsie 状态
+  status = PENDING
   // 成功之后的值
-  value = undefined;
+  value = undefined
   // 失败后的原因
-  reason = undefined;
+  reason = undefined
   // 成功回调
-  successCallback = [];
+  successCallback = []
   // 失败回调
-  failCallback = [];
+  failCallback = []
 
-  resolve = value => {
+  resolve = (value) => {
     // 如果状态不是等待 阻止程序向下执行
-    if (this.status !== PENDING) return;
+    if (this.status !== PENDING) return
     // 将状态更改为成功
-    this.status = FULFILLED;
+    this.status = FULFILLED
     // 保存成功之后的值
-    this.value = value;
+    this.value = value
     // 判断成功回调是否存在 如果存在 调用
     // this.successCallback && this.successCallback(this.value);
-    while(this.successCallback.length) this.successCallback.shift()()
+    while (this.successCallback.length) this.successCallback.shift()()
   }
-  reject = reason => {
+  reject = (reason) => {
     // 如果状态不是等待 阻止程序向下执行
-    if (this.status !== PENDING) return;
+    if (this.status !== PENDING) return
     // 将状态更改为失败
-    this.status = REJECTED;
+    this.status = REJECTED
     // 保存失败后的原因
-    this.reason = reason;
+    this.reason = reason
     // 判断失败回调是否存在 如果存在 调用
     // this.failCallback && this.failCallback(this.reason);
-    while(this.failCallback.length) this.failCallback.shift()()
+    while (this.failCallback.length) this.failCallback.shift()()
   }
-  then (successCallback, failCallback) {
+  then(successCallback, failCallback) {
     // 参数可选
-    successCallback = successCallback ? successCallback : value => value;
+    successCallback = successCallback ? successCallback : (value) => value
     // 参数可选
-    failCallback = failCallback ? failCallback: reason => { throw reason };
+    failCallback = failCallback
+      ? failCallback
+      : (reason) => {
+          throw reason
+        }
     let promsie2 = new MyPromise((resolve, reject) => {
       // 判断状态
       if (this.status === FULFILLED) {
         setTimeout(() => {
           try {
-            let x = successCallback(this.value);
+            let x = successCallback(this.value)
             // 判断 x 的值是普通值还是promise对象
-            // 如果是普通值 直接调用resolve 
-            // 如果是promise对象 查看promsie对象返回的结果 
+            // 如果是普通值 直接调用resolve
+            // 如果是promise对象 查看promsie对象返回的结果
             // 再根据promise对象返回的结果 决定调用resolve 还是调用reject
             resolvePromise(promsie2, x, resolve, reject)
-          }catch (e) {
-            reject(e);
+          } catch (e) {
+            reject(e)
           }
         }, 0)
-      }else if (this.status === REJECTED) {
+      } else if (this.status === REJECTED) {
         setTimeout(() => {
           try {
-            let x = failCallback(this.reason);
+            let x = failCallback(this.reason)
             // 判断 x 的值是普通值还是promise对象
-            // 如果是普通值 直接调用resolve 
-            // 如果是promise对象 查看promsie对象返回的结果 
+            // 如果是普通值 直接调用resolve
+            // 如果是promise对象 查看promsie对象返回的结果
             // 再根据promise对象返回的结果 决定调用resolve 还是调用reject
             resolvePromise(promsie2, x, resolve, reject)
-          }catch (e) {
-            reject(e);
+          } catch (e) {
+            reject(e)
           }
         }, 0)
       } else {
@@ -656,87 +661,97 @@ class MyPromise {
         this.successCallback.push(() => {
           setTimeout(() => {
             try {
-              let x = successCallback(this.value);
+              let x = successCallback(this.value)
               // 判断 x 的值是普通值还是promise对象
-              // 如果是普通值 直接调用resolve 
-              // 如果是promise对象 查看promsie对象返回的结果 
+              // 如果是普通值 直接调用resolve
+              // 如果是promise对象 查看promsie对象返回的结果
               // 再根据promise对象返回的结果 决定调用resolve 还是调用reject
               resolvePromise(promsie2, x, resolve, reject)
-            }catch (e) {
-              reject(e);
+            } catch (e) {
+              reject(e)
             }
           }, 0)
-        });
+        })
         this.failCallback.push(() => {
           setTimeout(() => {
             try {
-              let x = failCallback(this.reason);
+              let x = failCallback(this.reason)
               // 判断 x 的值是普通值还是promise对象
-              // 如果是普通值 直接调用resolve 
-              // 如果是promise对象 查看promsie对象返回的结果 
+              // 如果是普通值 直接调用resolve
+              // 如果是promise对象 查看promsie对象返回的结果
               // 再根据promise对象返回的结果 决定调用resolve 还是调用reject
               resolvePromise(promsie2, x, resolve, reject)
-            }catch (e) {
-              reject(e);
+            } catch (e) {
+              reject(e)
             }
           }, 0)
-        });
+        })
       }
-    });
-    return promsie2;
-  }
-  finally (callback) {
-    return this.then(value => {
-      return MyPromise.resolve(callback()).then(() => value);
-    }, reason => {
-      return MyPromise.resolve(callback()).then(() => { throw reason })
     })
+    return promsie2
   }
-  catch (failCallback) {
+  finally(callback) {
+    return this.then(
+      (value) => {
+        return MyPromise.resolve(callback()).then(() => value)
+      },
+      (reason) => {
+        return MyPromise.resolve(callback()).then(() => {
+          throw reason
+        })
+      },
+    )
+  }
+  catch(failCallback) {
     return this.then(undefined, failCallback)
   }
-  static all (array) {
-    let result = [];
-    let index = 0;
+  static all(array) {
+    let result = []
+    let index = 0
     return new MyPromise((resolve, reject) => {
-      function addData (key, value) {
-        result[key] = value;
-        index++;
+      function addData(key, value) {
+        result[key] = value
+        index++
         if (index === array.length) {
-          resolve(result);
+          resolve(result)
         }
       }
       for (let i = 0; i < array.length; i++) {
-        let current = array[i];
+        let current = array[i]
         if (current instanceof MyPromise) {
           // promise 对象
-          current.then(value => addData(i, value), reason => reject(reason))
-        }else {
+          current.then(
+            (value) => addData(i, value),
+            (reason) => reject(reason),
+          )
+        } else {
           // 普通值
-          addData(i, array[i]);
+          addData(i, array[i])
         }
       }
     })
   }
-  static resolve (value) {
-    if (value instanceof MyPromise) return value;
-    return new MyPromise(resolve => resolve(value));
+  static resolve(value) {
+    if (value instanceof MyPromise) return value
+    return new MyPromise((resolve) => resolve(value))
   }
 }
 
-function resolvePromise (promsie2, x, resolve, reject) {
+function resolvePromise(promsie2, x, resolve, reject) {
   if (promsie2 === x) {
-    return reject(new TypeError('Chaining cycle detected for promise #<Promise>'))
+    return reject(
+      new TypeError('Chaining cycle detected for promise #<Promise>'),
+    )
   }
   if (x instanceof MyPromise) {
     // promise 对象
     // x.then(value => resolve(value), reason => reject(reason));
-    x.then(resolve, reject);
+    x.then(resolve, reject)
   } else {
     // 普通值
-    resolve(x);
+    resolve(x)
   }
 }
 
-module.exports = MyPromise;
+module.exports = MyPromise
 ```

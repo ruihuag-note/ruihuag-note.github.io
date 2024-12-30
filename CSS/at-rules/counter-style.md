@@ -41,7 +41,7 @@
 >
 > - [range(en-US)](https://developer.mozilla.org/en-US/docs/Web/CSS/@counter-style/range)
 >
->    指定一个counter-style生效的范围，如果计数器的值不再这个范围内，那么自定义的counter-style不会生效，counter-style会后退到[fallback (en-US)](https://developer.mozilla.org/en-US/docs/Web/CSS/@counter-style/fallback)的style。
+>   指定一个counter-style生效的范围，如果计数器的值不再这个范围内，那么自定义的counter-style不会生效，counter-style会后退到[fallback (en-US)](https://developer.mozilla.org/en-US/docs/Web/CSS/@counter-style/fallback)的style。
 >
 > - [pad(en-US)](https://developer.mozilla.org/en-US/docs/Web/CSS/@counter-style/pad)
 >
@@ -53,17 +53,15 @@
 >
 > - [symbols (en-US)](https://developer.mozilla.org/en-US/docs/Web/CSS/@counter-style/symbols)
 >
->   定义一个符号，用于标记的表示。符号可以包含字符串，图片或自定义的识别码。这个符号怎样构建标记呢？这依赖于system描述符里面所定义的算法。 举个例子，如果system的值是fixed,那么symbols属性指定的固定的N个符号，将被用来表示计数器的前N个值。用完了前N个符号后，列表里剩下的值将使用fallback定义的样式来表示。  下面的@counter-style规则使用图片而不是字符标记。
+>   定义一个符号，用于标记的表示。符号可以包含字符串，图片或自定义的识别码。这个符号怎样构建标记呢？这依赖于system描述符里面所定义的算法。 举个例子，如果system的值是fixed,那么symbols属性指定的固定的N个符号，将被用来表示计数器的前N个值。用完了前N个符号后，列表里剩下的值将使用fallback定义的样式来表示。 下面的@counter-style规则使用图片而不是字符标记。
 >
 >   ```css
->   @counter-style winners-list { 
->     system: fixed; 
->     symbols: url(gold-medal.svg)  url(silver-medal.svg) url(bronze-medal.svg);  
->     suffix: " "; 
+>   @counter-style winners-list {
+>     system: fixed;
+>     symbols: url(gold-medal.svg) url(silver-medal.svg) url(bronze-medal.svg);
+>     suffix: ' ';
 >   }
 >   ```
->
->
 >
 > - [additive-symbols (en-US)](https://developer.mozilla.org/en-US/docs/Web/CSS/@counter-style/additive-symbols)
 >
@@ -77,18 +75,16 @@
 @counter-style circled-alpha {
   system: fixed;
   symbols: Ⓐ Ⓑ Ⓒ Ⓓ Ⓔ Ⓕ Ⓖ Ⓗ Ⓘ Ⓙ Ⓚ Ⓛ Ⓜ Ⓝ Ⓞ Ⓟ Ⓠ Ⓡ Ⓢ Ⓣ Ⓤ Ⓥ Ⓦ Ⓧ Ⓨ Ⓩ;
-  suffix: " ";
+  suffix: ' ';
 }
 
 .items {
-   list-style: circled-alpha;
+  list-style: circled-alpha;
 }
-
-
 ```
 
 ```
-Ⓐ One  
+Ⓐ One
 Ⓑ Two
 Ⓒ Three
 Ⓓ Four

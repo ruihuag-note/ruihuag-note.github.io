@@ -1,5 +1,3 @@
-
-
 # MeshMatcapMaterial
 
 MeshMatcapMaterial 由一个材质捕捉（MatCap，或光照球（Lit Sphere））纹理所定义，其编码了材质的颜色与明暗。
@@ -7,8 +5,6 @@ MeshMatcapMaterial 由一个材质捕捉（MatCap，或光照球（Lit Sphere）
 由于mapcap图像文件编码了烘焙过的光照，因此MeshMatcapMaterial 不对灯光作出反应。 它将会投射阴影到一个接受阴影的物体上(and shadow clipping works)，但不会产生自身阴影或是接受阴影。
 
 <iframe id="scene" src="https://threejs.org/docs/scenes/material-browser.html#MeshMatcapMaterial" style="width: 880px; height: 420px; border: 0px; color: rgb(187, 187, 187); font-family: Inter, sans-serif; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"></iframe>
-
-
 
 ## 构造函数(Constructor)
 

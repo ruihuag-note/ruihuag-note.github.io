@@ -87,7 +87,7 @@
 npm install xxx
 
 安装并写入package.json的"dependencies"中
-npm install xxx –S 
+npm install xxx –S
 
 安装并写入package.json的"devDependencies"中
 npm install xxx –D
@@ -124,7 +124,7 @@ npm install
 
 删除
 删除指定模块；
-npm uninstall xxx 
+npm uninstall xxx
 
 删除全局模块
 npm uninstall -g xxx

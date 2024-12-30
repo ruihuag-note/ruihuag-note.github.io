@@ -5,7 +5,7 @@
 ```css
 @keyframes slidein {
   from {
-    transform: translateX(0%); 
+    transform: translateX(0%);
   }
 
   to {
@@ -40,10 +40,21 @@ JavaScript 可以通过 CSS对象模型的 [CSSKeyframesRule (en-US)](https://de
 
 ```css
 @keyframes identifier {
-  0% { top: 0; left: 0; }
-  30% { top: 50px; }
-  68%, 72% { left: 50px; }
-  100% { top: 100px; left: 100%; }
+  0% {
+    top: 0;
+    left: 0;
+  }
+  30% {
+    top: 50px;
+  }
+  68%,
+  72% {
+    left: 50px;
+  }
+  100% {
+    top: 100px;
+    left: 100%;
+  }
 }
 ```
 
@@ -57,10 +68,19 @@ Copy to Clipboard
 
 ```css
 @keyframes identifier {
-  0% { top: 0; }
-  50% { top: 30px; left: 20px; }
-  50% { top: 10px; }
-  100% { top: 0; }
+  0% {
+    top: 0;
+  }
+  50% {
+    top: 30px;
+    left: 20px;
+  }
+  50% {
+    top: 10px;
+  }
+  100% {
+    top: 0;
+  }
 }
 ```
 
@@ -76,16 +96,26 @@ Firefox 14 开始支持层叠 keyframes。
 
 ```css
 @keyframes important1 {
-  from { margin-top: 50px; }
-  50%  { margin-top: 150px !important; } /* 忽略 */
-  to   { margin-top: 100px; }
+  from {
+    margin-top: 50px;
+  }
+  50% {
+    margin-top: 150px !important;
+  } /* 忽略 */
+  to {
+    margin-top: 100px;
+  }
 }
 
 @keyframes important2 {
-  from { margin-top: 50px;
-         margin-bottom: 100px; }
-  to   { margin-top: 150px !important; /* 忽略 */
-         margin-bottom: 50px; }
+  from {
+    margin-top: 50px;
+    margin-bottom: 100px;
+  }
+  to {
+    margin-top: 150px !important; /* 忽略 */
+    margin-bottom: 50px;
+  }
 }
 ```
 
@@ -114,17 +144,17 @@ Copy to Clipboard
 - 形式化语法
 
 ```css
- @keyframes <keyframes-name> {  
+ @keyframes <keyframes-name> {
    <keyframe-block-list>
  }
 
-  where 
+  where
    <keyframes-name> = <custom-ident> | <string>
    <keyframe-block-list> = <keyframe-block>+
 
-  where <keyframe-block> = <keyframe-selector># {  
-   <declaration-list> 
+  where <keyframe-block> = <keyframe-selector># {
+   <declaration-list>
   }
- 
+
  where <keyframe-selector> = from | to | <percentage>
- ```
+```

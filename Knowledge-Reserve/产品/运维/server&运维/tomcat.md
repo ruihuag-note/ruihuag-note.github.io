@@ -18,9 +18,9 @@
 >
 > 2，新建变量名：CATALINA_HOME，变量值：E:\Develop\apache-tomcat-7.0.93
 >
-> 3，打开PATH，添加变量值：%CATALINA_HOME%\lib  %CATALINA_HOME%\bin
+> 3，打开PATH，添加变量值：%CATALINA_HOME%\lib %CATALINA_HOME%\bin
 >
-> 到tomcat的bin目录测试是否可以访问。  
+> 到tomcat的bin目录测试是否可以访问。
 
 ## 常识补充
 

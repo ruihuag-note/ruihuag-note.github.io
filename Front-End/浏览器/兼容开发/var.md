@@ -22,9 +22,9 @@
 > - 利用标签属性进行固定
 
 ```js
-for (var i=0; i < btn.length; i++) {
-  btn[i].onclick=function(){
-   console.log(i)
+for (var i = 0; i < btn.length; i++) {
+  btn[i].onclick = function () {
+    console.log(i)
   }
 }
 ```

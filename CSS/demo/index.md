@@ -1,6 +1,6 @@
 ## 允许您以确切的方式定义适应某个区域的具体内容
 
-* box-sizing
+- box-sizing
 
 ```css
 div {

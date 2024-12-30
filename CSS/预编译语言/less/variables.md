@@ -6,8 +6,8 @@
 
 ```less
 // Variables
-@link-color:        #428bca; // sea blue
-@link-color-hover:  darken(@link-color, 10%);
+@link-color: #428bca; // sea blue
+@link-color-hover: darken(@link-color, 10%);
 
 // Usage
 a,
@@ -49,7 +49,6 @@ a,
 ```
 
 ```css
-
 .banner {
   font-weight: bold;
   line-height: 40px;
@@ -61,12 +60,12 @@ a,
 
 ```less
 // Variables
-@images: "../img";
+@images: '../img';
 
 // Usage
 body {
   color: #444;
-  background: url("@{images}/white-sand.png");
+  background: url('@{images}/white-sand.png');
 }
 ```
 
@@ -74,16 +73,15 @@ body {
 
 ```less
 // Variables
-@themes: "../../src/themes";
+@themes: '../../src/themes';
 
 // Usage
-@import "@{themes}/tidal-wave.less";
+@import '@{themes}/tidal-wave.less';
 ```
 
 ## Properties
 
 ```less
-
 @property: color;
 
 .widget {
@@ -102,7 +100,7 @@ body {
 ## Variable Variables
 
 ```less
-@primary:  green;
+@primary: green;
 @secondary: blue;
 
 .section {
@@ -115,7 +113,6 @@ body {
 ```
 
 ```css
-
 .section .element {
   color: green;
 }
@@ -179,21 +176,21 @@ body {
 
 ```less
 .block {
-  color: red; 
+  color: red;
   .inner {
-    background-color: $color; 
+    background-color: $color;
   }
-  color: blue;  
-} 
+  color: blue;
+}
 ```
 
 ```css
 .block {
-  color: red; 
-  color: blue;  
-} 
+  color: red;
+  color: blue;
+}
 .block .inner {
-  background-color: blue; 
+  background-color: blue;
 }
 ```
 
@@ -205,7 +202,7 @@ body {
 @dark-color: darken(@base-color, 10%);
 
 // use of library
-@import "library.less";
+@import 'library.less';
 @base-color: red; // 在当前文件, 可以覆盖掉library的
 ```
 
@@ -235,27 +232,27 @@ a:hover {
 ```less
 .button {
   &-ok {
-    background-image: url("ok.png");
+    background-image: url('ok.png');
   }
   &-cancel {
-    background-image: url("cancel.png");
+    background-image: url('cancel.png');
   }
 
   &-custom {
-    background-image: url("custom.png");
+    background-image: url('custom.png');
   }
 }
 ```
 
 ```css
 .button-ok {
-  background-image: url("ok.png");
+  background-image: url('ok.png');
 }
 .button-cancel {
-  background-image: url("cancel.png");
+  background-image: url('cancel.png');
 }
 .button-custom {
-  background-image: url("custom.png");
+  background-image: url('custom.png');
 }
 ```
 
@@ -275,7 +272,8 @@ a:hover {
     color: blue;
   }
 
-  &, &ish {
+  &,
+  &ish {
     color: cyan;
   }
 }
@@ -291,7 +289,8 @@ a:hover {
 .link.link {
   color: blue;
 }
-.link, .linkish {
+.link,
+.linkish {
   color: cyan;
 }
 ```
@@ -299,7 +298,10 @@ a:hover {
 ### Combinatorial Explosion
 
 ```less
-p, a, ul, li {
+p,
+a,
+ul,
+li {
   border-top: 2px dotted #366;
   & + & {
     border-top: 0;

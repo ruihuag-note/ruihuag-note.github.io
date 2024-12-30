@@ -102,7 +102,7 @@ BEGIN  
   
     DECLARE done INT DEFAULT 0;   
     DECLARE temp_id INT;  
- 
+
     DECLARE cur CURSOR for( SELECT id from user);   
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;  
  
@@ -112,7 +112,7 @@ BEGIN  
       DELETE FROM user_session WHERE id = temp_id;  
       FETCH cur INTO temp_id;  
     END WHILE;  
- 
+
     CLOSE cur;  
 END $$
 DELIMITER; 
@@ -132,19 +132,19 @@ DECLARE _userId bigint(20); 
     DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET _error = 1;   -- 异常处理
     SET out_code = -1;
     SET out_message = '执行失败';
- 
+
     #用户账户不存在
     IF NOT EXISTS (select id from user_banlance where id=in_userId) THEN
         SET out_code = 1;
         SET out_message = '用户不存在';
         LEAVE _return;
     END IF;
- 
+
     select verison,banlance into _verison, _banlance from user_banlance where id=in_userId;
- 
+
     START TRANSACTION; -- 开启事务 乐观锁的使用
     update user_banlance set banlance = banlance - in_banlance,verison = verison + 1 where id = in_userId and verison = _verison;
- 
+
     SET @ret_update = ROW_COUNT();
     IF @ret_update = 0 THEN
         ROLLBACK;
@@ -152,7 +152,7 @@ DECLARE _userId bigint(20); 
         SET out_message = '系统错误';
         LEAVE _return;
     END IF;
- 
+
     IF  _error  <>  0   THEN
         ROLLBACK; 
         SET out_code = -3;
@@ -163,9 +163,9 @@ DECLARE _userId bigint(20); 
         SET out_code = 1;
         SET out_message = '';
     END IF;
- 
+
 END $$  
- 
+
 DELIMITER ;  
 
 -- 调用  注意输出参数必须是声明的变量，否则会报错
@@ -173,7 +173,7 @@ DELIMITER ;  
 set @b = 0;
 set @c = '';
 call user_banlance(1,10,@b,@c);
- 
+
 select @b,@c
 ```
 
@@ -192,7 +192,7 @@ BEGIN
   DECLARE cur CURSOR FOR SELECT id,banlance FROM user_banlance where id > in_userId and banlance > in_banlance ;
     #将结束标志绑定到游标
   DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
- 
+
 -- 建表tb_temp
  DROP TABLE IF EXISTS tb_temp;
  CREATE TEMPORARY TABLE tb_temp(
@@ -200,7 +200,7 @@ BEGIN
    `banlance` bigint(20) NOT NULL,
    PRIMARY KEY (`id`)
  ) ENGINE = MYISAM DEFAULT charset = utf8 ;
- 
+
   -- 打开游标
   OPEN cur;
   -- 开始循环
@@ -218,7 +218,7 @@ CLOSE cur; 
 select * from tb_temp;
 DROP TABLE IF EXISTS tb_temp;
 END $$  
- 
+
 DELIMITER ;  
 
 -- 调用
@@ -263,7 +263,6 @@ CLOSE cur; 
 #### 存储过程
 
 > - 存储过程是一组为了完成某项特定功能的sql语句集，其实质上就是一段存储在数据库中的代码，他可以由声明式的sql语句（如CREATE,UPDATE,SELECT等语句）和过程式sql语句（如IF...THEN...ELSE控制结构语句）组成。
->
 > - 就是数据库 SQL 语言层面的代码封装与重用。
 
 ##### 存储过程的优缺点
@@ -287,10 +286,10 @@ CLOSE cur; 
 
 > - 解决存储过程/函数里面有分号会导致该存储过程/函数提前结束的问题
 
-   **DELIMITER语法格式：**
+**DELIMITER语法格式：**
 
 ```sql
-DELIMITER ? 
+DELIMITER ?
 ```
 
 > `?`是用户定义的结束符，通常这个符号可以是一些特殊的符号。另外应避免使用反斜杠,因为他是转义字符。 若希望换回默认的分号作为结束标记，只需再在命令行输入下面的sql语句即可。
@@ -371,59 +370,59 @@ SELECT col_name[,..] INTO var_name[,....] table_expr
 ###### if-then-else
 
 ```sql
-DELIMITER &&  
-CREATE PROCEDURE proc2(r int)  
-begin 
-  declare var int;  
-  set var=parameter+1;  
-  if var=0 then 
-   insert into t values(17);  
-  end if;  
-  if parameter=0 then 
-   update t set s1=s1+1;  
-  else 
-   update t set s1=s1+2;  
-  end if;  
-end;  
-&&  
-DELIMITER ; 
+DELIMITER &&
+CREATE PROCEDURE proc2(r int)
+begin
+  declare var int;
+  set var=parameter+1;
+  if var=0 then
+   insert into t values(17);
+  end if;
+  if parameter=0 then
+   update t set s1=s1+1;
+  else
+   update t set s1=s1+2;
+  end if;
+end;
+&&
+DELIMITER ;
 ```
 
 ###### **case语句:**
 
 ```sql
-DELIMITER &&  
-CREATE PROCEDURE proc3 (in parameter int)  
-begin 
-  declare var int;  
-  set var=parameter+1;  
-  case var  
-  when 0 then   
-   insert into t values(17);  
-  when 1 then   
-   insert into t values(18);  
-  else   
-   insert into t values(19);  
-  end case;  
-end;  
-&&  
-DELIMITER ; 
+DELIMITER &&
+CREATE PROCEDURE proc3 (in parameter int)
+begin
+  declare var int;
+  set var=parameter+1;
+  case var
+  when 0 then
+   insert into t values(17);
+  when 1 then
+   insert into t values(18);
+  else
+   insert into t values(19);
+  end case;
+end;
+&&
+DELIMITER ;
 ```
 
 ###### **while ···· end while:**
 
 ```sql
-DELIMITER &&  
-CREATE PROCEDURE proc4()  
-begin 
-  declare var int;  
-  set var=0;  
-  while var<6 do  
-    insert into t values(var);  
-    set var=var+1;  
-  end while;  
-end;  
-&&  
+DELIMITER &&
+CREATE PROCEDURE proc4()
+begin
+  declare var int;
+  set var=0;
+  while var<6 do
+    insert into t values(var);
+    set var=var+1;
+  end while;
+end;
+&&
 DELIMITER ;
 ```
 
@@ -432,23 +431,23 @@ DELIMITER ;
 > 在执行操作后检查结果，而 while 则是执行前进行检查。
 
 ```sql
-DELIMITER &&  
-CREATE PROCEDURE proc5 ()  
-begin   
-  declare v int;  
-  set v=0;  
-  repeat  
-    insert into t values(v);  
-    set v=v+1;  
-    until v>=5  
-  end repeat;  
-end;  
-&&  
+DELIMITER &&
+CREATE PROCEDURE proc5 ()
+begin
+  declare v int;
+  set v=0;
+  repeat
+    insert into t values(v);
+    set v=v+1;
+    until v>=5
+  end repeat;
+end;
+&&
 DELIMITER ;
 
 repeat
     --循环体
-    until 循环条件  
+    until 循环条件
 end repeat;
 ```
 
@@ -457,44 +456,44 @@ end repeat;
 loop 循环不需要初始条件，这点和 while 循环相似，同时和 repeat 循环一样不需要结束条件, leave 语句的意义是离开循环。
 
 ```sql
-DELIMITER &&  
-CREATE PROCEDURE proc6 ()  
-begin 
-  declare v int;  
-  set v=0;  
-  LOOP_LABLE:loop  
-    insert into t values(v);  
-    set v=v+1;  
-    if v >=5 then 
+DELIMITER &&
+CREATE PROCEDURE proc6 ()
+begin
+  declare v int;
+  set v=0;
+  LOOP_LABLE:loop
+    insert into t values(v);
+    set v=v+1;
+    if v >=5 then
       leave LOOP_LABLE;  -- 离开循环
-    end if;  
-  end loop;  
-end;  
-&&  
+    end if;
+  end loop;
+end;
+&&
 DELIMITER ;
 ```
 
 ###### **ITERATE迭代：**
 
 ```sql
-DELIMITER &&  
-CREATE PROCEDURE proc10 ()  
-begin 
-  declare v int;  
-  set v=0;  
-  LOOP_LABLE:loop  
-    if v=3 then   
-      set v=v+1;  
-      ITERATE LOOP_LABLE;  
-    end if;  
-    insert into t values(v);  
-    set v=v+1;  
-    if v>=5 then 
-     leave LOOP_LABLE;  
-    end if;  
-  end loop;  
-end;  
-&&  
+DELIMITER &&
+CREATE PROCEDURE proc10 ()
+begin
+  declare v int;
+  set v=0;
+  LOOP_LABLE:loop
+    if v=3 then
+      set v=v+1;
+      ITERATE LOOP_LABLE;
+    end if;
+    insert into t values(v);
+    set v=v+1;
+    if v>=5 then
+     leave LOOP_LABLE;
+    end if;
+  end loop;
+end;
+&&
 DELIMITER ;
 ```
 
@@ -560,9 +559,9 @@ BEGIN
     DECLARE cur_account CURSOR FOR select phone,password,name from account_temp;
     -- 将结束标志绑定到游标
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
-    
+
     -- 打开游标
-    OPEN  cur_account;     
+    OPEN  cur_account;
     -- 遍历
     read_loop: LOOP
             -- 取值 取多个字段
@@ -570,11 +569,11 @@ BEGIN
             IF done THEN
                 LEAVE read_loop;
              END IF;
- 
+
         -- 你自己想做的操作
         insert into account(id,phone,password,name) value(UUID(),phone1,password1,CONCAT(name1,'的家长'));
     END LOOP;
- 
+
     -- 关闭游标
     CLOSE cur_account;
 END ?
@@ -608,7 +607,7 @@ DROP PROCEDURE sp_name
 ```sql
 CREATE FUNCTION fun_name (par_name type[,...])
 RETURNS type
-[characteristics] 
+[characteristics]
 fun_body
 ```
 
@@ -624,7 +623,7 @@ fun_body
 
 ```sql
 delimiter ?
-create function getAnimalName(animalId int) 
+create function getAnimalName(animalId int)
 RETURNS VARCHAR(50)
 DETERMINISTIC
 begin
@@ -640,7 +639,7 @@ select getAnimalName(4)
 
 ### **函数**
 
-> [官网地址](  https://dev.mysql.com/doc/refman/8.0/en/functions.html[)
+> [官网地址](https://dev.mysql.com/doc/refman/8.0/en/functions.html[)
 >
 > mysql中的函数可分为两类：系统函数、用户自定义函数。
 >
@@ -669,18 +668,18 @@ select getAnimalName(4)
 create function 函数名（[形参列表]） returns 数据类型
 begin
     -- 函数体
-    -- 返回值 
+    -- 返回值
 end
-// 写一个实例,通过子订单child_order_no 的订单号获取其最高父订单的订单金额sale_price 
-create function calcPrice(child_order_no varchar(30)) 
+// 写一个实例,通过子订单child_order_no 的订单号获取其最高父订单的订单金额sale_price
+create function calcPrice(child_order_no varchar(30))
 returns decimal(12,2)
 begin
     // 声明变量，注意：一定要写长度
     declare sale_price decimal default 0.00;
     declare f_order_no varchar(30) default order_no;
     WHILE f_order_no is not null  DO
-  set order_no = f_order_no; 
-        SET f_order_no = (SELECT o.PARENT_ORDER_NO FROM order o WHERE o.ORDER_NO = f_order_no); 
+  set order_no = f_order_no;
+        SET f_order_no = (SELECT o.PARENT_ORDER_NO FROM order o WHERE o.ORDER_NO = f_order_no);
     END WHILE;
         SELECT f.SALE_PRICE AS SALE_PRICE FROM order f WHERE f.ORDER_NO = order_no into sale_price;
     return sale_price;
@@ -766,8 +765,8 @@ return(一条SQL语句)
 
 ```sql
 CREATE  FUNCTION  tabcmess(@title VARCHAR(10))
-RETURNS  TABLE 
-AS 
+RETURNS  TABLE
+AS
 return(select title,des from product where title like '%'+@title+'%')
 ```
 
@@ -870,7 +869,7 @@ INSERT INTO `vrv_org_tab` VALUES (‘17’, ‘上海linkdd项目组’, ‘4’
 >
 > group_concat(): 连接多个数据(消除重复值)
 >
-> find_in_set( str, strList):   查询字段strList中包含str的结果, 返回null 或 记录
+> find_in_set( str, strList): 查询字段strList中包含str的结果, 返回null 或 记录
 >
 > - str : 要查询的字符串
 > - strList: 支付数组
@@ -899,16 +898,16 @@ select * from vrv_org_tab where find_in_set(id, getChildrenOrg(1));
 
 ```sql
 SELECT id,org_name,org_level,org_parent_id
-    FROM ( 
-        SELECT 
-                @r AS _id, 
-                (SELECT @r := org_parent_id FROM vrv_org_tab WHERE id = _id) AS parent_id, 
-                 @l := @l + 1 AS lvl 
-        FROM 
-                (SELECT @r := 10000, @l := 0) vars, 
-                vrv_org_tab h 
-        WHERE @r <> 0) T1 
-    JOIN vrv_org_tab T2 
+    FROM (
+        SELECT
+                @r AS _id,
+                (SELECT @r := org_parent_id FROM vrv_org_tab WHERE id = _id) AS parent_id,
+                 @l := @l + 1 AS lvl
+        FROM
+                (SELECT @r := 10000, @l := 0) vars,
+                vrv_org_tab h
+        WHERE @r <> 0) T1
+    JOIN vrv_org_tab T2
     ON T1._id = T2.id
 ORDER BY id;
 ```
@@ -924,7 +923,7 @@ ORDER BY id;
 >
 > substring( string, position ) : 截取string指定长度的字符串
 >
-> substring_index( str[ 被截取字段 ], delim[ 关键字 ], count[ 关键字出现的次数 ] ) :  按关键字截取字符串
+> substring_index( str[ 被截取字段 ], delim[ 关键字 ], count[ 关键字出现的次数 ] ) : 按关键字截取字符串
 >
 > length( str ): 返回字串的长度
 
@@ -938,7 +937,7 @@ BEGIN
     DECLARE count INT DEFAULT 0;
     DECLARE allpid VARCHAR(4000);
     SET sPidTemp = '';
-    SELECT GROUP_CONCAT(DISTINCT(CAST(id AS CHAR))) INTO sPid 
+    SELECT GROUP_CONCAT(DISTINCT(CAST(id AS CHAR))) INTO sPid
     FROM vrv_org_tab WHERE org_name LIKE CONCAT('%',orgName,'%');
     SET allpid = '';
   WHILE count = 0
@@ -956,16 +955,16 @@ BEGIN
           SET sPid = SUBSTRING(sPid FROM LENGTH(SUBSTRING_INDEX(sPid,',',1))+2 FOR LENGTH(sPid)+1);
       END IF;
       SELECT GROUP_CONCAT(CAST(id AS CHAR)) INTO sPidTemp
-              FROM ( 
-                      SELECT 
-                              @r AS _id, 
-                              (SELECT @r := org_parent_id FROM vrv_org_tab WHERE id = _id) AS parent_id, 
-                              @l := @l + 1 AS lvl 
-                      FROM 
-                              (SELECT @r := pid, @l := 0) vars, 
-                              vrv_org_tab h 
-                      WHERE @r <> 0) T1 
-              JOIN vrv_org_tab T2 
+              FROM (
+                      SELECT
+                              @r AS _id,
+                              (SELECT @r := org_parent_id FROM vrv_org_tab WHERE id = _id) AS parent_id,
+                              @l := @l + 1 AS lvl
+                      FROM
+                              (SELECT @r := pid, @l := 0) vars,
+                              vrv_org_tab h
+                      WHERE @r <> 0) T1
+              JOIN vrv_org_tab T2
               ON T1._id = T2.id;
       SET allpid = CONCAT_WS(',',pid,sPidTemp,allpid);
   END IF;

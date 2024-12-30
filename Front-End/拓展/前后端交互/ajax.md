@@ -4,19 +4,23 @@
 > - 主要实现`获取促进 -> 处理数据 ->展示数据`
 
 ```js
-function ajaxRequest () {
+function ajaxRequest() {
   //实例化一个XMLHttpRequest对象
-  var xhr = new XMLHttpRequest();
+  var xhr = new XMLHttpRequest()
   //open()规定请求的类型、url、是否异步
-  xhr.open("GET","https://www.w3cschool.cn/statics/demosource/ajax_info.txt", true);
-  xhr.send();
+  xhr.open(
+    'GET',
+    'https://www.w3cschool.cn/statics/demosource/ajax_info.txt',
+    true,
+  )
+  xhr.send()
   //send()发送请求，必须结合open一起使用
-  xhr.onreadystatechange = function(){
+  xhr.onreadystatechange = function () {
     //监测服务器响应的状态
     if (xhr.readyState === 4 && xhr.status === 200) {
       //当 readyState 等于 4 且状态为 200 时，表示成功响应
-      document.getElementById("view").innerHTML = xhr.responseText;
-    }                
+      document.getElementById('view').innerHTML = xhr.responseText
+    }
   }
 }
 ```
@@ -27,35 +31,35 @@ function ajaxRequest () {
 Ajax
   Ajax的优势：1.可搜索性 2.开放性 3.费用 4.易用性 5.易于开发。
   Ajax的劣势：
-    1.它可能破坏浏览器的后退功能   
+    1.它可能破坏浏览器的后退功能
     2.使用动态页面更新使得用户难于将某个特定的状态保存到收藏夹中 ，不过这些都有相关方法解决。
 
 Flash
   Flash的优势：1.多媒体处理 2.兼容性 3.矢量图形 4.客户端资源调度
   Flash的劣势：
-   1.二进制格式 
-   2.格式私有 
-   3.flash 文件经常会很大，用户第一次使用的时候需要忍耐较长的等待时间  
+   1.二进制格式
+   2.格式私有
+   3.flash 文件经常会很大，用户第一次使用的时候需要忍耐较长的等待时间
    4.性能问题
 ```
 
 ## 优缺点
 
- 优点：
+优点：
 
- 1. 页面无刷新更新，用户的体验非常好；
- 2. 异步通信，响应更快
- 3. 可以将一些服务器工作转移到客户端，利用客户端资源来处理，减轻服务器和带宽的压力，节约空间和带宽租用成本；
- 4. 技术标准化，并被`浏览器广泛支持`，不需要下载插件或者小程序；
- 5. Ajax 可使因特网应用程序更小、更快、更友好。
+1.  页面无刷新更新，用户的体验非常好；
+2.  异步通信，响应更快
+3.  可以将一些服务器工作转移到客户端，利用客户端资源来处理，减轻服务器和带宽的压力，节约空间和带宽租用成本；
+4.  技术标准化，并被`浏览器广泛支持`，不需要下载插件或者小程序；
+5.  Ajax 可使因特网应用程序更小、更快、更友好。
 
- 缺点：
+缺点：
 
- 1. Ajax 不支持浏览器 back 返回按钮；
- 2. 有安全问题，Ajax 暴露了与服务器交互的细节；
- 3. 对搜索引擎不友好；
- 4. 破坏了程序的异常机制；
- 5. 不容易调试。
+1.  Ajax 不支持浏览器 back 返回按钮；
+2.  有安全问题，Ajax 暴露了与服务器交互的细节；
+3.  对搜索引擎不友好；
+4.  破坏了程序的异常机制；
+5.  不容易调试。
 
 ## 同源策略
 
@@ -88,11 +92,13 @@ Flash
 ### 创建实例
 
 ```js
-var xhr = new XMLHttpRequest();
+var xhr = new XMLHttpRequest()
 // 兼容 IE7之前并不支持前者
-var xhr = new ActiveXObject("Microsoft.XMLHTTP");
+var xhr = new ActiveXObject('Microsoft.XMLHTTP')
 // 兼容性写法
-var xhr = window.XMLHttpRequest ? new window.XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+var xhr = window.XMLHttpRequest
+  ? new window.XMLHttpRequest()
+  : new ActiveXObject('Microsoft.XMLHTTP')
 ```
 
 ## open()
@@ -122,7 +128,7 @@ var xhr = window.XMLHttpRequest ? new window.XMLHttpRequest() : new ActiveXObjec
 
 ```js
 // 在 open 方法之后设置请求头
-xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
 ```
 
 **xhr.setRequestHeader(name, value)**
@@ -135,16 +141,16 @@ xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 使用 XMLHttpRequest `发起 HTTP 请求`的`最后一步`是指定可选的请求主体、并向服务器发送它，使用的方法是：`send`
 
 ```js
-var xhr = new XMLHttpRequest();
-xhr.open("GET", "/statics/demosource/demo_get_json.php");
+var xhr = new XMLHttpRequest()
+xhr.open('GET', '/statics/demosource/demo_get_json.php')
 
 // 由于GET请求,没有请求主体，所以在调用 send 方法时可以传递 null或省略这个参数；
-xhr.send(null);
-var xhr = new XMLHttpRequest();
-xhr.open("POST", "/statics/demosource/demo_post_json.php");
+xhr.send(null)
+var xhr = new XMLHttpRequest()
+xhr.open('POST', '/statics/demosource/demo_post_json.php')
 
 // 把 msg 作为请求主体发送
-xhr.send(msg);
+xhr.send(msg)
 ```
 
 1. POST 请求通常都拥有请求主体，可在 send 方法中指定它；
@@ -153,31 +159,30 @@ xhr.send(msg);
 ## 获取响应
 
 > - 一个完整的 HTTP 响应由 `状态码、响应头和 响应主体` 组成，这三者都可以通过`XMLHttpRequest`对象提供的属性和方法获取。
->
 > - 为了能够在 HTTP 响应准备就绪时得到通知，必须**监听**`XMLHttpRequest`对象上的`readystatechange`事件。但为了理解这个事件类型，需要先了解下`readyState`属性，因为该事件监听的是`readyState`属性值的改变。
 > - XMLHttpRequest`对象上的`readyState`属性在 HTTP 请求过程中，会`从 0 变到 4
 
 ```html
-
 <script>
-  var oBtn = document.getElementById("btn");
+  var oBtn = document.getElementById('btn')
   oBtn.onclick = function () {
-  //兼容处理
-  var xhr = window.XMLHttpRequest ? new window.XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
-  alert(xhr.readyState);//0
-  xhr.onreadystatechange = function () {
-  alert(xhr.readyState);
-  }
-  xhr.open("GET", "/statics/demosource/demo_get_json.php");
-  xhr.send();
+    //兼容处理
+    var xhr = window.XMLHttpRequest
+      ? new window.XMLHttpRequest()
+      : new ActiveXObject('Microsoft.XMLHTTP')
+    alert(xhr.readyState) //0
+    xhr.onreadystatechange = function () {
+      alert(xhr.readyState)
+    }
+    xhr.open('GET', '/statics/demosource/demo_get_json.php')
+    xhr.send()
   }
 </script>
-
 ```
 
 ### readyState 属性
 
- `readyState`属性是一个整数，它的值代表了不同的 HTTP 请求状态。
+`readyState`属性是一个整数，它的值代表了不同的 HTTP 请求状态。
 
 - 0：初始值，表示请求未初始化，`open`方法尚未调用；
 - 1：启动请求，open 方法已经调用，但尚未调用 send 方法；
@@ -185,30 +190,32 @@ xhr.send(msg);
 - 3：接收响应，已经接受到`部分响应`数据，主要是响应头；
 - 4：HTTP 响应完成，已经接收到全部响应数据，而且可以在客户端使用。
 
- 每次`readyState`属性值的改变都会触发`readystatechange`事件，**但只有`readyState`属性值为 4 时才是我们所关心的状态**，因为只有这个状态才表示 HTTP 的响应准备就绪，可以真正意义上的结合服务器所响应的数据来实现我们的业务需求。
+每次`readyState`属性值的改变都会触发`readystatechange`事件，**但只有`readyState`属性值为 4 时才是我们所关心的状态**，因为只有这个状态才表示 HTTP 的响应准备就绪，可以真正意义上的结合服务器所响应的数据来实现我们的业务需求。
 
 ### 发送请求规范
 
 ```html
 <body>
-    <button id="btn">点我观察 readyState 属性的改变</button>
-    <div id="tip"></div>
-    
-    <script>
-        var oBtn = document.getElementById("btn"),
-            oTip = document.getElementById("tip");
-        oBtn.onclick = function () {
-            var xhr = window.XMLHttpRequest ? new window.XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4) {
-                    oTip.innerText = "HTTP 响应完成";
-                }
-            };
+  <button id="btn">点我观察 readyState 属性的改变</button>
+  <div id="tip"></div>
 
-            xhr.open("GET", "/statics/demosource/demo_get_json.php");
-            xhr.send();
+  <script>
+    var oBtn = document.getElementById('btn'),
+      oTip = document.getElementById('tip')
+    oBtn.onclick = function () {
+      var xhr = window.XMLHttpRequest
+        ? new window.XMLHttpRequest()
+        : new ActiveXObject('Microsoft.XMLHTTP')
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          oTip.innerText = 'HTTP 响应完成'
         }
-    </script>
+      }
+
+      xhr.open('GET', '/statics/demosource/demo_get_json.php')
+      xhr.send()
+    }
+  </script>
 </body>
 ```
 
@@ -236,36 +243,40 @@ xhr.send(msg);
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Tryrun 4</title>
     <style>
-        #btn { margin-top: 7px; }
+      #btn {
+        margin-top: 7px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div id="tip"></div>
     <button id="btn">点我发起 Ajax 请求</button>
-    
+
     <script>
-        var oBtn = document.getElementById("btn"),
-            oTip = document.getElementById("tip");
+      var oBtn = document.getElementById('btn'),
+        oTip = document.getElementById('tip')
 
-        oBtn.onclick = function () {
-            var xhr = window.XMLHttpRequest ? new window.XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+      oBtn.onclick = function () {
+        var xhr = window.XMLHttpRequest
+          ? new window.XMLHttpRequest()
+          : new ActiveXObject('Microsoft.XMLHTTP')
 
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4) return;
-                if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
-                    oTip.innerText = "HTTP 请求成功";
-                }
-            };
-
-            xhr.open("GET", "/statics/demosource/demo_get_json.php");
-            xhr.send();
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) return
+          if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+            oTip.innerText = 'HTTP 请求成功'
+          }
         }
+
+        xhr.open('GET', '/statics/demosource/demo_get_json.php')
+        xhr.send()
+      }
     </script>
-</body>
+  </body>
 </html>
 ```
 
@@ -278,37 +289,37 @@ xhr.send(msg);
 #### 响应html
 
 ```js
-var xhr = new XMLHttpRequest();
+var xhr = new XMLHttpRequest()
 
 xhr.onreadystatechange = function () {
-    if (xhr.readyState !== 4) return;
-    if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
-        // 当响应成功，获取响应数据,将数据赋值给本地
-        oView.innerHTML = xhr.responseText;
-    }
-};
+  if (xhr.readyState !== 4) return
+  if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+    // 当响应成功，获取响应数据,将数据赋值给本地
+    oView.innerHTML = xhr.responseText
+  }
+}
 
-xhr.open("GET", "/statics/demosource/demo_get.php");
-xhr.send();
+xhr.open('GET', '/statics/demosource/demo_get.php')
+xhr.send()
 ```
 
 响应json
 
 ```js
-var xhr = new XMLHttpRequest();
+var xhr = new XMLHttpRequest()
 
 xhr.onreadystatechange = function () {
-    if (xhr.readyState !== 4) return;
-    if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
-        // 使用JSON.parse把 响应数据转换为json数据
-        var res = JSON.parse(xhr.responseText);
-        // 将响应数据中的data属性赋值给oTime做内容
-        oTime.innerText = res.data;
-    }
-};
+  if (xhr.readyState !== 4) return
+  if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+    // 使用JSON.parse把 响应数据转换为json数据
+    var res = JSON.parse(xhr.responseText)
+    // 将响应数据中的data属性赋值给oTime做内容
+    oTime.innerText = res.data
+  }
+}
 
-xhr.open("GET", "/statics/demosource/demo_get_json.php");
-xhr.send();
+xhr.open('GET', '/statics/demosource/demo_get_json.php')
+xhr.send()
 ```
 
 ### 查询 HTTP 响应头的方法
@@ -320,18 +331,18 @@ xhr.send();
 - `getAllResponseHeaders`方法无参数，用于一次性返回可查询的全部响应头信息
 
 ```js
-var xhr = new XMLHttpRequest();
+var xhr = new XMLHttpRequest()
 
 xhr.onreadystatechange = function () {
-    if (xhr.readyState !== 4) return;
-    if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
-        // 获取所有可查询的响应头信息
-        oView.innerText = xhr.getAllResponseHeaders();
-    }
-};
+  if (xhr.readyState !== 4) return
+  if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+    // 获取所有可查询的响应头信息
+    oView.innerText = xhr.getAllResponseHeaders()
+  }
+}
 
-xhr.open("GET", "/statics/demosource/demo_get_json.php");
-xhr.send();
+xhr.open('GET', '/statics/demosource/demo_get_json.php')
+xhr.send()
 ```
 
 #### getResponseHeader
@@ -339,18 +350,18 @@ xhr.send();
 - `getResponseHeader`方法用于查询`单一`响应头信息，需要传入一个指定 "头名称" 的字符串作为参数：`getResponseHeader(headerName)`
 
 ```js
-var xhr = new XMLHttpRequest();
+var xhr = new XMLHttpRequest()
 
 xhr.onreadystatechange = function () {
-    if (xhr.readyState !== 4) return;
-    if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
-        // 查询 "Content-Type" 响应头信息
-        alert( xhr.getResponseHeader("Content-Type") );
-    }
-};
+  if (xhr.readyState !== 4) return
+  if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+    // 查询 "Content-Type" 响应头信息
+    alert(xhr.getResponseHeader('Content-Type'))
+  }
+}
 
-xhr.open("GET", "/statics/demosource/demo_get_json.php");
-xhr.send();
+xhr.open('GET', '/statics/demosource/demo_get_json.php')
+xhr.send()
 ```
 
 **注意**：
@@ -360,20 +371,20 @@ xhr.send();
 ### 同步响应
 
 ```js
-var xhr = new XMLHttpRequest();
+var xhr = new XMLHttpRequest()
 
 // 指定 open 方法的第三个参数为 false
-xhr.open("GET", "/statics/demosource/demo_get_json.php", false);
+xhr.open('GET', '/statics/demosource/demo_get_json.php', false)
 
 // send 方法的调用将阻塞后面代码的执行，直到此次 HTTP 请求完成
-xhr.send();
+xhr.send()
 
 // 不再需要监听 readystatechange 事件
-if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
-    oTime.innerText = JSON.parse(xhr.response).date;
+if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+  oTime.innerText = JSON.parse(xhr.response).date
 } else {
-    // 如果请求不成功，就报错
-    throw new Error(xhr.status);
+  // 如果请求不成功，就报错
+  throw new Error(xhr.status)
 }
 ```
 
@@ -382,22 +393,22 @@ if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
 若 HTTP 请求的时间超出预期，可以调用`XMLHttpRequest`对象上的`abort`方法来中止 HTTP 请求。
 
 ```js
-var xhr = new XMLHttpRequest();
-var timer = null;    // 用于存储定时器标识
+var xhr = new XMLHttpRequest()
+var timer = null // 用于存储定时器标识
 
 xhr.onreadystatechange = function () {
-    if (xhr.readyState !== 4) return;
-    if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
-        clearTimeout(timer);    // 未超时则取消定时器
-    }
-};
+  if (xhr.readyState !== 4) return
+  if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+    clearTimeout(timer) // 未超时则取消定时器
+  }
+}
 
-xhr.open("GET", "/statics/demosource/demo_get_json.php");
-xhr.send();
+xhr.open('GET', '/statics/demosource/demo_get_json.php')
+xhr.send()
 
 // 2秒后中止此次 GET 请求
-timer = setTimeout(function(){
-    xhr.abort();
+timer = setTimeout(function () {
+  xhr.abort()
 }, 2000)
 ```
 
@@ -411,54 +422,67 @@ GET 请求一般用于信息`获取`，它`没有请求主体`，而是使用 UR
 2. 由于 名/值对 会附加在 URL 地址后面，因此在这串字符参数的最前面需要添加个 "?"，表示 URL 的 查询参数 开始。
 
 ```html
-
 <body>
-    <div id="form">
-        <label for="country">国家：<input type="text" name="country" id="country"></label>
-        <label for="city">城市：<input type="text" name="city" id="city"></label>
-    </div>
-    <hr>
-    <div>你查询的国家是：<span id="ipt_country"></span></div>
-    <div>你查询的城市是：<span id="ipt_city"></span></div>
-    <br>
-    <button type="button" id="search">查询</button>
-    （查询成功后会把你输入的值显示在上方）
+  <div id="form">
+    <label for="country">
+      国家：
+      <input type="text" name="country" id="country" />
+    </label>
+    <label for="city">
+      城市：
+      <input type="text" name="city" id="city" />
+    </label>
+  </div>
+  <hr />
+  <div>
+    你查询的国家是：
+    <span id="ipt_country"></span>
+  </div>
+  <div>
+    你查询的城市是：
+    <span id="ipt_city"></span>
+  </div>
+  <br />
+  <button type="button" id="search">查询</button>
+  （查询成功后会把你输入的值显示在上方）
 
-    <script>
-        var oSearch = document.getElementById("search"),
-            oIpt_country = document.getElementById("ipt_country"),
-            oIpt_city = document.getElementById("ipt_city");
+  <script>
+    var oSearch = document.getElementById('search'),
+      oIpt_country = document.getElementById('ipt_country'),
+      oIpt_city = document.getElementById('ipt_city')
 
-        var url = "/statics/demosource/demo_get_json.php";
+    var url = '/statics/demosource/demo_get_json.php'
 
-        oSearch.onclick = function () {
-            var country = document.getElementById("country").value,
-                city = document.getElementById("city").value;
+    oSearch.onclick = function () {
+      var country = document.getElementById('country').value,
+        city = document.getElementById('city').value
 
-            var query = "country=" + country + "&city=" + city;
+      var query = 'country=' + country + '&city=' + city
 
-            var queryURL = url + "?" + query;
+      var queryURL = url + '?' + query
 
-            // 发起 get 请求
-            ajaxGet(queryURL);
+      // 发起 get 请求
+      ajaxGet(queryURL)
+    }
+
+    function ajaxGet(url) {
+      var xhr = window.XMLHttpRequest
+        ? new window.XMLHttpRequest()
+        : new ActiveXObject('Microsoft.XMLHTTP')
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+            var res = JSON.parse(xhr.responseText)
+            oIpt_country.innerText = res.params.country
+            oIpt_city.innerText = res.params.city
+          }
         }
+      }
 
-        function ajaxGet (url) {
-            var xhr = window.XMLHttpRequest ? new window.XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4) {
-                    if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
-                        var res = JSON.parse(xhr.responseText);
-                        oIpt_country.innerText = res.params.country;
-                        oIpt_city.innerText = res.params.city;
-                    }
-                }
-            }
-            
-            xhr.open("GET", url);
-            xhr.send();
-        }
-    </script>
+      xhr.open('GET', url)
+      xhr.send()
+    }
+  </script>
 </body>
 ```
 
@@ -473,14 +497,14 @@ GET 请求一般用于信息`获取`，它`没有请求主体`，而是使用 UR
 在 URL 末尾`添加时间戳参数`。由于时间戳可以精确到毫秒，从而保证了每次发起 GET 请求的时间不同，达到实时改变请求 URL 的目的。
 
 ```js
-var url = "/statics/demosource/demo_get_json.php";
+var url = '/statics/demosource/demo_get_json.php'
 
 // 在请求参数的最后附加时间戳参数 t
-var query = "user=" + user + "&pwd=" + pwd + "&t=" + new Date().getTime();
+var query = 'user=' + user + '&pwd=' + pwd + '&t=' + new Date().getTime()
 
-var queryURL = url + "?" + query;
+var queryURL = url + '?' + query
 // ajax_get为自己封装的请求对象，不是固定用法
-ajax_get(queryURL);
+ajax_get(queryURL)
 ```
 
 ### 封装 GET 异步请求函数
@@ -521,17 +545,17 @@ ajax_get(queryURL);
                     console.log(res);
                     error(res);
                 }
-               
-                    
+
+
             };
             url = url + '?' + data;
             xhr.open('GET',url,true);
             xhr.send(null);
             }
-         
+
     </script>
-    
-    
+
+
     <!-- 工具函数 -->
     <script>
         // 用于对 JavaScript 对象执行普通的 URL 编码
@@ -548,7 +572,7 @@ ajax_get(queryURL);
             return pairs.join("&");
         }
     </script>
-    
+
     <!-- 以下均是测试代码 -->
     <!-- 测试代码的 css 部分 -->
     <style>
@@ -571,7 +595,7 @@ ajax_get(queryURL);
         <div class="request-btn request-success">成功请求的测试</div>
         <div class="request-btn request-error">失败请求的测试</div>
     </div>
-    
+
     <!-- 测试代码的 js 部分 -->
     <script>
         var oDivs = document.getElementsByTagName("div");
@@ -579,7 +603,7 @@ ajax_get(queryURL);
             oResult_param = oDivs[3],
             oSuccess = oDivs[4],
             oError = oDivs[5];
-            
+
         var url = "/statics/demosource/demo_get_json.php",
             badUrl = "/statics/demosource/404.txt";
         var data = {
@@ -596,11 +620,11 @@ ajax_get(queryURL);
             oResult_tip.innerText = "请求失败：" + res;
             oResult_param.innerHTML = "";
         };
-        
+
         oSuccess.onclick = function () {
             ajaxGet(url, data, success, error);
         };
-        
+
         oError.onclick = function () {
             ajaxGet(badUrl, data, success, error);
         }
@@ -623,26 +647,25 @@ POST 请求使用 **表单编码** 的方式来发送数据的关键步骤：
 
 ```js
 // 获取用户输入的表单数据
-var country = document.getElementById("country").value,
-    city = document.getElementById("city").value;
+var country = document.getElementById('country').value,
+  city = document.getElementById('city').value
 
 // 将数据拼接为 名/值对 的形式
-var query = "country=" + country + "&city=" + city;
+var query = 'country=' + country + '&city=' + city
 
-var xhr = new XMLHttpRequest();
+var xhr = new XMLHttpRequest()
 xhr.onreadystatechange = function () {
-    // ... ... 省略事件处理程序
+  // ... ... 省略事件处理程序
 }
 
 // 指定 POST 请求
-xhr.open("POST", "/statics/demosource/demo_post_json.php");
+xhr.open('POST', '/statics/demosource/demo_post_json.php')
 
 // 设置请求主体的编码方法
-xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
 
 // 发送请求主体（数据）
-xhr.send(query);
-
+xhr.send(query)
 ```
 
 ### JSON 编码的 POST 请求
@@ -656,29 +679,28 @@ POST 请求使用 **JSON编码** 的方式来发送数据的关键步骤：
 
 ```js
 // 获取用户输入的表单数据
-var country = document.getElementById("country").value,
-    city = document.getElementById("city").value;
+var country = document.getElementById('country').value,
+  city = document.getElementById('city').value
 
 // 将数据转换为 JavaScript 对象
 var data = {
-    country : country,
-    city : city
+  country: country,
+  city: city,
 }
 
-var xhr = new XMLHttpRequest();
+var xhr = new XMLHttpRequest()
 xhr.onreadystatechange = function () {
-    // ... ... 省略事件处理程序
+  // ... ... 省略事件处理程序
 }
 
 // 指定 POST 请求
-xhr.open("PO ST", "/statics/demosource/demo_json_data.php");
+xhr.open('PO ST', '/statics/demosource/demo_json_data.php')
 
 // 设置请求主体的编码方法
-xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader('Content-Type', 'application/json')
 
 // 编码请求主体并发送
-xhr.send(JSON.stringify(data));
-
+xhr.send(JSON.stringify(data))
 ```
 
 ## 两种方式的比较
@@ -720,26 +742,28 @@ jQuery 是一个 JavaScript 工具库，它封装了 JavaScript 常用的功能�
 
 ```js
 // 使用jQuery发起ajax请求
-$.ajax("/statics/demosource/demo_get_json.php", {
-    //请求类型
-    type: "GET",
-    //要发送的数据
-    data: {
-        country: country,
-        city: city
-    },
-    //数据格式
-    dataType: "json",
-    //请求成功后执行
-    success: function (res) {    // res为响应成功返回的数据
-        oIpt_country.innerText = res.params.country;
-        oIpt_city.innerText = res.params.city;
-    },
-    //请求失败后执行
-    error: function (res) {    // 这里的res为响应失败返回的数据
-        alert("请求失败：" + res.status);
-    }
-});
+$.ajax('/statics/demosource/demo_get_json.php', {
+  //请求类型
+  type: 'GET',
+  //要发送的数据
+  data: {
+    country: country,
+    city: city,
+  },
+  //数据格式
+  dataType: 'json',
+  //请求成功后执行
+  success: function (res) {
+    // res为响应成功返回的数据
+    oIpt_country.innerText = res.params.country
+    oIpt_city.innerText = res.params.city
+  },
+  //请求失败后执行
+  error: function (res) {
+    // 这里的res为响应失败返回的数据
+    alert('请求失败：' + res.status)
+  },
+})
 ```
 
 ### Ajax 的替代品：fetch
@@ -747,21 +771,21 @@ $.ajax("/statics/demosource/demo_get_json.php", {
 Fetch API 是随 ES6 发展而出现的一个 JavaScript 原生接口，与 Ajax 一样允许开发者异步发起 HTTP 请求，但却以更加简单明了的调用方式、基于 Promise 的数据处理方式被称作是 Ajax 的替代品。
 
 ```js
-fetch("/statics/demosource/demo_json_data.php", {
-    method: "POST",
-    header: new Headers({"Content-Type" : "application/json"}),
-    body: JSON.stringify(data)
+fetch('/statics/demosource/demo_json_data.php', {
+  method: 'POST',
+  header: new Headers({ 'Content-Type': 'application/json' }),
+  body: JSON.stringify(data),
 })
-.then(function (res) {
-    return res.ok ? res.json() : Promise.reject(res);
-})
-.then(function (data) {
-    oIpt_country.innerText = data.country;
-    oIpt_city.innerText = data.city;
-})
-.catch(function (res) {
-    alert("请求失败：" + res.status);
-})
+  .then(function (res) {
+    return res.ok ? res.json() : Promise.reject(res)
+  })
+  .then(function (data) {
+    oIpt_country.innerText = data.country
+    oIpt_city.innerText = data.city
+  })
+  .catch(function (res) {
+    alert('请求失败：' + res.status)
+  })
 ```
 
 ## JSON
@@ -782,7 +806,7 @@ JSON 的语法可以表示以下三种类型的值：
 //JSON 表示数值 7
 7
 //JSON 表示字符串
-"JSON is a format for data exchange"
+;('JSON is a format for data exchange')
 ```
 
 **注意**：
@@ -821,7 +845,7 @@ JSON 对象的属性值可以是简单值，也可以是复杂类型值
     "age" : 21,
     "child" : {
         "name" : "Tim",
-        "age" : 7    
+        "age" : 7
     }
 }
 ```
@@ -833,13 +857,13 @@ JSON 数组采用的就是 JavaScript 中的数组字面量形式。
 JavaScript 中的数组字面量：
 
 ```js
-[21, "Alan", false]
+;[21, 'Alan', false]
 ```
 
 json表示
 
 ```js
-[21, "Alan", false]
+;[21, 'Alan', false]
 ```
 
 ### **总结**
@@ -864,13 +888,13 @@ ECMAScript 5 定义了一个原生的 JSON 对象，可把 JavaScript 对象序�
 
 ```js
 var obj = {
-    name: "Alan",
-    age: 21,
-    child: {
-        name: "Tim",
-        age: 7
-    }
-};
+  name: 'Alan',
+  age: 21,
+  child: {
+    name: 'Tim',
+    age: 7,
+  },
+}
 
 // 序列化 obj 对象，转换为 JSON 格式的字符串
 var json = JSON.stringify(obj)
@@ -881,12 +905,12 @@ var json = JSON.stringify(obj)
 `JSON.parse()`方法用于将 JSON 数据解析为原生的 JavaScript 值。
 
 ```js
-var json = '{"name":"Alan","age":21,"child":{"name":"Tim","age":7}}';
+var json = '{"name":"Alan","age":21,"child":{"name":"Tim","age":7}}'
 
 // json 数据本质上是字符串，无法直接访问某一属性
-console.log(json.name);    // undefined
+console.log(json.name) // undefined
 
 // 解析 json，转换为原生的 JavaScript 对象
-var obj = JSON.parse(json);
-console.log(obj.name);    // 此时可以使用 JavaScript 方法访问某一属性
+var obj = JSON.parse(json)
+console.log(obj.name) // 此时可以使用 JavaScript 方法访问某一属性
 ```

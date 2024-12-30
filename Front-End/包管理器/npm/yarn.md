@@ -2,8 +2,8 @@
 title: yarn
 date: 2020-10-31 14:02:19
 tags:
-- yarn
-- tool
+  - yarn
+  - tool
 ---
 
 # yarn
@@ -27,16 +27,16 @@ tags:
 **2、添加一个依赖包**
 
 > `yarn add [package] = 》**npm install [package] - -save**
-> yarn add [package]@[version]
-> yarn add [package]@[tag]
-> yarn add [package] - -dev = 》npm install [package]- -save-dev
-> yarn global add [package] = 》npm install [package]- -global `
+yarn add [package]@[version]
+yarn add [package]@[tag]
+yarn add [package] - -dev = 》npm install [package]- -save-dev
+yarn global add [package] = 》npm install [package]- -global `
 
 **3、更新一个依赖包**
 
 > `yarn upgrade [package] =》npm update - -save
-> yarn upgrade [package]@[version]
-> yarn upgrade [package]@[tag] `
+yarn upgrade [package]@[version]
+yarn upgrade [package]@[tag] `
 
 **4、删除一个依赖包**
 
@@ -79,4 +79,3 @@ npm install xxx@1.1.1 --save-dev    							 ---- yarn add xxx@1.1.1 --dev
 npm uninstall xxx --save(-dev)         					 ----yarn remove xxx
 npm run xxx                              ---- yarn run xxxx
 ```
-

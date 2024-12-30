@@ -10,14 +10,14 @@
 </div>
 
 <style type="text/css">
-  .out{
+  .out {
     position: relative;
     width: 300px;
     height: 300px;
     background: red;
   }
 
-  .inner{
+  .inner {
     position: absolute;
     width: 100px;
     height: 100px;
@@ -35,24 +35,24 @@
 > 缺点是需要知道子元素的宽高
 
 ```css
-  .out{
-    position: relative;
-    width: 300px;
-    height: 300px;
-    background: red;
-  }
+.out {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  background: red;
+}
 
-  .inner{
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background: yellow;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-  }
+.inner {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: yellow;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
 ```
 
 ## absolute + calc
@@ -60,21 +60,21 @@
 > 依赖于 calc，且也需要知道宽高
 
 ```css
-  .out{
-    position: relative;
-    width: 300px;
-    height: 300px;
-    background: red;
-  }
+.out {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  background: red;
+}
 
-  .inner{
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background: yellow;
-    left: calc(50% - 50px);
-       top: calc(50% - 50px);
-  }
+.inner {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: yellow;
+  left: calc(50% - 50px);
+  top: calc(50% - 50px);
+}
 ```
 
 ## absolute + transform
@@ -83,14 +83,14 @@
 
 ```html
 <style type="text/css">
-  .out{
+  .out {
     position: relative;
     width: 300px;
     height: 300px;
     background: red;
   }
 
-  .inner{
+  .inner {
     position: absolute;
     background: yellow;
     left: 50%;
@@ -107,7 +107,7 @@ css新增的table属性，可以让我们把普通元素，变为table元素的�
 
 ```html
 <style type="text/css">
-  .out{
+  .out {
     display: table-cell;
     width: 300px;
     height: 300px;
@@ -116,7 +116,7 @@ css新增的table属性，可以让我们把普通元素，变为table元素的�
     background: red;
   }
 
-  .inner{
+  .inner {
     display: inline-block;
     background: yellow;
     width: 100px;
@@ -131,7 +131,7 @@ flex 实现起来比较简单，三行代码即可搞定。可通过父元素指
 
 ```html
 <style type="text/css">
-  .out{
+  .out {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -140,7 +140,7 @@ flex 实现起来比较简单，三行代码即可搞定。可通过父元素指
     background: red;
   }
 
-  .inner{
+  .inner {
     background: yellow;
     width: 100px;
     height: 100px;
@@ -155,7 +155,7 @@ grid 布局也很强大，大体上属性跟 flex 差不多。
 ```html
 //方法一：父元素指定子元素的对齐方式
 <style type="text/css">
-  .out{
+  .out {
     display: grid;
     align-content: center;
     justify-content: center;
@@ -164,7 +164,7 @@ grid 布局也很强大，大体上属性跟 flex 差不多。
     background: red;
   }
 
-  .inner{
+  .inner {
     background: yellow;
     width: 100px;
     height: 100px;
@@ -173,14 +173,14 @@ grid 布局也很强大，大体上属性跟 flex 差不多。
 
 //方法二：子元素自己指定自己的对齐方式
 <style type="text/css">
-  .out{
+  .out {
     display: grid;
     width: 300px;
     height: 300px;
     background: red;
   }
 
-  .inner{
+  .inner {
     background: yellow;
     width: 100px;
     height: 100px;

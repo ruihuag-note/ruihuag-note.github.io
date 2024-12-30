@@ -13,16 +13,15 @@ ES6允许我们，通过数组或者对象的方式，对一组变量进行赋�
 通常情况下，我们在为一组变量赋值时，一般是这样写：
 
 ```javascript
- let a = 0;
- let b = 1;
- let c = 2;
-
+let a = 0
+let b = 1
+let c = 2
 ```
 
 现在我们可以通过数组解构的方式进行赋值：
 
 ```javascript
- let [a, b, c] = [1, 2, 3];
+let [a, b, c] = [1, 2, 3]
 ```
 
 二者的效果是一样的。
@@ -33,24 +32,22 @@ ES6允许我们，通过数组或者对象的方式，对一组变量进行赋�
 
 ```javascript
 {
-    //一个变量时
-    let [foo = true] = [];
-    console.log(foo); //输出结果：true
+  //一个变量时
+  let [foo = true] = []
+  console.log(foo) //输出结果：true
 }
 
 {
-    //两个变量时
-    let [a, b] = ['生命壹号']   //a 赋值为：生命壹号。b没有赋值
-    console.log(a + ',' + b); //输出结果：生命壹号,undefined
+  //两个变量时
+  let [a, b] = ['生命壹号'] //a 赋值为：生命壹号。b没有赋值
+  console.log(a + ',' + b) //输出结果：生命壹号,undefined
 }
-
 
 {
-    //两个变量时
-    let [a, b = 'smyhvae'] = ['生命壹号']   //a 赋值为：生命壹号。b 采用默认值 smyhvae
-    console.log(a + ',' + b); //输出结果：生命壹号,smyhvae
+  //两个变量时
+  let [a, b = 'smyhvae'] = ['生命壹号'] //a 赋值为：生命壹号。b 采用默认值 smyhvae
+  console.log(a + ',' + b) //输出结果：生命壹号,smyhvae
 }
-
 ```
 
 `undefined`和`null`的区别：
@@ -59,15 +56,14 @@ ES6允许我们，通过数组或者对象的方式，对一组变量进行赋�
 
 ```javascript
 {
-    let [a, b = 'smyhvae'] = ['生命壹号', undefined]; //b 虽然被赋值为 undefined，但是 b 会采用默认值
-    console.log(a + ',' + b); //输出结果：生命壹号,smyhvae
+  let [a, b = 'smyhvae'] = ['生命壹号', undefined] //b 虽然被赋值为 undefined，但是 b 会采用默认值
+  console.log(a + ',' + b) //输出结果：生命壹号,smyhvae
 }
 
 {
-    let [a, b = 'smyhvae'] = ['生命壹号', null];  //b 被赋值为 null
-    console.log(a + ',' + b); //输出结果：生命壹号,null
+  let [a, b = 'smyhvae'] = ['生命壹号', null] //b 被赋值为 null
+  console.log(a + ',' + b) //输出结果：生命壹号,null
 }
-
 ```
 
 上方代码分析：
@@ -95,8 +91,8 @@ bar c = json.c;
 **举例如下：**
 
 ```js
- let { foo, bar } = { bar: '我是 bar 的值', foo: '我是 foo 的值' };
- console.log(foo + ',' + bar); //输出结果：我是键 foo 的值,我是键 bar 的值
+let { foo, bar } = { bar: '我是 bar 的值', foo: '我是 foo 的值' }
+console.log(foo + ',' + bar) //输出结果：我是键 foo 的值,我是键 bar 的值
 ```
 
 上方代码可以看出，对象的解构与数组的结构，有一个重要的区别：**数组**的元素是按次序排列的，变量的取值由它的**位置**决定；而**对象的属性没有次序**，是**根据键来取值**的。
@@ -115,10 +111,9 @@ bar c = json.c;
 要解决报错，只要在解构的语句外边，加一个圆括号即可：
 
 ```javascript
- let foo = 'haha';
- ({ foo } = { foo: 'smyhvae' });
- console.log(foo); //输出结果：smyhvae
-
+let foo = 'haha'
+;({ foo } = { foo: 'smyhvae' })
+console.log(foo) //输出结果：smyhvae
 ```
 
 ### 字符串解构
@@ -126,13 +121,13 @@ bar c = json.c;
 字符串也可以解构，这是因为，此时字符串被转换成了一个类似数组的对象。举例如下：
 
 ```javascript
-const [a, b, c, d] = 'smyhvae';
-console.log(a);
-console.log(b);
-console.log(c);
-console.log(d);
+const [a, b, c, d] = 'smyhvae'
+console.log(a)
+console.log(b)
+console.log(c)
+console.log(d)
 
-console.log(typeof a);  //输出结果：string
+console.log(typeof a) //输出结果：string
 ```
 
 输出结果：
@@ -168,9 +163,9 @@ for…of 的循环可以避免我们开拓内存空间，增加代码运行效�
 我们以前让字符串进行拼接的时候，是这样做的：（传统写法的字符串拼接）
 
 ```javascript
-    var name = 'smyhvae';
-    var age = '26';
-    console.log('name:'+name+',age:'+age);   //传统写法
+var name = 'smyhvae'
+var age = '26'
+console.log('name:' + name + ',age:' + age) //传统写法
 ```
 
 这种写法，比较繁琐，而且容易出错。
@@ -178,13 +173,12 @@ for…of 的循环可以避免我们开拓内存空间，增加代码运行效�
 现在有了 ES6 语法，字符串拼接可以这样写：
 
 ```javascript
-    var name = 'smyhvae';
-    var age = '26';
+var name = 'smyhvae'
+var age = '26'
 
-    console.log('name:'+name+',age:'+age);   //传统写法
+console.log('name:' + name + ',age:' + age) //传统写法
 
-    console.log(`name:${name},age:${age}`);  //ES6 写法
-
+console.log(`name:${name},age:${age}`) //ES6 写法
 ```
 
 **注意**，上方代码中，倒数第二行用的符号是单引号，最后一行用的符号是反引号（在tab键的上方）。
@@ -213,17 +207,17 @@ ES6在**函数扩展**方面，新增了很多特性。例如：
 
 ```javascript
 function fn1(a, b) {
-    return a + b;
+  return a + b
 }
 
-console.log(fn1(1, 2));  //输出结果：3
+console.log(fn1(1, 2)) //输出结果：3
 ```
 
 定义和调用函数：（ES6中的写法）
 
 ```javascript
- var fn2 = (a, b) => a + b;
- console.log(fn2(1, 2));  //输出结果：3
+var fn2 = (a, b) => a + b
+console.log(fn2(1, 2)) //输出结果：3
 ```
 
 二者的效果是一样的。
@@ -231,12 +225,11 @@ console.log(fn1(1, 2));  //输出结果：3
 在箭头函数中，如果方法体内有两句话，那就需要在方法体外边加上{}括号。如下：
 
 ```javascript
- var fn2 = (a, b) => {
-     console.log('haha');
-     return a + b;
- };
- console.log(fn2(1, 2));  //输出结果：3
-
+var fn2 = (a, b) => {
+  console.log('haha')
+  return a + b
+}
+console.log(fn2(1, 2)) //输出结果：3
 ```
 
 从上面的箭头函数中，我们可以很清晰地找到函数名、参数名、方法体。
@@ -260,10 +253,10 @@ ES5 中，this指向的是函数被调用的对象；而 ES6 的箭头函数中�
 **传统写法**：
 
 ```javascript
-    function fn(param) {
-        let p = param || 'hello';
-        console.log(p);
-    }
+function fn(param) {
+  let p = param || 'hello'
+  console.log(p)
+}
 ```
 
 上方代码中，函数体内的写法是：如果 param 不存在，就用 `hello`字符串做兜底。这样写比较啰嗦。
@@ -271,9 +264,9 @@ ES5 中，this指向的是函数被调用的对象；而 ES6 的箭头函数中�
 **ES6 写法**：（参数默认值的写法，很简洁）
 
 ```javascript
-    function fn(param = 'hello') {
-        console.log(param);
-    }
+function fn(param = 'hello') {
+  console.log(param)
+}
 ```
 
 在 ES6 中定义方法时，我们可以给方法里的参数加一个**默认值**（缺省值）：
@@ -285,14 +278,13 @@ ES5 中，this指向的是函数被调用的对象；而 ES6 的箭头函数中�
 如下：
 
 ```javascript
- var fn2 = (a, b = 5) => {
-     console.log('haha');
-     return a + b;
- };
- console.log(fn2(1));     //第二个参数使用默认值 5。输出结果：6
+var fn2 = (a, b = 5) => {
+  console.log('haha')
+  return a + b
+}
+console.log(fn2(1)) //第二个参数使用默认值 5。输出结果：6
 
- console.log(fn2(1, 8));  //输出结果：9
-
+console.log(fn2(1, 8)) //输出结果：9
 ```
 
 **提醒1**：默认值的后面，不能再有**没有默认值的变量**。比如`(a,b,c)`这三个参数，如果我给b设置了默认值，那么就一定要给c设置默认值。
@@ -302,11 +294,11 @@ ES5 中，this指向的是函数被调用的对象；而 ES6 的箭头函数中�
 我们来看下面这段代码：
 
 ```javascript
-    let x = 'smyh';
-    function fn(x, y = x) {
-        console.log(x, y);
-    }
-    fn('vae');
+let x = 'smyh'
+function fn(x, y = x) {
+  console.log(x, y)
+}
+fn('vae')
 ```
 
 注意第二行代码，我们给y赋值为`x`，这里的`x`是括号里的第一个参数，并不是第一行代码里定义的`x`。打印结果：`vae vae`。
@@ -314,11 +306,11 @@ ES5 中，this指向的是函数被调用的对象；而 ES6 的箭头函数中�
 如果我把第一个参数改一下，改成：
 
 ```javascript
-    let x = "smyh";
-    function fn(z, y = x) {
-        console.log(z, y);
-    }
-    fn("vae");
+let x = 'smyh'
+function fn(z, y = x) {
+  console.log(z, y)
+}
+fn('vae')
 ```
 
 此时打印结果是：`vae smyh`。
@@ -336,14 +328,14 @@ ES5 中，this指向的是函数被调用的对象；而 ES6 的箭头函数中�
 以前，我们在定义方法时，参数要确定个数，如下：（程序会报错）
 
 ```javascript
-    function fn(a, b, c) {
-        console.log(a);
-        console.log(b);
-        console.log(c);
-        console.log(d);
-    }
+function fn(a, b, c) {
+  console.log(a)
+  console.log(b)
+  console.log(c)
+  console.log(d)
+}
 
-    fn(1, 2, 3);
+fn(1, 2, 3)
 ```
 
 上方代码中，因为方法的参数是三个，但使用时是用到了四个参数，所以会报错：
@@ -353,15 +345,15 @@ ES5 中，this指向的是函数被调用的对象；而 ES6 的箭头函数中�
 现在，我们有了扩展运算符，就不用担心报错的问题了。代码可以这样写：
 
 ```javascript
-function fn(...arg) {   //当不确定方法的参数时，可以使用扩展运算符
-    console.log(arg[0]);
-    console.log(arg[1]);
-    console.log(arg[2]);
-    console.log(arg[3]);
+function fn(...arg) {
+  //当不确定方法的参数时，可以使用扩展运算符
+  console.log(arg[0])
+  console.log(arg[1])
+  console.log(arg[2])
+  console.log(arg[3])
 }
 
-fn(1, 2, 3); //方法中定义了四个参数，但只引用了三个参数，ES6 中并不会报错。
-
+fn(1, 2, 3) //方法中定义了四个参数，但只引用了三个参数，ES6 中并不会报错。
 ```
 
 ![](http://img.smyhvae.com/20180304_1650.png)
@@ -373,15 +365,15 @@ fn(1, 2, 3); //方法中定义了四个参数，但只引用了三个参数，ES
 我们来分析一段代码：（将数组 arr1 赋值给 arr2）
 
 ```javascript
- let arr1 = ['www', 'smyhvae', 'com'];
- let arr2 = arr1;          // 将 arr1 赋值给 arr2，其实是让 arr2 指向 arr1 的内存地址
- console.log('arr1:' + arr1);
- console.log('arr2:' + arr2);
- console.log('---------------------');
+let arr1 = ['www', 'smyhvae', 'com']
+let arr2 = arr1 // 将 arr1 赋值给 arr2，其实是让 arr2 指向 arr1 的内存地址
+console.log('arr1:' + arr1)
+console.log('arr2:' + arr2)
+console.log('---------------------')
 
- arr2.push('你懂得');  //往arr2 里添加一部分内容
- console.log('arr1:' + arr1);
- console.log('arr2:' + arr2);
+arr2.push('你懂得') //往arr2 里添加一部分内容
+console.log('arr1:' + arr1)
+console.log('arr2:' + arr2)
 ```
 
 运行结果：
@@ -393,15 +385,15 @@ fn(1, 2, 3); //方法中定义了四个参数，但只引用了三个参数，ES
 如果不想让 arr1 和 arr2 指向同一个内存地址，我们可以借助扩展运算符来做：
 
 ```javascript
- let arr1 = ['www', 'smyhvae', 'com'];
- let arr2 = [...arr1];  //arr2 会重新开辟内存地址
- console.log('arr1:' + arr1);
- console.log('arr2:' + arr2);
- console.log('---------------------');
+let arr1 = ['www', 'smyhvae', 'com']
+let arr2 = [...arr1] //arr2 会重新开辟内存地址
+console.log('arr1:' + arr1)
+console.log('arr2:' + arr2)
+console.log('---------------------')
 
- arr2.push('你懂得');  //往arr2 里添加一部分内容
- console.log('arr1:' + arr1);
- console.log('arr2:' + arr2);
+arr2.push('你懂得') //往arr2 里添加一部分内容
+console.log('arr1:' + arr1)
+console.log('arr2:' + arr2)
 ```
 
 运行结果：
@@ -415,11 +407,11 @@ fn(1, 2, 3); //方法中定义了四个参数，但只引用了三个参数，ES
 `rest` 在英文中指的是**剩余部分**（不是指休息）。我们来举个例子，理解剩余部分的含义：
 
 ```javascript
- function fn(first, second, ...arg) {
-     console.log(arg.length);
- }
+function fn(first, second, ...arg) {
+  console.log(arg.length)
+}
 
- fn(0, 1, 2, 3, 4, 5, 6);  //调用函数后，输出结果为 5
+fn(0, 1, 2, 3, 4, 5, 6) //调用函数后，输出结果为 5
 ```
 
 上方代码的输出结果为 5。 调用`fn()`时，里面有七个参数，而`arg`指的是剩下的部分（因为除去了`first`和`second`）。
@@ -454,17 +446,17 @@ ES6的Promise是一个构造函数, 用来生成promise实例。
 
 ### promise 方法
 
-  Promise.prototype.then()
+Promise.prototype.then()
 
-  Promise.prototype.catch(): 捕获错误
+Promise.prototype.catch(): 捕获错误
 
-  Promise.all(): 循环处理数组, 对象, 集合等
+Promise.all(): 循环处理数组, 对象, 集合等
 
-  Promise.race(): 输出最先出的结果, 不用等到所有操作都得出结果
+Promise.race(): 输出最先出的结果, 不用等到所有操作都得出结果
 
-  Promise.resolve()
+Promise.resolve()
 
-  Promise.reject()
+Promise.reject()
 
 ### 使用promise的基本步骤
 
@@ -477,26 +469,28 @@ ES6的Promise是一个构造函数, 用来生成promise实例。
 ```javascript
 let promise = new Promise((resolve, reject) => {
   //进来之后，状态为pending
-  console.log('111');  //这一行代码是同步的
+  console.log('111') //这一行代码是同步的
   //开始执行异步操作（这里开始，写异步的代码，比如ajax请求 or 开启定时器）
   if (异步的ajax请求成功) {
-    console.log('333');
-    resolve();//如果请求成功了，请写resolve()，此时，promise的状态会被自动修改为fullfilled
+    console.log('333')
+    resolve() //如果请求成功了，请写resolve()，此时，promise的状态会被自动修改为fullfilled
   } else {
-    reject();//如果请求失败了，请写reject()，此时，promise的状态会被自动修改为rejected
+    reject() //如果请求失败了，请写reject()，此时，promise的状态会被自动修改为rejected
   }
 })
-console.log('222');
+console.log('222')
 
 //调用promise的then()
-promise
-  .then(() => {
+promise.then(
+  () => {
     //如果promise的状态为fullfilled，则执行这里的代码
-    console.log('成功了');
-  }, () => {
+    console.log('成功了')
+  },
+  () => {
     //如果promise的状态为rejected，则执行这里的代码
-    console.log('失败了');
-  })
+    console.log('失败了')
+  },
+)
 ```
 
 代码解释：
@@ -516,30 +510,30 @@ promise
 另外，resolve()和reject()这两个方法，是可以给promise.then()传递参数的。如下：
 
 ```javascript
-    let promise = new Promise((resolve, reject) => {
-        //进来之后，状态为pending
-        console.log('111');  //这行代码是同步的
-        //开始执行异步操作（这里开始，写异步的代码，比如ajax请求 or 开启定时器）
-        if (异步的ajax请求成功) {
-            console.log('333');
-            resolve('haha');//如果请求成功了，请写resolve()，此时，promise的状态会被自动修改为fullfilled
-        } else {
-            reject('555');//如果请求失败了，请写reject()，此时，promise的状态会被自动修改为rejected
-        }
-    })
-    console.log('222');
+let promise = new Promise((resolve, reject) => {
+  //进来之后，状态为pending
+  console.log('111') //这行代码是同步的
+  //开始执行异步操作（这里开始，写异步的代码，比如ajax请求 or 开启定时器）
+  if (异步的ajax请求成功) {
+    console.log('333')
+    resolve('haha') //如果请求成功了，请写resolve()，此时，promise的状态会被自动修改为fullfilled
+  } else {
+    reject('555') //如果请求失败了，请写reject()，此时，promise的状态会被自动修改为rejected
+  }
+})
+console.log('222')
 
-    //调用promise的then()
-    promise.then((successMsg) => {
-            //如果promise的状态为fullfilled，则执行这里的代码
-            console.log(successMsg, '成功了');
-        }
-        , (errorMsg) => {
-            //如果promise的状态为rejected，则执行这里的代码
-            console.log(errorMsg, '失败了');
-
-        }
-    )
+//调用promise的then()
+promise.then(
+  (successMsg) => {
+    //如果promise的状态为fullfilled，则执行这里的代码
+    console.log(successMsg, '成功了')
+  },
+  (errorMsg) => {
+    //如果promise的状态为rejected，则执行这里的代码
+    console.log(errorMsg, '失败了')
+  },
+)
 ```
 
 P
@@ -547,46 +541,51 @@ P
 ### ajax请求的举例（涉及到嵌套的回调）
 
 ```javascript
-    //定义一个请求news的方法
-    function getNews(url) {
-        //创建一个promise对象
-        let promise = new Promise((resolve, reject) => {
-            //初始化promise状态为pending
-            //启动异步任务
-            let request = new XMLHttpRequest();
-            request.onreadystatechange = function () {
-                if (request.readyState === 4) {
-                    if (request.status === 200) {
-                        let news = request.response;
-                        resolve(news);
-                    } else {
-                        reject('请求失败了。。。');
-                    }
-                }
-            };
-            request.responseType = 'json';//设置返回的数据类型
-            request.open("GET", url);//规定请求的方法，创建链接
-            request.send();//发送
-        })
-        return promise;
+//定义一个请求news的方法
+function getNews(url) {
+  //创建一个promise对象
+  let promise = new Promise((resolve, reject) => {
+    //初始化promise状态为pending
+    //启动异步任务
+    let request = new XMLHttpRequest()
+    request.onreadystatechange = function () {
+      if (request.readyState === 4) {
+        if (request.status === 200) {
+          let news = request.response
+          resolve(news)
+        } else {
+          reject('请求失败了。。。')
+        }
+      }
     }
+    request.responseType = 'json' //设置返回的数据类型
+    request.open('GET', url) //规定请求的方法，创建链接
+    request.send() //发送
+  })
+  return promise
+}
 
-    getNews('http://localhost:3000/news?id=2')
-        .then((news) => {
-            console.log(news);
-            document.write(JSON.stringify(news));
-            console.log('http://localhost:3000' + news.commentsUrl);
-            return getNews('http://localhost:3000' + news.commentsUrl);
-        }, (error) => {
-            alert(error);
-        })
-        .then((comments) => {
-            console.log(comments);
-            document.write('<br><br><br><br><br>' + JSON.stringify(comments));
-        }, (error) => {
-            alert(error);
-        })
-
+getNews('http://localhost:3000/news?id=2')
+  .then(
+    (news) => {
+      console.log(news)
+      document.write(JSON.stringify(news))
+      console.log('http://localhost:3000' + news.commentsUrl)
+      return getNews('http://localhost:3000' + news.commentsUrl)
+    },
+    (error) => {
+      alert(error)
+    },
+  )
+  .then(
+    (comments) => {
+      console.log(comments)
+      document.write('<br><br><br><br><br>' + JSON.stringify(comments))
+    },
+    (error) => {
+      alert(error)
+    },
+  )
 ```
 
 ### Symbol
@@ -610,10 +609,10 @@ P
 Symbol是函数，但并不是构造函数。创建一个Symbol数据类型：
 
 ```javascript
-    let mySymbol = Symbol();
+let mySymbol = Symbol()
 
-    console.log(typeof mySymbol);  //打印结果：symbol
-    console.log(mySymbol);         //打印结果：Symbol()
+console.log(typeof mySymbol) //打印结果：symbol
+console.log(mySymbol) //打印结果：Symbol()
 ```
 
 打印结果：
@@ -625,17 +624,17 @@ Symbol是函数，但并不是构造函数。创建一个Symbol数据类型：
 #### 将Symbol作为对象的属性值
 
 ```javascript
-    let mySymbol = Symbol();
+let mySymbol = Symbol()
 
-    let obj = {
-        name: 'smyhvae',
-        age: 26
-    };
+let obj = {
+  name: 'smyhvae',
+  age: 26,
+}
 
-    //obj.mySymbol = 'male'; //错误：不能用 . 这个符号给对象添加 Symbol 属性。
-    obj[mySymbol] = 'hello';    //正确：通过**属性选择器**给对象添加 Symbol 属性。后面的属性值随便写。
+//obj.mySymbol = 'male'; //错误：不能用 . 这个符号给对象添加 Symbol 属性。
+obj[mySymbol] = 'hello' //正确：通过**属性选择器**给对象添加 Symbol 属性。后面的属性值随便写。
 
-    console.log(obj);
+console.log(obj)
 ```
 
 上面的代码中，我们尝试给obj添加一个Symbol类型的属性值，但是添加的时候，不能采用`.`这个符号，而是应该用`属性选择器`的方式。打印结果：
@@ -645,21 +644,21 @@ Symbol是函数，但并不是构造函数。创建一个Symbol数据类型：
 现在我们用for in尝试对上面的obj进行遍历：
 
 ```javascript
-    let mySymbol = Symbol();
+let mySymbol = Symbol()
 
-    let obj = {
-        name: 'smyhvae',
-        age: 26
-    };
+let obj = {
+  name: 'smyhvae',
+  age: 26,
+}
 
-    obj[mySymbol] = 'hello';
+obj[mySymbol] = 'hello'
 
-    console.log(obj);
+console.log(obj)
 
-    //遍历obj
-    for (let i in obj) {
-        console.log(i);
-    }
+//遍历obj
+for (let i in obj) {
+  console.log(i)
+}
 ```
 
 打印结果：
@@ -673,12 +672,12 @@ Symbol是函数，但并不是构造函数。创建一个Symbol数据类型：
 如果我通过 Symbol()函数创建了两个值，这两个值是不一样的：
 
 ```javascript
-    let mySymbol1 = Symbol();
-    let mySymbol2 = Symbol();
+let mySymbol1 = Symbol()
+let mySymbol2 = Symbol()
 
-    console.log(mySymbol1 == mySymbol2); //打印结果：false
-    console.log(mySymbol1);         //打印结果：Symbol()
-    console.log(mySymbol2);         //打印结果：Symbol()
+console.log(mySymbol1 == mySymbol2) //打印结果：false
+console.log(mySymbol1) //打印结果：Symbol()
+console.log(mySymbol2) //打印结果：Symbol()
 ```
 
 ![](http://img.smyhvae.com/20180317_1134.png)
@@ -690,14 +689,14 @@ Symbol是函数，但并不是构造函数。创建一个Symbol数据类型：
 既然Symbol()是函数，函数就可以传入参数，我们可以通过参数的不同来作为**标识**。比如：
 
 ```javascript
-    //在括号里加入参数，来标识不同的Symbol
-    let mySymbol1 = Symbol('one');
-    let mySymbol2 = Symbol('two');
+//在括号里加入参数，来标识不同的Symbol
+let mySymbol1 = Symbol('one')
+let mySymbol2 = Symbol('two')
 
-    console.log(mySymbol1 == mySymbol2); //打印结果：false
-    console.log(mySymbol1);         //打印结果：Symbol(one)
-    console.log(mySymbol2);         //打印结果：Symbol(two)。颜色为红色。
-    console.log(mySymbol2.toString());//打印结果：Symbol(two)。颜色为黑色。
+console.log(mySymbol1 == mySymbol2) //打印结果：false
+console.log(mySymbol1) //打印结果：Symbol(one)
+console.log(mySymbol2) //打印结果：Symbol(two)。颜色为红色。
+console.log(mySymbol2.toString()) //打印结果：Symbol(two)。颜色为黑色。
 ```
 
 打印结果：
@@ -709,7 +708,7 @@ Symbol是函数，但并不是构造函数。创建一个Symbol数据类型：
 Symbol 可以用来定义常量：
 
 ```javascript
-    const MY_NAME = Symbol('my_name');
+const MY_NAME = Symbol('my_name')
 ```
 
 ### async函数（异步函数）
@@ -737,7 +736,7 @@ async比之前的 Promise、Generator要好用一些。
 
 2、async返回的总是Promise对象，可以用then方法进行下一步操作。
 
-3、async取代Generator函数的星号*，await取代Generator的yield。
+3、async取代Generator函数的星号\*，await取代Generator的yield。
 
 4、语意上更为明确，使用简单，经临床验证，暂时没有任何副作用。
 
@@ -756,21 +755,21 @@ ES6中的字符串扩展，用得少，而且逻辑相对简单。如下：
 举例如下：
 
 ```javascript
-    let str = 'abcdefg';
+let str = 'abcdefg'
 
-    console.log(str.includes('a'));//true
-    console.log(str.includes('h'));//false
+console.log(str.includes('a')) //true
+console.log(str.includes('h')) //false
 
-    //startsWith(str) : 判断是否以指定字符串开头
-    console.log(str.startsWith('a'));//true
-    console.log(str.startsWith('d'));//false
+//startsWith(str) : 判断是否以指定字符串开头
+console.log(str.startsWith('a')) //true
+console.log(str.startsWith('d')) //false
 
-    //endsWith(str) : 判断是否以指定字符串结尾
-    console.log(str.endsWith('g'));//true
-    console.log(str.endsWith('d'));//false
+//endsWith(str) : 判断是否以指定字符串结尾
+console.log(str.endsWith('g')) //true
+console.log(str.endsWith('d')) //false
 
-    //repeat(count) : 重复指定次数a
-    console.log(str.repeat(5));
+//repeat(count) : 重复指定次数a
+console.log(str.repeat(5))
 ```
 
 打印结果：
@@ -784,8 +783,8 @@ ES6中的字符串扩展，用得少，而且逻辑相对简单。如下：
 举例：
 
 ```javascript
-    console.log(0b1010);//10
-    console.log(0o56);//46
+console.log(0b1010) //10
+console.log(0o56) //46
 ```
 
 - `Number.isFinite(i)`：判断是否为有限大的数。比如`Infinity`这种无穷大的数，返回的就是false。
@@ -801,26 +800,26 @@ ES6中的字符串扩展，用得少，而且逻辑相对简单。如下：
 举例：
 
 ```javascript
-    //Number.isFinite(i) : 判断是否是有限大的数
-    console.log(Number.isFinite(NaN)); //false
-    console.log(Number.isFinite(5)); //true
-    console.log(Number.isFinite(Infinity)); //false
+//Number.isFinite(i) : 判断是否是有限大的数
+console.log(Number.isFinite(NaN)) //false
+console.log(Number.isFinite(5)) //true
+console.log(Number.isFinite(Infinity)) //false
 
-    //Number.isNaN(i) : 判断是否是NaN
-    console.log(Number.isNaN(NaN));//true
-    console.log(Number.isNaN(5));//falsse
+//Number.isNaN(i) : 判断是否是NaN
+console.log(Number.isNaN(NaN)) //true
+console.log(Number.isNaN(5)) //falsse
 
-    //Number.isInteger(i) : 判断是否是整数
-    console.log(Number.isInteger(5.23));//false
-    console.log(Number.isInteger(5.0));//true
-    console.log(Number.isInteger(5));//true
+//Number.isInteger(i) : 判断是否是整数
+console.log(Number.isInteger(5.23)) //false
+console.log(Number.isInteger(5.0)) //true
+console.log(Number.isInteger(5)) //true
 
-    //Number.parseInt(str) : 将字符串转换为对应的数值
-    console.log(Number.parseInt('123abc'));//123
-    console.log(Number.parseInt('a123abc'));//NaN
+//Number.parseInt(str) : 将字符串转换为对应的数值
+console.log(Number.parseInt('123abc')) //123
+console.log(Number.parseInt('a123abc')) //NaN
 
-    // Math.trunc(i) : 直接去除小数部分
-    console.log(Math.trunc(13.123));//13
+// Math.trunc(i) : 直接去除小数部分
+console.log(Math.trunc(13.123)) //13
 ```
 
 ## 数组的扩展
@@ -830,7 +829,7 @@ ES6中的字符串扩展，用得少，而且逻辑相对简单。如下：
 ### 扩展1：Array.from()
 
 ```javascript
- Array.from(伪数组/可遍历的对象)
+Array.from(伪数组 / 可遍历的对象)
 ```
 
 **作用**：将**伪数组**或可遍历对象转换为**真数组**。
@@ -838,7 +837,7 @@ ES6中的字符串扩展，用得少，而且逻辑相对简单。如下：
 ### 扩展2：Array.of()
 
 ```javascript
- Array.of(value1, value2, value3)
+Array.of(value1, value2, value3)
 ```
 
 **作用**：将一系列值转换成数组。
@@ -848,7 +847,9 @@ ES6中的字符串扩展，用得少，而且逻辑相对简单。如下：
 **方法1**：
 
 ```javascript
- find(function(item, index, arr){return true})
+find(function (item, index, arr) {
+  return true
+})
 ```
 
 **作用**：找出**第一个**满足「指定条件返回true」的元素。
@@ -856,7 +857,9 @@ ES6中的字符串扩展，用得少，而且逻辑相对简单。如下：
 **方法2**：
 
 ```javascript
- findIndex(function(item, index, arr){return true})
+findIndex(function (item, index, arr) {
+  return true
+})
 ```
 
 **作用**：找出第一个满足「指定条件返回true」的元素的index。
@@ -866,7 +869,7 @@ ES6中的字符串扩展，用得少，而且逻辑相对简单。如下：
 ### 扩展1
 
 ```javascript
- Object.is(v1, v2)
+Object.is(v1, v2)
 ```
 
 **作用：**判断两个数据是否完全相等。底层是通过**字符串**来判断的。
@@ -874,8 +877,8 @@ ES6中的字符串扩展，用得少，而且逻辑相对简单。如下：
 我们先来看下面这两行代码的打印结果：
 
 ```javascript
-        console.log(0 == -0);
-        console.log(NaN == NaN);
+console.log(0 == -0)
+console.log(NaN == NaN)
 ```
 
 打印结果：
@@ -890,8 +893,8 @@ ES6中的字符串扩展，用得少，而且逻辑相对简单。如下：
 但是，如果换成下面这种方式来比较：
 
 ```javascript
-        console.log(Object.is(0, -0));
-        console.log(Object.is(NaN, NaN));
+console.log(Object.is(0, -0))
+console.log(Object.is(NaN, NaN))
 ```
 
 打印结果却是：
@@ -916,12 +919,12 @@ ES6中的字符串扩展，用得少，而且逻辑相对简单。如下：
 举例：
 
 ```javascript
-        let obj1 = { name: 'smyhvae', age: 26 };
-        let obj2 = { city: 'shenzhen' };
-        let obj3 = {};
+let obj1 = { name: 'smyhvae', age: 26 }
+let obj2 = { city: 'shenzhen' }
+let obj3 = {}
 
-        Object.assign(obj3, obj1, obj2);
-        console.log(obj3);
+Object.assign(obj3, obj1, obj2)
+console.log(obj3)
 ```
 
 打印结果：
@@ -935,14 +938,14 @@ ES6中的字符串扩展，用得少，而且逻辑相对简单。如下：
 举例：
 
 ```javascript
-       let obj1 = {name:'smyhvae'};
-       let obj2 = {};
+let obj1 = { name: 'smyhvae' }
+let obj2 = {}
 
-       obj2.__proto__ = obj1;
+obj2.__proto__ = obj1
 
-       console.log(obj1);
-       console.log(obj2);
-       console.log(obj2.name);
+console.log(obj1)
+console.log(obj2)
+console.log(obj2.name)
 ```
 
 打印结果：
@@ -962,47 +965,47 @@ ES6中的字符串扩展，用得少，而且逻辑相对简单。如下：
 **ES5实现迭代器的代码如下：**
 
 ```js
-    //实现一个返回迭代器对象的函数，注意该函数不是迭代器，返回结果才叫做迭代器。
-    function createIterator(items) {
-      var i = 0;
+//实现一个返回迭代器对象的函数，注意该函数不是迭代器，返回结果才叫做迭代器。
+function createIterator(items) {
+  var i = 0
+  return {
+    next() {
+      var done = i >= items.length // 判断i是否小于遍历的对象长度。
+      var value = !done ? items[i++] : undefined //如果done为false，设置value为当前遍历的值。
       return {
-        next() {
-          var done = (i >= items.length); // 判断i是否小于遍历的对象长度。
-          var value = !done ? items[i++] : undefined; //如果done为false，设置value为当前遍历的值。
-          return {
-            done,
-            value
-          }
-        }
+        done,
+        value,
       }
-    }
-    const a = createIterator([1, 2, 3]);
-    
-    //该方法返回的最终是一个对象，包含value、done属性。
-    console.log(a.next()); //{value: 1, done: false}
-    console.log(a.next()); //{value: 2, done: false}
-    console.log(a.next()); //{value: 3, done: false}
-    console.log(a.next()); //{value: undefined, done: true}
+    },
+  }
+}
+const a = createIterator([1, 2, 3])
+
+//该方法返回的最终是一个对象，包含value、done属性。
+console.log(a.next()) //{value: 1, done: false}
+console.log(a.next()) //{value: 2, done: false}
+console.log(a.next()) //{value: 3, done: false}
+console.log(a.next()) //{value: undefined, done: true}
 ```
 
 ### 生成器（Generator）
 
 **生成器是函数：用来返回迭代器。**
 
-这个概念有2个关键点，一个是函数、一个是返回迭代器。这个函数不是上面ES5中创建迭代器的函数，而是ES6中特有的，一个带有*（星号）的函数，同时你也需要使用到yield。
+这个概念有2个关键点，一个是函数、一个是返回迭代器。这个函数不是上面ES5中创建迭代器的函数，而是ES6中特有的，一个带有\*（星号）的函数，同时你也需要使用到yield。
 
 ```js
 //生成器函数，ES6内部实现了迭代器功能，你要做的只是使用yield来迭代输出。
-function *createIterator() {
-  yield 1;
-  yield 2;
-  yield 3;
+function* createIterator() {
+  yield 1
+  yield 2
+  yield 3
 }
-const a = createIterator();
-console.log(a.next()); //{value: 1, done: false}
-console.log(a.next()); //{value: 2, done: false}
-console.log(a.next()); //{value: 3, done: false}
-console.log(a.next()); //{value: undefined, done: true}
+const a = createIterator()
+console.log(a.next()) //{value: 1, done: false}
+console.log(a.next()) //{value: 2, done: false}
+console.log(a.next()) //{value: 3, done: false}
+console.log(a.next()) //{value: undefined, done: true}
 ```
 
 生成器的yield关键字有个神奇的功能，就是当你执行一次next()，那么只会执行一个yield后面的内容，然后语句终止运行。
@@ -1012,13 +1015,13 @@ console.log(a.next()); //{value: undefined, done: true}
 即使你是在for循环中使用yield关键字，也会暂停循环。
 
 ```js
-    function *createIterator(items) {
-      for(let i = 0; i < items.length;  i++) {
-        yield items[i]
-      }
-    }
-    const a = createIterator([1, 2, 3]);
-    console.log(a.next()); //{value: 1, done: false}
+function* createIterator(items) {
+  for (let i = 0; i < items.length; i++) {
+    yield items[i]
+  }
+}
+const a = createIterator([1, 2, 3])
+console.log(a.next()) //{value: 1, done: false}
 ```
 
 #### yield使用限制
@@ -1041,12 +1044,12 @@ console.log(a.next()); //无输出
 函数表达式很简单，就是下面这种写法，也叫匿名函数，不用纠结。
 
 ```js
-const createIterator = function *() {
-  yield 1;
-  yield 2;
+const createIterator = function* () {
+  yield 1
+  yield 2
 }
-const a = createIterator();
-console.log(a.next());
+const a = createIterator()
+console.log(a.next())
 ```
 
 #### 在对象中添加生成器函数
@@ -1064,10 +1067,10 @@ const obj = {
   a: 1,
   *createIterator() {
     yield this.a
-  }
+  },
 }
-const a = obj.createIterator();
-console.log(a.next());  //{value: 1, done: false}
+const a = obj.createIterator()
+console.log(a.next()) //{value: 1, done: false}
 ```
 
 #### 可迭代对象和for of循环
@@ -1077,13 +1080,13 @@ console.log(a.next());  //{value: 1, done: false}
 凡是通过生成器生成的迭代器，都是可以迭代的对象(可迭代对象具有Symbol.iterator属性)，也就是可以通过for of将value遍历出来。
 
 ```js
-function *createIterator() {
-  yield 1;
-  yield 2;
-  yield 3;
+function* createIterator() {
+  yield 1
+  yield 2
+  yield 3
 }
-const a = createIterator();
-for(let value of a) {
+const a = createIterator()
+for (let value of a) {
   console.log(value)
 }
 // 1 2 3
@@ -1092,13 +1095,13 @@ for(let value of a) {
 上面的例子告诉我们生成器函数返回的迭代器是一个可以迭代的对象。其实我们这里要研究的是Symbol.iterator的用法。
 
 ```js
-function *createIterator() {
-  yield 1;
-  yield 2;
-  yield 3;
+function* createIterator() {
+  yield 1
+  yield 2
+  yield 3
 }
-const a = createIterator(); //a是一个迭代器
-const s = a[Symbol.iterator]();//使用Symbol.iterator访问迭代器
+const a = createIterator() //a是一个迭代器
+const s = a[Symbol.iterator]() //使用Symbol.iterator访问迭代器
 console.log(s.next()) //{value: 1, done: false}
 ```
 
@@ -1115,28 +1118,28 @@ typeof obj[Symbol.iterator] === "function"
 **默认情况下定义的对象（object）是不可迭代的，但是可以通过Symbol.iterator创建迭代器。**
 
 ```js
-    const obj = {
-      items: []
-    }
-    obj.items.push(1);//这样子虽然向数组添加了新元素，但是obj不可迭代
-    for (let x of obj) {
-      console.log(x) // _iterator[Symbol.iterator] is not a function
-    }
+const obj = {
+  items: [],
+}
+obj.items.push(1) //这样子虽然向数组添加了新元素，但是obj不可迭代
+for (let x of obj) {
+  console.log(x) // _iterator[Symbol.iterator] is not a function
+}
 
-    //接下来给obj添加一个生成器，使obj成为一个可以迭代的对象。
-    const obj = {
-      items: [],
-      *[Symbol.iterator]() {
-        for (let item of this.items) {
-          yield item;
-        }
-      }
+//接下来给obj添加一个生成器，使obj成为一个可以迭代的对象。
+const obj = {
+  items: [],
+  *[Symbol.iterator]() {
+    for (let item of this.items) {
+      yield item
     }
-    obj.items.push(1)
-    //现在可以通过for of迭代obj了。
-    for (let x of obj) {
-      console.log(x)
-    }
+  },
+}
+obj.items.push(1)
+//现在可以通过for of迭代obj了。
+for (let x of obj) {
+  console.log(x)
+}
 ```
 
 #### 内建迭代器
@@ -1146,82 +1149,82 @@ typeof obj[Symbol.iterator] === "function"
 **1、entries() 返回迭代器**：返回键值对
 
 ```js
-    //数组
-    const arr = ['a', 'b', 'c'];
-    for(let v of arr.entries()) {
-      console.log(v)
-    }
-    // [0, 'a'] [1, 'b'] [2, 'c']
-    
-    //Set
-    const arr = new Set(['a', 'b', 'c']);
-    for(let v of arr.entries()) {
-      console.log(v)
-    }
-    // ['a', 'a'] ['b', 'b'] ['c', 'c']
+//数组
+const arr = ['a', 'b', 'c']
+for (let v of arr.entries()) {
+  console.log(v)
+}
+// [0, 'a'] [1, 'b'] [2, 'c']
 
-    //Map
-    const arr = new Map();
-    arr.set('a', 'a');
-    arr.set('b', 'b');
-    for(let v of arr.entries()) {
-      console.log(v)
-    }
-    // ['a', 'a'] ['b', 'b']
+//Set
+const arr = new Set(['a', 'b', 'c'])
+for (let v of arr.entries()) {
+  console.log(v)
+}
+// ['a', 'a'] ['b', 'b'] ['c', 'c']
+
+//Map
+const arr = new Map()
+arr.set('a', 'a')
+arr.set('b', 'b')
+for (let v of arr.entries()) {
+  console.log(v)
+}
+// ['a', 'a'] ['b', 'b']
 ```
 
 **2、values() 返回迭代器**：返回键值对的value
 
 ```js
-    //数组
-    const arr = ['a', 'b', 'c'];
-    for(let v of arr.values()) {
-      console.log(v)
-    }
-    //'a' 'b' 'c'
+//数组
+const arr = ['a', 'b', 'c']
+for (let v of arr.values()) {
+  console.log(v)
+}
+//'a' 'b' 'c'
 
-    //Set
-    const arr = new Set(['a', 'b', 'c']);
-    for(let v of arr.values()) {
-      console.log(v)
-    }
-    // 'a' 'b' 'c'
+//Set
+const arr = new Set(['a', 'b', 'c'])
+for (let v of arr.values()) {
+  console.log(v)
+}
+// 'a' 'b' 'c'
 
-    //Map
-    const arr = new Map();
-    arr.set('a', 'a');
-    arr.set('b', 'b');
-    for(let v of arr.values()) {
-      console.log(v)
-    }
-    // 'a' 'b'
+//Map
+const arr = new Map()
+arr.set('a', 'a')
+arr.set('b', 'b')
+for (let v of arr.values()) {
+  console.log(v)
+}
+// 'a' 'b'
 ```
 
 **3、keys() 返回迭代器**：返回键值对的key
 
 ```js
-    //数组
-    const arr = ['a', 'b', 'c'];
-    for(let v of arr.keys()) {
-      console.log(v)
-    }
-    // 0 1 2
-    
-    //Set
-    const arr = new Set(['a', 'b', 'c']);
-    for(let v of arr.keys()) {
-      console.log(v)
-    }
-    // 'a' 'b' 'c'
+//数组
+const arr = ['a', 'b', 'c']
+for (let v of arr.keys()) {
+  console.log(v)
+}
+// 0 1 2
 
-    //Map
-    const arr = new Map();
-    arr.set('a', 'a');
-    arr.set('b', 'b');
-    for(let v of arr.keys()) {
-      console.log(v)
-    }
-    // 'a' 'b'
+//Set
+const arr = new Set(['a', 'b', 'c'])
+for (let v of arr.keys()) {
+  console.log(v)
+}
+// 'a' 'b' 'c'
+
+//Map
+const arr = new Map()
+arr.set('a', 'a')
+arr.set('b', 'b')
+for (let v of arr.keys()) {
+  console.log(v)
+}
+// 'a' 'b'
 ```
 
 虽然上面列举了3种内建的迭代器方法，但是不同集合的类型还有自己默认的迭代器，在for of中，数组和Set的默认迭代器是values()，Map的默认迭代器是entries()。
@@ -1231,19 +1234,19 @@ typeof obj[Symbol.iterator] === "function"
 对象本身不支持迭代，但是我们可以自己添加一个生成器，返回一个key，value的迭代器，然后使用for of循环解构key和value。
 
 ```js
-    const obj = {
-      a: 1,
-      b: 2,
-      *[Symbol.iterator]() {
-        for(let i in obj) {
-          yield [i, obj[i]]
-        }
-      }
+const obj = {
+  a: 1,
+  b: 2,
+  *[Symbol.iterator]() {
+    for (let i in obj) {
+      yield [i, obj[i]]
     }
-    for(let [key, value] of obj) {
-      console.log(key, value)
-    }
-    // 'a' 1, 'b' 2
+  },
+}
+for (let [key, value] of obj) {
+  console.log(key, value)
+}
+// 'a' 1, 'b' 2
 ```
 
 #### 字符串迭代器
@@ -1261,8 +1264,8 @@ typeof obj[Symbol.iterator] === "function"
 迭代器真是无处不在啊，dom节点的迭代器你应该已经用过了。
 
 ```js
-const divs = document.getElementByTagName('div');
-for(let d of divs) {
+const divs = document.getElementByTagName('div')
+for (let d of divs) {
   console.log(d)
 }
 ```
@@ -1270,10 +1273,10 @@ for(let d of divs) {
 #### 展开运算符和迭代器
 
 ```js
-    const a = [1, 2, 3];
-    const b = [4, 5, 6];
-    const c = [...a, ...b]
-    console.log(c) // [1, 2, 3, 4, 5, 6]
+const a = [1, 2, 3]
+const b = [4, 5, 6]
+const c = [...a, ...b]
+console.log(c) // [1, 2, 3, 4, 5, 6]
 ```
 
 #### 高级迭代器功能
@@ -1287,26 +1290,26 @@ for(let d of divs) {
 生成器里面有2个yield，当执行第一个next()的时候，返回value为1，然后给第二个next()传入参数10，传递的参数会替代掉上一个next()的yield返回值。在下面的例子中就是first。
 
 ```js
-function *createIterator() {
-  let first = yield 1;
-  yield first + 2;
+function* createIterator() {
+  let first = yield 1
+  yield first + 2
 }
-let i = createIterator();
-console.log(i.next()); // {value: 1, done: false}
-console.log(i.next(10)); // {value: 12, done: false}
+let i = createIterator()
+console.log(i.next()) // {value: 1, done: false}
+console.log(i.next(10)) // {value: 12, done: false}
 ```
 
 2、在迭代器中抛出错误
 
 ```js
-function *createIterator() {
-  let first = yield 1;
-  yield first + 2;
+function* createIterator() {
+  let first = yield 1
+  yield first + 2
 }
-let i = createIterator();
-console.log(i.next()); // {value: 1, done: false}
-console.log(i.throw(new Error('error'))); // error
-console.log(i.next()); //不再执行
+let i = createIterator()
+console.log(i.next()) // {value: 1, done: false}
+console.log(i.throw(new Error('error'))) // error
+console.log(i.next()) //不再执行
 ```
 
 3、生成器返回语句
@@ -1314,14 +1317,14 @@ console.log(i.next()); //不再执行
 生成器中添加return表示退出操作。
 
 ```js
-function *createIterator() {
-  let first = yield 1;
-  return;
-  yield first + 2;
+function* createIterator() {
+  let first = yield 1
+  return
+  yield first + 2
 }
-let i = createIterator();
-console.log(i.next()); // {value: 1, done: false}
-console.log(i.next()); // {value: undefined, done: true}
+let i = createIterator()
+console.log(i.next()) // {value: 1, done: false}
+console.log(i.next()) // {value: undefined, done: true}
 ```
 
 4、委托生成器
@@ -1329,20 +1332,20 @@ console.log(i.next()); // {value: undefined, done: true}
 生成器嵌套生成器
 
 ```js
-function *aIterator() {
-yield 1;
+function* aIterator() {
+  yield 1
 }
-function *bIterator() {
-yield 2;
+function* bIterator() {
+  yield 2
 }
-function *cIterator() {
-yield *aIterator()
-yield *bIterator()
+function* cIterator() {
+  yield* aIterator()
+  yield* bIterator()
 }
 
-let i = cIterator();
-console.log(i.next()); // {value: 1, done: false}
-console.log(i.next()); // {value: 2, done: false}
+let i = cIterator()
+console.log(i.next()) // {value: 1, done: false}
+console.log(i.next()) // {value: 2, done: false}
 ```
 
 ### 异步任务执行器
@@ -1352,9 +1355,9 @@ ES6之前，我们使用异步的操作方式是调用函数并执行回调函�
 书上举的例子挺好的，在nodejs中，有一个读取文件的操作，使用的就是回调函数的方式。
 
 ```js
-var fs = require("fs");
-fs.readFile("xx.json", function(err, contents) {
-//在回调函数中做一些事情
+var fs = require('fs')
+fs.readFile('xx.json', function (err, contents) {
+  //在回调函数中做一些事情
 })
 ```
 
@@ -1367,27 +1370,27 @@ fs.readFile("xx.json", function(err, contents) {
 ```js
 //taskDef是一个生成器函数，run是异步任务执行器
 function run(taskDef) {
-  let task = taskDef(); //调用生成器
-  let result = task.next(); //执行生成器的第一个next()，返回result
+  let task = taskDef() //调用生成器
+  let result = task.next() //执行生成器的第一个next()，返回result
   function step() {
-    if(!result.done) {
+    if (!result.done) {
       //如果done为false，则继续执行next()，并且循环step，直到done为true退出。
-      result = task.next(result.value);
-      step();
+      result = task.next(result.value)
+      step()
     }
   }
-  step(); //开始执行step()
+  step() //开始执行step()
 }
 ```
 
 测试一下我们编写的run方法，我们不再需要console.log N个next了，因为run执行器已经帮我们做了循环执行操作：
 
 ```js
-    run(function *() {
-      let value = yield 1;
-      value = yield value + 20;
-      console.log(value) // 21
-    })
+run(function* () {
+  let value = yield 1
+  value = yield value + 20
+  console.log(value) // 21
+})
 ```
 
 ## 代理 Proxy
@@ -1408,15 +1411,15 @@ target：一个目标对象(可以是任何类型的对象，包括本机数组�
 
 ```js
 const obj = {
-  a: 10
+  a: 10,
 }
 let handler = {
-  get: function(target, name){
+  get: function (target, name) {
     console.log('test: ', target, name)
     // test:  {"a":10} a
     // test:  {"a":10} b
     return name in target ? target[name] : 37
-  }
+  },
 }
 let p = new Proxy(obj, handler)
 console.log(p.a, p.b) // 10 37
@@ -1432,15 +1435,13 @@ console.log(p.a, p.b) // 10 37
 
 ```js
 //数据模块
-const obj = {a: 1}
+const obj = { a: 1 }
 //函数模块
 const sum = (a, b) => {
   return a + b
 }
 //类模块
-class My extends React.Components {
-
-}
+class My extends React.Components {}
 ```
 
 ### 模块的导出
@@ -1449,15 +1450,13 @@ class My extends React.Components {
 
 ```js
 //数据模块
-export const obj = {a: 1}
+export const obj = { a: 1 }
 //函数模块
 export const sum = (a, b) => {
   return a + b
 }
 //类模块
-export class My extends React.Components {
-
-}
+export class My extends React.Components {}
 ```
 
 ```json
@@ -1472,7 +1471,7 @@ module.exports = {
 
 //使用
 let module = require('./module')
-console.log(module.varibale) 
+console.log(module.varibale)
 ```
 
 ### 模块的引用
@@ -1483,7 +1482,7 @@ console.log(module.varibale)
 
 ```js
 //导入obj数据，My类
-import {obj, My} from './xx.js'
+import { obj, My } from './xx.js'
 
 //使用
 console.log(obj, My)
@@ -1494,7 +1493,7 @@ console.log(obj, My)
 ```
     //导入全部模块
     import * as all from './xx.js'
-    
+
     //使用
     console.log(all.obj, all.sun(1, 2), all.My)
 ```
@@ -1527,9 +1526,7 @@ import react from 'react'
 **在vue中，模块顶部导入其他模块。**
 
 ```js
-<script>
-import sum from './xx.js'
-</script>
+<script>import sum from './xx.js'</script>
 ```
 
 ### 修改模块导入和导出名
@@ -1539,13 +1536,13 @@ import sum from './xx.js'
 1、导出时修改：
 
 ```js
-    function sum(a, b) {
-        return a + b
-    }
-    export {sum as add}
+function sum(a, b) {
+  return a + b
+}
+export { sum as add }
 
-    import { add } from './xx.js'
-    add(1, 2)
+import { add } from './xx.js'
+add(1, 2)
 ```
 
 2、导入时修改：

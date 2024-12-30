@@ -19,7 +19,6 @@
 ## DispatchServlet
 
 > - Spring Web 的mvc模型是围绕dispatcherServlet设计的, dispatcherServlet用来处理所有http请求和响应
->
 > - Spring MVC DispatcherServlet 请求的工作流程
 >   - 收到一个http请求后, dispatcherServlet根据HanderMapping 来选择适当的控制器
 >   - 控制器接收请求, 并基于使用的get或post方法来调用service方法, service方法将设置基于业务逻辑的模型数据, 并返回视图名称到dispatcherServlet中

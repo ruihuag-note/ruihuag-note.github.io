@@ -6,7 +6,7 @@ Generators 是可以用来控制迭代器的函数。它们可以暂停，然后
 
    ```js
    for (let i = 0; i < 5; i += 1) {
-    console.log(i)
+     console.log(i)
    }
    // this will return immediately 0 -> 1 -> 2 -> 3 -> 4
    ```
@@ -15,13 +15,13 @@ Generators 是可以用来控制迭代器的函数。它们可以暂停，然后
 
    ```js
    function* generatorForLoop() {
-    for (let i = 0; i < 5; i += 1) {
-        yield console.log(i)
-    }
+     for (let i = 0; i < 5; i += 1) {
+       yield console.log(i)
+     }
    }
-   
+
    const genForLoop = generatorForLoop()
-   
+
    console.log(genForLoop.next()) // first console.log - 0
    console.log(genForLoop.next()) // 1
    console.log(genForLoop.next()) // 2
@@ -35,9 +35,9 @@ Generators 是可以用来控制迭代器的函数。它们可以暂停，然后
 
 ```js
 function* gen() {
-    yield 1
-    yield 2
-    yield 3
+  yield 1
+  yield 2
+  yield 3
 }
 
 let g = gen()
@@ -46,7 +46,7 @@ let g = gen()
 
 这个是 Generator 的定义方法，有几个点值得注意：
 
-- 比普通函数多一个 *
+- 比普通函数多一个 \*
 - 函数内部用 yield 来控制程序的执行的“暂停”
 - 函数的返回值通过调用 next 来“恢复”程序执行
 
@@ -66,18 +66,18 @@ yield 关键字用来暂停和恢复一个生成器函数
 - Generator 对象的 next 方法，遇到 yield 就暂停，并返回一个对象，这个对象包括两个属性：value 和 done。
 
   ```js
-   function* gen() {
-      let val
-      val = yield 1
-      console.log( `1:${val}` ) // 1:undefined
-      val = yield 2
-      console.log( `2:${val}` ) // 2:undefined
-      val = yield 3
-      console.log( `3:${val}` ) // 3:undefined
+  function* gen() {
+    let val
+    val = yield 1
+    console.log(`1:${val}`) // 1:undefined
+    val = yield 2
+    console.log(`2:${val}`) // 2:undefined
+    val = yield 3
+    console.log(`3:${val}`) // 3:undefined
   }
-  
+
   var g = gen()
-  
+
   console.log(g.next()) // {value: 1, done: false}
   console.log(g.next()) // {value: 2, done: false}
   console.log(g.next()) // {value: 3, done: false}
@@ -95,26 +95,26 @@ Generator 对象有几个方法，next、return、throw。
 
 ```js
 function* gen() {
-      var val = 100
-      while (true) {
-          console.log( `before ${val}` )
-          val = yield val
-          console.log( `return ${val}` )
-      }
+  var val = 100
+  while (true) {
+    console.log(`before ${val}`)
+    val = yield val
+    console.log(`return ${val}`)
   }
+}
 
-  var g = gen()
-  console.log(g.next(20).value)
-  // before 100
-  // 100
-  console.log(g.next(30).value)
-  // return 30
-  // before 30
-  // 30
-  console.log(g.next(40).value)
-  // return 40
-  // before 40
-  // 40
+var g = gen()
+console.log(g.next(20).value)
+// before 100
+// 100
+console.log(g.next(30).value)
+// return 30
+// before 30
+// 30
+console.log(g.next(40).value)
+// return 40
+// before 40
+// 40
 ```
 
 - return()
@@ -122,13 +122,13 @@ function* gen() {
 
   ```js
   function* gen() {
-  yield 1
-  yield 2
-  yield 3
+    yield 1
+    yield 2
+    yield 3
   }
-  
+
   var g = gen()
-  
+
   console.log(g.next()) // {value: 1, done: false}
   console.log(g.return()) // {value: undefined, done: true}
   console.log(g.next()) // {value: undefined, done: true}
@@ -140,20 +140,20 @@ function* gen() {
   ```js
   function* gen() {
     while (true) {
-        try {
-            yield 42
-        } catch (e) {
-            console.log(e.message)
-        }
+      try {
+        yield 42
+      } catch (e) {
+        console.log(e.message)
+      }
     }
   }
-  
+
   let g = gen()
   console.log(g.next()) // { value: 42, done: false }
   console.log(g.next()) // { value: 42, done: false }
   console.log(g.next()) // { value: 42, done: false }
   // 中断操作
   g.throw(new Error('break'))
-  
+
   console.log(g.next()) // {value: undefined, done: true}
   ```

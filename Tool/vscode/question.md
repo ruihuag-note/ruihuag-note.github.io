@@ -3,7 +3,7 @@
 ## Problems loading reference 'https://json.schemastore.org/package': Unable to load schema from 'https://json.schemastore.org/package': connect ECONNREFUSED 127.0.0.1:8890
 
 > 由于本机的同源策略安全设置，不允许跨域访问资源，所有会将该请求的响应数据拦截
-setting.json 设置
+> setting.json 设置
 
 ```js
 "http.proxyAuthorization": "false",

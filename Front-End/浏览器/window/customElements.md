@@ -7,22 +7,25 @@
 > 这个属性最常用的例子是用来获取使用`CustomElementRegistry.define()`方法定义和注册的自定义元素
 
 ```js
-let customElementRegistry = window.customElements;
-customElementRegistry.define('my-custom-element', MyCustomElement);
+let customElementRegistry = window.customElements
+customElementRegistry.define('my-custom-element', MyCustomElement)
 ```
 
 通常缩写：
 
 ```js
-customElements.define('element-details',
+customElements.define(
+  'element-details',
   class extends HTMLElement {
     constructor() {
-      super();
-      const template = document
-        .getElementById('element-details-template')
-        .content;
-      const shadowRoot = this.attachShadow({mode: 'open'})
-        .appendChild(template.cloneNode(true));
-  }
-});
+      super()
+      const template = document.getElementById(
+        'element-details-template',
+      ).content
+      const shadowRoot = this.attachShadow({ mode: 'open' }).appendChild(
+        template.cloneNode(true),
+      )
+    }
+  },
+)
 ```

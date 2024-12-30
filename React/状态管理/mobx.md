@@ -3,7 +3,7 @@
 ## this找不到问题
 
 ```tsx
- 添加 
+ 添加
  constructor() {
   makeObservable(this);
  }
@@ -14,27 +14,26 @@
 ### 父类
 
 ```tsx
-class father{
-   constructor() {
-  makeObservable(this);
- }
+class father {
+  constructor() {
+    makeObservable(this)
+  }
   @action.bound
-  fn(){}
+  fn() {}
 }
-
 ```
 
 ### 子类
 
 ```tsx
-class son extends father{
-   constructor() {
-     super();
-  makeObservable(this);
- }
+class son extends father {
+  constructor() {
+    super()
+    makeObservable(this)
+  }
   @override
- fn(){
-  // 这里就可以重写方法
-  }  
+  fn() {
+    // 这里就可以重写方法
+  }
 }
 ```

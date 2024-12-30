@@ -15,8 +15,8 @@
 ![](./__assets__/setTransform-2022-03-29-17-48-14.png)
 
 ```js
-context.setTransform(1, 0, 1, 1, 0, 0);
-context.fillRect(10, 20, 100, 100);
+context.setTransform(1, 0, 1, 1, 0, 0)
+context.fillRect(10, 20, 100, 100)
 ```
 
 ![](./__assets__/setTransform-2022-03-29-17-50-49.png)

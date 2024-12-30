@@ -5,6 +5,6 @@
 
 ```json
 {
- "homepage": "https://reactjs.org/"
+  "homepage": "https://reactjs.org/"
 }
 ```

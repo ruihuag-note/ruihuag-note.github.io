@@ -65,7 +65,7 @@ const render = () => {
     <Provider store={store}>
       <App />
     </Provider>,
-    document.getElementById('root')
+    document.getElementById('root'),
   )
 }
 
@@ -82,45 +82,43 @@ if (process.env.NODE_ENV === 'development' && module.hot) {
 > - react-redux新版已经支持useSelector, useDispatch Hook， 我们可以使用它们替代connect的写法。通过它们我们可以在纯函数组件中获取到store中的值并做到监测变化
 
 ```js
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import {
   decrement,
   increment,
   incrementByAmount,
   incrementAsync,
   selectCount,
-} from "./counterSlice";
-import styles from "./Counter.module.css";
+} from './counterSlice'
+import styles from './Counter.module.css'
 
 export default function Counter() {
-  const count = useSelector(selectCount);
-  const dispatch = useDispatch();
-  const [incrementAmount, setIncrementAmount] = useState("2");
+  const count = useSelector(selectCount)
+  const dispatch = useDispatch()
+  const [incrementAmount, setIncrementAmount] = useState('2')
 
   return (
     <div>
       <div className={styles.row}>
         <button
           className={styles.button}
-          aria-label="Increment value"
-          onClick={() => dispatch(increment())}
-        >
+          aria-label='Increment value'
+          onClick={() => dispatch(increment())}>
           +
         </button>
         <span className={styles.value}>{count}</span>
         <button
           className={styles.button}
-          aria-label="Decrement value"
-          onClick={() => dispatch(decrement())}
-        >
+          aria-label='Decrement value'
+          onClick={() => dispatch(decrement())}>
           -
         </button>
       </div>
       <div className={styles.row}>
         <input
           className={styles.textbox}
-          aria-label="Set increment amount"
+          aria-label='Set increment amount'
           value={incrementAmount}
           onChange={(e) => setIncrementAmount(e.target.value)}
         />
@@ -128,19 +126,19 @@ export default function Counter() {
           className={styles.button}
           onClick={() =>
             dispatch(incrementByAmount(Number(incrementAmount) || 0))
-          }
-        >
+          }>
           Add Amount
         </button>
         <button
           className={styles.asyncButton}
-          onClick={() => dispatch(incrementAsync(Number(incrementAmount) || 0))}
-        >
+          onClick={() =>
+            dispatch(incrementAsync(Number(incrementAmount) || 0))
+          }>
           Add Async
         </button>
       </div>
     </div>
-  );
+  )
 }
 ```
 
@@ -170,7 +168,7 @@ export const IssuesListPage = ({
       async function fetchIssues() {
         const issuesResult = await getIssues(org, repo, page)
         setIssues(issuesResult)
-      }  
+      }
 async function fetchIssueCount() {
     const repoDetails = await getRepoDetails(org, repo)
     setNumIssues(repoDetails.open_issues_count)
@@ -199,16 +197,16 @@ fetchEverything()
 ### createAsyncThunk的使用
 
 > 参数
->   rtk提供的生成thunk action creator的工具函数
+> rtk提供的生成thunk action creator的工具函数
 > 参数:
 >
-> 1. type: actionType字符串(如users/requestStatus)， rtk会会基于此生成以下三个action creator 
+> 1. type: actionType字符串(如users/requestStatus)， rtk会会基于此生成以下三个action creator
 >
 >    `fulfilled: 'users/requestStatus/fulfilled'`
 >
->    `rejected: 'users/requestStatus/rejected'`  
+>    `rejected: 'users/requestStatus/rejected'`
 >
->    `pending: 'users/requestStatus/pending` 
+>    `pending: 'users/requestStatus/pending`
 >
 > - payloadCreator
 >   一个回调函数，它应该返回一个包含一些异步逻辑结果的promise
@@ -216,7 +214,6 @@ fetchEverything()
 >
 >   - arg
 >     dispatch thunk action creator 时候参入的参数值，如ids等需要参与AJAX的值
->
 >   - thunkAPI对象
 >     一个对象，包含通常传递给Redux thunk函数的所有参数，以及其他选项
 >     - dispatch store的dispatch函数
@@ -225,8 +222,6 @@ fetchEverything()
 >     - requestId当次请求的唯一表示串
 >     - signal取消标志， 如果应用有其他地方标记这个请求应该取消则为true
 >     - rejectWithValue工具函数, 用于返回一个可以自定义payload被reject的Promise
->
->
 >
 > - options对象
 >
@@ -246,10 +241,10 @@ fetchUserById.rejected: 一个分派’users/fetchByIdStatus/rejected’动作�
 
 ```js
 const reducer1 = createReducer(initialState, {
-  [fetchUserById.fulfilled]: (state, action) => {}
+  [fetchUserById.fulfilled]: (state, action) => {},
 })
 
-const reducer2 = createReducer(initialState, builder => {
+const reducer2 = createReducer(initialState, (builder) => {
   builder.addCase(fetchUserById.fulfilled, (state, action) => {})
 })
 
@@ -258,17 +253,17 @@ const reducer3 = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [fetchUserById.fulfilled]: (state, action) => {}
-  }
+    [fetchUserById.fulfilled]: (state, action) => {},
+  },
 })
 
 const reducer4 = createSlice({
   name: 'users',
   initialState,
   reducers: {},
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder.addCase(fetchUserById.fulfilled, (state, action) => {})
-  }
+  },
 })
 ```
 
@@ -295,8 +290,8 @@ import { unwrapResult } from '@reduxjs/toolkit'
 const onClick = () => {
   dispatch(fetchUserById(userId))
     .then(unwrapResult)
-    .then(originalPromiseResult => {})
-    .catch(serializedError => {})
+    .then((originalPromiseResult) => {})
+    .catch((serializedError) => {})
 }
 ```
 
@@ -315,7 +310,7 @@ const updateUser = createAsyncThunk(
       // by explicitly returning it using the `rejectWithValue()` utility
       return rejectWithValue(err.response.data)
     }
-  }
+  },
 )
 ```
 
@@ -340,8 +335,8 @@ const fetchUserById = createAsyncThunk(
         // Already fetched or in progress, don't need to re-fetch
         return false
       }
-    }
-  }
+    },
+  },
 )
 ```
 
@@ -380,7 +375,7 @@ const fetchUserById = createAsyncThunk(
       signal: thunkAPI.signal,
     })
     return await response.json()
-  }
+  },
 )
 ```
 
@@ -395,19 +390,19 @@ const readStream = createAsyncThunk(
   'readStream',
   async (stream, { signal }) => {
     const reader = stream.getReader()
-let done = false
-let result = ''
+    let done = false
+    let result = ''
 
-while (!done) {
-  if (signal.aborted) {
-    throw new Error('stop the work, this has been aborted!')
-  }
-  const read = await reader.read()
-  result += read.value
-  done = read.done
-  }
-  return result
-  }
+    while (!done) {
+      if (signal.aborted) {
+        throw new Error('stop the work, this has been aborted!')
+      }
+      const read = await reader.read()
+      result += read.value
+      done = read.done
+    }
+    return result
+  },
 )
 ```
 
@@ -428,7 +423,7 @@ const fetchUserById = createAsyncThunk(
       cancelToken: source.token,
     })
     return response.data
-  }
+  },
 )
 ```
 
@@ -441,19 +436,19 @@ const fetchUserById = createAsyncThunk(
 import {
   createEntityAdapter,
   createSlice,
-  configureStore
+  configureStore,
 } from '@reduxjs/toolkit'
 
 // Since we don't provide `selectId`, it defaults to assuming `entity.id` is the right field
 const booksAdapter = createEntityAdapter({
   // Keep the "all IDs" array sorted based on book titles
-  sortComparer: (a, b) => a.title.localeCompare(b.title)
+  sortComparer: (a, b) => a.title.localeCompare(b.title),
 })
 
 const booksSlice = createSlice({
   name: 'books',
   initialState: booksAdapter.getInitialState({
-    loading: 'idle'
+    loading: 'idle',
   }),
   reducers: {
     // Can pass adapter functions directly as case reducers.  Because we're passing this
@@ -471,28 +466,24 @@ const booksSlice = createSlice({
         state.loading = 'idle'
       }
     },
-    bookUpdated: booksAdapter.updateOne
-  }
+    bookUpdated: booksAdapter.updateOne,
+  },
 })
 
-const {
-  bookAdded,
-  booksLoading,
-  booksReceived,
-  bookUpdated
-} = booksSlice.actions
+const { bookAdded, booksLoading, booksReceived, bookUpdated } =
+  booksSlice.actions
 
 const store = configureStore({
   reducer: {
-    books: booksSlice.reducer
-  }
+    books: booksSlice.reducer,
+  },
 })
 
 // Check the initial state:
 console.log(store.getState().books)
 // {ids: [], entities: {}, loading: 'idle' }
 
-const booksSelectors = booksAdapter.getSelectors(state => state.books)
+const booksSelectors = booksAdapter.getSelectors((state) => state.books)
 
 store.dispatch(bookAdded({ id: 'a', title: 'First' }))
 console.log(store.getState().books)
@@ -506,8 +497,8 @@ console.log(store.getState().books)
 store.dispatch(
   booksReceived([
     { id: 'b', title: 'Book 3' },
-    { id: 'c', title: 'Book 2' }
-  ])
+    { id: 'c', title: 'Book 2' },
+  ]),
 )
 
 console.log(booksSelectors.selectIds(store.getState()))

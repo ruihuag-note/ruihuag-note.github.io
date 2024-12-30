@@ -6,8 +6,8 @@
 
 ```json
 {
- "publishConfig": {
-   "registry": "https://registry.npmjs.org/"
- }
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
 }
 ```

@@ -4,7 +4,7 @@
 > - 任何窗口对象，如 window、frame、frameset 或 secondary window 都支持 innerHeight 属性
 
 ```js
-var intViewportHeight = window.innerHeight;
+var intViewportHeight = window.innerHeight
 ```
 
 - `intViewportHeight` 为浏览器窗口的视口的高度
@@ -18,16 +18,15 @@ var intViewportHeight = window.innerHeight;
 > frameset
 
 ```js
+var intFrameHeight = window.innerHeight // or
 
-var intFrameHeight = window.innerHeight; // or
-
-var intFrameHeight = self.innerHeight;
+var intFrameHeight = self.innerHeight
 // 返回 frameset 里面的 frame 视口的高度
 
-var intFramesetHeight = parent.innerHeight;
+var intFramesetHeight = parent.innerHeight
 // 返回上一级 frameset 的视口的高度
 
-var intOuterFramesetHeight = top.innerHeight;
+var intOuterFramesetHeight = top.innerHeight
 // 返回最外部 frameset 的视口的高度
 ```
 

@@ -6,9 +6,9 @@
 
 ```json
 {
- "overrides": {
-   "foo": "1.1.0-patch"
- }
+  "overrides": {
+    "foo": "1.1.0-patch"
+  }
 }
 ```
 
@@ -16,11 +16,11 @@
 
 ```json
 {
- "overrides": {
-  "A": {
-    "foo": "1.1.0-patch",
+  "overrides": {
+    "A": {
+      "foo": "1.1.0-patch"
+    }
   }
-}
 }
 ```
 

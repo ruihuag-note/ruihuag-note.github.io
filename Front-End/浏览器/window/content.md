@@ -5,11 +5,10 @@
 
 - 在一个非特权的内容窗口中 (网页), content 等同于普通的 top (除非网页是在侧边栏中加载的，content仍然会指向当前标签页中的Window 对象).
 
-- 一些旧的代码示例中使用了 _content 而不是 content.该形式的属性名已经被废弃很久了，你应该在新的代码中使用content.
+- 一些旧的代码示例中使用了 \_content 而不是 content.该形式的属性名已经被废弃很久了，你应该在新的代码中使用content.
 
 ```js
-
-var windowObject = window.content;
+var windowObject = window.content
 ```
 
 ## example
@@ -17,5 +16,5 @@ var windowObject = window.content;
 在一个拥有`<browser type="content-primary"/>`标签的chrome XUL 窗口下运行下面的代码。会在浏览器当前显示的页面上的第一个 div 标签上添加一个红色的边框：
 
 ```js
-content.document.getElementsByTagName["div"](0).style.border = "solid red 1px";
+content.document.getElementsByTagName['div'](0).style.border = 'solid red 1px'
 ```

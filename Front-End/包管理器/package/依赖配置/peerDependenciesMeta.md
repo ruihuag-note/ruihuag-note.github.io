@@ -4,13 +4,13 @@
 
 ```json
 {
- "peerDependencies": {
-  "colors": "^1.4.0"
- },
- "peerDependenciesMeta": {
-  "colors": {
-    "optional": true
-   }
- }
+  "peerDependencies": {
+    "colors": "^1.4.0"
+  },
+  "peerDependenciesMeta": {
+    "colors": {
+      "optional": true
+    }
+  }
 }
 ```

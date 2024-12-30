@@ -49,8 +49,12 @@
 - 引用ReactCDN资源
 
 ```html
-<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script> 
-<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script
+  crossorigin
+  src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script
+  crossorigin
+  src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 ```
 
 - 通过npm(包管理),安装React
@@ -117,16 +121,12 @@ ReactDOM.render(<App />,document.getElementById('root')) // 将App模块渲染�
 ```jsx
 import React from 'react'
 // JSX语法
-class App extends React.Component{
-    render(){
-        return (
-            <div>
-                我是APP组件
-            </div>
-        )
-    }
+class App extends React.Component {
+  render() {
+    return <div>我是APP组件</div>
+  }
 }
-export default App;
+export default App
 ```
 
 ### React中JSX语法简介
@@ -148,17 +148,17 @@ JSX就是Javascript和XML结合的一种格式。React发明了JSX，
 ```jsx
 import React from 'react'
 // JSX语法
-class App extends React.Component{
-    render(){
-        return (
-            <div>
-                <div>{false ? '不显示我' : '显示的我'}</div>
-                我是APP组件
-            </div>
-        )
-    }
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <div>{false ? '不显示我' : '显示的我'}</div>
+        我是APP组件
+      </div>
+    )
+  }
 }
-export default App;
+export default App
 ```
 
 ### 组件外层包裹原则
@@ -187,10 +187,10 @@ export default App;
 > 4. 无状态组件只能访问输入端饿props, 同样的props会得到同样的渲染结果, 不会有副作用
 
 ```jsx
-function HelloComponent(props, /* context */) {
+function HelloComponent(props /* context */) {
   return <div>Hello {props.name}</div>
 }
-ReactDOM.render(<HelloComponent name="Sebastian" />, mountNode) 
+ReactDOM.render(<HelloComponent name='Sebastian' />, mountNode)
 ```
 
 #### es5原生方式`React.createClass`定义的组件
@@ -200,79 +200,82 @@ ReactDOM.render(<HelloComponent name="Sebastian" />, mountNode)
 
 ```jsx
 var InputControlES5 = React.createClass({
-    propTypes: {//定义传入props中的属性各种类型
-        initialValue: React.PropTypes.string
-    },
-    defaultProps: { //组件默认的props对象
-        initialValue: ''
-    },
-    // 设置 initial state
-    getInitialState: function() {//组件相关的状态对象
-        return {
-            text: this.props.initialValue || 'placeholder'
-        };
-    },
-    handleChange: function(event) {
-        this.setState({ //this represents react component instance
-            text: event.target.value
-        });
-    },
-    render: function() {
-        return (
-            <div>
-                Type something:
-                <input onChange={this.handleChange} value={this.state.text} />
-            </div>
-        );
+  propTypes: {
+    //定义传入props中的属性各种类型
+    initialValue: React.PropTypes.string,
+  },
+  defaultProps: {
+    //组件默认的props对象
+    initialValue: '',
+  },
+  // 设置 initial state
+  getInitialState: function () {
+    //组件相关的状态对象
+    return {
+      text: this.props.initialValue || 'placeholder',
     }
-});
+  },
+  handleChange: function (event) {
+    this.setState({
+      //this represents react component instance
+      text: event.target.value,
+    })
+  },
+  render: function () {
+    return (
+      <div>
+        Type something:
+        <input onChange={this.handleChange} value={this.state.text} />
+      </div>
+    )
+  },
+})
 InputControlES6.propTypes = {
-    initialValue: React.PropTypes.string
-};
+  initialValue: React.PropTypes.string,
+}
 InputControlES6.defaultProps = {
-    initialValue: ''
-};
+  initialValue: '',
+}
 ```
 
 #### es6形式的`extends React.Component`定义的组件
 
 > - 目前最推荐的有状态的组件, 最终会取代`React.createClass`形式, 相对于`React.createClass`可以更好实现代码复用
-> - 定义方法的命名规则: `handle+方法名`,   可以省略`function`关键字
+> - 定义方法的命名规则: `handle+方法名`, 可以省略`function`关键字
 >   - 还要在`constructor` 下进行注册 : `this.handleXXX = this.handleXXX.bind(this);`
 >   - 或者直接 在组件中 `click= { ()=> this.hanhdleXXX }`
 
 ```jsx
 class InputControlES6 extends React.Component {
-    constructor(props) {
-        super(props);
-        // 设置 initial state
-        this.state = {
-            text: props.initialValue || 'placeholder'
-        };
-        // ES6 类中函数必须手动绑定
-        this.handleChange = this.handleChange.bind(this);
+  constructor(props) {
+    super(props)
+    // 设置 initial state
+    this.state = {
+      text: props.initialValue || 'placeholder',
     }
-    handleChange(event) {
-        this.setState({
-            text: event.target.value
-        });
-    }
-    render() {
-        return (
-            <div>
-                Type something:
-                <input onChange={this.handleChange}
-               value={this.state.text} />
-            </div>
-        );
-    }
+    // ES6 类中函数必须手动绑定
+    this.handleChange = this.handleChange.bind(this)
+  }
+  handleChange(event) {
+    this.setState({
+      text: event.target.value,
+    })
+  }
+  render() {
+    return (
+      <div>
+        Type something:
+        <input onChange={this.handleChange} value={this.state.text} />
+      </div>
+    )
+  }
 }
 InputControlES6.propTypes = {
-    initialValue: React.PropTypes.string
-};
+  initialValue: React.PropTypes.string,
+}
 InputControlES6.defaultProps = {
-    initialValue: ''
-};
+  initialValue: '',
+}
 ```
 
 #### React.ceateClass 和 React.Component区别
@@ -284,20 +287,18 @@ InputControlES6.defaultProps = {
 > React.Component : 创建组件, 其成员函数不会自动绑定this, 需要开发者手动绑定, 否则this不嗯呢获取当前组件实例对象, 需要绑定
 
 ```jsx
-const Contacts = React.createClass({  
+const Contacts = React.createClass({
   handleClick() {
-    console.log(this); // React Component instance 可以成功获取到this对象
+    console.log(this) // React Component instance 可以成功获取到this对象
   },
   render() {
-    return (
-      <div onClick={this.handleClick}></div>
-    );
-  }
-});
+    return <div onClick={this.handleClick}></div>
+  },
+})
 ```
 
 ```jsx
-class Contacts extends React.Component {  
+class Contacts extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -309,7 +310,7 @@ class Contacts extends React.Component {
       <div onClick={this.handleClick}></div>
     );
   }
- 
+
 // 手动绑定
   constructor(props) {
     super(props);
@@ -322,7 +323,6 @@ class Contacts extends React.Component {
 ##### 组件属性类型propTypes及其默认props属性defaultProps配置不同
 
 > - `React.createClass`在创建组件时，有关组件props的属性类型及组件默认的属性会作为**组件实例的属性**来配置，其中defaultProps是使用`getDefaultProps`的方法来获取默认组件属性的
->
 > - `React.Component`在创建组件时配置这两个对应信息时，他们是作为**组件类的属性**，不是组件实例的属性，也就是所谓的**类的静态属性**来配置的
 
 ```jsx
@@ -332,7 +332,7 @@ const TodoItem = React.createClass({
     },
     getDefaultProps(){   // return a object
         return {
-            name: ''    
+            name: ''
         }
     }
     render(){
@@ -361,7 +361,7 @@ class TodoItem extends React.Component {
 ```jsx
 const TodoItem = React.createClass({
     // return an object
-    getInitialState(){ 
+    getInitialState(){
         return {
             isEditing: false
         }
@@ -375,7 +375,7 @@ class TodoItem extends React.Component{
         super(props);
         this.state = { // define this.state in constructor
             isEditing: false
-        } 
+        }
     }
     render(){
         return <div></div>
@@ -392,22 +392,18 @@ class TodoItem extends React.Component{
 > `React.Component` : 不支持Mixins, React开发者社区提供一个全新的方式来取代`Mixins`,那就是**Higher-Order Components**，具体细节可以参考[这篇文章](https://leozdgao.me/chushi-hoc/)
 
 ```jsx
-var SomeMixin = {  
-  doSomething() {
-
-  }
-};
-const Contacts = React.createClass({  
+var SomeMixin = {
+  doSomething() {},
+}
+const Contacts = React.createClass({
   mixins: [SomeMixin],
   handleClick() {
-    this.doSomething(); // use mixin
+    this.doSomething() // use mixin
   },
   render() {
-    return (
-      <div onClick={this.handleClick}></div>
-    );
-  }
-});
+    return <div onClick={this.handleClick}></div>
+  },
+})
 ```
 
 ### jsx代码注释
@@ -431,9 +427,9 @@ const Contacts = React.createClass({
         stateName2 : stateValue2
       }
     }
-3. 读取显示: 
+3. 读取显示:
     this.state.stateName1
-4. 更新状态-->更新界面 : 
+4. 更新状态-->更新界面 :
     this.setState({stateName1 : newValue})
 ```
 
@@ -506,7 +502,7 @@ class parentItem extends React.Component{
     return (
         <React.Fragment>
             {/* 使用了子组件 */}
-            <childItem 
+            <childItem
                 pranentChange={this.pranentChange}
                 myName={this.state.myName}
             />
@@ -561,8 +557,8 @@ export default childItem;
 
 ```jsx
 childItem.prorTypes = {
-    // 效验传入的内容必须是一个字符串并且必须传入值
-    newName:PropTypes.string.isRequired, 
+  // 效验传入的内容必须是一个字符串并且必须传入值
+  newName: PropTypes.string.isRequired,
 }
 ```
 
@@ -572,7 +568,7 @@ childItem.prorTypes = {
 
 ```jsx
 childItem.defaultProps = {
- // 子组件使用父组件传递的值, 但是他自己又个默认的值
+  // 子组件使用父组件传递的值, 但是他自己又个默认的值
   newName: '啦啦啦',
 }
 ```
@@ -597,7 +593,7 @@ class parentItem extends React.Component{
     }
     return (
         <React.Fragment>
-            <input 
+            <input
                 value={this.state.myName}
                 onChange={this.inputChange}
             ></input>
@@ -623,7 +619,7 @@ class parentItem extends React.Component{
     }
     return (
         <React.Fragment>
-            <input 
+            <input
                 value={this.state.myName}
                 onChange={this.inputChange}
                 ref={input => {this.input = input}}
@@ -641,22 +637,19 @@ export default parentItem;
 
 1. react的入口
 
-``` js
+```js
 // 无状态函数
 function MyCompontent(props) {
- return <h1>组件</h1>
+  return <h1>组件</h1>
 }
 // 复杂组件
-class MyComponent extends React.Componet  {
+class MyComponent extends React.Componet {
   render() {
     return <h1>组件</h1>
   }
 }
 // 渲染组件标签
-ReactDOM.render(
-    element,
-  document.getElementById('root')
-);  
+ReactDOM.render(element, document.getElementById('root'))
 /*
 等到虚拟DOM对象, 将虚拟DOM 并解析为真实DOM, 插入到指定的页面元素中
 */
@@ -667,84 +660,75 @@ element就是通过 ReactDOM.render() 的方法来将其渲染到页面上
 2. 自己创建element
 
 ```js
-const element = (
- <h1>
-  Hello, {formatName(user)}!
- </h1>
-);
+const element = <h1>Hello, {formatName(user)}!</h1>
 ```
 
 3. JSX代表Object
    下面两段代码完全一样
 
 ```js
-const element = (
-  <h1 className="greeting">
-    Hello, world!
-  </h1>
-);
+const element = <h1 className='greeting'>Hello, world!</h1>
 ```
 
 ```js
 const element = React.createElement(
   'h1',
-  {className: 'greeting'},
-  'Hello, world!'
-);
+  { className: 'greeting' },
+  'Hello, world!',
+)
 ```
 
 4. 计时器的使用
 
 ```js
-setInterval(tick, 1000);///每一秒调用一次tick方法
+setInterval(tick, 1000) ///每一秒调用一次tick方法
 ```
 
 5. 组件&Props
 
    - 函数定义
 
-      ```js
-      function welcome(props){ return (<h1>{props.name}</h1>)}
-      ```
+     ```js
+     function welcome(props) {
+       return <h1>{props.name}</h1>
+     }
+     ```
 
    - 类定义组件
 
-      ```js
-      class welcome extends React.Component{
-          render(){
-              return (<h1>{this.props.name}</h1>);
-          }
-      }
-      ```
+     ```js
+     class welcome extends React.Component {
+       render() {
+         return <h1>{this.props.name}</h1>
+       }
+     }
+     ```
 
    - 组件渲染
 
    ```js
-       const element = <div />;
-       const element = <welcome name = "guanruihua" />
+   const element = <div />
+   const element = <welcome name='guanruihua' />
    ```
 
    - 组合组件
 
    ```js
-       function Welcome(props) {
-         return <h1>Hello, {props.name}</h1>;
-       }
-       
-       function App() {
-         return (
-           <div>
-             <Welcome name="Sara" />
-             <Welcome name="Cahal" />
-             <Welcome name="Edite" />
-           </div>
-         );
-       }
-       
-       ReactDOM.render(
-         <App />,
-         document.getElementById('root')
-       );
+   function Welcome(props) {
+     return <h1>Hello, {props.name}</h1>
+   }
+
+   function App() {
+     return (
+       <div>
+         <Welcome name='Sara' />
+         <Welcome name='Cahal' />
+         <Welcome name='Edite' />
+       </div>
+     )
+   }
+
+   ReactDOM.render(<App />, document.getElementById('root'))
    ```
 
    - 提取组件
@@ -753,70 +737,54 @@ setInterval(tick, 1000);///每一秒调用一次tick方法
    //方法一
    function Comment(props) {
      return (
-       <div className="Comment">
-         <div className="UserInfo">
-           <img className="Avatar"
+       <div className='Comment'>
+         <div className='UserInfo'>
+           <img
+             className='Avatar'
              src={props.author.avatarUrl}
              alt={props.author.name}
            />
-           <div className="UserInfo-name">
-             {props.author.name}
-           </div>
+           <div className='UserInfo-name'>{props.author.name}</div>
          </div>
-         <div className="Comment-text">
-           {props.text}
-         </div>
-         <div className="Comment-date">
-           {formatDate(props.date)}
-         </div>
+         <div className='Comment-text'>{props.text}</div>
+         <div className='Comment-date'>{formatDate(props.date)}</div>
        </div>
-     );
+     )
    }
    //提取组件
    function Avatar(props) {
      return (
-       <img className="Avatar"
+       <img
+         className='Avatar'
          src={props.user.avatarUrl}
          alt={props.user.name}
        />
-     );
+     )
    }
-   
-   
+
    //方法二
-               
-       
-       function Comment(props) {
-         return (
-           <div className="Comment">
-             <div className="UserInfo">
-               <Avatar user={props.author} />
-               <div className="UserInfo-name">
-                 {props.author.name}
-               </div>
-             </div>
-             <div className="Comment-text">
-               {props.text}
-             </div>
-             <div className="Comment-date">
-               {formatDate(props.date)}
-             </div>
-           </div>
-         );
-       }
-       
-       
-       
-       function UserInfo(props) {
-         return (
-           <div className="UserInfo">
-             <Avatar user={props.user} />
-             <div className="UserInfo-name">
-               {props.user.name}
-             </div>
-           </div>
-           );
-       }
+
+   function Comment(props) {
+     return (
+       <div className='Comment'>
+         <div className='UserInfo'>
+           <Avatar user={props.author} />
+           <div className='UserInfo-name'>{props.author.name}</div>
+         </div>
+         <div className='Comment-text'>{props.text}</div>
+         <div className='Comment-date'>{formatDate(props.date)}</div>
+       </div>
+     )
+   }
+
+   function UserInfo(props) {
+     return (
+       <div className='UserInfo'>
+         <Avatar user={props.user} />
+         <div className='UserInfo-name'>{props.user.name}</div>
+       </div>
+     )
+   }
    ```
 
 ### css
@@ -831,11 +799,11 @@ setInterval(tick, 1000);///每一秒调用一次tick方法
 <div style = {{color:'red'}}></div>
 
 //原型链和全局变量
-var color={color:'red'}  
+var color={color:'red'}
 <div style={color}>react全局行间样式</div>
 
 App.prototype.col={
-    color:pink  
+    color:pink
 }
 
 <div style={this.col}>原型样式</div>
@@ -864,7 +832,7 @@ import { CSSTranstion } from 'react-transition-group';
 render() {
  return (
     <div>
-      <CSSTransition 
+      <CSSTransition
         in={this.state.isShow}   //用于判断是否出现的状态
         timeout={2000}           //动画持续时间
         classNames="boss-text"   //className值，防止重复
@@ -887,29 +855,29 @@ render() {
 - xxx-exit-done:退出完成时的CSS样式。
 
 ```css
-.input {border:3px solid #ae7000}
+.input {
+  border: 3px solid #ae7000;
+}
 
-.boss-text-enter{
-    opacity: 0;
+.boss-text-enter {
+  opacity: 0;
 }
-.boss-text-enter-active{
-    opacity: 1;
-    transition: opacity 2000ms;
-
+.boss-text-enter-active {
+  opacity: 1;
+  transition: opacity 2000ms;
 }
-.boss-text-enter-done{
-    opacity: 1;
+.boss-text-enter-done {
+  opacity: 1;
 }
-.boss-text-exit{
-    opacity: 1;
+.boss-text-exit {
+  opacity: 1;
 }
-.boss-text-exit-active{
-    opacity: 0;
-    transition: opacity 2000ms;
-
+.boss-text-exit-active {
+  opacity: 0;
+  transition: opacity 2000ms;
 }
-.boss-text-exit-done{
-    opacity: 0;
+.boss-text-exit-done {
+  opacity: 0;
 }
 ```
 
@@ -918,12 +886,11 @@ render() {
 > 加上这个, 元素退场, 会自动吧DOM 也删除
 
 ```jsx
- <CSSTransition 
-   in={this.state.isShow}   //用于判断是否出现的状态
-   timeout={2000}           //动画持续时间
-   classNames="boss-text"   //className值，防止重复
-   unmountOnExit
-   >
+<CSSTransition
+  in={this.state.isShow} //用于判断是否出现的状态
+  timeout={2000} //动画持续时间
+  classNames='boss-text' //className值，防止重复
+  unmountOnExit>
   <div>BOSS级人物-孙悟空</div>
 </CSSTransition>
 ```
@@ -941,10 +908,10 @@ import { CSSTransition , TransitionGroup } from 'react-transition-group'
         <li>2</li>
         <li>3</li>
     </TransitionGroup>
-</ul> 
-  
+</ul>
+
 // add TransitionGroup
-  
+
 <ul ref={(ul)=>{this.ul=ul}}>
     <TransitionGroup>
         <CSSTransition
@@ -966,7 +933,7 @@ import { CSSTransition , TransitionGroup } from 'react-transition-group'
             <li>2</li>
         </CSSTransition>
     </TransitionGroup>
-</ul> 
+</ul>
 ```
 
 ## 列表& keys
@@ -982,15 +949,10 @@ const doubled = numbers.map((number) => number * 2);
 1. #### 渲染多个组件
 
 ```js
-const numbers = [1, 2, 3, 4, 5];
-const listItems = numbers.map((number) =>
-  <li>{number}</li>
-);
+const numbers = [1, 2, 3, 4, 5]
+const listItems = numbers.map((number) => <li>{number}</li>)
 
-ReactDOM.render(
-  <ul>{listItems}</ul>,
-  document.getElementById('root')
-);
+ReactDOM.render(<ul>{listItems}</ul>, document.getElementById('root'))
 //生成了一个1到5的数字列表
 ```
 
@@ -1030,7 +992,7 @@ const todoItems = todos.map((todo) =>
     {todo.text}
 </li>
 
-//当元素没有确定的id时，你可以使用他的序列号索引index作为key  
+//当元素没有确定的id时，你可以使用他的序列号索引index作为key
 const todoItems = todos.map((todo, index) =>
   // Only do this if items have no stable IDs
   <li key={index}>
@@ -1044,28 +1006,23 @@ const todoItems = todos.map((todo, index) =>
 ```js
 function ListItem(props) {
   // 对啦！这里不需要指定key:
-  return <li>{props.value}</li>;
+  return <li>{props.value}</li>
 }
 
 function NumberList(props) {
-  const numbers = props.numbers;
-  const listItems = numbers.map((number) =>
+  const numbers = props.numbers
+  const listItems = numbers.map((number) => (
     // 又对啦！key应该在数组的上下文中被指定
-    <ListItem key={number.toString()}
-              value={number} />
-  );
-  return (
-    <ul>
-      {listItems}
-    </ul>
-  );
+    <ListItem key={number.toString()} value={number} />
+  ))
+  return <ul>{listItems}</ul>
 }
 
-const numbers = [1, 2, 3, 4, 5];
+const numbers = [1, 2, 3, 4, 5]
 ReactDOM.render(
   <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
+  document.getElementById('root'),
+)
 ```
 
 5. #### 元素的Key再他的兄弟元素之间应该唯一(不需要是全局唯一的)
@@ -1074,36 +1031,31 @@ ReactDOM.render(
 function Blog(props) {
   const sidebar = (
     <ul>
-      {props.posts.map((post) =>
-        <li key={post.id}>
-          {post.title}
-        </li>
-      )}
+      {props.posts.map((post) => (
+        <li key={post.id}>{post.title}</li>
+      ))}
     </ul>
-  );
-  const content = props.posts.map((post) =>
+  )
+  const content = props.posts.map((post) => (
     <div key={post.id}>
       <h3>{post.title}</h3>
       <p>{post.content}</p>
     </div>
-  );
+  ))
   return (
     <div>
       {sidebar}
       <hr />
       {content}
     </div>
-  );
+  )
 }
 
 const posts = [
-  {id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
-  {id: 2, title: 'Installation', content: 'You can install React from npm.'}
-];
-ReactDOM.render(
-  <Blog posts={posts} />,
-  document.getElementById('root')
-);
+  { id: 1, title: 'Hello World', content: 'Welcome to learning React!' },
+  { id: 2, title: 'Installation', content: 'You can install React from npm.' },
+]
+ReactDOM.render(<Blog posts={posts} />, document.getElementById('root'))
 ```
 
 6. #### 在jsx中嵌入map()
@@ -1111,33 +1063,24 @@ ReactDOM.render(
 ```jsx
 //声明了一个单独的listItems变量并将其包含在JSX中
 function NumberList(props) {
-  const numbers = props.numbers;
-  const listItems = numbers.map((number) =>
-    <ListItem key={number.toString()}
-              value={number} />
-  );
-  return (
-    <ul>
-      {listItems}
-    </ul>
-  );
+  const numbers = props.numbers
+  const listItems = numbers.map((number) => (
+    <ListItem key={number.toString()} value={number} />
+  ))
+  return <ul>{listItems}</ul>
 }
-
 
 //JSX允许在大括号中嵌入任何表达式，所以我们可以在map()中这样使用：
 function NumberList(props) {
-  const numbers = props.numbers;
+  const numbers = props.numbers
   return (
     <ul>
-      {numbers.map((number) =>
-        <ListItem key={number.toString()}
-                  value={number} />
-      )}
+      {numbers.map((number) => (
+        <ListItem key={number.toString()} value={number} />
+      ))}
     </ul>
-  );
+  )
 }
-
-
 ```
 
 ## 表单
@@ -1149,20 +1092,20 @@ function NumberList(props) {
 ```jsx
 class NameForm extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = {value: ''};
+    super(props)
+    this.state = { value: '' }
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({ value: event.target.value })
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
+    alert('A name was submitted: ' + this.state.value)
+    event.preventDefault()
   }
 
   render() {
@@ -1170,12 +1113,15 @@ class NameForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Name:
-          <input type="text" value={this.state.value}  
-          onChange={this.handleChange} />
+          <input
+            type='text'
+            value={this.state.value}
+            onChange={this.handleChange}
+          />
         </label>
-        <input type="submit" value="Submit" />
+        <input type='submit' value='Submit' />
       </form>
-    );
+    )
   }
 }
 ```
@@ -1194,22 +1140,22 @@ handleChange(event) {
 ```jsx
 class EssayForm extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      value: 'Please write an essay about your favorite DOM element.'
-    };
+      value: 'Please write an essay about your favorite DOM element.',
+    }
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({ value: event.target.value })
   }
 
   handleSubmit(event) {
-    alert('An essay was submitted: ' + this.state.value);
-    event.preventDefault();
+    alert('An essay was submitted: ' + this.state.value)
+    event.preventDefault()
   }
 
   render() {
@@ -1219,9 +1165,9 @@ class EssayForm extends React.Component {
           Name:
           <textarea value={this.state.value} onChange={this.handleChange} />
         </label>
-        <input type="submit" value="Submit" />
+        <input type='submit' value='Submit' />
       </form>
-    );
+    )
   }
 }
 ```
@@ -1231,20 +1177,20 @@ class EssayForm extends React.Component {
 ```js
 class FlavorForm extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = {value: 'coconut'};
+    super(props)
+    this.state = { value: 'coconut' }
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({ value: event.target.value })
   }
 
   handleSubmit(event) {
-    alert('Your favorite flavor is: ' + this.state.value);
-    event.preventDefault();
+    alert('Your favorite flavor is: ' + this.state.value)
+    event.preventDefault()
   }
 
   render() {
@@ -1253,15 +1199,15 @@ class FlavorForm extends React.Component {
         <label>
           Pick your favorite La Croix flavor:
           <select value={this.state.value} onChange={this.handleChange}>
-            <option value="grapefruit">Grapefruit</option>
-            <option value="lime">Lime</option>
-            <option value="coconut">Coconut</option>
-            <option value="mango">Mango</option>
+            <option value='grapefruit'>Grapefruit</option>
+            <option value='lime'>Lime</option>
+            <option value='coconut'>Coconut</option>
+            <option value='mango'>Mango</option>
           </select>
         </label>
-        <input type="submit" value="Submit" />
+        <input type='submit' value='Submit' />
       </form>
-    );
+    )
   }
 }
 ```
@@ -1269,7 +1215,7 @@ class FlavorForm extends React.Component {
 ### file input 标签
 
 ```jsx
-<input type="file">   
+<input type="file">
 //value是只读
 //是一个非受控组件
 ```
@@ -1280,23 +1226,23 @@ class FlavorForm extends React.Component {
 //当你有处理多个受控的input元素时，  //你可以通过给每个元素添加一个name属性，来让处理函数根据 event.target.name的值来选择做什么。
 class Reservation extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       isGoing: true,
-      numberOfGuests: 2
-    };
+      numberOfGuests: 2,
+    }
 
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this)
   }
 
   handleInputChange(event) {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
+    const target = event.target
+    const value = target.type === 'checkbox' ? target.checked : target.value
+    const name = target.name
 
     this.setState({
-      [name]: value
-    });
+      [name]: value,
+    })
   }
 
   render() {
@@ -1305,22 +1251,24 @@ class Reservation extends React.Component {
         <label>
           Is going:
           <input
-            name="isGoing"
-            type="checkbox"
+            name='isGoing'
+            type='checkbox'
             checked={this.state.isGoing}
-            onChange={this.handleInputChange} />
+            onChange={this.handleInputChange}
+          />
         </label>
         <br />
         <label>
           Number of guests:
           <input
-            name="numberOfGuests"
-            type="number"
+            name='numberOfGuests'
+            type='number'
             value={this.state.numberOfGuests}
-            onChange={this.handleInputChange} />
+            onChange={this.handleInputChange}
+          />
         </label>
       </form>
-    );
+    )
   }
 }
 ```
@@ -1329,12 +1277,12 @@ class Reservation extends React.Component {
 
 ### 安装webpack
 
-1. 在所要安装目录输入npm -v和node -v查看配置是否有问题  
+1. 在所要安装目录输入npm -v和node -v查看配置是否有问题
 2. 输入npm init -y创建package.json
 3. 输入npm install webpack --save-dev
 4. 安装webpack-cli
 5. npm install --global webpack
-6. npm install --global webpack-cli  
+6. npm install --global webpack-cli
 7. 最后用webpack -v查看版本
 
 ### 安装插件
@@ -1349,17 +1297,17 @@ class Reservation extends React.Component {
 "build": "webpack --mode production",//压缩js代码
 ```
 
-//ISC  
+//ISC
 
 ```
-"build": "webpack --mode production --config scripts/webpack.config.js",  
+"build": "webpack --mode production --config scripts/webpack.config.js",
 ```
 
 ## State&生命周期
 
->props:只读
+> props:只读
 >
->state:可读写
+> state:可读写
 
 ### 组件的生命周期
 
@@ -1391,17 +1339,14 @@ function tick() {
       <h1>Hello, world!</h1>
       <h2>It is {new Date().toLocaleTimeString()}.</h2>
     </div>
-  );
-  ReactDOM.render(
-    element,
-    document.getElementById('root')
-  );
+  )
+  ReactDOM.render(element, document.getElementById('root'))
 }
 
-setInterval(tick, 1000);
+setInterval(tick, 1000)
 ```
 
-### 使Clock组件真正可重用和封装  
+### 使Clock组件真正可重用和封装
 
 ```jsx
 function Clock(props) {
@@ -1410,17 +1355,14 @@ function Clock(props) {
       <h1>Hello, world!</h1>
       <h2>It is {props.date.toLocaleTimeString()}.</h2>
     </div>
-  );
+  )
 }
 
 function tick() {
-  ReactDOM.render(
-    <Clock date={new Date()} />,
-    document.getElementById('root')
-  );
+  ReactDOM.render(<Clock date={new Date()} />, document.getElementById('root'))
 }
 
-setInterval(tick, 1000);
+setInterval(tick, 1000)
 ```
 
 ### 将函数转换为类
@@ -1430,7 +1372,7 @@ setInterval(tick, 1000);
 2. 创建一个叫做render()的空方法
 3. 将函数体移动到 render() 方法中
 4. 在 render() 方法中，使用 this.props 替换 props
-5. 删除剩余的空函数声明  
+5. 删除剩余的空函数声明
 ```
 
 ```
@@ -1451,35 +1393,31 @@ class Clock extends React.Component {
 ### 为类添加局部变量
 
 ```jsx
-//2. 添加一个类构造函数来初始化状态 this.state  
+//2. 添加一个类构造函数来初始化状态 this.state
 class Clock extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = {date: new Date()};
+    super(props)
+    this.state = { date: new Date() }
   }
-//1. 在 render() 方法中使用 this.state.date 替代 this.props.date 
+  //1. 在 render() 方法中使用 this.state.date 替代 this.props.date
   render() {
     return (
       <div>
         <h1>Hello, world!</h1>
         <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
       </div>
-    );
+    )
   }
 }
 //3. 从 <Clock /> 元素移除 date 属性：
-ReactDOM.render(
-  <Clock />,
-  document.getElementById('root')
-);
-
+ReactDOM.render(<Clock />, document.getElementById('root'))
 ```
 
 ### 将生命周期方法添加到类中
 
 ###### 挂载:每当Clock组件第一次加载到DOM中的时候，我们都想生成定时器
 
-###### 卸载:每当Clock生成的这个DOM被移除的时候，我们也会想要清除定时器  
+###### 卸载:每当Clock生成的这个DOM被移除的时候，我们也会想要清除定时器
 
 ```
 //生命周期钩子
@@ -1507,10 +1445,7 @@ componentWillUnmount() {
 
 ```jsx
 //事件命名方式为驼峰命名法
-<button onClick={activateLasers}>
-  Activate Lasers
-</button>
-
+<button onClick={activateLasers}>Activate Lasers</button>
 ```
 
 ### preventDefault事件的使用
@@ -1539,32 +1474,36 @@ function ActionLink() {
 <button onClick={this.deleteRow.bind(this, id)}>Delete Row</button>
 ```
 
-1. 上述两种方式是等价的，分别通过 arrow functions 和  Function.prototype.bind 来为事件处理函数传递参数。  
+1. 上述两种方式是等价的，分别通过 arrow functions 和 Function.prototype.bind 来为事件处理函数传递参数。
 2. 通过箭头函数的方式,事件对象必须显式的传递
 3. 通过bind方式,事件对象以及更加多的参数会被隐式地进行传递
 
 ```jsx
-class Popper extends React.Component{
-    constructor(){
-        super();
-        this.state = {name:'Hello world!'};
-    }
-    
-    preventPop(name, e){    //事件对象e要放在最后
-        e.preventDefault();
-        alert(name);
-    }
-    
-    render(){
-        return (
-            <div>
-                <p>hello</p>
-                {/* Pass params via bind() method. */}
-                <a href="https://reactjs.org"  
-                onClick={this.preventPop.bind(this,this.state.name)}>Click</a>
-            </div>
-        );
-    }
+class Popper extends React.Component {
+  constructor() {
+    super()
+    this.state = { name: 'Hello world!' }
+  }
+
+  preventPop(name, e) {
+    //事件对象e要放在最后
+    e.preventDefault()
+    alert(name)
+  }
+
+  render() {
+    return (
+      <div>
+        <p>hello</p>
+        {/* Pass params via bind() method. */}
+        <a
+          href='https://reactjs.org'
+          onClick={this.preventPop.bind(this, this.state.name)}>
+          Click
+        </a>
+      </div>
+    )
+  }
 }
 ```
 
@@ -1576,13 +1515,13 @@ class Popper extends React.Component{
 2. 与运算符(&&)
 
 ```
-{unreadMessages.length > 0 &&<h2>You have {unreadMessages.length} unread messages.</h2>  
+{unreadMessages.length > 0 &&<h2>You have {unreadMessages.length} unread messages.</h2>
 //如果条件是 true，&& 右侧的元素就会被渲染，如果是 false，React 会忽略并跳过它。
 ```
 
 3. 三目运算符 condition ? true : false
 4. 防止组件渲染(让 render 方法返回 null 而不是它的渲染结果即可实现组件隐藏,即使被其他组件渲染)  
-   ```if(true) return null;```
+   `if(true) return null;`
 
 ## Redux数据管理
 
@@ -1607,17 +1546,17 @@ class Popper extends React.Component{
 //eg：es6.js
 
 ```js
-let numbers  = [1,2,3] 
-let doubleNumbers = numbers.map((number)  => number *2); 
-console.log(doubleNumbers);
+let numbers = [1, 2, 3]
+let doubleNumbers = numbers.map((number) => number * 2)
+console.log(doubleNumbers)
 ```
 
 编译`babel es6.js -o compiled.js`(要先配置文件.babelrc)
 
 ```
-.babelrc {    
- "presets":[],    
- "plugins":[] 
+.babelrc {
+ "presets":[],
+ "plugins":[]
 }
 ```
 
@@ -1626,19 +1565,18 @@ console.log(doubleNumbers);
 3. 然后把preset添加到配置文件中
 
 ```xml
-.babelrc {    
- "presets":['es2015'],    
- "plugins":[] 
+.babelrc {
+ "presets":['es2015'],
+ "plugins":[]
 }
 ```
 
 - 再次运行，打开compiled.js文件
 - 安装object-rest-spread插件
--
-  1. npm install babel-plugin-transform-object-rest-spraed --save-dev
+- 1. npm install babel-plugin-transform-object-rest-spraed --save-dev
   2. 添加到配置文件
 
-//.babelrc {    "presets":['es2015'],    "plugins":['transform-object-rest-spraed'] }
+//.babelrc { "presets":['es2015'], "plugins":['transform-object-rest-spraed'] }
 
 对象展开符的代码
 
@@ -1646,8 +1584,7 @@ let mike = {name:'mike',age:40}; mike = {..mike, sex, 'male' };
 
 ## 状态提升
 
-> - 主要概念 :   将多个组件需要的共享状态提升到它们最近的父组件上, 在父组件上改变这个状态后, 然后通过props分发给只组件
->
+> - 主要概念 : 将多个组件需要的共享状态提升到它们最近的父组件上, 在父组件上改变这个状态后, 然后通过props分发给只组件
 > - 实现过程 : 一般是通过将父组件的方法传给子组件, 然后通过子组件来触发, 修改父组件的state, 然后再通过props分发给子组件
 
 ### 温度计算器
@@ -1656,27 +1593,31 @@ let mike = {name:'mike',age:40}; mike = {..mike, sex, 'male' };
 import React from 'react'
 // 展示温度有没有超过一百度
 function BoilingVerdict(props) {
-  return (props.celsius >= 100 ? <p>The water would boil.</p>:<p>The water would not boil</p>)
+  return props.celsius >= 100 ? (
+    <p>The water would boil.</p>
+  ) : (
+    <p>The water would not boil</p>
+  )
 }
 
 const scaleNames = {
-  c : 'Celsius',
-  f : 'Fahrenheit', 
+  c: 'Celsius',
+  f: 'Fahrenheit',
 }
 // 定义子组件
 // 1. 主要负责展示温度
 // 2. 通过修改input的数据来触发父组件的方法来修改父组件的state, 然后再通过props传输给子组件, 然后达到修改温度的效果
 class TemperatureInput extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      temperature : ''
-    } 
-    this.handleChanage = this.handleChanage.bind(this);
+      temperature: '',
+    }
+    this.handleChanage = this.handleChanage.bind(this)
   }
-  handleChanage (e) {
+  handleChanage(e) {
     // this.setState({temperature: e.target.value })
-    this.props.onTemperatureChange(e.target.value )
+    this.props.onTemperatureChange(e.target.value)
   }
   render() {
     // const temperature = this.state.temperature
@@ -1696,7 +1637,7 @@ class TemperatureInput extends React.Component {
 // 3. 通过调用温度转换的方法, 给两个子组件传输的不同的变量值
 class Calculator extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       temperature: '',
       scale: 'c',
@@ -1705,37 +1646,43 @@ class Calculator extends React.Component {
     this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this)
   }
   handleCelsiusChange(temperature) {
-    this.setState({scale: 'c' , temperature})
+    this.setState({ scale: 'c', temperature })
   }
   handleFahrenheitChange(temperature) {
     this.setState({ scale: 'f', temperature })
   }
   render() {
-    const {temperature, scale } = this.state;
-    const celsius = scale === 'f' ? tryConvert(temperature, toCelsius ) : temperature; 
-    const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit ) : temperature ;
+    const { temperature, scale } = this.state
+    const celsius =
+      scale === 'f' ? tryConvert(temperature, toCelsius) : temperature
+    const fahrenheit =
+      scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature
     return (
-      <div className = {styles.layout}>
-        <TemperatureInput 
-          temperature = {celsius}
-          onTemperatureChange = {this.handleCelsiusChange}
-          scale = "c" /><br/>
+      <div className={styles.layout}>
         <TemperatureInput
-          temperature = {fahrenheit} 
-          onTemperatureChange = {this.handleFahrenheitChange}
-          scale = "f" /><br/>
-        <BoilingVerdict celsius = {celsius} />
+          temperature={celsius}
+          onTemperatureChange={this.handleCelsiusChange}
+          scale='c'
+        />
+        <br />
+        <TemperatureInput
+          temperature={fahrenheit}
+          onTemperatureChange={this.handleFahrenheitChange}
+          scale='f'
+        />
+        <br />
+        <BoilingVerdict celsius={celsius} />
       </div>
     )
   }
 }
 // 华氏度 => 摄氏度
 function toCelsius(fahrenheit) {
-  return (fahrenheit - 32 ) * 5 / 9;
+  return ((fahrenheit - 32) * 5) / 9
 }
 // 摄氏度 => 华氏度
 function toFahrenheit(celsius) {
-  return (celsius * 9 / 5 ) + 32;
+  return (celsius * 9) / 5 + 32
 }
 
 // temperature : 需要转换的温度
@@ -1744,16 +1691,16 @@ function toFahrenheit(celsius) {
 // 数据处理
 function tryConvert(temperature, convert) {
   const input = parseFloat(temperature)
-  if(Number.isNaN(input)) {
-    return '';
+  if (Number.isNaN(input)) {
+    return ''
   }
   const output = convert(input)
   // Math.round : 四舍五入
-  const rounded = Math.round( output * 1000 ) / 1000;
-  return rounded.toString();
+  const rounded = Math.round(output * 1000) / 1000
+  return rounded.toString()
 }
 
-export default Calculator;
+export default Calculator
 ```
 
 ## 组合&继承
@@ -1768,7 +1715,7 @@ function FancyBorder(props) {
     <div className={'FancyBorder FancyBorder-' + props.color}>
       {props.children}
     </div>
-  );
+  )
 }
 ```
 
@@ -1777,15 +1724,11 @@ function FancyBorder(props) {
 ```jsx
 function WelcomeDialog() {
   return (
-    <FancyBorder color="blue">
-      <h1 className="Dialog-title">
-        Welcome
-      </h1>
-      <p className="Dialog-message">
-        Thank you for visiting our spacecraft!
-      </p>
+    <FancyBorder color='blue'>
+      <h1 className='Dialog-title'>Welcome</h1>
+      <p className='Dialog-message'>Thank you for visiting our spacecraft!</p>
     </FancyBorder>
-  );
+  )
 }
 ```
 
@@ -1794,23 +1737,17 @@ function WelcomeDialog() {
 ```jsx
 function Dialog(props) {
   return (
-    <FancyBorder color="blue">
-      <h1 className="Dialog-title">
-        {props.title}
-      </h1>
-      <p className="Dialog-message">
-        {props.message}
-      </p>
+    <FancyBorder color='blue'>
+      <h1 className='Dialog-title'>{props.title}</h1>
+      <p className='Dialog-message'>{props.message}</p>
     </FancyBorder>
-  );
+  )
 }
 
 function WelcomeDialog() {
   return (
-    <Dialog
-      title="Welcome"
-      message="Thank you for visiting our spacecraft!" />
-  );
+    <Dialog title='Welcome' message='Thank you for visiting our spacecraft!' />
+  )
 }
 ```
 
@@ -1838,13 +1775,13 @@ bus.js
 
 ```jsx
 import { EventEmitter } from 'events'
-export default new EventEmitter();
+export default new EventEmitter()
 ```
 
 index.js
 
 ```jsx
-import Bus from './bus';
+import Bus from './bus'
 import React, { Component } from 'react'
 
 class Index extends Component {
@@ -1860,13 +1797,16 @@ class Index extends Component {
     return (
       <div>
         Index{this.state.bus}
-        <button onClick = {()=>Bus.emit('handleChangeData', 'btnData')}>bus</button>//可以放到其他组件进行触发
+        <button onClick={() => Bus.emit('handleChangeData', 'btnData')}>
+          bus
+        </button>
+        //可以放到其他组件进行触发
       </div>
     )
   }
 }
 
-export default Index;
+export default Index
 ```
 
 ## EventEmitter
@@ -1883,39 +1823,39 @@ class EventEmitter {
   // on 函数用于绑定
   // 注册事件监听; type 事件类型，handle 处理函数
   on(eventName, handle) {
-      let listeners = this._event[eventName];
-      if (!listeners || !listeners.length) {
-          this._event[eventName] = [handle];
-          return;
-      }
-      listeners.push(handle);
+    let listeners = this._event[eventName]
+    if (!listeners || !listeners.length) {
+      this._event[eventName] = [handle]
+      return
+    }
+    listeners.push(handle)
   }
   // off 用于移除
   // 移除事件监听；type 事件类型，handle 处理函数
   off(eventName, handle) {
-      let listeners = this._event[eventName];
-      this._event[eventName] = listeners.filter(l => l !== handle);
-      // this._event[eventName]=[]
+    let listeners = this._event[eventName]
+    this._event[eventName] = listeners.filter((l) => l !== handle)
+    // this._event[eventName]=[]
   }
   // emit 用于分发消息; // 触发一个事件
   emit(eventName, ...args) {
-      const listeners = this._event[eventName];
-      if (listeners && listeners.length) {
-          for (const l of listeners) {
-              l(...args);
-          }
+    const listeners = this._event[eventName]
+    if (listeners && listeners.length) {
+      for (const l of listeners) {
+        l(...args)
       }
+    }
   }
 }
-const event = new EventEmitter;
-export default event;
+const event = new EventEmitter()
+export default event
 ```
 
 ### 使用
 
 ```jsx
 event.on('drink', (person) => {
-      console.log(person + '喝水')
+  console.log(person + '喝水')
 })
 event.on('eat', (person) => {
   console.log(person + '吃东西')
@@ -1933,17 +1873,16 @@ event.emit('eat', '其它人') //这里不会触发eat事件，因为已经移�
 ## react-demo-井字棋案例
 
 ```jsx
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
 
 function Square(props) {
   return (
-    <button className="square" onClick={props.onClick}>
+    <button className='square' onClick={props.onClick}>
       {props.value}
     </button>
-  );
+  )
 }
 
 class Board extends React.Component {
@@ -1953,115 +1892,113 @@ class Board extends React.Component {
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
       />
-    );
+    )
   }
 
   render() {
     return (
       <div>
-        <div className="board-row">
+        <div className='board-row'>
           {this.renderSquare(0)}
           {this.renderSquare(1)}
           {this.renderSquare(2)}
         </div>
-        <div className="board-row">
+        <div className='board-row'>
           {this.renderSquare(3)}
           {this.renderSquare(4)}
           {this.renderSquare(5)}
         </div>
-        <div className="board-row">
+        <div className='board-row'>
           {this.renderSquare(6)}
           {this.renderSquare(7)}
           {this.renderSquare(8)}
         </div>
       </div>
-    );
+    )
   }
 }
 
 class Game extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       history: [
         {
-          squares: Array(9).fill(null)
-        }
+          squares: Array(9).fill(null),
+        },
       ],
       stepNumber: 0,
-      xIsNext: true
-    };
+      xIsNext: true,
+    }
   }
 
   handleClick(i) {
-    const history = this.state.history.slice(0, this.state.stepNumber + 1);
-    const current = history[history.length - 1];
-    const squares = current.squares.slice();
+    const history = this.state.history.slice(0, this.state.stepNumber + 1)
+    const current = history[history.length - 1]
+    const squares = current.squares.slice()
     if (calculateWinner(squares) || squares[i]) {
-      return;
+      return
     }
-    squares[i] = this.state.xIsNext ? "X" : "O";
+    squares[i] = this.state.xIsNext ? 'X' : 'O'
     this.setState({
       history: history.concat([
         {
-          squares: squares
-        }
+          squares: squares,
+        },
       ]),
       stepNumber: history.length,
-      xIsNext: !this.state.xIsNext
-    });
+      xIsNext: !this.state.xIsNext,
+    })
   }
 
   jumpTo(step) {
     this.setState({
       stepNumber: step,
-      xIsNext: (step % 2) === 0
-    });
+      xIsNext: step % 2 === 0,
+    })
   }
 
   render() {
-    const history = this.state.history;
-    const current = history[this.state.stepNumber];
-    const winner = calculateWinner(current.squares);
+    const history = this.state.history
+    const current = history[this.state.stepNumber]
+    const winner = calculateWinner(current.squares)
 
     const moves = history.map((step, move) => {
-      const desc = move ?
-        'Go to move #' + move :
-        'Go to game start';
+      const desc = move ? 'Go to move #' + move : 'Go to game start'
       return (
         <li key={move}>
           <button onClick={() => this.jumpTo(move)}>{desc}</button>
         </li>
-      );
-    });
+      )
+    })
 
-    let status;
+    let status
     if (winner) {
-      status = "Winner: " + winner;
+      status = 'Winner: ' + winner
     } else {
-      status = "Next player: " + (this.state.xIsNext ? "X" : "O");
+      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O')
     }
 
     return (
-      <div className="game">
-        <div className="game-board">
+      <div className='game'>
+        <div className='game-board'>
           <Board
             squares={current.squares}
-            onClick={i => this.handleClick(i)}
+            onClick={(i) => this.handleClick(i)}
           />
         </div>
-        <div className="game-info">
+        <div className='game-info'>
           <div>{status}</div>
           <ol>{moves}</ol>
         </div>
       </div>
-    );
+    )
   }
 }
 
 // ========================================
 
-ReactDOM.render(<Game />, document.getElementById("root"));
+ReactDOM.render(<Game />, document.getElementById('root'))
 
 function calculateWinner(squares) {
   const lines = [
@@ -2072,15 +2009,14 @@ function calculateWinner(squares) {
     [1, 4, 7],
     [2, 5, 8],
     [0, 4, 8],
-    [2, 4, 6]
-  ];
+    [2, 4, 6],
+  ]
   for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
+    const [a, b, c] = lines[i]
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return squares[a]
     }
   }
-  return null;
+  return null
 }
-
 ```

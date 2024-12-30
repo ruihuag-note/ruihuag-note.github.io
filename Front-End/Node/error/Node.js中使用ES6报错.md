@@ -4,20 +4,20 @@
 index.js：
 
 ```js
-import hello from './cpoy';
-hello();
+import hello from './cpoy'
+hello()
 ```
 
 cpoy/index.js：
 
 ```js
 const hello = () => {
-    console.log("hello world!")
+  console.log('hello world!')
 }
 export default hello
 ```
 
-* 在 package.json 中添加了"type": "module"配置。
+- 在 package.json 中添加了"type": "module"配置。
 
 报错
 `Directory import xxxx is not supported resolving ES modules imported from xxxx`

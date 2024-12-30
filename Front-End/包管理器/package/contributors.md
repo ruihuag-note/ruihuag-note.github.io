@@ -4,26 +4,24 @@
 
 ```json
 {
+  "contributors": [
+    "ruihuag0 <ruihuag@qq.com> (https://guanruihua.github.io)",
+    "ruihuag1 <ruihuag@qq.com> (https://guanruihua.github.io)"
+  ],
 
-"contributors": [
-  "ruihuag0 <ruihuag@qq.com> (https://guanruihua.github.io)",
-  "ruihuag1 <ruihuag@qq.com> (https://guanruihua.github.io)"
- ],
+  // or
 
-// or
-
-"contributors": [
-  {
-   "name" : "ruihuag0",
-   "email" : "ruihuag@qq.com",
-   "url" : "https://guanruihua.github.io"
- },
-  {
-   "name" : "ruihuag1",
-   "email" : "ruihuag@qq.com",
-   "url" : "https://guanruihua.github.io"
- }
- ]
-
+  "contributors": [
+    {
+      "name": "ruihuag0",
+      "email": "ruihuag@qq.com",
+      "url": "https://guanruihua.github.io"
+    },
+    {
+      "name": "ruihuag1",
+      "email": "ruihuag@qq.com",
+      "url": "https://guanruihua.github.io"
+    }
+  ]
 }
 ```

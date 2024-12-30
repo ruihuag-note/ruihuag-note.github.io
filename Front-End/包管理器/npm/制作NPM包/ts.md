@@ -36,13 +36,11 @@
 > - 安装`Typescript`
 >
 >   - 方法一 : `npm i typescript -D`
->
 >   - 方法二 : `yarn add typescript -D`
 >
 > - 配置`tsconfig.json`
 >
 >   - 方法一 : 直接自己创建改文件
->
 >   - 方法二 :
 >     - 全局安装`typescript`包: `npm i typescript -g`
 >     - 命令行创建`tsc --init`
@@ -110,7 +108,6 @@ export function add(a:number, b:number) : number {
 > 安装测试框架和断言库
 >
 > - `npm i mocha -D`
->
 > - `npm i chai -D`
 >
 > 创建测试文件目录和文件
@@ -119,16 +116,16 @@ export function add(a:number, b:number) : number {
 > - `touch test/test.js`
 
 ```js
-'use strict';
-const expect = require('chai').expect;
-const add = require('../dist/index').add;
+'use strict'
+const expect = require('chai').expect
+const add = require('../dist/index').add
 
 describe('ts-hi function test', () => {
   it('should return 2', () => {
-    const result = add(1, 1);
-    expect(result).to.equal(2);
-  });
-});
+    const result = add(1, 1)
+    expect(result).to.equal(2)
+  })
+})
 ```
 
 ### 添加测试脚本
@@ -146,7 +143,7 @@ describe('ts-hi function test', () => {
 
 ```shell
 touch .gitignore // 创建 .gitignore 文件，并添加 node_modules/ 避免将node_modules 添加到版本控制中
-git add . 
+git add .
 git commit -m “Initial release”
 git tag v0.1.0  # 修改一下 package.json中的版本号为 0.1.0
 git push origin master --tags

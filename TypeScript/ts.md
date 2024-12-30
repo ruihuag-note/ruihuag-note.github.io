@@ -16,7 +16,7 @@
 ### 2.编译 TypeScript 文件
 
 $ tsc helloworld.ts
- helloworld.ts => helloworld.js
+helloworld.ts => helloworld.js
 
 TypeScript 在线平台 Playground：www.typescriptlang.org/play/
 
@@ -57,7 +57,7 @@ enum Direction {
   WEST,
 }
 
-let dir: Direction = Direction.NORTH;
+let dir: Direction = Direction.NORTH
 ```
 
 > 默认情况下，NORTH 的初始值为 0，其余的成员会从 1 开始自动增长。
@@ -260,74 +260,74 @@ A type guard is some expression that performs a runtime check that guarantees th
 类型保护是可执行运行时检查的一种表达式，用于确保该类型在一定的范围内。换句话说，类型保护可以保证一个字符串是一个字符串，尽管它的值也可以是一个数值。类型保护与特性检测并不是完全不同，其主要思想是尝试检测属性、方法或原型，以确定如何处理值。目前主要有四种的方式来实现类型保护：
 4.1 in 关键字
 interface Admin {
-  name: string;
-  privileges: string[];
+name: string;
+privileges: string[];
 }
 
 interface Employee {
-  name: string;
-  startDate: Date;
+name: string;
+startDate: Date;
 }
 
 type UnknownEmployee = Employee | Admin;
 
 function printEmployeeInformation(emp: UnknownEmployee) {
-  console.log("Name: " + emp.name);
-  if ("privileges" in emp) {
-    console.log("Privileges: " + emp.privileges);
-  }
-  if ("startDate" in emp) {
-    console.log("Start Date: " + emp.startDate);
-  }
+console.log("Name: " + emp.name);
+if ("privileges" in emp) {
+console.log("Privileges: " + emp.privileges);
+}
+if ("startDate" in emp) {
+console.log("Start Date: " + emp.startDate);
+}
 }
 4.2 typeof 关键字
 function padLeft(value: string, padding: string | number) {
-  if (typeof padding === "number") {
-      return Array(padding + 1).join(" ") + value;
-  }
-  if (typeof padding === "string") {
-      return padding + value;
-  }
-  throw new Error(`Expected string or number, got '${padding}'.`);
+if (typeof padding === "number") {
+return Array(padding + 1).join(" ") + value;
+}
+if (typeof padding === "string") {
+return padding + value;
+}
+throw new Error(`Expected string or number, got '${padding}'.`);
 }
 typeof 类型保护只支持两种形式：typeof v === "typename" 和 typeof v !== typename，"typename" 必须是 "number"， "string"， "boolean" 或 "symbol"。 但是 TypeScript 并不会阻止你与其它字符串比较，语言不会把那些表达式识别为类型保护。
 4.3 instanceof 关键字
 interface Padder {
-  getPaddingString(): string;
+getPaddingString(): string;
 }
 
 class SpaceRepeatingPadder implements Padder {
-  constructor(private numSpaces: number) {}
-  getPaddingString() {
-    return Array(this.numSpaces + 1).join(" ");
-  }
+constructor(private numSpaces: number) {}
+getPaddingString() {
+return Array(this.numSpaces + 1).join(" ");
+}
 }
 
 class StringPadder implements Padder {
-  constructor(private value: string) {}
-  getPaddingString() {
-    return this.value;
-  }
+constructor(private value: string) {}
+getPaddingString() {
+return this.value;
+}
 }
 
 let padder: Padder = new SpaceRepeatingPadder(6);
 
 if (padder instanceof SpaceRepeatingPadder) {
-  // padder的类型收窄为 'SpaceRepeatingPadder'
+// padder的类型收窄为 'SpaceRepeatingPadder'
 }
 4.4 自定义类型保护的类型谓词
 function isNumber(x: any): x is number {
-  return typeof x === "number";
+return typeof x === "number";
 }
 
 function isString(x: any): x is string {
-  return typeof x === "string";
+return typeof x === "string";
 }
 五、联合类型和类型别名
 5.1 联合类型
 联合类型通常与 null 或 undefined 一起使用：
 const sayHello = (name: string | undefined) => {
-  /*...*/
+/_..._/
 };
 例如，这里 name 的类型是 string | undefined 意味着可以将 string 或 undefined 的值传递给sayHello 函数。
 sayHello("Ruihuag");
@@ -335,38 +335,35 @@ sayHello(undefined);
 通过这个示例，你可以凭直觉知道类型 A 和类型 B 联合后的类型是同时接受 A 和 B 值的类型。
 5.2 可辨识联合
 TypeScript 可辨识联合（Discriminated Unions）类型，也称为代数数据类型或标签联合类型。它包含 3 个要点：可辨识、联合类型和类型守卫。
-这种类型的本质是结合联合类型和字面量类型的一种类型保护方法。如果一个类型是多个类型的联合类型，且多个类型含有一个公共属性，那么就可以利用这个公共属性，来创建不同的类型保护区块。
-1.可辨识
+这种类型的本质是结合联合类型和字面量类型的一种类型保护方法。如果一个类型是多个类型的联合类型，且多个类型含有一个公共属性，那么就可以利用这个公共属性，来创建不同的类型保护区块。1.可辨识
 可辨识要求联合类型中的每个元素都含有一个单例类型属性，比如：
 enum CarTransmission {
-  Automatic = 200,
-  Manual = 300
+Automatic = 200,
+Manual = 300
 }
 
 interface Motorcycle {
-  vType: "motorcycle"; // discriminant
-  make: number; // year
+vType: "motorcycle"; // discriminant
+make: number; // year
 }
 
 interface Car {
-  vType: "car"; // discriminant
-  transmission: CarTransmission
+vType: "car"; // discriminant
+transmission: CarTransmission
 }
 
 interface Truck {
-  vType: "truck"; // discriminant
-  capacity: number; // in tons
+vType: "truck"; // discriminant
+capacity: number; // in tons
 }
-在上述代码中，我们分别定义了 Motorcycle、 Car 和 Truck 三个接口，在这些接口中都包含一个 vType 属性，该属性被称为可辨识的属性，而其它的属性只跟特性的接口相关。
-2.联合类型
+在上述代码中，我们分别定义了 Motorcycle、 Car 和 Truck 三个接口，在这些接口中都包含一个 vType 属性，该属性被称为可辨识的属性，而其它的属性只跟特性的接口相关。2.联合类型
 基于前面定义了三个接口，我们可以创建一个 Vehicle 联合类型：
 type Vehicle = Motorcycle | Car | Truck;
-现在我们就可以开始使用 Vehicle 联合类型，对于 Vehicle 类型的变量，它可以表示不同类型的车辆。
-3.类型守卫
+现在我们就可以开始使用 Vehicle 联合类型，对于 Vehicle 类型的变量，它可以表示不同类型的车辆。3.类型守卫
 下面我们来定义一个 evaluatePrice 方法，该方法用于根据车辆的类型、容量和评估因子来计算价格，具体实现如下：
 const EVALUATION_FACTOR = Math.PI;
 function evaluatePrice(vehicle: Vehicle) {
-  return vehicle.capacity * EVALUATION_FACTOR;
+return vehicle.capacity \* EVALUATION_FACTOR;
 }
 
 const myTruck: Truck = { vType: "truck", capacity: 9.5 };
@@ -376,14 +373,14 @@ Property 'capacity' does not exist on type 'Vehicle'.
 Property 'capacity' does not exist on type 'Motorcycle'.
 原因是在 Motorcycle 接口中，并不存在 capacity 属性，而对于 Car 接口来说，它也不存在 capacity 属性。那么，现在我们应该如何解决以上问题呢？这时，我们可以使用类型守卫。下面我们来重构一下前面定义的 evaluatePrice 方法，重构后的代码如下：
 function evaluatePrice(vehicle: Vehicle) {
-  switch(vehicle.vType) {
-    case "car":
-      return vehicle.transmission *EVALUATION_FACTOR;
-    case "truck":
-return vehicle.capacity* EVALUATION_FACTOR;
-    case "motorcycle":
-      return vehicle.make * EVALUATION_FACTOR;
-  }
+switch(vehicle.vType) {
+case "car":
+return vehicle.transmission _EVALUATION_FACTOR;
+case "truck":
+return vehicle.capacity_ EVALUATION_FACTOR;
+case "motorcycle":
+return vehicle.make \* EVALUATION_FACTOR;
+}
 }
 在以上代码中，我们使用 switch 和 case 运算符来实现类型守卫，从而确保在 evaluatePrice 方法中，我们可以安全地访问 vehicle 对象中的所包含的属性，来正确的计算该车辆类型所对应的价格。
 5.3 类型别名
@@ -391,29 +388,29 @@ return vehicle.capacity* EVALUATION_FACTOR;
 type Message = string | string[];
 
 let greet = (message: Message) => {
-  // ...
+// ...
 };
 六、交叉类型
 TypeScript 交叉类型是将多个类型合并为一个类型。 这让我们可以把现有的多种类型叠加到一起成为一种类型，它包含了所需的所有类型的特性。
 interface IPerson {
-  id: string;
-  age: number;
+id: string;
+age: number;
 }
 
 interface IWorker {
-  companyId: string;
+companyId: string;
 }
 
 type IStaff = IPerson & IWorker;
 
 const staff: IStaff = {
-  id: 'E1006',
-  age: 33,
-  companyId: 'EFT'
+id: 'E1006',
+age: 33,
+companyId: 'EFT'
 };
 
 console.dir(staff)
-在上面示例中，我们首先为 IPerson 和 IWorker 类型定义了不同的成员，然后通过 & 运算符定义了 IStaff  交叉类型，所以该类型同时拥有 IPerson 和 IWorker 这两种类型的成员。
+在上面示例中，我们首先为 IPerson 和 IWorker 类型定义了不同的成员，然后通过 & 运算符定义了 IStaff 交叉类型，所以该类型同时拥有 IPerson 和 IWorker 这两种类型的成员。
 七、TypeScript 函数
 7.1 TypeScript 函数与 JavaScript 函数的区别
 
@@ -441,68 +438,66 @@ JavaScript
 函数重载
 无函数重载
 
-7.2 箭头函数
-1.常见语法
+7.2 箭头函数1.常见语法
 myBooks.forEach(() => console.log('reading'));
 
 myBooks.forEach(title => console.log(title));
 
 myBooks.forEach((title, idx, arr) =>
-  console.log(idx + '-' + title);
+console.log(idx + '-' + title);
 );
 
 myBooks.forEach((title, idx, arr) => {
-  console.log(idx + '-' + title);
-});
-2.使用示例
+console.log(idx + '-' + title);
+}); 2.使用示例
 // 未使用箭头函数
 function Book() {
-  let self = this;
-  self.publishDate = 2016;
-  setInterval(function () {
-    console.log(self.publishDate);
-  }, 1000);
+let self = this;
+self.publishDate = 2016;
+setInterval(function () {
+console.log(self.publishDate);
+}, 1000);
 }
 
 // 使用箭头函数
 function Book() {
-  this.publishDate = 2016;
-  setInterval(() => {
-    console.log(this.publishDate);
-  }, 1000);
+this.publishDate = 2016;
+setInterval(() => {
+console.log(this.publishDate);
+}, 1000);
 }
 7.3 参数类型和返回类型
 function createUserId(name: string, id: number): string {
-  return name + id;
+return name + id;
 }
 7.4 函数类型
 let IdGenerator: (chars: string, nums: number) => string;
 
 function createUserId(name: string, id: number): string {
-  return name + id;
+return name + id;
 }
 
 IdGenerator = createUserId;
 7.5 可选参数及默认参数
 // 可选参数
 function createUserId(name: string, id: number, age?: number): string {
-  return name + id;
+return name + id;
 }
 
 // 默认参数
 function createUserId(
-  name: string = "Ruihuag",
-  id: number,
-  age?: number
+name: string = "Ruihuag",
+id: number,
+age?: number
 ): string {
-  return name + id;
+return name + id;
 }
 在声明函数时，可以通过 ? 号来定义可选参数，比如 age?: number 这种形式。在实际使用时，需要注意的是可选参数要放在普通参数的后面，不然会导致编译错误。
 7.6 剩余参数
 function push(array, ...items) {
-  items.forEach(function (item) {
-    array.push(item);
-  });
+items.forEach(function (item) {
+array.push(item);
+});
 }
 
 let a = [];
@@ -514,24 +509,24 @@ function add(a: string, b: string): string;
 function add(a: string, b: number): string;
 function add(a: number, b: string): string;
 function add(a: Combinable, b: Combinable) {
-  if (typeof a === "string" || typeof b === "string") {
-    return a.toString() + b.toString();
-  }
-  return a + b;
+if (typeof a === "string" || typeof b === "string") {
+return a.toString() + b.toString();
+}
+return a + b;
 }
 在以上代码中，我们为 add 函数提供了多个函数类型定义，从而实现函数的重载。之后，可恶的错误消息又消失了，因为这时 result 变量的类型是 string 类型。在 TypeScript 中除了可以重载普通函数之外，我们还可以重载类中的成员方法。
 方法重载是指在同一个类中方法同名，参数不同（参数类型不同、参数个数不同或参数个数相同时参数的先后顺序不同），调用时根据实参的形式，选择与它匹配的方法执行操作的一种技术。所以类中成员方法满足重载的条件是：在同一个类中，方法名相同且参数列表不同。下面我们来举一个成员方法重载的例子：
 class Calculator {
-  add(a: number, b: number): number;
-  add(a: string, b: string): string;
-  add(a: string, b: number): string;
-  add(a: number, b: string): string;
-  add(a: Combinable, b: Combinable) {
-    if (typeof a === "string" || typeof b === "string") {
-      return a.toString() + b.toString();
-    }
-    return a + b;
-  }
+add(a: number, b: number): number;
+add(a: string, b: string): string;
+add(a: string, b: number): string;
+add(a: number, b: string): string;
+add(a: Combinable, b: Combinable) {
+if (typeof a === "string" || typeof b === "string") {
+return a.toString() + b.toString();
+}
+return a + b;
+}
 }
 
 const calculator = new Calculator();
@@ -548,21 +543,21 @@ let five_array = [...two_array, 2, 3, 4];
 8.3 数组遍历
 let colors: string[] = ["red", "green", "blue"];
 for (let i of colors) {
-  console.log(i);
+console.log(i);
 }
 九、TypeScript 对象
 9.1 对象解构
 let person = {
-  name: "Ruihuag",
-  gender: "Male",
+name: "Ruihuag",
+gender: "Male",
 };
 
 let { name, gender } = person;
 9.2 对象展开运算符
 let person = {
-  name: "Ruihuag",
-  gender: "Male",
-  address: "Xiamen",
+name: "Ruihuag",
+gender: "Male",
+address: "Xiamen",
 };
 
 // 组装对象
@@ -575,18 +570,18 @@ let { name, ...rest } = person;
 TypeScript 中的接口是一个非常灵活的概念，除了可用于对类的一部分行为进行抽象以外，也常用于对「对象的形状（Shape）」进行描述。
 10.1 对象的形状
 interface Person {
-  name: string;
-  age: number;
+name: string;
+age: number;
 }
 
 let Ruihuag: Person = {
-  name: "Ruihuag",
-  age: 33,
+name: "Ruihuag",
+age: 33,
 };
 10.2 可选 | 只读属性
 interface Person {
-  readonly name: string;
-  age?: number;
+readonly name: string;
+age?: number;
 }
 只读属性用于限制只能在对象刚刚创建的时候修改其值。此外 TypeScript 还提供了 ReadonlyArray<T> 类型，它与 Array<T> 相似，只是把所有可变方法去掉了，因此可以确保数组创建后再也不能被修改。
 let a: number[] = [1, 2, 3, 4];
@@ -600,46 +595,46 @@ a = ro; // error!
 在面向对象语言中，类是一种面向对象计算机编程语言的构造，是创建对象的蓝图，描述了所创建的对象共同的属性和方法。
 在 TypeScript 中，我们可以通过 Class 关键字来定义一个类：
 class Greeter {
-  // 静态属性
-  static cname: string = "Greeter";
-  // 成员属性
-  greeting: string;
+// 静态属性
+static cname: string = "Greeter";
+// 成员属性
+greeting: string;
 
-  // 构造函数 - 执行初始化操作
-  constructor(message: string) {
-    this.greeting = message;
-  }
+// 构造函数 - 执行初始化操作
+constructor(message: string) {
+this.greeting = message;
+}
 
-  // 静态方法
-  static getClassName() {
-    return "Class name is Greeter";
-  }
+// 静态方法
+static getClassName() {
+return "Class name is Greeter";
+}
 
-  // 成员方法
-  greet() {
-    return "Hello, " + this.greeting;
-  }
+// 成员方法
+greet() {
+return "Hello, " + this.greeting;
+}
 }
 
 let greeter = new Greeter("world");
 那么成员属性与静态属性，成员方法与静态方法有什么区别呢？这里无需过多解释，我们直接看一下以下编译生成的 ES5 代码：
 "use strict";
-var Greeter = /** @class */ (function () {
-    // 构造函数 - 执行初始化操作
-    function Greeter(message) {
-        this.greeting = message;
-    }
-    // 静态方法
-    Greeter.getClassName = function () {
-        return "Class name is Greeter";
-    };
-    // 成员方法
-    Greeter.prototype.greet = function () {
-        return "Hello, " + this.greeting;
-    };
-    // 静态属性
-    Greeter.cname = "Greeter";
-    return Greeter;
+var Greeter = /\*_ @class _/ (function () {
+// 构造函数 - 执行初始化操作
+function Greeter(message) {
+this.greeting = message;
+}
+// 静态方法
+Greeter.getClassName = function () {
+return "Class name is Greeter";
+};
+// 成员方法
+Greeter.prototype.greet = function () {
+return "Hello, " + this.greeting;
+};
+// 静态属性
+Greeter.cname = "Greeter";
+return Greeter;
 }());
 var greeter = new Greeter("world");
 11.2 访问器
@@ -647,25 +642,25 @@ var greeter = new Greeter("world");
 let passcode = "Hello TypeScript";
 
 class Employee {
-  private _fullName: string;
+private \_fullName: string;
 
-  get fullName(): string {
-    return this._fullName;
-  }
+get fullName(): string {
+return this.\_fullName;
+}
 
-  set fullName(newName: string) {
-    if (passcode && passcode == "Hello TypeScript") {
-      this._fullName = newName;
-    } else {
-      console.log("Error: Unauthorized update of employee!");
-    }
-  }
+set fullName(newName: string) {
+if (passcode && passcode == "Hello TypeScript") {
+this.\_fullName = newName;
+} else {
+console.log("Error: Unauthorized update of employee!");
+}
+}
 }
 
 let employee = new Employee();
 employee.fullName = "Ruihuag";
 if (employee.fullName) {
-  console.log(employee.fullName);
+console.log(employee.fullName);
 }
 11.3 类的继承
 继承 (Inheritance) 是一种联结类与类的层次模型。指的是一个类（称为子类、子接口）继承另外的一个类（称为父类、父接口）的功能，并可以增加它自己的新功能的能力，继承是类与类或者接口与接口之间最常见的关系。
@@ -673,26 +668,26 @@ if (employee.fullName) {
 
 在 TypeScript 中，我们可以通过 extends 关键字来实现继承：
 class Animal {
-  name: string;
+name: string;
 
-  constructor(theName: string) {
-    this.name = theName;
-  }
+constructor(theName: string) {
+this.name = theName;
+}
 
-  move(distanceInMeters: number = 0) {
-    console.log(`${this.name} moved ${distanceInMeters}m.`);
-  }
+move(distanceInMeters: number = 0) {
+console.log(`${this.name} moved ${distanceInMeters}m.`);
+}
 }
 
 class Snake extends Animal {
-  constructor(name: string) {
-    super(name);
-  }
+constructor(name: string) {
+super(name);
+}
 
-  move(distanceInMeters = 5) {
-    console.log("Slithering...");
-    super.move(distanceInMeters);
-  }
+move(distanceInMeters = 5) {
+console.log("Slithering...");
+super.move(distanceInMeters);
+}
 }
 
 let sam = new Snake("Sammy the Python");
@@ -700,21 +695,21 @@ sam.move();
 11.4 ECMAScript 私有字段
 在 TypeScript 3.8 版本就开始支持ECMAScript 私有字段，使用方式如下：
 class Person {
-  #name: string;
+#name: string;
 
-  constructor(name: string) {
-    this.#name = name;
-  }
+constructor(name: string) {
+this.#name = name;
+}
 
-  greet() {
-    console.log(`Hello, my name is ${this.#name}!`);
-  }
+greet() {
+console.log(`Hello, my name is ${this.#name}!`);
+}
 }
 
 let Ruihuag = new Person("Ruihuag");
 
 Ruihuag.#name;
-//     ~~~~~
+// ~~~~~
 // Property '#name' is not accessible outside class 'Person'
 // because it has a private identifier.
 与常规属性（甚至使用 private 修饰符声明的属性）不同，私有字段要牢记以下规则：
@@ -731,18 +726,18 @@ Ruihuag.#name;
 泛型（Generics）是允许同一个函数接受不同类型参数的一种模板。相比于使用 any 类型，使用泛型来创建可复用的组件要更好，因为泛型会保留参数类型。
 12.1 泛型接口
 interface GenericIdentityFn<T> {
-  (arg: T): T;
+(arg: T): T;
 }
 12.2 泛型类
 class GenericNumber<T> {
-  zeroValue: T;
-  add: (x: T, y: T) => T;
+zeroValue: T;
+add: (x: T, y: T) => T;
 }
 
 let myGenericNumber = new GenericNumber<number>();
 myGenericNumber.zeroValue = 0;
 myGenericNumber.add = function (x, y) {
-  return x + y;
+return x + y;
 };
 12.3 泛型变量
 对刚接触 TypeScript 泛型的小伙伴来说，看到 T 和 E，还有 K 和 V 这些泛型变量时，估计会一脸懵逼。其实这些大写字母并没有什么本质的区别，只不过是一个约定好的规范而已。也就是说使用大写字母 A-Z 定义的类型变量都属于泛型，把 T 换成 A，也是一样的。下面我们介绍一下一些常见泛型变量代表的意思：
@@ -757,88 +752,88 @@ E（Element）：表示元素类型
 1.typeof
 在 TypeScript 中，typeof 操作符可以用来获取一个变量声明或对象的类型。
 interface Person {
-  name: string;
-  age: number;
+name: string;
+age: number;
 }
 
 const sem: Person = { name: 'Ruihuag', age: 30 };
 type Sem= typeof sem; // -> Person
 
 function toArray(x: number): Array<number> {
-  return [x];
+return [x];
 }
 
 type Func = typeof toArray; // -> (x: number) => number[]
 2.keyof
 keyof 操作符可以用来一个对象中的所有 key 值：
 interface Person {
-    name: string;
-    age: number;
+name: string;
+age: number;
 }
 
 type K1 = keyof Person; // "name" | "age"
 type K2 = keyof Person[]; // "length" | "toString" | "pop" | "push" | "concat" | "join"
-type K3 = keyof { [x: string]: Person };  // string | number
+type K3 = keyof { [x: string]: Person }; // string | number
 3.in
 in 用来遍历枚举类型：
 type Keys = "a" | "b" | "c"
 
-type Obj =  {
+type Obj = {
 } // -> { a: any, b: any, c: any }
 4.infer
 在条件类型语句中，可以用 infer 声明一个类型变量并且对它进行使用。
 type ReturnType<T> = T extends (
-  ...args: any[]
+...args: any[]
 ) => infer R ? R : any;
 以上代码中 infer R 就是声明一个变量来承载传入函数签名的返回值类型，简单说就是用它取到函数返回值的类型方便之后使用。
 5.extends
 有时候我们定义的泛型不想过于灵活或者说想继承某些类等，可以通过 extends 关键字添加泛型约束。
 interface ILengthwise {
-  length: number;
+length: number;
 }
 
 function loggingIdentity<T extends ILengthwise>(arg: T): T {
-  console.log(arg.length);
-  return arg;
+console.log(arg.length);
+return arg;
 }
 现在这个泛型函数被定义了约束，因此它不再是适用于任意类型：
-loggingIdentity(3);  // Error, number doesn't have a .length property
+loggingIdentity(3); // Error, number doesn't have a .length property
 这时我们需要传入符合约束类型的值，必须包含必须的属性：
 loggingIdentity({length: 10, value: 3});
 6.Partial
 Partial<T> 的作用就是将某个类型里的属性全部变为可选项 ?。
 定义：
-/**
+/\*\*
 
 - node_modules/typescript/lib/lib.es5.d.ts
 - Make all properties in T optional
- */
-    type Partial<T> = {
-    [P in keyof T]?: T[P];
-    };
-    在以上代码中，首先通过 keyof T 拿到 T 的所有属性名，然后使用 in 进行遍历，将值赋给 P，最后通过 T[P] 取得相应的属性值。中间的 ? 号，用于将所有属性变为可选。
-    示例：
-    interface Todo {
-    title: string;
-    description: string;
-    }
+  \*/
+  type Partial<T> = {
+  [P in keyof T]?: T[P];
+  };
+  在以上代码中，首先通过 keyof T 拿到 T 的所有属性名，然后使用 in 进行遍历，将值赋给 P，最后通过 T[P] 取得相应的属性值。中间的 ? 号，用于将所有属性变为可选。
+  示例：
+  interface Todo {
+  title: string;
+  description: string;
+  }
 
 function updateTodo(todo: Todo, fieldsToUpdate: Partial<Todo>) {
-  return { ...todo, ...fieldsToUpdate };
+return { ...todo, ...fieldsToUpdate };
 }
 
 const todo1 = {
-  title: "organize desk",
-  description: "clear clutter",
+title: "organize desk",
+description: "clear clutter",
 };
 
 const todo2 = updateTodo(todo1, {
-  description: "throw out trash",
+description: "throw out trash",
 });
 在上面的 updateTodo 方法中，我们利用 Partial<T> 工具类型，定义 fieldsToUpdate 的类型为 Partial<Todo>，即：
 {
-   title?: string | undefined;
-   description?: string | undefined;
+title?: string | undefined;
+description?: string | undefined;
 }
 十三、TypeScript 装饰器
 13.1 装饰器是什么
@@ -858,7 +853,7 @@ const todo2 = updateTodo(todo1, {
 13.3 类装饰器
 类装饰器声明：
 declare type ClassDecorator = <TFunction extends Function>(
-  target: TFunction
+target: TFunction
 ) => TFunction | void;
 类装饰器顾名思义，就是用来装饰类的。它接收一个参数：
 
@@ -866,16 +861,16 @@ target: TFunction - 被装饰的类
 
 看完第一眼后，是不是感觉都不好了。没事，我们马上来个例子：
 function Greeter(target: Function): void {
-  target.prototype.greet = function (): void {
-    console.log("Hello Ruihuag!");
-  };
+target.prototype.greet = function (): void {
+console.log("Hello Ruihuag!");
+};
 }
 
 @Greeter
 class Greeting {
-  constructor() {
-    // 内部实现
-  }
+constructor() {
+// 内部实现
+}
 }
 
 let myGreeting = new Greeting();
@@ -887,18 +882,18 @@ myGreeting.greet(); // console output: 'Hello Ruihuag!';
 有的读者可能想问，例子中总是输出 Hello Ruihuag! ，能自定义输出的问候语么 ？这个问题很好，答案是可以的。
 具体实现如下：
 function Greeter(greeting: string) {
-  return function (target: Function) {
-    target.prototype.greet = function (): void {
-      console.log(greeting);
-    };
-  };
+return function (target: Function) {
+target.prototype.greet = function (): void {
+console.log(greeting);
+};
+};
 }
 
 @Greeter("Hello TS!")
 class Greeting {
-  constructor() {
-    // 内部实现
-  }
+constructor() {
+// 内部实现
+}
 }
 
 let myGreeting = new Greeting();
@@ -906,7 +901,7 @@ myGreeting.greet(); // console output: 'Hello TS!';
 13.4 属性装饰器
 属性装饰器声明：
 declare type PropertyDecorator = (target:Object,
-  propertyKey: string | symbol ) => void;
+propertyKey: string | symbol ) => void;
 属性装饰器顾名思义，用来装饰类的属性。它接收两个参数：
 
 target: Object - 被装饰的类
@@ -914,45 +909,45 @@ propertyKey: string | symbol - 被装饰类的属性名
 
 趁热打铁，马上来个例子热热身：
 function logProperty(target: any, key: string) {
-  delete target[key];
+delete target[key];
 
-  const backingField = "_" + key;
+const backingField = "\_" + key;
 
-  Object.defineProperty(target, backingField, {
-    writable: true,
-    enumerable: true,
-    configurable: true
-  });
+Object.defineProperty(target, backingField, {
+writable: true,
+enumerable: true,
+configurable: true
+});
 
-  // property getter
-  const getter = function (this: any) {
-    const currVal = this[backingField];
-    console.log(`Get: ${key} => ${currVal}`);
-    return currVal;
-  };
+// property getter
+const getter = function (this: any) {
+const currVal = this[backingField];
+console.log(`Get: ${key} => ${currVal}`);
+return currVal;
+};
 
-  // property setter
-  const setter = function (this: any, newVal: any) {
-    console.log(`Set: ${key} => ${newVal}`);
-    this[backingField] = newVal;
-  };
+// property setter
+const setter = function (this: any, newVal: any) {
+console.log(`Set: ${key} => ${newVal}`);
+this[backingField] = newVal;
+};
 
-  // Create new property with getter and setter
-  Object.defineProperty(target, key, {
-    get: getter,
-    set: setter,
-    enumerable: true,
-    configurable: true
-  });
+// Create new property with getter and setter
+Object.defineProperty(target, key, {
+get: getter,
+set: setter,
+enumerable: true,
+configurable: true
+});
 }
 
 class Person {
-  @logProperty
-  public name: string;
+@logProperty
+public name: string;
 
-  constructor(name : string) {
-    this.name = name;
-  }
+constructor(name : string) {
+this.name = name;
+}
 }
 
 const p1 = new Person("Ruihuag");
@@ -963,7 +958,7 @@ Set: name => kakuqo
 13.5 方法装饰器
 方法装饰器声明：
 declare type MethodDecorator = <T>(target:Object, propertyKey: string | symbol,
-  descriptor: TypePropertyDescript<T>) => TypedPropertyDescriptor<T> | void;
+descriptor: TypePropertyDescript<T>) => TypedPropertyDescriptor<T> | void;
 方法装饰器顾名思义，用来装饰类的方法。它接收三个参数：
 
 target: Object - 被装饰的类
@@ -972,28 +967,28 @@ descriptor: TypePropertyDescript - 属性描述符
 
 废话不多说，直接上例子：
 function LogOutput(tarage: Function, key: string, descriptor: any) {
-  let originalMethod = descriptor.value;
-  let newMethod = function(...args: any[]): any {
-    let result: any = originalMethod.apply(this, args);
-    if(!this.loggedOutput) {
-      this.loggedOutput = new Array<any>();
-    }
-    this.loggedOutput.push({
-      method: key,
-      parameters: args,
-      output: result,
-      timestamp: new Date()
-    });
-    return result;
-  };
-  descriptor.value = newMethod;
+let originalMethod = descriptor.value;
+let newMethod = function(...args: any[]): any {
+let result: any = originalMethod.apply(this, args);
+if(!this.loggedOutput) {
+this.loggedOutput = new Array<any>();
+}
+this.loggedOutput.push({
+method: key,
+parameters: args,
+output: result,
+timestamp: new Date()
+});
+return result;
+};
+descriptor.value = newMethod;
 }
 
 class Calculator {
-  @LogOutput
-  double (num: number): number {
-    return num * 2;
-  }
+@LogOutput
+double (num: number): number {
+return num \* 2;
+}
 }
 
 let calc = new Calculator();
@@ -1004,7 +999,7 @@ console.log(calc.loggedOutput);
 13.6 参数装饰器
 参数装饰器声明：
 declare type ParameterDecorator = (target: Object, propertyKey: string | symbol,
-  parameterIndex: number ) => void
+parameterIndex: number ) => void
 参数装饰器顾名思义，是用来装饰函数参数，它接收三个参数：
 
 target: Object - 被装饰的类
@@ -1012,16 +1007,16 @@ propertyKey: string | symbol - 方法名
 parameterIndex: number - 方法中参数的索引值
 
 function Log(target: Function, key: string, parameterIndex: number) {
-  let functionLogged = key || target.prototype.constructor.name;
-  console.log(`The parameter in position ${parameterIndex} at ${functionLogged} has
+let functionLogged = key || target.prototype.constructor.name;
+console.log(`The parameter in position ${parameterIndex} at ${functionLogged} has
  been decorated`);
 }
 
 class Greeter {
-  greeting: string;
-  constructor(@Log phrase: string) {
- this.greeting = phrase;
-  }
+greeting: string;
+constructor(@Log phrase: string) {
+this.greeting = phrase;
+}
 }
 
 // console output: The parameter in position 0
@@ -1045,7 +1040,7 @@ compilerOptions - 设置与编译流程相关的选项。
 compilerOptions 支持很多选项，常见的有 baseUrl、 target、baseUrl、 moduleResolution 和 lib 等。
 compilerOptions 每个选项的详细说明如下：
 {
-  "compilerOptions": {
+"compilerOptions": {
 
     /* 基本选项 */
     "target": "es5",                       // 指定 ECMAScript 目标版本: 'ES3' (default), 'ES5', 'ES6'/'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'
@@ -1063,20 +1058,20 @@ compilerOptions 每个选项的详细说明如下：
     "noEmit": true,                        // 不生成输出文件
     "importHelpers": true,                 // 从 tslib 导入辅助工具函数
     "isolatedModules": true,               // 将每个文件做为单独的模块 （与 'ts.transpileModule' 类似）.
-    
+
     /* 严格的类型检查选项 */
     "strict": true,                        // 启用所有严格类型检查选项
     "noImplicitAny": true,                 // 在表达式和声明上有隐含的 any类型时报错
     "strictNullChecks": true,              // 启用严格的 null 检查
     "noImplicitThis": true,                // 当 this 表达式值为 any 类型的时候，生成一个错误
     "alwaysStrict": true,                  // 以严格模式检查每个模块，并在每个文件里加入 'use strict'
-    
+
     /* 额外的检查 */
     "noUnusedLocals": true,                // 有未使用的变量时，抛出错误
     "noUnusedParameters": true,            // 有未使用的参数时，抛出错误
     "noImplicitReturns": true,             // 并不是所有函数里的代码都有返回值时，抛出错误
     "noFallthroughCasesInSwitch": true,    // 报告 switch 语句的 fallthrough 错误。（即，不允许 switch 的 case 语句贯穿）
-    
+
     /* 模块解析选项 */
     "moduleResolution": "node",            // 选择模块解析策略： 'node' (Node.js) or 'classic' (TypeScript pre-1.6)
     "baseUrl": "./",                       // 用于解析非相对模块名称的基目录
@@ -1085,17 +1080,18 @@ compilerOptions 每个选项的详细说明如下：
     "typeRoots": [],                       // 包含类型声明的文件列表
     "types": [],                           // 需要包含的类型声明文件名列表
     "allowSyntheticDefaultImports": true,  // 允许从没有设置默认导出的模块中默认导入。
-    
+
     /* Source Map Options */
     "sourceRoot": "./",                    // 指定调试器应该找到 TypeScript 文件而不是源文件的位置
     "mapRoot": "./",                       // 指定调试器应该找到映射文件而不是生成文件的位置
     "inlineSourceMap": true,               // 生成单个 soucemaps 文件，而不是将 sourcemaps 生成不同的文件
     "inlineSources": true,                 // 将代码与 sourcemaps 生成到一个文件中，要求同时设置了 --inlineSourceMap 或 --sourceMap 属性
-    
+
     /* 其他选项 */
     "experimentalDecorators": true,        // 启用装饰器
     "emitDecoratorMetadata": true          // 为装饰器提供元数据的支持
-  }
+
+}
 }
 看到这里的读者都是“真爱”，如果你还意犹未尽，那就来看看本人整理的 Github 上 1.5K+ 的开源项目：awesome-typescript。
 
@@ -1106,19 +1102,19 @@ github.com/Ruihuag/a…
 mariusschulz - the-unknown-type-in-typescript
 深入理解 TypeScript - 编译上下文
 
- 文章分类 前端 文章标签  JavaScript TypeScript
-      阿宝哥
-       「全栈修仙之路」公众号
-            发布了 77 篇专栏 ·
+文章分类 前端 文章标签 JavaScript TypeScript
+阿宝哥
+「全栈修仙之路」公众号
+发布了 77 篇专栏 ·
 
           获得点赞 23,507 ·
-         
+
           获得阅读 864,088
-         已关注 
+         已关注
             安装掘金浏览器插件
-           打开新标签页发现好内容，掘金、GitHub、Dribbble、ProductHunt 等站点内容轻松获取。快来安装掘金浏览器插件获取高质量内容吧！        
+           打开新标签页发现好内容，掘金、GitHub、Dribbble、ProductHunt 等站点内容轻松获取。快来安装掘金浏览器插件获取高质量内容吧！
       蓝九九
-      么得感情的切图仔感谢大佬分享19天前  · 删除   回复  
+      么得感情的切图仔感谢大佬分享19天前  · 删除   回复
       阿宝哥
       (作者)「全栈修仙之路」公众号不客气哈，可以阅读新版 1.8W 字： juejin.cn19天
 

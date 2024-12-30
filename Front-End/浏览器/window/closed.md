@@ -1,10 +1,10 @@
 # window.closed
->
+
 > - 只读
 > - 表示所引用的窗口是
->
+
 ```js
-isClosed = windowRef.closed;
+isClosed = windowRef.closed
 ```
 
 `isClosed`:
@@ -21,7 +21,7 @@ isClosed = windowRef.closed;
 ```js
 // Check that an opener exists and is not closed
 if (window.opener && !window.opener.closed) {
-  window.opener.location.href = "http://www.mozilla.org";
+  window.opener.location.href = 'http://www.mozilla.org'
 }
 ```
 
@@ -33,15 +33,15 @@ if (window.opener && !window.opener.closed) {
 > 如果弹出窗口尚未打开，或者用户已关闭它打开一个新窗口
 
 ```js
-var popupWindow = null;
+var popupWindow = null
 
 function refreshPopupWindow() {
   if (popupWindow && !popupWindow.closed) {
     // popupWindow is open, refresh it
-    popupWindow.location.reload(true);
+    popupWindow.location.reload(true)
   } else {
     // Open a new popup window
-    popupWindow = window.open("popup.html","dataWindow");
+    popupWindow = window.open('popup.html', 'dataWindow')
   }
 }
 ```

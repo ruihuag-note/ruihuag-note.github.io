@@ -7,13 +7,13 @@
 - 输出一个堆栈跟踪
 
 ```js
- function foo() {
-   function bar() {
-    console.trace();
-   }
-   bar();
+function foo() {
+  function bar() {
+    console.trace()
   }
-  foo();
+  bar()
+}
+foo()
 ```
 
 ![](./__assets__/console-2022-07-11-16-43-10.png)
@@ -27,7 +27,7 @@
 ## error
 
 - `console.err(“This is error”)`
-![](./__assets__/console-2022-07-15-14-33-40.png)
+  ![](./__assets__/console-2022-07-15-14-33-40.png)
 
 ## warn
 
@@ -38,7 +38,7 @@
 ## Time & timelog & timeEnd
 
 - `console.time()、console.timeLog()、console.timeEnd()`: 用来进行程序计时
-![](./__assets__/console-2022-07-15-14-34-11.png)
+  ![](./__assets__/console-2022-07-15-14-34-11.png)
 
 ## assert
 
@@ -59,15 +59,15 @@
 - 给log用缩进进行分组
 
 ```js
- let i = 9;
-  console.group()
-  while (i--) {
-   console.log(i);
-   if (i % 3 === 0) {
-    console.groupEnd();
+let i = 9
+console.group()
+while (i--) {
+  console.log(i)
+  if (i % 3 === 0) {
+    console.groupEnd()
     console.group()
-   }
   }
+}
 ```
 
 ![](./__assets__/console-2022-07-11-16-47-56.png)
@@ -77,15 +77,15 @@
 - `groupCollapsed` 和 group类似, 默认分组是关闭的
 
 ```js
- let i = 9;
-  console.groupCollapsed('group')
-  while (i--) {
-   console.log({ i });
-   if (i % 3 === 0) {
-    console.groupEnd();
+let i = 9
+console.groupCollapsed('group')
+while (i--) {
+  console.log({ i })
+  if (i % 3 === 0) {
+    console.groupEnd()
     console.groupCollapsed('group')
-   }
   }
+}
 ```
 
 ![](./__assets__/console-2022-07-11-16-52-39.png)
@@ -101,8 +101,8 @@
 ### CSS样式 格式化打印
 
 - 仅浏览器支持
-`console.log('123 %c 456','font-size:36px;color:red;');`
-![](./__assets__/console-2022-07-11-16-41-28.png)
+  `console.log('123 %c 456','font-size:36px;color:red;');`
+  ![](./__assets__/console-2022-07-11-16-41-28.png)
 
 ### 编码指定样式打印
 
@@ -110,7 +110,7 @@
 - 浏览器和终端均支持
 
 - 代码样例
-`console.log('\033[42;30m DONE \033[40;32m Compiled successfully in 19987ms\033[0m')`
+  `console.log('\033[42;30m DONE \033[40;32m Compiled successfully in 19987ms\033[0m')`
 - 输出结果
 
   ![](./__assets__/console-2022-07-11-16-55-55.png)

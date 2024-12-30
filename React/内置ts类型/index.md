@@ -8,43 +8,59 @@
 ## ReactNode | undefined
 
 ```tsx
-type ReactNode = ReactChild | ReactFragment | ReactPortal | boolean | null | undefined;
+type ReactNode =
+  | ReactChild
+  | ReactFragment
+  | ReactPortal
+  | boolean
+  | null
+  | undefined
 ```
 
 > `type ReactFragment = {} | ReactNodeArray;`:就是<>xxx</>或者`<React.Fragament>xxx<React.Fragament/>`
 
 ```tsx
 interface ReactPortal extends ReactElement {
-    key: Key | null;
-    children: ReactNode;
+  key: Key | null
+  children: ReactNode
 }
 ```
 
 > 就是ReactDOM.createPortal(child, container)这个API的返回值
 
 ```ts
-export function createPortal(children: ReactNode, container: Element, key?: null | string): ReactPortal;
-type ReactText = string | number;
-type ReactChild = ReactElement | ReactText;
+export function createPortal(
+  children: ReactNode,
+  container: Element,
+  key?: null | string,
+): ReactPortal
+type ReactText = string | number
+type ReactChild = ReactElement | ReactText
 ```
 
 > ReactNode是一个联合类型，囊括了ReactElement
 
 ```tsx
-interface ReactElement<P = any, T extends string | JSXElementConstructor<any> = string | JSXElementConstructor<any>> {
-    type: T;
-    props: P;
-    key: Key | null;
+interface ReactElement<
+  P = any,
+  T extends string | JSXElementConstructor<any> =
+    | string
+    | JSXElementConstructor<any>,
+> {
+  type: T
+  props: P
+  key: Key | null
 }
 ```
 
-> 写上***(child as ReactElement).props***就不会报错
+> 写上**_(child as ReactElement).props_**就不会报错
 
 ```tsx
 function createElement<P extends {}>(
-    type: FunctionComponent<P> | ComponentClass<P> | string,
-    props?: Attributes & P | null,
-    ...children: ReactNode[]): ReactElement<P>;
+  type: FunctionComponent<P> | ComponentClass<P> | string,
+  props?: (Attributes & P) | null,
+  ...children: ReactNode[]
+): ReactElement<P>
 ```
 
 > ReactElement: createElement的返回值
@@ -53,43 +69,65 @@ function createElement<P extends {}>(
 // DOM Elements
 // TODO: generalize this to everything in `keyof ReactHTML`, not just "input"
 function createElement(
-    type: "input",
-    props?: InputHTMLAttributes<HTMLInputElement> & ClassAttributes<HTMLInputElement> | null,
-    ...children: ReactNode[]): DetailedReactHTMLElement<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
+  type: 'input',
+  props?:
+    | (InputHTMLAttributes<HTMLInputElement> &
+        ClassAttributes<HTMLInputElement>)
+    | null,
+  ...children: ReactNode[]
+): DetailedReactHTMLElement<
+  InputHTMLAttributes<HTMLInputElement>,
+  HTMLInputElement
+>
 function createElement<P extends HTMLAttributes<T>, T extends HTMLElement>(
-    type: keyof ReactHTML,
-    props?: ClassAttributes<T> & P | null,
-    ...children: ReactNode[]): DetailedReactHTMLElement<P, T>;
+  type: keyof ReactHTML,
+  props?: (ClassAttributes<T> & P) | null,
+  ...children: ReactNode[]
+): DetailedReactHTMLElement<P, T>
 function createElement<P extends SVGAttributes<T>, T extends SVGElement>(
-    type: keyof ReactSVG,
-    props?: ClassAttributes<T> & P | null,
-    ...children: ReactNode[]): ReactSVGElement;
+  type: keyof ReactSVG,
+  props?: (ClassAttributes<T> & P) | null,
+  ...children: ReactNode[]
+): ReactSVGElement
 function createElement<P extends DOMAttributes<T>, T extends Element>(
-    type: string,
-    props?: ClassAttributes<T> & P | null,
-    ...children: ReactNode[]): DOMElement<P, T>;
+  type: string,
+  props?: (ClassAttributes<T> & P) | null,
+  ...children: ReactNode[]
+): DOMElement<P, T>
 
 // Custom components
 
 function createElement<P extends {}>(
-    type: FunctionComponent<P>,
-    props?: Attributes & P | null,
-    ...children: ReactNode[]): FunctionComponentElement<P>;
+  type: FunctionComponent<P>,
+  props?: (Attributes & P) | null,
+  ...children: ReactNode[]
+): FunctionComponentElement<P>
 function createElement<P extends {}>(
-    type: ClassType<P, ClassicComponent<P, ComponentState>, ClassicComponentClass<P>>,
-    props?: ClassAttributes<ClassicComponent<P, ComponentState>> & P | null,
-    ...children: ReactNode[]): CElement<P, ClassicComponent<P, ComponentState>>;
-function createElement<P extends {}, T extends Component<P, ComponentState>, C extends ComponentClass<P>>(
-    type: ClassType<P, T, C>,
-    props?: ClassAttributes<T> & P | null,
-    ...children: ReactNode[]): CElement<P, T>;
+  type: ClassType<
+    P,
+    ClassicComponent<P, ComponentState>,
+    ClassicComponentClass<P>
+  >,
+  props?: (ClassAttributes<ClassicComponent<P, ComponentState>> & P) | null,
+  ...children: ReactNode[]
+): CElement<P, ClassicComponent<P, ComponentState>>
+function createElement<
+  P extends {},
+  T extends Component<P, ComponentState>,
+  C extends ComponentClass<P>,
+>(
+  type: ClassType<P, T, C>,
+  props?: (ClassAttributes<T> & P) | null,
+  ...children: ReactNode[]
+): CElement<P, T>
 function createElement<P extends {}>(
-    type: FunctionComponent<P> | ComponentClass<P> | string,
-    props?: Attributes & P | null,
-    ...children: ReactNode[]): ReactElement<P>;
+  type: FunctionComponent<P> | ComponentClass<P> | string,
+  props?: (Attributes & P) | null,
+  ...children: ReactNode[]
+): ReactElement<P>
 ```
 
-> - `DOMElement<P, T>，FunctionComponentElement啊，CElement<P, ClassicComponent<P, ComponentState>>`, 都是 extends ReactElement,  所以得出`ReactElement`是由`React.createElement()`这个API创建出来的类型，根本上是一个Js对象，如上图所示，在Jsx里面以自定义组件的形式呈现，比如`<MyComponent />`，这就是一个ReactElement，而`<div />`，也是一个`ReactElement`
+> - `DOMElement<P, T>，FunctionComponentElement啊，CElement<P, ClassicComponent<P, ComponentState>>`, 都是 extends ReactElement, 所以得出`ReactElement`是由`React.createElement()`这个API创建出来的类型，根本上是一个Js对象，如上图所示，在Jsx里面以自定义组件的形式呈现，比如`<MyComponent />`，这就是一个ReactElement，而`<div />`，也是一个`ReactElement`
 > - 被React渲染到浏览器上的东西，可以理解为VDOM上的每个节点，都是是ReactNode
 
 ```tsx
@@ -124,11 +162,11 @@ ReactDOM.render(
 
 ```ts
 interface FunctionComponent<P = {}> {
-    (props: PropsWithChildren<P>, context?: any): ReactElement<any, any> | null;
-    propTypes?: WeakValidationMap<P> | undefined;
-    contextTypes?: ValidationMap<any> | undefined;
-    defaultProps?: Partial<P> | undefined;
-    displayName?: string | undefined;
+  (props: PropsWithChildren<P>, context?: any): ReactElement<any, any> | null
+  propTypes?: WeakValidationMap<P> | undefined
+  contextTypes?: ValidationMap<any> | undefined
+  defaultProps?: Partial<P> | undefined
+  displayName?: string | undefined
 }
 ```
 

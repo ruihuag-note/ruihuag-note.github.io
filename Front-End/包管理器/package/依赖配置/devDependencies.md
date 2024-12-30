@@ -5,8 +5,8 @@
 
 ```json
 {
- "devDependencies": {
-   "webpack": "^5.69.0"
- }
+  "devDependencies": {
+    "webpack": "^5.69.0"
+  }
 }
 ```

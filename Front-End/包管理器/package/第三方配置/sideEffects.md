@@ -10,11 +10,6 @@
 
 ```json
 {
- "sideEffects": [
-  "dist/*",
-  "es/**/style/*",
-  "lib/**/style/*",
-  "*.less"
- ]
+  "sideEffects": ["dist/*", "es/**/style/*", "lib/**/style/*", "*.less"]
 }
 ```

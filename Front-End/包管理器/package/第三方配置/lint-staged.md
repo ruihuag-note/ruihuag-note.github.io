@@ -4,12 +4,9 @@
 
 ```json
 {
- "lint-staged": {
-  "src/**/*.{js,jsx,ts,tsx}": [
-    "eslint --fix",
-    "git add -A"
-  ]
-}
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": ["eslint --fix", "git add -A"]
+  }
 }
 ```
 

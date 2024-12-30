@@ -6,49 +6,49 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-#w::    ;;这里的 #->表示window键  w->表示字母w键                   
-WinMinimize,A    ;;最小化当前窗口      
-return     
+#w::    ;;这里的 #->表示window键  w->表示字母w键
+WinMinimize,A    ;;最小化当前窗口
+return
 
-!h:: Send {Left} 
+!h:: Send {Left}
 return
 !l:: Send {Right}
 return
 !j:: Send {Down}
 return
 !k:: Send {Up}
-return 
+return
 
 ; 上下左右滚轮
 !u:: Send {WheelDown}
-return 
+return
 !i:: Send {WheelUp}
-return 
+return
 !y:: Send {Wheelleft}
-return 
+return
 !o:: Send {WheelRight}
-return 
+return
 
 ; 鼠标左击
-!-::  
+!-::
 SendEvent {Blind}{LButton down}
-KeyWait RCtrl  
+KeyWait RCtrl
 SendEvent {Blind}{LButton up}
 return
 
 ; 鼠标右击
-!=::  
+!=::
 SendEvent {Blind}{RButton down}
-KeyWait AppsKey  
+KeyWait AppsKey
 SendEvent {Blind}{RButton up}
 return
 
 
 ; 删除 / 退格
 !b:: Send {BackSpace}
-return 
-!m:: Send {NumpadAdd} 
-return 
+return
+!m:: Send {NumpadAdd}
+return
 !n:: Send {NumpadSub}
 return
 !,:: Send {=}
@@ -85,7 +85,7 @@ l::Right
 w::Send ^{Left}
 e::Send ^{Right}
 u::Send ^{z}
-g::Send {Enter} 
+g::Send {Enter}
 z::Send ^{z}
 c::Send ^{c}
 v::Send ^{v}

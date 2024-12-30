@@ -5,6 +5,7 @@
 Node.js中赋予了JavaScript很多在浏览器中没有的能力，譬如：文件读写，创建http服务器等等，今天我们就来看看在node中怎样用JavaScript进行文件的读写操作。
 
 1. 读文件
+
    1. 我们在data文件夹下新建一个`hello.txt`，并且在里面写入：`hello， node.js!!` ，如图：
 
 1. 我们在`hello.txt`同级目录下创建一个`hello.js`文件，我们在这个js文件中利用Node提供的文件操作API, 读取`hello.txt`文件中的内容。
@@ -13,25 +14,24 @@ Node.js中赋予了JavaScript很多在浏览器中没有的能力，譬如：文
 
 ```js
    let fs = require('fs')
-   fs.readFile() 
-   
+   fs.readFile()
+
     // 读文件。 readFile函数接受两个参数：读取文件路径，回调函数（error，data两个参数），
    读取文件成功：data为文件内容，error为null，读取失败：error为错误对象，data为undefined
 ```
 
-   最后我们`hello.js`中的代码如下:
+最后我们`hello.js`中的代码如下:
 
 ```js
 let fs = require('fs')
 fs.readFile('./hello.txt', (error, data) => {
   console.log(data.toString())
 })
-   
 ```
 
-   在这里可以说一下，我们读取回来的默认是二进制的内容，所以需要调用toString()方法进行转换。最后，终端可以看到结果如下：
+在这里可以说一下，我们读取回来的默认是二进制的内容，所以需要调用toString()方法进行转换。最后，终端可以看到结果如下：
 
-  可以看到我们刚才在`hello.txt`中写入的文本`hello, node.js!!`已经打印出来。看到这里是不是觉得很牛叉，JavaScript居然可以用来读取文件内容，完全颠覆了我们以前对JavaScript的理解，然而这一切都得归功于Node.js。
+可以看到我们刚才在`hello.txt`中写入的文本`hello, node.js!!`已经打印出来。看到这里是不是觉得很牛叉，JavaScript居然可以用来读取文件内容，完全颠覆了我们以前对JavaScript的理解，然而这一切都得归功于Node.js。
 
 1. 写文件
 
@@ -39,13 +39,12 @@ fs.readFile('./hello.txt', (error, data) => {
 
    ```js
    fs.writeFile('./hello.md', '你好，node.js!', (error) => {
-
-         if (!error) {
-           console.log('创建成功了。。')
-         }
-   }) 
+     if (!error) {
+       console.log('创建成功了。。')
+     }
+   })
    // 写文件。writeFile接受三个参数：写入文件路径，写入内容，回调函数。
-      ```
+   ```
 
    写入成功时候：error为null，写入失败时候：error为错误对象
 
@@ -93,14 +92,14 @@ fs.unlink('input.txt', function(err) {
 以上代码执行结果如下：
 
 ```
-$ node file.js 
+$ node file.js
 准备删除文件！
 文件删除成功！
 ```
 
 再去查看 input.txt 文件，发现已经不存在了。
 
-------
+---
 
 ### 创建目录
 
@@ -127,21 +126,21 @@ fs.mkdir(path[, options], callback)
 接下来我们创建 file.js 文件，代码如下所示：
 
 ```js
-var fs = require("fs");
+var fs = require('fs')
 // tmp 目录必须存在
-console.log("创建目录 /tmp/test/");
-fs.mkdir("/tmp/test/",function(err){
-   if (err) {
-       return console.error(err);
-   }
-   console.log("目录创建成功。");
-});
+console.log('创建目录 /tmp/test/')
+fs.mkdir('/tmp/test/', function (err) {
+  if (err) {
+    return console.error(err)
+  }
+  console.log('目录创建成功。')
+})
 ```
 
 以上代码执行结果如下：
 
 ```
-$ node file.js 
+$ node file.js
 创建目录 /tmp/test/
 目录创建成功。
 ```
@@ -150,11 +149,11 @@ $ node file.js
 
 ```js
 fs.mkdir('/tmp/a/apple', { recursive: true }, (err) => {
-  if (err) throw err;
-});
+  if (err) throw err
+})
 ```
 
-------
+---
 
 ### 读取目录
 
@@ -178,23 +177,23 @@ fs.readdir(path, callback)
 接下来我们创建 file.js 文件，代码如下所示：
 
 ```js
-var fs = require("fs");
+var fs = require('fs')
 
-console.log("查看 /tmp 目录");
-fs.readdir("/tmp/",function(err, files){
-   if (err) {
-       return console.error(err);
-   }
-   files.forEach( function (file){
-       console.log( file );
-   });
-});
+console.log('查看 /tmp 目录')
+fs.readdir('/tmp/', function (err, files) {
+  if (err) {
+    return console.error(err)
+  }
+  files.forEach(function (file) {
+    console.log(file)
+  })
+})
 ```
 
 以上代码执行结果如下：
 
 ```
-$ node file.js 
+$ node file.js
 查看 /tmp 目录
 input.out
 output.out
@@ -202,7 +201,7 @@ test
 test.txt
 ```
 
-------
+---
 
 ### 删除目录
 
@@ -250,7 +249,7 @@ fs.rmdir("/tmp/test",function(err){
 ```
 // 引入readline模块
 var readline = require('readline');
-    
+
 //创建readline接口实例
 var  rl = readline.createInterface({
     input:process.stdin,

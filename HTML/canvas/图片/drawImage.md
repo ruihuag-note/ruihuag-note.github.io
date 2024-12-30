@@ -1,9 +1,9 @@
 # drawImage
 
 ```js
-context.drawImage(image, dx, dy);
-context.drawImage(image, dx, dy, dWidth, dHeight);
-context.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+context.drawImage(image, dx, dy)
+context.drawImage(image, dx, dy, dWidth, dHeight)
+context.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
 ```
 
 > `image { Object }`: 绘制在Canvas上的元素，可以是各类Canvas图片资源（见CanvasImageSource），如`<img>`图片，SVG图像，Canvas元素本身等
@@ -18,4 +18,5 @@ context.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
 
 `context.drawImage(image, 0, 0, 300, 150);`
 ![](/__assets__/img/2022-02-15-14-17-29.png)
-> 原图: 500 * 333, 这样子设置会被压扁了些
+
+> 原图: 500 \* 333, 这样子设置会被压扁了些

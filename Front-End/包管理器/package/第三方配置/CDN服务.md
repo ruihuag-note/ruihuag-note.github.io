@@ -8,7 +8,7 @@
 
 ```json
 {
- "unpkg": "dist/vue.global.js",
+  "unpkg": "dist/vue.global.js"
 }
 ```
 
@@ -19,6 +19,6 @@
 
 ```json
 {
- "jsdelivr": "dist/vue.global.js",
+  "jsdelivr": "dist/vue.global.js"
 }
 ```

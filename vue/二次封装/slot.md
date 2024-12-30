@@ -5,13 +5,9 @@
 ```html
 <template>
   <div class="my-input">
-    <el-input
-      v-model="childSelectedValue"
-      v-bind="attrs"
-      v-on="$listeners"
-    >
-      <template #[slotName]="slotProps" v-for="(slot, slotName) in $slots" >
-          <slot :name="slotName" v-bind="slotProps"></slot>
+    <el-input v-model="childSelectedValue" v-bind="attrs" v-on="$listeners">
+      <template #[slotName]="slotProps" v-for="(slot, slotName) in $slots">
+        <slot :name="slotName" v-bind="slotProps"></slot>
       </template>
     </el-input>
   </div>
@@ -23,13 +19,9 @@
 ```html
 <template>
   <div class="my-input">
-    <el-input
-      v-model="childSelectedValue"
-      v-bind="attrs"
-      v-on="$listeners"
-    >
-     <!-- 遍历子组件非作用域插槽，并对父组件暴露 -->
-     <template v-for="(index, name) in $slots" v-slot:[name]>
+    <el-input v-model="childSelectedValue" v-bind="attrs" v-on="$listeners">
+      <!-- 遍历子组件非作用域插槽，并对父组件暴露 -->
+      <template v-for="(index, name) in $slots" v-slot:[name]>
         <slot :name="name" />
       </template>
       <!-- 遍历子组件作用域插槽，并对父组件暴露 -->

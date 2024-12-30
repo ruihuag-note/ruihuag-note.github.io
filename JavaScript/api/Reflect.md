@@ -15,13 +15,15 @@
 > - target: 目标函数
 > - thisArgument: target函数调用同事绑定的this对象
 > - argumentsList: 实参列表
-> 与`Function.prototype.apply()`方法类似
+>   与`Function.prototype.apply()`方法类似
 
 ```js
 console.log(Reflect.apply(Math.floor, undefined, [1.75]))
 // expected output: 1​
 
-console.log(Reflect.apply(String.fromCharCode, undefined, [104, 101, 108, 108, 111]))
+console.log(
+  Reflect.apply(String.fromCharCode, undefined, [104, 101, 108, 108, 111]),
+)
 // expected output: "hello"
 
 console.log(Reflect.apply(RegExp.prototype.exec, /ab/, ['confabulation']).index)
@@ -41,9 +43,9 @@ console.log(Reflect.apply(''.charAt, 'ponies', [3]))
 > return 以target（如果newTarget存在，则为newTarget）函数为构造函数，argumentList为其初始化参数的对象实例
 
 ```js
-var d = Reflect.construct(Date, [1776, 6, 4]);
-d instanceof Date; // true
-d.getFullYear(); // 1776
+var d = Reflect.construct(Date, [1776, 6, 4])
+d instanceof Date // true
+d.getFullYear() // 1776
 ```
 
 ## defineProperty
@@ -53,11 +55,11 @@ d.getFullYear(); // 1776
 > - target 目标对象
 > - propertyKey 要定义或修改的属性的名称
 > - attributes 要定义或修改的属性的描述
-> return Boolean 属性是否被成功定义。
+>   return Boolean 属性是否被成功定义。
 
 ```js
 let obj = {}
-Reflect.defineProperty(obj, 'x', {value: 7})  // true
+Reflect.defineProperty(obj, 'x', { value: 7 }) // true
 obj.x
 // 检查属性是否被重新定义
 if (Reflect.defineProperty(target, property, attributes)) {
@@ -68,7 +70,7 @@ if (Reflect.defineProperty(target, property, attributes)) {
 ```
 
 ## deleteProperty
->
+
 > - 静态方法 Reflect.deleteProperty() 允许用于删除属性
 > - 很像 delete operator ，但它是一个函数
 >
@@ -76,22 +78,22 @@ if (Reflect.defineProperty(target, property, attributes)) {
 >
 > - 参数 target 删除属性的目标对象
 > - propertyKey 需要删除的属性的名称
-> return Boolean 值表明该属性是否被成功删除
+>   return Boolean 值表明该属性是否被成功删除
 
 ```js
-var obj = { x: 1, y: 2 };
-Reflect.deleteProperty(obj, "x"); // true
-obj; // { y: 2 }
+var obj = { x: 1, y: 2 }
+Reflect.deleteProperty(obj, 'x') // true
+obj // { y: 2 }
 
-var arr = [1, 2, 3, 4, 5];
-Reflect.deleteProperty(arr, "3"); // true
-arr; // [1, 2, 3, , 5]
+var arr = [1, 2, 3, 4, 5]
+Reflect.deleteProperty(arr, '3') // true
+arr // [1, 2, 3, , 5]
 
 // 如果属性不存在，返回 true
-Reflect.deleteProperty({}, "foo"); // true
+Reflect.deleteProperty({}, 'foo') // true
 
 // 如果属性不可配置，返回 false
-Reflect.deleteProperty(Object.freeze({foo: 1}), "foo"); // false
+Reflect.deleteProperty(Object.freeze({ foo: 1 }), 'foo') // false
 ```
 
 ## get
@@ -102,46 +104,44 @@ Reflect.deleteProperty(Object.freeze({foo: 1}), "foo"); // false
 > - target 需要取值的目标对象
 > - propertyKey 需要获取的值的键值
 > - receiver 如果target对象中指定了getter，receiver则为getter调用时的this值。
-> return any 属性的值
->
+>   return any 属性的值
 
 ```js
 // Object
-var obj = { x: 1, y: 2 };
-Reflect.get(obj, "x"); // 1
+var obj = { x: 1, y: 2 }
+Reflect.get(obj, 'x') // 1
 
 // Array
-Reflect.get(["zero", "one"], 1); // "one"
+Reflect.get(['zero', 'one'], 1) // "one"
 
 // Proxy with a get handler
-var x = {p: 1};
+var x = { p: 1 }
 var obj = new Proxy(x, {
-  get(t, k, r) { return k + "bar"; }
-});
-Reflect.get(obj, "foo"); // "foobar"
+  get(t, k, r) {
+    return k + 'bar'
+  },
+})
+Reflect.get(obj, 'foo') // "foobar"
 ```
 
 ## getOwnPropertyDescriptor
 
 > - 静态方法 `Reflect.getOwnPropertyDescriptor()` 与 `Object.getOwnPropertyDescriptor()` 方法相似
 > - 如果在对象中存在，则返回给定的属性的属性描述符。否则返回 undefined。
-> `Reflect.getOwnPropertyDescriptor(target, propertyKey)`
->
+>   `Reflect.getOwnPropertyDescriptor(target, propertyKey)`
 > - target 需要寻找属性的目标对象
 > - propertyKey 获取自己的属性描述符的属性的名称
-> return any 如果属性存在于给定的目标对象中，则返回属性描述符；否则，返回 undefined
->
+>   return any 如果属性存在于给定的目标对象中，则返回属性描述符；否则，返回 undefined
 
 ```js
-Reflect.getOwnPropertyDescriptor({x: "hello"}, "x");
+Reflect.getOwnPropertyDescriptor({ x: 'hello' }, 'x')
 // {value: "hello", writable: true, enumerable: true, configurable: true}
 
-Reflect.getOwnPropertyDescriptor({x: "hello"}, "y");
+Reflect.getOwnPropertyDescriptor({ x: 'hello' }, 'y')
 // undefined
 
-Reflect.getOwnPropertyDescriptor([], "length");
+Reflect.getOwnPropertyDescriptor([], 'length')
 // {value: 0, writable: true, enumerable: false, configurable: false}
-
 ```
 
 ### 与 Object.getOwnPropertyDescriptor() 的不同点
@@ -150,44 +150,44 @@ Reflect.getOwnPropertyDescriptor([], "length");
 > 而对于 Object.getOwnPropertyDescriptor，非对象的第一个参数将被强制转换为一个对象处理
 
 ```js
-Reflect.getOwnPropertyDescriptor("foo", 0);
+Reflect.getOwnPropertyDescriptor('foo', 0)
 // TypeError: "foo" is not non-null object
 
-Object.getOwnPropertyDescriptor("foo", 0);
+Object.getOwnPropertyDescriptor('foo', 0)
 // { value: "f", writable: false, enumerable: true, configurable: false }
 ```
 
 ## getPrototypeOf
->
+
 > - 静态方法 Reflect.getPrototypeOf() 与 Object.getPrototypeOf() 方法几乎是一样的
 > - 都是返回指定对象的原型（即内部的 [[Prototype]] 属性的值）
-> `Reflect.getPrototypeOf(target)`
+>   `Reflect.getPrototypeOf(target)`
 > - target 获取原型的目标对象
 > - return 给定对象的原型。如果给定对象没有继承的属性，则返回 null
->
+
 ```js
-Reflect.getPrototypeOf({}); // Object.prototype
-Reflect.getPrototypeOf(Object.prototype); // null
-Reflect.getPrototypeOf(Object.create(null)); // null
+Reflect.getPrototypeOf({}) // Object.prototype
+Reflect.getPrototypeOf(Object.prototype) // null
+Reflect.getPrototypeOf(Object.create(null)) // null
 ```
 
 ### 与object.getPrototypeOf比较
 
 ```js
 // 如果参数为 Object，返回结果相同
-Object.getPrototypeOf({})   // Object.prototype
-Reflect.getPrototypeOf({})  // Object.prototype
+Object.getPrototypeOf({}) // Object.prototype
+Reflect.getPrototypeOf({}) // Object.prototype
 
 // 在 ES5 规范下，对于非 Object，抛异常
-Object.getPrototypeOf('foo')   // Throws TypeError
-Reflect.getPrototypeOf('foo')  // Throws TypeError
+Object.getPrototypeOf('foo') // Throws TypeError
+Reflect.getPrototypeOf('foo') // Throws TypeError
 
 // 在 ES2015 规范下，Reflect 抛异常, Object 强制转换非 Object
-Object.getPrototypeOf('foo')   // String.prototype
-Reflect.getPrototypeOf('foo')  // Throws TypeError
+Object.getPrototypeOf('foo') // String.prototype
+Reflect.getPrototypeOf('foo') // Throws TypeError
 
 // 如果想要模拟 Object 在 ES2015 规范下的表现，需要强制类型转换
-Reflect.getPrototypeOf(Object('foo'))  // String.prototype
+Reflect.getPrototypeOf(Object('foo')) // String.prototype
 ```
 
 ## has
@@ -201,19 +201,23 @@ Reflect.getPrototypeOf(Object('foo'))  // String.prototype
 > return Boolean 是否存在此属性
 
 ```js
-Reflect.has({x: 0}, "x"); // true
-Reflect.has({x: 0}, "y"); // false
+Reflect.has({ x: 0 }, 'x') // true
+Reflect.has({ x: 0 }, 'y') // false
 
 // 如果该属性存在于原型链中，返回true
-Reflect.has({x: 0}, "toString");
+Reflect.has({ x: 0 }, 'toString')
 
 // Proxy 对象的 .has() 句柄方法
-obj = new Proxy({}, {
-  has(t, k) { return k.startsWith("door"); }
-});
-Reflect.has(obj, "doorbell"); // true
-Reflect.has(obj, "dormitory"); // false
-
+obj = new Proxy(
+  {},
+  {
+    has(t, k) {
+      return k.startsWith('door')
+    },
+  },
+)
+Reflect.has(obj, 'doorbell') // true
+Reflect.has(obj, 'dormitory') // false
 ```
 
 ## isExtensible
@@ -223,25 +227,24 @@ Reflect.has(obj, "dormitory"); // false
 > `Reflect.isExtensible(target)`
 >
 > - target 检查是否可扩展的目标对象。
-> return Boolean 是否可扩展。
->
+>   return Boolean 是否可扩展。
+
 ```js
 // New objects are extensible.
-var empty = {};
-Reflect.isExtensible(empty); // === true
+var empty = {}
+Reflect.isExtensible(empty) // === true
 
 // ...but that can be changed.
-Reflect.preventExtensions(empty);
-Reflect.isExtensible(empty); // === false
+Reflect.preventExtensions(empty)
+Reflect.isExtensible(empty) // === false
 
 // Sealed objects are by definition non-extensible.
-var sealed = Object.seal({});
-Reflect.isExtensible(sealed); // === false
+var sealed = Object.seal({})
+Reflect.isExtensible(sealed) // === false
 
 // Frozen objects are also by definition non-extensible.
-var frozen = Object.freeze({});
-Reflect.isExtensible(frozen); // === false
-
+var frozen = Object.freeze({})
+Reflect.isExtensible(frozen) // === false
 ```
 
 ## 与 Object.isExtensible() 的不同点
@@ -250,10 +253,10 @@ Reflect.isExtensible(frozen); // === false
 > 对于 Object.isExtensible()，非对象的第一个参数会被强制转换为一个对象
 
 ```js
-Reflect.isExtensible(1);
+Reflect.isExtensible(1)
 // TypeError: 1 is not an object
 
-Object.isExtensible(1);
+Object.isExtensible(1)
 // false
 ```
 
@@ -263,19 +266,26 @@ Object.isExtensible(1);
 > 静态方法 `Reflect.ownKeys()` 返回一个由目标对象自身的属性键组成的数组。
 
 ```js
-Reflect.ownKeys({z: 3, y: 2, x: 1}); // [ "z", "y", "x" ]
-Reflect.ownKeys([]); // ["length"]
+Reflect.ownKeys({ z: 3, y: 2, x: 1 }) // [ "z", "y", "x" ]
+Reflect.ownKeys([]) // ["length"]
 
-var sym = Symbol.for("comet");
-var sym2 = Symbol.for("meteor");
-var obj = {[sym]: 0, "str": 0, "773": 0, "0": 0,
-           [sym2]: 0, "-1": 0, "8": 0, "second str": 0};
-Reflect.ownKeys(obj);
+var sym = Symbol.for('comet')
+var sym2 = Symbol.for('meteor')
+var obj = {
+  [sym]: 0,
+  str: 0,
+  773: 0,
+  0: 0,
+  [sym2]: 0,
+  '-1': 0,
+  8: 0,
+  'second str': 0,
+}
+Reflect.ownKeys(obj)
 // [ "0", "8", "773", "str", "-1", "second str", Symbol(comet), Symbol(meteor) ]
 // Indexes in numeric order,
 // strings in insertion order,
 // symbols in insertion order
-
 ```
 
 ## preventExtensions
@@ -286,23 +296,21 @@ Reflect.ownKeys(obj);
 > - return boolean 是否可以拓展
 > - 阻止新属性添加到对象 (例如：防止将来对对象的扩展被添加到对象中)
 > - 与 `Object.preventExtensions()` 相似
->
+
 ```js
 // Objects are extensible by default.
-var empty = {};
-Reflect.isExtensible(empty); // === true
+var empty = {}
+Reflect.isExtensible(empty) // === true
 
 // ...but that can be changed.
-Reflect.preventExtensions(empty);
-Reflect.isExtensible(empty); // === false
+Reflect.preventExtensions(empty)
+Reflect.isExtensible(empty) // === false
 
-
-Reflect.preventExtensions(1);
+Reflect.preventExtensions(1)
 // TypeError: 1 is not an object
 
-Object.preventExtensions(1);
+Object.preventExtensions(1)
 // 1
-
 ```
 
 ## set
@@ -315,30 +323,29 @@ Object.preventExtensions(1);
 > - target: 设置属性的目标对象
 > - propertyKey: 设置属性的名称
 > - value: 设置的值
-> - receiver ?  如果有setter, receiver则为setter调用时的this值
-> return boolean 是否设置成功
+> - receiver ? 如果有setter, receiver则为setter调用时的this值
+>   return boolean 是否设置成功
 
 ```js
 // Object
-var obj = {};
-Reflect.set(obj, "prop", "value"); // true
-obj.prop; // "value"
+var obj = {}
+Reflect.set(obj, 'prop', 'value') // true
+obj.prop // "value"
 
 // Array
-var arr = ["duck", "duck", "duck"];
-Reflect.set(arr, 2, "goose"); // true
-arr[2]; // "goose"
+var arr = ['duck', 'duck', 'duck']
+Reflect.set(arr, 2, 'goose') // true
+arr[2] // "goose"
 
 // It can truncate an array.
-Reflect.set(arr, "length", 1); // true
-arr; // ["duck"];
+Reflect.set(arr, 'length', 1) // true
+arr // ["duck"];
 
 // With just one argument, propertyKey and value are "undefined".
-var obj = {};
-Reflect.set(obj); // true
-Reflect.getOwnPropertyDescriptor(obj, "undefined");
+var obj = {}
+Reflect.set(obj) // true
+Reflect.getOwnPropertyDescriptor(obj, 'undefined')
 // { value: undefined, writable: true, enumerable: true, configurable: true }
-
 ```
 
 ## setPrototypeOf
@@ -351,20 +358,19 @@ Reflect.getOwnPropertyDescriptor(obj, "undefined");
 >
 > - target: 设置原型的目标对象
 > - prototype: 对象的新原型（一个对象或 null）
-> return boolean 是否成功设置
->
+>   return boolean 是否成功设置
+
 ```js
-Reflect.setPrototypeOf({}, Object.prototype); // true
+Reflect.setPrototypeOf({}, Object.prototype) // true
 
 // It can change an object's [[Prototype]] to null.
-Reflect.setPrototypeOf({}, null); // true
+Reflect.setPrototypeOf({}, null) // true
 
 // Returns false if target is not extensible.
-Reflect.setPrototypeOf(Object.freeze({}), null); // false
+Reflect.setPrototypeOf(Object.freeze({}), null) // false
 
 // Returns false if it cause a prototype chain cycle.
-var target = {};
-var proto = Object.create(target);
-Reflect.setPrototypeOf(target, proto); // false
-
+var target = {}
+var proto = Object.create(target)
+Reflect.setPrototypeOf(target, proto) // false
 ```

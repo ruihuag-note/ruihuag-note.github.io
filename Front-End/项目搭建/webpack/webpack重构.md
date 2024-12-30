@@ -61,60 +61,55 @@ yarn add webpack-merge -D
 我们将一些开发环境用到的东西移到==webpack.config.dev.js==里：
 
 ```js
-const path=require('path');
-const webpack=require('webpack');
-const merge=require('webpack-merge');//这里引入merge
-const common=require('./webpack.config.common.js');//这里引入公共代码
+const path = require('path')
+const webpack = require('webpack')
+const merge = require('webpack-merge') //这里引入merge
+const common = require('./webpack.config.common.js') //这里引入公共代码
 
-module.exports=merge(common,{//注意这里的写法
-    mode:'development',
-    devtool:'cheap-module-eval-source-map',
-    module:{
-        rules:[
-
-        ]
-    },
-    devServer: {
-        contentBase: path.join(__dirname, "dist"),
-        compress: true,//开启gzip压缩
-        port: 8080,
-        open:true,
-        hot:true,
-        overlay:true,
-    },
-    plugins:[
-        new webpack.HotModuleReplacementPlugin(),
-    ]
+module.exports = merge(common, {
+  //注意这里的写法
+  mode: 'development',
+  devtool: 'cheap-module-eval-source-map',
+  module: {
+    rules: [],
+  },
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true, //开启gzip压缩
+    port: 8080,
+    open: true,
+    hot: true,
+    overlay: true,
+  },
+  plugins: [new webpack.HotModuleReplacementPlugin()],
 })
 ```
 
 生产环境的移到==webpack.config.prod.js==：
 
 ```js
-const merge=require('webpack-merge');
-const webpack=require('webpack');
-const common=require('./webpack.config.common.js');
-const MiniCssExtractPlugin=require('mini-css-extract-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const CleanWebpackPlugin  = require('clean-webpack-plugin');
+const merge = require('webpack-merge')
+const webpack = require('webpack')
+const common = require('./webpack.config.common.js')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
-module.exports=merge(common,{
-    mode:'production',
-    module:{
-        rules:[
-
-        ]
-    },
-    plugins:[
-        new MiniCssExtractPlugin({//提取css
-            filename:'css/main.css'
-        }),
-        new CleanWebpackPlugin('./dist'),//删除dist目录下的文件
-        new BundleAnalyzerPlugin({ analyzerPort: 8090 }),
-
-    ]
+module.exports = merge(common, {
+  mode: 'production',
+  module: {
+    rules: [],
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      //提取css
+      filename: 'css/main.css',
+    }),
+    new CleanWebpackPlugin('./dist'), //删除dist目录下的文件
+    new BundleAnalyzerPlugin({ analyzerPort: 8090 }),
+  ],
 })
 ```
 

@@ -1,21 +1,19 @@
 # [`component`](https://cn.vuejs.org/api/general.html#definecomponent)
 
 ## defineComponent
->
+
 > 定义 `vue` 组件
->
+
 ### type
 
 ```ts
 // 选项语法
-function defineComponent(
-  component: ComponentOptions
-): ComponentConstructor
+function defineComponent(component: ComponentOptions): ComponentConstructor
 
 // 函数语法 (需要 3.3+)
 function defineComponent(
   setup: ComponentOptions['setup'],
-  extraOptions?: ComponentOptions
+  extraOptions?: ComponentOptions,
 ): () => any
 ```
 
@@ -28,15 +26,15 @@ function defineComponent(
 
 ```ts
 function defineAsyncComponent(
-  source: AsyncComponentLoader | AsyncComponentOptions
+  source: AsyncComponentLoader | AsyncComponentOptions,
 ): Component
 
 type AsyncComponentLoader = () => Promise<Component>
 
 interface AsyncComponentOptions {
- /**
-  * 可为异步加载函数
-  */
+  /**
+   * 可为异步加载函数
+   */
   loader: AsyncComponentLoader
   loadingComponent?: Component
   errorComponent?: Component
@@ -47,7 +45,7 @@ interface AsyncComponentOptions {
     error: Error,
     retry: () => void,
     fail: () => void,
-    attempts: number
+    attempts: number,
   ) => any
 }
 ```
@@ -62,16 +60,16 @@ interface AsyncComponentOptions {
 function defineCustomElement(
   component:
     | (ComponentOptions & { styles?: string[] })
-    | ComponentOptions['setup']
+    | ComponentOptions['setup'],
 ): {
   new (props?: object): HTMLElement
 }
 ```
 
 ### 非常规
->
+
 > `customElements.define()` 注册自定义元素构造器
->
+
 #### eg
 
 ```ts

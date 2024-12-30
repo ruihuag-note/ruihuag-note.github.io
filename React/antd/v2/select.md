@@ -7,17 +7,16 @@
 > 再结合循环的方法例如map遍历渲染options
 
 ```jsx
-  <Select
-  mode="multiple"         //多选模式
-  placeholder="请选择"
-  filterOption={false}    //关闭自动筛选
-  onSearch={this.handleSearch}
->
-  {
-    list.map((item, index) => (
-      <Option key={index} value={item}>{item}</Option>
-    ))
-  }
+<Select
+  mode='multiple' //多选模式
+  placeholder='请选择'
+  filterOption={false} //关闭自动筛选
+  onSearch={this.handleSearch}>
+  {list.map((item, index) => (
+    <Option key={index} value={item}>
+      {item}
+    </Option>
+  ))}
 </Select>
 ```
 

@@ -14,7 +14,7 @@
 
 ```json
 {
- "start": "concurrently \"command1 arg\" \"command2 arg\""
+  "start": "concurrently \"command1 arg\" \"command2 arg\""
 }
 ```
 
@@ -38,14 +38,13 @@ npm start --prefix path/to/your/folder
 
 ```json
 {
- "start": "concurrently \"(npm start --prefix client)\" \"(npm start --prefix server)\"",
+  "start": "concurrently \"(npm start --prefix client)\" \"(npm start --prefix server)\""
 }
 ```
 
 ## 脚本跨平台
 
-> `cross-env`
-> `npm i -D cross-env`
+> `cross-env` > `npm i -D cross-env`
 
 ```json
 {

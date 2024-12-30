@@ -38,14 +38,13 @@ export default App;
 ### 类组件 PureComponent
 
 > `React.PureComponent<P, S={} SS={}>` 也是差不多的：
->`class App extends React.PureComponent<IProps, IState> {}`
->`React.PureComponent`是有第三个参数的，它表示`getSnapshotBeforeUpdate`的返回值
->那PureComponent和Component 的区别是什么呢？它们的主要区别是PureComponent中的shouldComponentUpdate 是由自身进行处理的，不需要我们自己处理，所以PureComponent可以在一定程度上提升性能。
+> `class App extends React.PureComponent<IProps, IState> {}` >`React.PureComponent`是有第三个参数的，它表示`getSnapshotBeforeUpdate`的返回值
+> 那PureComponent和Component 的区别是什么呢？它们的主要区别是PureComponent中的shouldComponentUpdate 是由自身进行处理的，不需要我们自己处理，所以PureComponent可以在一定程度上提升性能。
 
 有时候可能会见到这种写法，实际上和上面的效果是一样的：
 
 ```tsx
-import React, {PureComponent, Component} from "react";
+import React, { PureComponent, Component } from 'react'
 class App extends PureComponent<IProps, IState> {}
 class App extends Component<IProps, IState> {}
 ```
@@ -55,23 +54,21 @@ class App extends Component<IProps, IState> {}
 ```tsx
 // 定义组件
 class MyComponent<P> extends React.Component<P> {
-  internalProp: P;
+  internalProp: P
   constructor(props: P) {
-    super(props);
-    this.internalProp = props;
+    super(props)
+    this.internalProp = props
   }
   render() {
-    return (
-      <span>hello world</span>
-    );
+    return <span>hello world</span>
   }
 }
 
 // 使用组件
-type IProps = { name: string; age: number; };
+type IProps = { name: string; age: number }
 
-<MyComponent<IProps> name="React" age={18} />;          // Success
-<MyComponent<IProps> name="TypeScript" age="hello" />;  // Error
+;<MyComponent<IProps> name='React' age={18} /> // Success
+;<MyComponent<IProps> name='TypeScript' age='hello' /> // Error
 ```
 
 ### 函数组件
@@ -108,59 +105,58 @@ interface IProps {
 }
 
 const App: React.FC<IProps> = (props) => {
-  const {name} = props;
+  const { name } = props
   return (
-    <div className="App">
+    <div className='App'>
       <h1>hello world</h1>
       <h2>{name}</h2>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
 ```
 
 当使用这种形式来定义函数组件时，props中默认会带有children属性，它表示该组件在调用时，其内部的元素，来看一个例子，首先定义一个组件，组件中引入了Child1和Child2组件：
 
 ```tsx
-import Child1 from "./child1";
-import Child2 from "./child2";
+import Child1 from './child1'
+import Child2 from './child2'
 
 interface IProps {
-  name: string;
+  name: string
 }
 const App: React.FC<IProps> = (props) => {
-  const { name } = props;
+  const { name } = props
   return (
     <Child1 name={name}>
       <Child2 name={name} />
       TypeScript
     </Child1>
-  );
-};
+  )
+}
 
-export default App;
+export default App
 ```
 
 Child1组件结构如下：
 
 ```tsx
-
 interface IProps {
-  name: string;
+  name: string
 }
 const Child1: React.FC<IProps> = (props) => {
-  const { name, children } = props;
-  console.log(children);
+  const { name, children } = props
+  console.log(children)
   return (
-    <div className="App">
+    <div className='App'>
       <h1>hello child1</h1>
       <h2>{name}</h2>
     </div>
-  );
-};
+  )
+}
 
-export default Child1;
+export default Child1
 ```
 
 我们在Child1组件中打印了children属性，它的值是一个数组，包含Child2对象和后面的文本：
@@ -175,21 +171,16 @@ React.FC 为 children 提供了隐式的类型（ReactElement | null）。
 那如果我们在定义组件时不知道props的类型，只有调用时才知道，那就还是用泛型来定义props的类型。对于使用function定义的函数组件：
 
 ```tsx
-
 // 定义组件
 function MyComponent<P>(props: P) {
-  return (
-   <span>
-     {props}
-    </span>
-  );
+  return <span>{props}</span>
 }
 
 // 使用组件
-type IProps = { name: string; age: number; };
+type IProps = { name: string; age: number }
 
-<MyComponent<IProps> name="React" age={18} />;          // Success
-<MyComponent<IProps> name="TypeScript" age="hello" />;  // Error
+;<MyComponent<IProps> name='React' age={18} /> // Success
+;<MyComponent<IProps> name='TypeScript' age='hello' /> // Error
 ```
 
 如果使用箭头函数定义的函数组件，直接这样调用时错误的：
@@ -227,7 +218,7 @@ const MyComponent = <P extends any>(props: P) {
 ```tsx
 declare global {
   namespace JSX {
-    interface Element extends React.ReactElement<any, any> { }
+    interface Element extends React.ReactElement<any, any> {}
   }
 }
 ```
@@ -237,9 +228,8 @@ declare global {
 JSX.Element 可以通过执行 React.createElement 或是转译 JSX 获得：
 
 ```tsx
-
 const jsx = <div>hello</div>
-const ele = React.createElement("div", null, "hello");
+const ele = React.createElement('div', null, 'hello')
 ```
 
 ### React.ReactElement
@@ -247,11 +237,15 @@ const ele = React.createElement("div", null, "hello");
 > React 的类型声明文件中提供了 React.ReactElement＜T＞，它可以让我们通过传入＜T/＞来注解类组件的实例化，它在声明文件中的定义如下：
 
 ```tsx
-
-interface ReactElement<P = any, T extends string | JSXElementConstructor<any> = string | JSXElementConstructor<any>> {
-   type: T;
-   props: P;
-   key: Key | null;
+interface ReactElement<
+  P = any,
+  T extends string | JSXElementConstructor<any> =
+    | string
+    | JSXElementConstructor<any>,
+> {
+  type: T
+  props: P
+  key: Key | null
 }
 ```
 
@@ -264,13 +258,18 @@ ReactElement是一个接口，包含type,props,key三个属性值。该类型的
 ReactNode类型的声明如下：
 
 ```tsx
-
-type ReactText = string | number;
-type ReactChild = ReactElement | ReactText;
+type ReactText = string | number
+type ReactChild = ReactElement | ReactText
 
 interface ReactNodeArray extends Array<ReactNode> {}
-type ReactFragment = {} | ReactNodeArray;
-type ReactNode = ReactChild | ReactFragment | ReactPortal | boolean | null | undefined;
+type ReactFragment = {} | ReactNodeArray
+type ReactNode =
+  | ReactChild
+  | ReactFragment
+  | ReactPortal
+  | boolean
+  | null
+  | undefined
 ```
 
 可以看到，ReactNode是一个联合类型，它可以是string、number、ReactElement、null、boolean、ReactNodeArray。由此可知。ReactElement类型的变量可以直接赋值给ReactNode类型的变量，但反过来是不行的。
@@ -278,16 +277,15 @@ type ReactNode = ReactChild | ReactFragment | ReactPortal | boolean | null | und
 类组件的 render 成员函数会返回 ReactNode 类型的值：
 
 ```tsx
-
 class MyComponent extends React.Component {
- render() {
-     return <div>hello world</div>
-    }
+  render() {
+    return <div>hello world</div>
+  }
 }
 // 正确
-const component: React.ReactNode<MyComponent> = <MyComponent />;
+const component: React.ReactNode<MyComponent> = <MyComponent />
 // 错误
-const component: React.ReactNode<MyComponent> = <OtherComponent />;
+const component: React.ReactNode<MyComponent> = <OtherComponent />
 ```
 
 上面的代码中，给component变量设置了类型是Mycomponent类型的react实例，这时只能给其赋值其为MyComponent的实例组件。​
@@ -299,7 +297,6 @@ const component: React.ReactNode<MyComponent> = <OtherComponent />;
 先来看看React的声明文件中对CSSProperties 的定义：
 
 ```tsx
-
 export interface CSSProperties extends CSS.Properties<string | number> {
   /**
 
@@ -316,23 +313,23 @@ export interface CSSProperties extends CSS.Properties<string | number> {
 React.CSSProperties是React基于TypeScript定义的CSS属性类型，可以将一个方法的返回值设置为该类型：
 
 ```tsx
-import * as React from "react";
+import * as React from 'react'
 
-const classNames = require("./sidebar.css");
+const classNames = require('./sidebar.css')
 
 interface Props {
-  isVisible: boolean;
+  isVisible: boolean
 }
 
 const divStyle = (props: Props): React.CSSProperties => ({
-  width: props.isVisible ? "23rem" : "0rem"
-});
+  width: props.isVisible ? '23rem' : '0rem',
+})
 
-export const SidebarComponent: React.StatelessComponent<Props> = props => (
-  <div id="mySidenav" className={classNames.sidenav} style={divStyle(props)}>
+export const SidebarComponent: React.StatelessComponent<Props> = (props) => (
+  <div id='mySidenav' className={classNames.sidenav} style={divStyle(props)}>
     {props.children}
   </div>
-);
+)
 ```
 
 这里divStyle组件的返回值就是React.CSSProperties类型。
@@ -340,13 +337,11 @@ export const SidebarComponent: React.StatelessComponent<Props> = props => (
 我们还可以定义一个CSSProperties类型的变量：
 
 ```tsx
-
 const divStyle: React.CSSProperties = {
-    width: "11rem",
-    height: "7rem",
-    backgroundColor: `rgb(${props.color.red},${props.color.green}, ${props.color.blue})`
-};
-
+  width: '11rem',
+  height: '7rem',
+  backgroundColor: `rgb(${props.color.red},${props.color.green}, ${props.color.blue})`,
+}
 ```
 
 这个变量可以在HTML标签的style属性上使用：
@@ -374,13 +369,13 @@ const [count, setCount] = useState<number>(1)
 如果初始值为null，需要显式地声明 state 的类型：
 
 ```tsx
-const [count, setCount] = useState<number | null>(null);
+const [count, setCount] = useState<number | null>(null)
 ```
 
 如果state是一个对象，想要初始化一个空对象，可以使用断言来处理：
 
 ```tsx
-const [user, setUser] = React.useState<IUser>({} as IUser);
+const [user, setUser] = React.useState<IUser>({} as IUser)
 ```
 
 > 空对象{}断言为IUser接口就是欺骗了TypeScript的编译器，由于后面的代码可能会依赖这个对象，所以应该在使用前及时初始化 user 的值，否则就会报错。
@@ -388,26 +383,31 @@ const [user, setUser] = React.useState<IUser>({} as IUser);
 下面是声明文件中 useState 的定义：
 
 ```tsx
-function useState<S>(initialState: S | (() => S)): [S, Dispatch<SetStateAction<S>>];
+function useState<S>(
+  initialState: S | (() => S),
+): [S, Dispatch<SetStateAction<S>>]
 // convenience overload when first argument is omitted
 /**
-* Returns a stateful value, and a function to update it.
-*
-* @version 16.8.0
-* @see <https://reactjs.org/docs/hooks-reference.html#usestate>
-*/
+ * Returns a stateful value, and a function to update it.
+ *
+ * @version 16.8.0
+ * @see <https://reactjs.org/docs/hooks-reference.html#usestate>
+ */
 
-function useState<S = undefined>(): [S | undefined, Dispatch<SetStateAction<S | undefined>>];
+function useState<S = undefined>(): [
+  S | undefined,
+  Dispatch<SetStateAction<S | undefined>>,
+]
 /**
-* An alternative to `useState`.
-*
-* `useReducer` is usually preferable to `useState` when you have complex state logic that involves
-* multiple sub-values. It also lets you optimize performance for components that trigger deep
-* updates because you can pass `dispatch` down instead of callbacks.
-*
-* @version 16.8.0
-* @see <https://reactjs.org/docs/hooks-reference.html#usereducer>
-*/
+ * An alternative to `useState`.
+ *
+ * `useReducer` is usually preferable to `useState` when you have complex state logic that involves
+ * multiple sub-values. It also lets you optimize performance for components that trigger deep
+ * updates because you can pass `dispatch` down instead of callbacks.
+ *
+ * @version 16.8.0
+ * @see <https://reactjs.org/docs/hooks-reference.html#usereducer>
+ */
 ```
 
 可以看到，这里定义两种形式，分别是有初始值和没有初始值的形式。
@@ -417,26 +417,21 @@ function useState<S = undefined>(): [S | undefined, Dispatch<SetStateAction<S | 
 > useEffect的主要作用就是处理副作用，它的第一个参数是一个函数，表示要清除副作用的操作，第二个参数是一组值，当这组值改变时，第一个参数的函数才会执行，这让我们可以控制何时运行函数来处理副作用：
 
 ```tsx
-useEffect(
-  () => {
-    const subscription = props.source.subscribe();
-    return () => {
-      subscription.unsubscribe();
-    };
-  },
-  [props.source]
-);
+useEffect(() => {
+  const subscription = props.source.subscribe()
+  return () => {
+    subscription.unsubscribe()
+  }
+}, [props.source])
 ```
 
 当函数的返回值不是函数或者effect函数中未定义的内容时，如下：
 
 ```tsx
-useEffect(
-    () => {
-      subscribe();
-      return null;
-    }
-);
+useEffect(() => {
+  subscribe()
+  return null
+})
 ```
 
 TypeScript就会报错：
@@ -447,25 +442,25 @@ TypeScript就会报错：
 
 ```tsx
 // Destructors are only allowed to return void.
-type Destructor = () => void | { [UNDEFINED_VOID_ONLY]: never };
+type Destructor = () => void | { [UNDEFINED_VOID_ONLY]: never }
 
 // NOTE: callbacks are _only_ allowed to return either void, or a destructor.
-type EffectCallback = () => (void | Destructor);
+type EffectCallback = () => void | Destructor
 
 // TODO (TypeScript 3.0): ReadonlyArray<unknown>
-type DependencyList = ReadonlyArray<any>;
+type DependencyList = ReadonlyArray<any>
 
-function useEffect(effect: EffectCallback, deps?: DependencyList): void;
+function useEffect(effect: EffectCallback, deps?: DependencyList): void
 // NOTE: this does not accept strings, but this will have to be fixed by removing strings from type Ref<T>
 /**
-* `useImperativeHandle` customizes the instance value that is exposed to parent components when using
-* `ref`. As always, imperative code using refs should be avoided in most cases.
-*
-* `useImperativeHandle` should be used with `React.forwardRef`.
-*
-* @version 16.8.0
-* @see <https://reactjs.org/docs/hooks-reference.html#useimperativehandle>
-*/
+ * `useImperativeHandle` customizes the instance value that is exposed to parent components when using
+ * `ref`. As always, imperative code using refs should be avoided in most cases.
+ *
+ * `useImperativeHandle` should be used with `React.forwardRef`.
+ *
+ * @version 16.8.0
+ * @see <https://reactjs.org/docs/hooks-reference.html#useimperativehandle>
+ */
 ```
 
 > useEffect的第一个参数只允许返回一个函数
@@ -484,7 +479,7 @@ const nameInput = React.useRef<HTMLInputElement>(null)
 
 ```tsx
 const nameInput = React.useRef<HTMLInputElement>(null)
-nameInput.current.innerText = "hello world";
+nameInput.current.innerText = 'hello world'
 ```
 
 这种形式下，ref1.current是只读的（read-only），所以当我们将它的innerText属性重新赋值时会报以下错误：
@@ -496,10 +491,9 @@ Cannot assign to 'current' because it is a read-only property.
 那该怎么将current属性变为动态可变得的，先来看看类型声明文件中 useRef 是如何定义的：
 
 ```tsx
-
- function useRef<T>(initialValue: T): MutableRefObject<T>;
- // convenience overload for refs given as a ref prop as they typically start with a null value
- /**
+function useRef<T>(initialValue: T): MutableRefObject<T>
+// convenience overload for refs given as a ref prop as they typically start with a null value
+/**
 
 * `useRef` returns a mutable ref object whose `.current` property is initialized to the passed argument
 * (`initialValue`). The returned object will persist for the full lifetime of the component.
@@ -518,20 +512,19 @@ Cannot assign to 'current' because it is a read-only property.
 这段代码的第十行的告诉我们，如果需要useRef的直接可变，就需要在泛型参数中包含'| null'，所以这就是当初始值为null的第二种定义形式：
 
 ```ts
-const nameInput = React.useRef<HTMLInputElement | null>(null);
+const nameInput = React.useRef<HTMLInputElement | null>(null)
 ```
 
 这种形式下，`nameInput.current`就是可写的。不过两种类型在使用时都需要做类型检查：
 
 ```ts
-nameInput.current?.innerText = "hello world";
+nameInput.current?.innerText = 'hello world'
 ```
 
 那么问题来了，为什么第一种写法在没有操作current时没有报错呢？因为useRef在类型定义式具有多个重载声明，第一种方式就是执行的以下函数重载：
 
 ```ts
-
-function useRef<T>(initialValue: T|null): RefObject<T>;
+function useRef<T>(initialValue: T | null): RefObject<T>
 // convenience overload for potentially undefined initialValue / call with 0 arguments
 // has a default to stop it from defaulting to {} instead
 /**
@@ -555,10 +548,12 @@ function useRef<T>(initialValue: T|null): RefObject<T>;
 
 先来看看类型声明文件中对useCallback的定义：
 
-```ts
-
- function useCallback<T extends (...args: any[]) => any>(callback: T, deps: DependencyList): T;
- /**
+````ts
+function useCallback<T extends (...args: any[]) => any>(
+  callback: T,
+  deps: DependencyList,
+): T
+/**
 
 * `useMemo` will only recompute the memoized value when one of the `deps` has changed.
 *
@@ -573,26 +568,25 @@ function useRef<T>(initialValue: T|null): RefObject<T>;
 * ```
 * @version 16.8.0
 * @see <https://reactjs.org/docs/hooks-reference.html#usememo>  */
-
-```
+````
 
 useCallback接收一个回调函数和一个依赖数组，只有当依赖数组中的值发生变化时才会重新执行回调函数。来看一个例子：
 
 ```ts
-const add = (a: number, b: number) => a + b;
+const add = (a: number, b: number) => a + b
 
 const memoizedCallback = useCallback(
   (a) => {
-    add(a, b);
+    add(a, b)
   },
-  [b]
-);
+  [b],
+)
 ```
 
 这里我们没有给回调函数中的参数a定义类型，所以下面的调用方式都不会报错：
 
 ```ts
-memoizedCallback("hello");
+memoizedCallback('hello')
 memoizedCallback(5)
 ```
 
@@ -601,10 +595,10 @@ memoizedCallback(5)
 ```ts
 const memoizedCallback = useCallback(
   (a: number) => {
-    add(a, b);
+    add(a, b)
   },
-  [b]
-);
+  [b],
+)
 ```
 
 这时候如果再给回调函数传入字符串就会报错了：
@@ -618,33 +612,33 @@ const memoizedCallback = useCallback(
 先来看看类型声明文件中对useMemo的定义：
 
 ```ts
-function useMemo<T>(factory: () => T, deps: DependencyList | undefined): T;
+function useMemo<T>(factory: () => T, deps: DependencyList | undefined): T
 /**
-* `useDebugValue` can be used to display a label for custom hooks in React DevTools.
-*
-* NOTE: We don’t recommend adding debug values to every custom hook.
-* It’s most valuable for custom hooks that are part of shared libraries.
-*
-* @version 16.8.0
-* @see <https://reactjs.org/docs/hooks-reference.html#usedebugvalue>
-*/
+ * `useDebugValue` can be used to display a label for custom hooks in React DevTools.
+ *
+ * NOTE: We don’t recommend adding debug values to every custom hook.
+ * It’s most valuable for custom hooks that are part of shared libraries.
+ *
+ * @version 16.8.0
+ * @see <https://reactjs.org/docs/hooks-reference.html#usedebugvalue>
+ */
 ```
 
 useMemo和useCallback是非常类似的，但是它返回的是一个值，而不是函数。所以在定义useMemo时需要定义返回值的类型：
 
 ```ts
-let a = 1;
+let a = 1
 setTimeout(() => {
-  a += 1;
-}, 1000);
+  a += 1
+}, 1000)
 
-const calculatedValue = useMemo<number>(() => a ** 2, [a]);
+const calculatedValue = useMemo<number>(() => a ** 2, [a])
 ```
 
 如果返回值不一致，就会报错：
 
 ```ts
-const calculatedValue = useMemo<number>(() => a + "hello", [a]);
+const calculatedValue = useMemo<number>(() => a + 'hello', [a])
 // 类型“() => string”的参数不能赋给类型“() => number”的参数
 ```
 
@@ -685,7 +679,7 @@ function useContext<T>(context: Context<T>/_, (not public API) observedBits?: nu
 有时我们需要处理一些复杂的状态，并且可能取决于之前的状态。这时候就可以使用useReducer，它接收一个函数，这个函数会根据之前的状态来计算一个新的state。其语法如下：
 
 ```ts
-const [state, dispatch] = useReducer(reducer, initialArg, init);
+const [state, dispatch] = useReducer(reducer, initialArg, init)
 ```
 
 来看下面的例子：
@@ -705,7 +699,7 @@ const reducer = (state, action) => {
 const Counter = () => {
   const initialState = {count: 0}
   const [state, dispatch] = useReducer(reducer, initialState);
-  
+
   return (
     <>
       Count: {state.count}
@@ -720,40 +714,36 @@ const Counter = () => {
 
 ```ts
 type ActionType = {
-  type: 'increment' | 'decrement';
-};
+  type: 'increment' | 'decrement'
+}
 
-type State = { count: number };
+type State = { count: number }
 
-const initialState: State = {count: 0}
+const initialState: State = { count: 0 }
 const reducer = (state: State, action: ActionType) => {
   // ...
 }
-
 ```
 
 这样，在Counter函数中就可以推断出类型。当我们视图使用一个不存在的类型时，就会报错：
 
 ```ts
-
-dispatch({type: 'reset'});
+dispatch({ type: 'reset' })
 // Error! type '"reset"' is not assignable to type '"increment" | "decrement"'
-
 ```
 
 除此之外，还可以使用泛型的形式来实现reducer函数的类型定义：
 
 ```ts
 type ActionType = {
-  type: 'increment' | 'decrement';
-};
+  type: 'increment' | 'decrement'
+}
 
-type State = { count: number };
+type State = { count: number }
 
 const reducer: React.Reducer<State, ActionType> = (state, action) => {
   // ...
 }
-
 ```
 
 其实dispatch方法也是有类型的：
@@ -806,7 +796,7 @@ export default Counter;
 
 ```ts
 const handleEvent = (e: any) => {
-    console.log(e.clientX, e.clientY)
+  console.log(e.clientX, e.clientY)
 }
 ```
 
@@ -825,7 +815,7 @@ const handleEvent = (e: any) => {
 - 滚轮事件对象：`WheelEvent<T = Element>`
 - 动画事件对象：`AnimationEvent<T = Element>`
 - 过渡事件对象：`TransitionEvent<T = Element>`
-可以看到，这些Event事件对象的泛型中都会接收一个Element元素的类型，这个类型就是我们绑定这个事件的标签元素的类型，标签元素类型将在下面的第五部分介绍。
+  可以看到，这些Event事件对象的泛型中都会接收一个Element元素的类型，这个类型就是我们绑定这个事件的标签元素的类型，标签元素类型将在下面的第五部分介绍。
 
 来看一个简单的例子：
 
@@ -835,13 +825,13 @@ type State = {
   text: string;
 };
 
-const App: React.FC = () => {  
+const App: React.FC = () => {
   const [text, setText] = useState<string>("")
 
   const onChange = (e: React.FormEvent<HTMLInputElement>): void => {
     setText(e.currentTarget.value);
   };
-  
+
   return (
     <div>
       <input type="text" value={text} onChange={onChange} />
@@ -855,31 +845,30 @@ const App: React.FC = () => {
 可以来看下MouseEvent事件对象和ChangeEvent事件对象的类型声明，其他事件对象的声明形似也类似：
 
 ```ts
-
 interface MouseEvent<T = Element, E = NativeMouseEvent> extends UIEvent<T, E> {
-  altKey: boolean;
-  button: number;
-  buttons: number;
-  clientX: number;
-  clientY: number;
-  ctrlKey: boolean;
+  altKey: boolean
+  button: number
+  buttons: number
+  clientX: number
+  clientY: number
+  ctrlKey: boolean
   /**
-    * See [DOM Level 3 Events spec](https://www.w3.org/TR/uievents-key/#keys-modifier). for a list of valid (case-sensitive) arguments to this method.
-    */
-  getModifierState(key: string): boolean;
-  metaKey: boolean;
-  movementX: number;
-  movementY: number;
-  pageX: number;
-  pageY: number;
-  relatedTarget: EventTarget | null;
-  screenX: number;
-  screenY: number;
-  shiftKey: boolean;
+   * See [DOM Level 3 Events spec](https://www.w3.org/TR/uievents-key/#keys-modifier). for a list of valid (case-sensitive) arguments to this method.
+   */
+  getModifierState(key: string): boolean
+  metaKey: boolean
+  movementX: number
+  movementY: number
+  pageX: number
+  pageY: number
+  relatedTarget: EventTarget | null
+  screenX: number
+  screenY: number
+  shiftKey: boolean
 }
 
 interface ChangeEvent<T = Element> extends SyntheticEvent<T> {
-  target: EventTarget & T;
+  target: EventTarget & T
 }
 ```
 
@@ -887,9 +876,17 @@ interface ChangeEvent<T = Element> extends SyntheticEvent<T> {
 
 ```ts
 interface EventTarget {
-    addEventListener(type: string, listener: EventListenerOrEventListenerObject | null, options?: boolean | AddEventListenerOptions): void;
-    dispatchEvent(evt: Event): boolean;
-    removeEventListener(type: string, listener?: EventListenerOrEventListenerObject | null, options?: EventListenerOptions | boolean): void;
+  addEventListener(
+    type: string,
+    listener: EventListenerOrEventListenerObject | null,
+    options?: boolean | AddEventListenerOptions,
+  ): void
+  dispatchEvent(evt: Event): boolean
+  removeEventListener(
+    type: string,
+    listener?: EventListenerOrEventListenerObject | null,
+    options?: EventListenerOptions | boolean,
+  ): void
 }
 ```
 
@@ -936,7 +933,6 @@ const handleChangeCurrent = (item: IData, e: React.MouseEvent<HTMLDivElement>) =
 这点代码中，点击某个盒子，就将它设置为当前的盒子，方便执行其他操作。当鼠标点击盒子时，会触发handleChangeCurren方法，该方法有两个参数，第二个参数是event对象，在方法中执行了e.stopPropagation();是为了阻止冒泡事件，这里的stopPropagation()实际上并不是鼠标事件MouseEvent的属性，它是合成事件上的属性，来看看声明文件中的定义：
 
 ```ts
-
 interface MouseEvent<T = Element, E = NativeMouseEvent> extends UIEvent<T, E> {
   //...
 }
@@ -945,24 +941,25 @@ interface UIEvent<T = Element, E = NativeUIEvent> extends SyntheticEvent<T, E> {
   //...
 }
 
-interface SyntheticEvent<T = Element, E = Event> extends BaseSyntheticEvent<E, EventTarget & T, EventTarget> {}
+interface SyntheticEvent<T = Element, E = Event>
+  extends BaseSyntheticEvent<E, EventTarget & T, EventTarget> {}
 
 interface BaseSyntheticEvent<E = object, C = any, T = any> {
-  nativeEvent: E;
-  currentTarget: C;
-  target: T;
-  bubbles: boolean;
-  cancelable: boolean;
-  defaultPrevented: boolean;
-  eventPhase: number;
-  isTrusted: boolean;
-  preventDefault(): void;
-  isDefaultPrevented(): boolean;
-  stopPropagation(): void;
-  isPropagationStopped(): boolean;
-  persist(): void;
-  timeStamp: number;
-  type: string;
+  nativeEvent: E
+  currentTarget: C
+  target: T
+  bubbles: boolean
+  cancelable: boolean
+  defaultPrevented: boolean
+  eventPhase: number
+  isTrusted: boolean
+  preventDefault(): void
+  isDefaultPrevented(): boolean
+  stopPropagation(): void
+  isPropagationStopped(): boolean
+  persist(): void
+  timeStamp: number
+  type: string
 }
 ```
 
@@ -981,36 +978,38 @@ interface BaseSyntheticEvent<E = object, C = any, T = any> {
 > 说完事件对象类型，再来看看事件处理函数的类型。React也为我们提供了贴心的提供了事件处理函数的类型声明，来看看所有的事件处理函数的类型声明：
 
 ```tsx
-type EventHandler<E extends SyntheticEvent<any>> = { bivarianceHack(event: E): void }["bivarianceHack"];
-type ReactEventHandler<T = Element> = EventHandler<SyntheticEvent<T>>;
+type EventHandler<E extends SyntheticEvent<any>> = {
+  bivarianceHack(event: E): void
+}['bivarianceHack']
+type ReactEventHandler<T = Element> = EventHandler<SyntheticEvent<T>>
 // 剪切板事件处理函数
-type ClipboardEventHandler<T = Element> = EventHandler<ClipboardEvent<T>>;
+type ClipboardEventHandler<T = Element> = EventHandler<ClipboardEvent<T>>
 // 复合事件处理函数
-type CompositionEventHandler<T = Element> = EventHandler<CompositionEvent<T>>;
+type CompositionEventHandler<T = Element> = EventHandler<CompositionEvent<T>>
 // 拖拽事件处理函数
-type DragEventHandler<T = Element> = EventHandler<DragEvent<T>>;
+type DragEventHandler<T = Element> = EventHandler<DragEvent<T>>
 // 焦点事件处理函数
-type FocusEventHandler<T = Element> = EventHandler<FocusEvent<T>>;
+type FocusEventHandler<T = Element> = EventHandler<FocusEvent<T>>
 // 表单事件处理函数
-type FormEventHandler<T = Element> = EventHandler<FormEvent<T>>;
+type FormEventHandler<T = Element> = EventHandler<FormEvent<T>>
 // Change事件处理函数
-type ChangeEventHandler<T = Element> = EventHandler<ChangeEvent<T>>;
+type ChangeEventHandler<T = Element> = EventHandler<ChangeEvent<T>>
 // 键盘事件处理函数
-type KeyboardEventHandler<T = Element> = EventHandler<KeyboardEvent<T>>;
+type KeyboardEventHandler<T = Element> = EventHandler<KeyboardEvent<T>>
 // 鼠标事件处理函数
-type MouseEventHandler<T = Element> = EventHandler<MouseEvent<T>>;
+type MouseEventHandler<T = Element> = EventHandler<MouseEvent<T>>
 // 触屏事件处理函数
-type TouchEventHandler<T = Element> = EventHandler<TouchEvent<T>>;
+type TouchEventHandler<T = Element> = EventHandler<TouchEvent<T>>
 // 指针事件处理函数
-type PointerEventHandler<T = Element> = EventHandler<PointerEvent<T>>;
+type PointerEventHandler<T = Element> = EventHandler<PointerEvent<T>>
 // 界面事件处理函数
-type UIEventHandler<T = Element> = EventHandler<UIEvent<T>>;
+type UIEventHandler<T = Element> = EventHandler<UIEvent<T>>
 // 滚轮事件处理函数
-type WheelEventHandler<T = Element> = EventHandler<WheelEvent<T>>;
+type WheelEventHandler<T = Element> = EventHandler<WheelEvent<T>>
 // 动画事件处理函数
-type AnimationEventHandler<T = Element> = EventHandler<AnimationEvent<T>>;
+type AnimationEventHandler<T = Element> = EventHandler<AnimationEvent<T>>
 // 过渡事件处理函数
-type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent<T>>;
+type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent<T>>
 ```
 
 > T 的类型也都是Element，指的是触发该事件的HTML标签元素的类型
@@ -1024,13 +1023,13 @@ type State = {
   text: string;
 };
 
-const App: React.FC = () => {  
+const App: React.FC = () => {
   const [text, setText] = useState<string>("")
 
   const onChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setText(e.currentTarget.value);
   };
-  
+
   return (
     <div>
       <input type="text" value={text} onChange={onChange} />
@@ -1052,46 +1051,42 @@ const App: React.FC = () => {
 所有的HTML标签的类型都被定义在 `intrinsicElements` 接口中，常见的标签及其类型如下：
 
 ```tsx
-a: HTMLAnchorElement;
-body: HTMLBodyElement;
-br: HTMLBRElement;
-button: HTMLButtonElement;
-div: HTMLDivElement;
-h1: HTMLHeadingElement;
-h2: HTMLHeadingElement;
-h3: HTMLHeadingElement;
-html: HTMLHtmlElement;
-img: HTMLImageElement;
-input: HTMLInputElement;
-ul: HTMLUListElement;
-li: HTMLLIElement;
-link: HTMLLinkElement;
-p: HTMLParagraphElement;
-span: HTMLSpanElement;
-style: HTMLStyleElement;
-table: HTMLTableElement;
-tbody: HTMLTableSectionElement;
-video: HTMLVideoElement;
-audio: HTMLAudioElement;
-meta: HTMLMetaElement;
-form: HTMLFormElement;
+a: HTMLAnchorElement
+body: HTMLBodyElement
+br: HTMLBRElement
+button: HTMLButtonElement
+div: HTMLDivElement
+h1: HTMLHeadingElement
+h2: HTMLHeadingElement
+h3: HTMLHeadingElement
+html: HTMLHtmlElement
+img: HTMLImageElement
+input: HTMLInputElement
+ul: HTMLUListElement
+li: HTMLLIElement
+link: HTMLLinkElement
+p: HTMLParagraphElement
+span: HTMLSpanElement
+style: HTMLStyleElement
+table: HTMLTableElement
+tbody: HTMLTableSectionElement
+video: HTMLVideoElement
+audio: HTMLAudioElement
+meta: HTMLMetaElement
+form: HTMLFormElement
 ```
 
 `Event`事件类型和事件处理函数类型中都使用到了标签的类型。上面的很多的类型都需要传入一个`ELement`类型的泛型参数，这个泛型参数就是对应的标签类型值，可以根据标签来选择对应的标签类型。这些类型都继承自`HTMLElement`类型，如果使用时对类型类型要求不高，可以直接写`HTMLELement`
 
 ```tsx
 <Button
- type="text"
- onClick={(e: React.MouseEvent<HTMLElement>) => {
-  handleOperate();
-  e.stopPropagation();
-}}
-  >
-    <img
- src={cancelChangeIcon}
- alt=""
-    />
-    取消修改
+  type='text'
+  onClick={(e: React.MouseEvent<HTMLElement>) => {
+    handleOperate()
+    e.stopPropagation()
+  }}>
+  <img src={cancelChangeIcon} alt='' />
+  取消修改
 </Button>
 ```
 
@@ -1117,42 +1112,49 @@ document.querySelectorAll('.paper').forEach(item => {
 > 每个HTML标签都有自己的属性，比如Input框就有value、width、placeholder、max-length等属性，下面是Input框的属性类型定义：
 
 ```tsx
-
 interface InputHTMLAttributes<T> extends HTMLAttributes<T> {
-  accept?: string | undefined;
-  alt?: string | undefined;
-  autoComplete?: string | undefined;
-  autoFocus?: boolean | undefined;
-  capture?: boolean | string | undefined;
-  checked?: boolean | undefined;
-  crossOrigin?: string | undefined;
-  disabled?: boolean | undefined;
-  enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send' | undefined;
-  form?: string | undefined;
-  formAction?: string | undefined;
-  formEncType?: string | undefined;
-  formMethod?: string | undefined;
-  formNoValidate?: boolean | undefined;
-  formTarget?: string | undefined;
-  height?: number | string | undefined;
-  list?: string | undefined;
-  max?: number | string | undefined;
-  maxLength?: number | undefined;
-  min?: number | string | undefined;
-  minLength?: number | undefined;
-  multiple?: boolean | undefined;
-  name?: string | undefined;
-  pattern?: string | undefined;
-  placeholder?: string | undefined;
-  readOnly?: boolean | undefined;
-  required?: boolean | undefined;
-  size?: number | undefined;
-  src?: string | undefined;
-  step?: number | string | undefined;
-  type?: string | undefined;
-  value?: string | ReadonlyArray<string> | number | undefined;
-  width?: number | string | undefined;
-  onChange?: ChangeEventHandler<T> | undefined;
+  accept?: string | undefined
+  alt?: string | undefined
+  autoComplete?: string | undefined
+  autoFocus?: boolean | undefined
+  capture?: boolean | string | undefined
+  checked?: boolean | undefined
+  crossOrigin?: string | undefined
+  disabled?: boolean | undefined
+  enterKeyHint?:
+    | 'enter'
+    | 'done'
+    | 'go'
+    | 'next'
+    | 'previous'
+    | 'search'
+    | 'send'
+    | undefined
+  form?: string | undefined
+  formAction?: string | undefined
+  formEncType?: string | undefined
+  formMethod?: string | undefined
+  formNoValidate?: boolean | undefined
+  formTarget?: string | undefined
+  height?: number | string | undefined
+  list?: string | undefined
+  max?: number | string | undefined
+  maxLength?: number | undefined
+  min?: number | string | undefined
+  minLength?: number | undefined
+  multiple?: boolean | undefined
+  name?: string | undefined
+  pattern?: string | undefined
+  placeholder?: string | undefined
+  readOnly?: boolean | undefined
+  required?: boolean | undefined
+  size?: number | undefined
+  src?: string | undefined
+  step?: number | string | undefined
+  type?: string | undefined
+  value?: string | ReadonlyArray<string> | number | undefined
+  width?: number | string | undefined
+  onChange?: ChangeEventHandler<T> | undefined
 }
 ```
 
@@ -1175,79 +1177,78 @@ interface InputHTMLAttributes<T> extends HTMLAttributes<T> {
 一般情况下，我们是很少需要在项目中显式的去定义标签属性的类型。如果子级去封装组件库的话，这些属性就能发挥它们的作用了。来看例子（来源于网络，仅供学习）：
 
 ```tsx
-import React from 'react';
+import React from 'react'
 import classNames from 'classnames'
 
 export enum ButtonSize {
-    Large = 'lg',
-    Small = 'sm'
+  Large = 'lg',
+  Small = 'sm',
 }
 
 export enum ButtonType {
-    Primary = 'primary',
-    Default = 'default',
-    Danger = 'danger',
-    Link = 'link'
+  Primary = 'primary',
+  Default = 'default',
+  Danger = 'danger',
+  Link = 'link',
 }
 
 interface BaseButtonProps {
-    className?: string;
-    disabled?: boolean;
-    size?: ButtonSize;
-    btnType?: ButtonType;
-    children: React.ReactNode;
-    href?: string;
+  className?: string
+  disabled?: boolean
+  size?: ButtonSize
+  btnType?: ButtonType
+  children: React.ReactNode
+  href?: string
 }
 
-type NativeButtonProps = BaseButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement> // 使用 交叉类型（&） 获得我们自己定义的属性和原生 button 的属性
-type AnchorButtonProps = BaseButtonProps & React.AnchorHTMLAttributes<HTMLAnchorElement> // 使用 交叉类型（&） 获得我们自己定义的属性和原生 a标签 的属性
+type NativeButtonProps = BaseButtonProps &
+  React.ButtonHTMLAttributes<HTMLButtonElement> // 使用 交叉类型（&） 获得我们自己定义的属性和原生 button 的属性
+type AnchorButtonProps = BaseButtonProps &
+  React.AnchorHTMLAttributes<HTMLAnchorElement> // 使用 交叉类型（&） 获得我们自己定义的属性和原生 a标签 的属性
 
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps> //使用 Partial<> 使两种属性可选
 
 const Button: React.FC<ButtonProps> = (props) => {
-    const { disabled, className, size, btnType, children, href, ...restProps } = props;
+  const { disabled, className, size, btnType, children, href, ...restProps } =
+    props
 
-    const classes = classNames('btn', className, {
-        [`btn-${btnType}`]: btnType,
-        [`btn-${size}`]: size,
-        'disabled': (btnType === ButtonType.Link) && disabled  // 只有 a 标签才有 disabled 类名，button没有
-    })
+  const classes = classNames('btn', className, {
+    [`btn-${btnType}`]: btnType,
+    [`btn-${size}`]: size,
+    disabled: btnType === ButtonType.Link && disabled, // 只有 a 标签才有 disabled 类名，button没有
+  })
 
-    if(btnType === ButtonType.Link && href) {
-        return (
-            <a 
-             className={classes}
-             href={href}
-             {...restProps}
-            >
-                {children}
-            </a>
-        )
-    } else {
-        return (
-            <button 
-             className={classes}
-             disabled={disabled} // button元素默认有disabled属性，所以即便没给他设置样式也会和普通button有一定区别
-             {...restProps}
-            >
-              {children}
-            </button>
-        )
-    }
+  if (btnType === ButtonType.Link && href) {
+    return (
+      <a className={classes} href={href} {...restProps}>
+        {children}
+      </a>
+    )
+  } else {
+    return (
+      <button
+        className={classes}
+        disabled={disabled} // button元素默认有disabled属性，所以即便没给他设置样式也会和普通button有一定区别
+        {...restProps}>
+        {children}
+      </button>
+    )
+  }
 }
 
 Button.defaultProps = {
-    disabled: false,
-    btnType: ButtonType.Default
+  disabled: false,
+  btnType: ButtonType.Default,
 }
 
-export default Button;
+export default Button
 ```
 
 这段代码就是用来封装一个buttom按钮，在button的基础上添加了一些自定义属性，比如上面将button的类型使用交叉类型（&）获得自定义属性和原生 button 属性 ：
 
 ```tsx
-type NativeButtonProps = BaseButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>
+type NativeButtonProps = BaseButtonProps &
+  React.ButtonHTMLAttributes<HTMLButtonElement>
 ```
 
 可以看到，标签属性类型在封装组件库时还是很有用的，更多用途可以自己探索~
@@ -1261,22 +1262,20 @@ type NativeButtonProps = BaseButtonProps & React.ButtonHTMLAttributes<HTMLButton
 Partial 作用是将传入的属性变为可选项。适用于对类型结构不明确的情况。它使用了两个关键字：keyof和in，先来看看他们都是什么含义。keyof 可以用来取得接口的所有 key 值：
 
 ```tsx
-
 interface IPerson {
-  name: string;
-  age: number;
-  height: number;
+  name: string
+  age: number
+  height: number
 }
 type T = keyof IPerson
 // T 类型为： "name" | "age" | "number"
-
 ```
 
 in关键字可以遍历枚举类型,：
 
 ```tsx
-type Person = "name" | "age" | "number"
-type Obj =  {
+type Person = 'name' | 'age' | 'number'
+type Obj = {
   [p in Keys]: any
 }
 // Obj类型为： { name: any, age: any, number: any }
@@ -1290,8 +1289,8 @@ keyof 可以产生联合类型, in 可以遍历枚举类型, 所以经常一起�
 - 将T中的所有属性设置为可选
  */
 type Partial<T> = {
-    [P in keyof T]?: T[P];
-};
+  [P in keyof T]?: T[P]
+}
 ```
 
 这里，keyof T 获取 T 所有属性名, 然后使用 in 进行遍历, 将值赋给 P, 最后 T[P] 取得相应属性的值。中间的?就用来将属性设置为可选。
@@ -1316,14 +1315,13 @@ const person: Partial<IPerson> = {
 > Required 的作用是将传入的属性变为必选项，和上面的工具泛型恰好相反，其声明如下：
 
 ```tsx
-
 /**
 - Make all properties in T required
 - 将T中的所有属性设置为必选
  */
 type Required<T> = {
-    [P in keyof T]-?: T[P];
-};
+  [P in keyof T]-?: T[P]
+}
 ```
 
 可以看到，这里使用-?将属性设置为必选，可以理解为减去问号。适用形式和上面的Partial差不多：
@@ -1406,33 +1404,29 @@ const person: Pick<IPerson, "name" | "age"> = {
 > Record 用来构造一个类型，其属性名的类型为K，属性值的类型为T。这个工具泛型可用来将某个类型的属性映射到另一个类型上，下面是其声明形式：
 
 ```tsx
-
 /**
 
 - Construct a type with a set of properties K of type T
  */
 type Record<K extends keyof any, T> = {
-    [P in K]: T;
-};
-
+  [P in K]: T
+}
 ```
 
 使用示例如下：
 
 ```tsx
-
 interface IPageinfo {
-    title: string;
+  title: string
 }
 
-type IPage = 'home' | 'about' | 'contact';
+type IPage = 'home' | 'about' | 'contact'
 
 const page: Record<IPage, IPageinfo> = {
-    about: {title: 'about'},
-    contact: {title: 'contact'},
-    home: {title: 'home'},
+  about: { title: 'about' },
+  contact: { title: 'contact' },
+  home: { title: 'home' },
 }
-
 ```
 
 ### Exclude<T, U>
@@ -1491,12 +1485,15 @@ const person: Omit<IPerson, "age" | "height"> = {
 ReturnType会返回函数返回值的类型，其声明形式如下：
 
 ```tsx
-
 /**
 
 - Obtain the return type of a function type
  */
-type ReturnType<T extends (...args: any) => any> = T extends (...args: any) => infer R ? R : any;
+type ReturnType<T extends (...args: any) => any> = T extends (
+  ...args: any
+) => infer R
+  ? R
+  : any
 ```
 
 使用示例如下：
@@ -1529,15 +1526,20 @@ Axios的基本使用就不再多介绍了。为了更好地调用，做一些全
 下面来看基本的封装：
 
 ```tsx
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosPromise,AxiosResponse } from 'axios'; // 引入axios和定义在node_modules/axios/index.ts文件里的类型声明
+import axios, {
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosPromise,
+  AxiosResponse,
+} from 'axios' // 引入axios和定义在node_modules/axios/index.ts文件里的类型声明
 
- // 定义接口请求类，用于创建axios请求实例
+// 定义接口请求类，用于创建axios请求实例
 class HttpRequest {
   // 接收接口请求的基本路径
   constructor(public baseUrl: string) {
-    this.baseUrl = baseUrl;
+    this.baseUrl = baseUrl
   }
-  
+
   // 调用接口时调用实例的这个方法，返回AxiosPromise
   public request(options: AxiosRequestConfig): AxiosPromise {
     // 创建axios实例，它是函数，同时这个函数包含多个属性
@@ -1549,29 +1551,29 @@ class HttpRequest {
     // 返回AxiosPromise
     return instance(options)
   }
-  
+
   // 用于添加全局请求和响应拦截
   private interceptors(instance: AxiosInstance, url?: string) {
     // 请求和响应拦截
   }
-  
+
   // 用于合并基础路径配置和接口单独配置
   private mergeConfig(options: AxiosRequestConfig): AxiosRequestConfig {
-    return Object.assign({ baseURL: this.baseUrl }, options);
+    return Object.assign({ baseURL: this.baseUrl }, options)
   }
 }
-export default HttpRequest;
+export default HttpRequest
 ```
 
 通常baseUrl在开发环境的和生产环境的路径是不一样的，所以可以根据当前是开发环境还是生产环境做判断，应用不同的基础路径。这里要写在一个配置文件里：
 
 ```tsx
 export default {
-    api: {
-        devApiBaseUrl: '/test/api/xxx',
-        proApiBaseUrl: '/api/xxx',
-    },
-};
+  api: {
+    devApiBaseUrl: '/test/api/xxx',
+    proApiBaseUrl: '/api/xxx',
+  },
+}
 ```
 
 在上面的文件中引入这个配置：
@@ -1618,7 +1620,6 @@ private interceptors(instance: AxiosInstance, url?: string) {
 到这里封装的就差不多了，一般服务端会将状态码、提示信息和数据封装在一起，然后作为数据返回，所以所有请求返回的数据格式都是一样的，所以就可以定义一个接口来指定返回的数据结构，可以定义一个接口：
 
 ```ts
-
 export interface ResponseData {
   code: number
   data?: any
@@ -1641,7 +1642,7 @@ import axios, { ResponseData } from './index'
 import { AxiosPromise } from 'axios'
 
 interface ILogin {
-  user: string;
+  user: string
   password: number | string
 }
 
@@ -1649,7 +1650,7 @@ export const loginReq = (data: ILogin): AxiosPromise<ResponseData> => {
   return axios.request({
     url: '/api/user/login',
     data,
-    method: 'POST'
+    method: 'POST',
   })
 }
 ```
@@ -1662,10 +1663,10 @@ export const loginReq = (data: ILogin): AxiosPromise<ResponseData> => {
 import { loginReq } from '@/api/user'
 const Home: FC = () => {
   const login = (params) => {
-   loginReq(params).then((res) => {
-     console.log(res.data.code)
-   })
-  }  
+    loginReq(params).then((res) => {
+      console.log(res.data.code)
+    })
+  }
 }
 ```
 
@@ -1685,8 +1686,8 @@ import * as ReactDOM from 'react-dom'
 这是一种面向未来的导入方式，如果想在项目中使用以下导入方式：
 
 ```tsx
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react'
+import ReactDOM from 'react-dom'
 ```
 
 就需要在tsconfig.json配置文件中进行如下配置：
@@ -1707,7 +1708,6 @@ import ReactDOM from "react-dom";
 > interface 和 type 在 ts 中是两个不同的概念，但在 React 大部分使用的 case 中，interface 和 type 可以达到相同的功能效果，type 和 interface 最大的区别是：type 类型不能二次编辑，而 interface 可以随时扩展：
 
 ```ts
-
 interface Animal {
   name: string
 }
@@ -1725,7 +1725,6 @@ type Animal = {
 type Animal = {
   color: string
 }
-
 ```
 
 > type对于联合类型是很有用的，比如：type Type = TypeA | TypeB。而interface更适合声明字典类行，然后定义或者扩展它。
@@ -1735,45 +1734,45 @@ type Animal = {
 > 如果我们想在React router中使用懒加载，React也为我们提供了懒加载方法的类型，来看下面的例子：
 
 ```tsx
-
 export interface RouteType {
-    pathname: string;
-    component: LazyExoticComponent<any>;
-    exact: boolean;
-    title?: string;
-    icon?: string;
-    children?: RouteType[];
+  pathname: string
+  component: LazyExoticComponent<any>
+  exact: boolean
+  title?: string
+  icon?: string
+  children?: RouteType[]
 }
 export const AppRoutes: RouteType[] = [
-    {
-        pathname: '/login',
-        component: lazy(() => import('../views/Login/Login')),
-        exact: true
-    },
-    {
-        pathname: '/404',
-        component: lazy(() => import('../views/404/404')),
-        exact: true,
-    },
-    {
-        pathname: '/',
-        exact: false,
-        component: lazy(() => import('../views/Admin/Admin'))
-    }
+  {
+    pathname: '/login',
+    component: lazy(() => import('../views/Login/Login')),
+    exact: true,
+  },
+  {
+    pathname: '/404',
+    component: lazy(() => import('../views/404/404')),
+    exact: true,
+  },
+  {
+    pathname: '/',
+    exact: false,
+    component: lazy(() => import('../views/Admin/Admin')),
+  },
 ]
-
 ```
 
 下面是懒加载类型和lazy方法在声明文件中的定义：
 
 ```tsx
-type LazyExoticComponent<T extends ComponentType<any>> = ExoticComponent<ComponentPropsWithRef<T>> & {
-  readonly _result: T;
-};
+type LazyExoticComponent<T extends ComponentType<any>> = ExoticComponent<
+  ComponentPropsWithRef<T>
+> & {
+  readonly _result: T
+}
 
 function lazy<T extends ComponentType<any>>(
-factory: () => Promise<{ default: T }>
-): LazyExoticComponent<T>;
+  factory: () => Promise<{ default: T }>,
+): LazyExoticComponent<T>
 ```
 
 ### 类型断言
@@ -1783,35 +1782,33 @@ factory: () => Promise<{ default: T }>
 来看下面的例子：
 
 ```tsx
-
 const getLength = (target: string | number): number => {
-  if (target.length) { // error 类型"string | number"上不存在属性"length"
-    return target.length; // error  类型"number"上不存在属性"length"
+  if (target.length) {
+    // error 类型"string | number"上不存在属性"length"
+    return target.length // error  类型"number"上不存在属性"length"
   } else {
-    return target.toString().length;
+    return target.toString().length
   }
-};
+}
 ```
 
 当TypeScript不确定一个联合类型的变量到底是哪个类型时，就只能访问此联合类型的所有类型里共有的属性或方法，所以现在加了对参数target和返回值的类型定义之后就会报错。这时就可以使用断言，将target的类型断言成string类型：
 
 ```tsx
-
 const getStrLength = (target: string | number): number => {
   if ((target as string).length) {
-    return (target as string).length;
+    return (target as string).length
   } else {
-    return target.toString().length;
+    return target.toString().length
   }
-};
-
+}
 ```
 
 需要注意，类型断言并不是类型转换，断言成一个联合类型中不存在的类型是不允许的。​
 
 再来看一个例子，在调用一个方法时传入参数：
 ![](/__assets__/img/2022-02-09-11-20-44.png)
- 这里就提示我们这个参数可能是undefined，而通过业务知道这个值是一定存在的，所以就可以将它断言成数字：data?.subjectId as number​
+这里就提示我们这个参数可能是undefined，而通过业务知道这个值是一定存在的，所以就可以将它断言成数字：data?.subjectId as number​
 
 除此之外，上面所说的标签类型、组件类型、时间类型都可以使用断言来指定给一些数据，还是要根据实际的业务场景来使用。​
 

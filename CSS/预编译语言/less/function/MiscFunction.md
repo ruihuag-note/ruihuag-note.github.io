@@ -57,6 +57,7 @@
 
   - number：带单位的浮点数。
   - 标识符: 字符串或转义值：单位
+
 - Returns: number
 
 Example:
@@ -83,7 +84,7 @@ Parameters:
 
 - mimetype：（可选）MIME类型字符串。
 - url：要内联的文件的url。
-若并没有mimetype，数据uri函数将根据文件名后缀猜测它。文本和svg文件编码为utf-8，其他文件编码为base64。
+  若并没有mimetype，数据uri函数将根据文件名后缀猜测它。文本和svg文件编码为utf-8，其他文件编码为base64。
 - 如果用户提供了mimetype，如果mimetype参数以结尾，则函数使用base64；base64。例如，图像/jpeg；base64编码为base64，而文本/html编码为utf-8。
 
 - `Example`:`data-uri('../data/image.jpg')`
@@ -107,9 +108,15 @@ Parameters:
 Example:
 
 ```less
-.mixin(1)                   {x: 11}
-.mixin(2)                   {y: 22}
-.mixin(@x) when (default()) {z: @x}
+.mixin(1) {
+  x: 11;
+}
+.mixin(2) {
+  y: 22;
+}
+.mixin(@x) when (default()) {
+  z: @x;
+}
 
 div {
   .mixin(3);
@@ -134,9 +141,12 @@ div.special {
 - 可以将默认返回的值与guard运算符一起使用。例如只有当至少有一个以上的mixin定义匹配时，mixin（）when not（default（））{}才会匹配。mixin（）调用:
 
 ```less
-
-.mixin(@value) when (ispixel(@value)) {width: @value}
-.mixin(@value) when not(default())    {padding: (@value / 5)}
+.mixin(@value) when (ispixel(@value)) {
+  width: @value;
+}
+.mixin(@value) when not(default()) {
+  padding: (@value / 5);
+}
 
 div-1 {
   .mixin(100px);
@@ -146,13 +156,11 @@ div-2 {
   /*...*/
   .mixin(100%);
 }
-
 ```
 
 result:
 
 ```css
-
 div-1 {
   width: 100px;
   padding: 20px;
@@ -165,20 +173,25 @@ div-2 {
 - 允许在相同的保护条件下或在具有相同名称的mixin的不同条件下进行多个default（）调用:
 
 ```less
-
 div {
-  .m(@x) when (default()), not(default())    {always: @x}
-  .m(@x) when (default()) and not(default()) {never:  @x}
+  .m(@x) when (default()),
+  not(default()) {
+    always: @x;
+  }
+  .m(@x) when (default()) and not(default()) {
+    never: @x;
+  }
 
   .m(1); // OK
 }
 ```
 
 ```less
-
 div {
-  .m(@x) when (default())    {}
-  .m(@x) when not(default()) {}
+  .m(@x) when (default()) {
+  }
+  .m(@x) when not(default()) {
+  }
 
   .m(1); // Error
 }
@@ -190,24 +203,43 @@ Advanced multiple default() usage:
 
 ```less
 .x {
-  .m(red)                                    {case-1: darkred}
-  .m(blue)                                   {case-2: darkblue}
-  .m(@x) when (iscolor(@x)) and (default())  {default-color: @x}
-  .m('foo')                                  {case-1: I am 'foo'}
-  .m('bar')                                  {case-2: I am 'bar'}
-  .m(@x) when (isstring(@x)) and (default()) {default-string: and I am the default}
+  .m(red) {
+    case-1: darkred;
+  }
+  .m(blue) {
+    case-2: darkblue;
+  }
+  .m(@x) when (iscolor(@x)) and (default()) {
+    default-color: @x;
+  }
+  .m('foo') {
+    case-1: I am 'foo';
+  }
+  .m('bar') {
+    case-2: I am 'bar';
+  }
+  .m(@x) when (isstring(@x)) and (default()) {
+    default-string: and I am the default;
+  }
 
-  &-blue  {.m(blue)}
-  &-green {.m(green)}
-  &-foo   {.m('foo')}
-  &-baz   {.m('baz')}
+  &-blue {
+    .m(blue);
+  }
+  &-green {
+    .m(green);
+  }
+  &-foo {
+    .m('foo');
+  }
+  &-baz {
+    .m('baz');
+  }
 }
 ```
 
 Result:
 
 ```css
-
 .x-blue {
   case-2: #00008b;
 }
@@ -227,7 +259,6 @@ Result:
 Example:
 
 ```less
-
 div {
   foo: default();
   bar: default(42);
@@ -237,7 +268,6 @@ div {
 Result:
 
 ```css
-
 div {
   foo: default();
   bar: default(42);
@@ -271,9 +301,11 @@ div {
 ## svg-gradient
 
 ```less
-
 div {
-  @list: red, green 30%, blue;
+  @list:
+    red,
+    green 30%,
+    blue;
   background-image: svg-gradient(to right, @list);
 }
 equivalent - color stops in arguments:

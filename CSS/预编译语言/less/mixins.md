@@ -3,7 +3,8 @@
 - 添加进已有的样式里
 
 ```less
-.a, #b {
+.a,
+#b {
   color: red;
 }
 .mixin-class {
@@ -15,7 +16,8 @@
 ```
 
 ```css
-.a, #b {
+.a,
+#b {
   color: red;
 }
 .mixin-class {
@@ -97,11 +99,15 @@ button:hover {
 
 ```less
 #namespace when (@mode = huge) {
-  .mixin() { /* */ }
+  .mixin() {
+    /* */
+  }
 }
 
 #namespace {
-  .mixin() when (@mode = huge) { /* */ }
+  .mixin() when (@mode = huge) {
+    /* */
+  }
 }
 ```
 
@@ -137,14 +143,13 @@ button:hover {
 // .border-radius(@radius) { 这种没有没有默认值
 .border-radius(@radius: 5px) {
   -webkit-border-radius: @radius;
-     -moz-border-radius: @radius;
-          border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
 }
 
 #header {
   .border-radius();
 }
-
 ```
 
 ```css
@@ -217,8 +222,8 @@ button:hover {
 ```less
 .box-shadow(@x: 0, @y: 0, @blur: 1px, @color: #000) {
   -webkit-box-shadow: @arguments;
-     -moz-box-shadow: @arguments;
-          box-shadow: @arguments;
+  -moz-box-shadow: @arguments;
+  box-shadow: @arguments;
 }
 .big-block {
   .box-shadow(2px, 5px);
@@ -228,8 +233,8 @@ button:hover {
 ```css
 .big-block {
   -webkit-box-shadow: 2px 5px 1px #000;
-     -moz-box-shadow: 2px 5px 1px #000;
-          box-shadow: 2px 5px 1px #000;
+  -moz-box-shadow: 2px 5px 1px #000;
+  box-shadow: 2px 5px 1px #000;
 }
 ```
 
@@ -237,15 +242,17 @@ button:hover {
 
 ```less
 .mixin(@a, @rest...) {
-   // @rest is bound to arguments after @a
-   // @arguments is bound to all arguments
+  // @rest is bound to arguments after @a
+  // @arguments is bound to all arguments
 }
 ```
 
 ## Pattern-matching
 
 ```less
-.mixin(@s, @color) { ... }
+.mixin(@s, @color) {
+  ...;
+}
 
 .class {
   .mixin(@switch, #888);
@@ -288,7 +295,7 @@ button:hover {
 
 div {
   // call a mixin and look up its "@result" value
-  padding: .average(16px, 50px)[@result];
+  padding: .average(16px, 50px) [ @result];
 }
 ```
 
@@ -309,7 +316,7 @@ div {
 }
 
 // customize.less
-@import "library";
+@import 'library';
 #library() {
   .mixin() {
     prop: bar;
@@ -336,9 +343,8 @@ div {
 
 div {
   // call a mixin and look up its final value
-  padding: .average(16px, 50px)[];
+  padding: .average(16px, 50px) [];
 }
-
 
 //  output :
 
@@ -351,27 +357,29 @@ div {
 
 ```less
 .mixin() {
-  @width:  100%;
+  @width: 100%;
   @height: 200px;
 }
 
 .caller {
   .mixin();
-  width:  @width;
+  width: @width;
   height: @height;
 }
 
 // Results :
 
 .caller {
-  width:  100%;
+  width: 100%;
   height: 200px;
 }
 ```
 
 ```less
-.unlock(@value) { // outer mixin
-  .doSomething() { // nested mixin
+.unlock(@value) {
+  // outer mixin
+  .doSomething() {
+    // nested mixin
     declaration: @value;
   }
 }
@@ -392,7 +400,7 @@ div {
 
 ```less
 .loop(@counter) when (@counter > 0) {
-  .loop((@counter - 1));    // next iteration
+  .loop((@counter - 1)); // next iteration
   width: (10px * @counter); // code for each iteration
 }
 
@@ -449,8 +457,12 @@ div {
   color: @a;
 }
 
-.class1 { .mixin(#ddd) }
-.class2 { .mixin(#555) }
+.class1 {
+  .mixin(#ddd);
+}
+.class2 {
+  .mixin(#555);
+}
 
 // output:
 
@@ -462,32 +474,49 @@ div {
   background-color: white;
   color: #555;
 }
-
 ```
 
 ### Guard Comparison Operators
 
 ```less
-.truth(@a) when (@a) { ... }
-.truth(@a) when (@a = true) { ... }
+.truth(@a) when (@a) {
+  ...;
+}
+.truth(@a) when (@a = true) {
+  ...;
+}
 
 @media: mobile;
 
-.mixin(@a) when (@media = mobile) { ... }
-.mixin(@a) when (@media = desktop) { ... }
+.mixin(@a) when (@media = mobile) {
+  ...;
+}
+.mixin(@a) when (@media = desktop) {
+  ...;
+}
 
-.max(@a; @b) when (@a > @b) { width: @a }
-.max(@a; @b) when (@a < @b) { width: @b }
+.max(@a; @b) when (@a > @b) {
+  width: @a;
+}
+.max(@a; @b) when (@a < @b) {
+  width: @b;
+}
 ```
 
 ### Guard Logical Operators
 
 ```less
-.mixin(@a) when (isnumber(@a)) and (@a > 0) { ... }
+.mixin(@a) when (isnumber(@a)) and (@a > 0) {
+  ...;
+}
 
-.mixin(@a) when (@a > 10), (@a < -10) { ... }
+.mixin(@a) when (@a > 10), (@a < -10) {
+  ...;
+}
 
-.mixin(@b) when not (@b > 0) { ... }
+.mixin(@b) when not (@b > 0) {
+  ...;
+}
 ```
 
 ### Type Checking Functions
@@ -503,8 +532,12 @@ div {
 - isunit
 
 ```less
-.mixin(@a; @b: 0) when (isnumber(@b)) { ... }
-.mixin(@a; @b: black) when (iscolor(@b)) { ... }
+.mixin(@a; @b: 0) when (isnumber(@b)) {
+  ...;
+}
+.mixin(@a; @b: black) when (iscolor(@b)) {
+  ...;
+}
 ```
 
 ## Aliasing Mixins

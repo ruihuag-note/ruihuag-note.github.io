@@ -6,12 +6,12 @@
 >
 > `window.postMessage()`方法提供了一种受控机制来规避此限制，只要正确的使用，这种方法就很安全。
 
-从广义上讲，一个窗口可以获得对另一个窗口的引用（比如 `targetWindow = window.opener`），然后在窗口上调用 `targetWindow.postMessage()` 方法分发一个  [`MessageEvent`](https://developer.mozilla.org/zh-CN/docs/Web/API/MessageEvent) 消息。接收消息的窗口可以根据需要自由[处理此事件 (en-US)](https://developer.mozilla.org/en-US/docs/Web/Events)。传递给 window.postMessage() 的参数（比如 message ）将[通过消息事件对象暴露给接收消息的窗口](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage#The_dispatched_event)。
+从广义上讲，一个窗口可以获得对另一个窗口的引用（比如 `targetWindow = window.opener`），然后在窗口上调用 `targetWindow.postMessage()` 方法分发一个 [`MessageEvent`](https://developer.mozilla.org/zh-CN/docs/Web/API/MessageEvent) 消息。接收消息的窗口可以根据需要自由[处理此事件 (en-US)](https://developer.mozilla.org/en-US/docs/Web/Events)。传递给 window.postMessage() 的参数（比如 message ）将[通过消息事件对象暴露给接收消息的窗口](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage#The_dispatched_event)。
 
 ## [语法](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage#syntax)
 
 ```js
-otherWindow.postMessage(message, targetOrigin, [transfer]);
+otherWindow.postMessage(message, targetOrigin, [transfer])
 ```
 
 - `otherWindow`
@@ -24,7 +24,7 @@ otherWindow.postMessage(message, targetOrigin, [transfer]);
 
 - `targetOrigin`
 
-  通过窗口的origin属性来指定哪些窗口能接收到消息事件，其值可以是字符串"*"（表示无限制）或者一个URI。在发送消息的时候，如果目标窗口的协议、主机地址或端口这三者的任意一项不匹配targetOrigin提供的值，那么消息就不会被发送；只有三者完全匹配，消息才会被发送。这个机制用来控制消息可以发送到哪些窗口；例如，当用postMessage传送密码时，这个参数就显得尤为重要，必须保证它的值与这条包含密码的信息的预期接受者的origin属性完全一致，来防止密码被恶意的第三方截获。**如果你明确的知道消息应该发送到哪个窗口，那么请始终提供一个有确切值的targetOrigin，而不是\*。不提供确切的目标将导致数据泄露到任何对数据感兴趣的恶意站点。**
+  通过窗口的origin属性来指定哪些窗口能接收到消息事件，其值可以是字符串"\*"（表示无限制）或者一个URI。在发送消息的时候，如果目标窗口的协议、主机地址或端口这三者的任意一项不匹配targetOrigin提供的值，那么消息就不会被发送；只有三者完全匹配，消息才会被发送。这个机制用来控制消息可以发送到哪些窗口；例如，当用postMessage传送密码时，这个参数就显得尤为重要，必须保证它的值与这条包含密码的信息的预期接受者的origin属性完全一致，来防止密码被恶意的第三方截获。**如果你明确的知道消息应该发送到哪个窗口，那么请始终提供一个有确切值的targetOrigin，而不是\*。不提供确切的目标将导致数据泄露到任何对数据感兴趣的恶意站点。**
 
 - `transfer` 可选
 
@@ -35,23 +35,22 @@ otherWindow.postMessage(message, targetOrigin, [transfer]);
 执行如下代码, 其他window可以监听分发的message:
 
 ```js
-window.addEventListener("message", receiveMessage, false);
+window.addEventListener('message', receiveMessage, false)
 
-function receiveMessage(event){
+function receiveMessage(event) {
   // For Chrome, the origin property is in the event.originalEvent
   // object.
   // 这里不准确，chrome没有这个属性
   // var origin = event.origin || event.originalEvent.origin;
   var origin = event.origin
-  if (origin !== "http://example.org:8080")
-    return;
+  if (origin !== 'http://example.org:8080') return
   // ...
 }
 ```
 
 Copy to Clipboard
 
- message 的属性有:
+message 的属性有:
 
 - `data`
 
@@ -64,8 +63,6 @@ Copy to Clipboard
 - `source`
 
   对发送消息的[窗口](https://developer.mozilla.org/en-US/docs/Web/API/Window)对象的引用; 您可以使用此来在具有不同origin的两个窗口之间建立双向通信。
-
-
 
 ## [安全问题](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage#security_concerns)
 
@@ -111,22 +108,22 @@ Copy to Clipboard
  */
 
 //当A页面postMessage被调用后，这个function被addEventListener调用
-function receiveMessage(event){
+function receiveMessage(event) {
   // 我们能信任信息来源吗？
-  if (event.origin !== "http://example.com:8080")
-    return;
+  if (event.origin !== 'http://example.com:8080') return
 
   // event.source 就当前弹出页的来源页面
   // event.data 是 "hello there!"
 
   // 假设你已经验证了所受到信息的origin (任何时候你都应该这样做), 一个很方便的方式就是把event.source
   // 作为回信的对象，并且把event.origin作为targetOrigin
-  event.source.postMessage("hi there yourself!  the secret response " +
-                           "is: rheeeeet!",
-                           event.origin);
+  event.source.postMessage(
+    'hi there yourself!  the secret response ' + 'is: rheeeeet!',
+    event.origin,
+  )
 }
 
-window.addEventListener("message", receiveMessage, false);
+window.addEventListener('message', receiveMessage, false)
 ```
 
 Copy to Clipboard
@@ -134,13 +131,9 @@ Copy to Clipboard
 ### [**注意**](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage#notes)
 
 > - 任何窗口可以在任何其他窗口访问此方法，在任何时间，无论文档在窗口中的位置，向其发送消息。 因此，用于接收消息的任何事件监听器**必须**首先使用origin和source属性来检查消息的发送者的身份。 **这不能低估：无法检查origin和source属性会导致跨站点脚本攻击。**
->
 > - 与任何异步调度的脚本（超时，用户生成的事件）一样，postMessage的调用者不可能检测到侦听由postMessage发送的事件的事件处理程序何时抛出异常。
->
 > - 分派事件的origin属性的值不受调用窗口中document.domain的当前值的影响。
->
 > - 仅对于IDN主机名，origin属性的值不是始终为Unicode或punycode; 在使用此属性时，如果您期望来自IDN网站的消息，则最大程度地兼容性检查IDN和punycode值。 这个值最终将始终是IDN，但现在你应该同时处理IDN和punycode表单。
->
 > - 当发送窗口包含 `javascript:` 或 `data:` URL时，origin属性的值是加载URL的脚本的
 
 ### [在扩展中使用window.postMessage](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage#在扩展non-standard_inline中使用window.postmessage)
@@ -153,72 +146,60 @@ Copy to Clipboard
 > 利用postMessage不能和服务端交换数据，只能在两个窗口（iframe）之间交换数据
 > 两个窗口能通信的前提是，一个窗口以iframe的形式存在于另一个窗口，或者一个窗口是从另一个窗口通过window.open()或者超链接的形式打开的（同样可以用window.opener获取源窗口）
 
-
-
-
 ### index.html
 
-
-
 ```html
-
 <!doctype html>
 <html>
-
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
-
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
     <form id="form">
-        <input type="text" placeholder="Enter message" name="message" autocomplete="off">
-        <input type="submit" value="Click to send">
+      <input
+        type="text"
+        placeholder="Enter message"
+        name="message"
+        autocomplete="off" />
+      <input type="submit" value="Click to send" />
     </form>
-     
-    <iframe src="./iframe.html" id="iframe" style="display:block;height:300px"></iframe>
-     
+
+    <iframe
+      src="./iframe.html"
+      id="iframe"
+      style="display:block;height:300px"></iframe>
+
     <script>
-        form.onsubmit = function () {
-            iframe.contentWindow.postMessage(this.message.value, 'http://localhost:3000/iframe.html');
-            return false;
-        };
+      form.onsubmit = function () {
+        iframe.contentWindow.postMessage(
+          this.message.value,
+          'http://localhost:3000/iframe.html',
+        )
+        return false
+      }
     </script>
-
-</body>
+  </body>
 </html>
-
 ```
+
 ### iframe.html
 
 ```html
 <!doctype html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
 
-
-<head>
-    <meta charset="UTF-8">
-</head>
-
-
-<body>
-
+  <body>
     <div id="showhere"></div>
     Receiving iframe.
     <script>
-        window.addEventListener('message', function (event) {
-            console.log(`Received ${event.data} from ${event.origin}`);
-            document.getElementById('showhere').innerHTML += event.data;
-        });
+      window.addEventListener('message', function (event) {
+        console.log(`Received ${event.data} from ${event.origin}`)
+        document.getElementById('showhere').innerHTML += event.data
+      })
     </script>
-
-</body>
-
+  </body>
 </html>
 ```
-
-
-
-
-
-
-

@@ -19,7 +19,7 @@ console.log(Number.MAX_SAFE_INTEGER) // 最大值-1
   const bigInt = 9007199254740993n
   console.log(bigInt)
   console.log(typeof bigInt) // bigint
-  
+
   console.log(1n == 1) // true
   console.log(1n === 1) // false
   ```
@@ -74,7 +74,7 @@ console.log(2 ** 10) // 1024
 
   ```
   const a = 5 // 101
-  
+
   console.log(a.toString(2))
   ```
 
@@ -82,7 +82,7 @@ console.log(2 ** 10) // 1024
 
   ```
   const b = 101
-  
+
   console.log(parseInt(b, 2))
   ```
 
@@ -91,7 +91,7 @@ console.log(2 ** 10) // 1024
   ```
   const a = 0B0101
   console.log(a)
-  
+
   const b = 0O777
   console.log(b)
   ```
@@ -131,7 +131,7 @@ console.log(2 ** 10) // 1024
   ```
   // ES5的写法
   parseInt('12.34') // 12
-  
+
   // ES6的写法
   Number.parseInt('12.34') // 12
   ```
@@ -142,7 +142,7 @@ console.log(2 ** 10) // 1024
   ```
   // ES5的写法
   parseFloat('123.45#') // 123.45
-  
+
   // ES6的写法
   Number.parseFloat('123.45#') // 123.45
   ```
@@ -153,7 +153,7 @@ console.log(2 ** 10) // 1024
   ```
   Number.isInteger(25) // true
   Number.isInteger(25.1) // false
-  
+
   Number.isInteger() // false
   Number.isInteger(null) // false
   Number.isInteger('15') // false
@@ -164,7 +164,7 @@ console.log(2 ** 10) // 1024
 
   ```
   Number.MAX_SAFE_INTEGER === Math.pow(2, 53) - 1 // true
-  
+
   Number.MAX_SAFE_INTEGER === 9007199254740991 // true
   ```
 
@@ -172,7 +172,7 @@ console.log(2 ** 10) // 1024
 
   ```
   Number.MIN_SAFE_INTEGER === -Number.MAX_SAFE_INTEGER // true
-  
+
   Number.MIN_SAFE_INTEGER === -9007199254740991 // true
   ```
 
@@ -181,6 +181,6 @@ console.log(2 ** 10) // 1024
 
   ```
   Math.pow(2, 53) // 9007199254740992
-  
+
   Math.pow(2, 53) === Math.pow(2, 53) + 1 // true
   ```

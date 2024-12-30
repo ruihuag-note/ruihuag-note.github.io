@@ -7,9 +7,9 @@
 
 ```json
 {
- "author": "ruihuag",
- // or
- "author": "ruihuag <ruihuag@qq.com> (https://guanruihua.github.io)"
+  "author": "ruihuag",
+  // or
+  "author": "ruihuag <ruihuag@qq.com> (https://guanruihua.github.io)"
 }
 ```
 
@@ -17,10 +17,10 @@
 
 ```json
 {
- "author": {
-  "name" : "CUGGZ",
-  "email" : "xxxxx@xx.com",
-  "url" : "https://juejin.cn/user/3544481220801815"
- }
+  "author": {
+    "name": "CUGGZ",
+    "email": "xxxxx@xx.com",
+    "url": "https://juejin.cn/user/3544481220801815"
+  }
 }
 ```

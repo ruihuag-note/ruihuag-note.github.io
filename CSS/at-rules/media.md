@@ -34,7 +34,7 @@
 }
 where <media-query-list> = <media-query>#
 
-where <media-query> = <media-condition> | [ not | only ]? <media-type> [ and 
+where <media-query> = <media-condition> | [ not | only ]? <media-type> [ and
 <media-condition-without-or> ]?
 
 where <media-condition> = <media-not> | <media-and> | <media-or> | <media-in-parens><media-type> = <ident> (en-US)<media-condition-without-or> = <media-not> | <media-and> | <media-in-parens>
@@ -50,10 +50,10 @@ where <mf-name> = <ident> (en-US)<mf-value> = <number> | <dimension> | <ident> (
 
 ## [媒体特性](https://developer.mozilla.org/zh-CN/docs/Web/CSS/@media#媒体特性)
 
-*媒体特性*（*Media features*）描述了 [user agent](https://developer.mozilla.org/zh-CN/docs/Glossary/User_agent)、输出设备，或是浏览环境的具体特征。媒体特性表达式是完全可选的，它负责测试这些特性或特征是否存在、值为多少。每条媒体特性表达式都必须用括号括起来。
+_媒体特性_（_Media features_）描述了 [user agent](https://developer.mozilla.org/zh-CN/docs/Glossary/User_agent)、输出设备，或是浏览环境的具体特征。媒体特性表达式是完全可选的，它负责测试这些特性或特征是否存在、值为多少。每条媒体特性表达式都必须用括号括起来。
 
 | 名称                                                                                                       | 简介                                                                                                                           | 备注                                                                                             |
-| :--------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------- |
+| :--------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------- | --- | -------------------------------------------------------------------------------------- | ----------------------------------- | ----------------------------------- | --- | ------------------------------------------------------------------------------------------ | -------------------------------- | ----------------------------------- |
 | [any-hover](https://developer.mozilla.org/zh-CN/docs/Web/CSS/@media/any-hover)                             | 是否有任何可用的输入机制允许用户（将鼠标等）悬停在元素上？                                                                     | 在 Media Queries Level 4 中被添加。                                                              |
 | [any-pointer](https://developer.mozilla.org/zh-CN/docs/Web/CSS/@media/any-pointer)                         | 可用的输入机制中是否有任何指针设备，如果有，它的精度如何？                                                                     | 在 Media Queries Level 4 中被添加。                                                              |
 | [aspect-ratio](https://developer.mozilla.org/zh-CN/docs/Web/CSS/@media/aspect-ratio)                       | 视窗（viewport）的宽高比                                                                                                       |                                                                                                  |
@@ -80,29 +80,34 @@ where <mf-name> = <ident> (en-US)<mf-value> = <number> | <dimension> | <ident> (
 | [prefers-reduced-motion](https://developer.mozilla.org/zh-CN/docs/Web/CSS/@media/prefers-reduced-motion)   | 用户是否希望页面上出现更少的动态效果                                                                                           | 在 Media Queries Level 5 中被添加。                                                              |
 | `prefers-reduced-transparency`                                                                             | 用户是否倾向于选择更低的透明度                                                                                                 | 在 Media Queries Level 5 中被添加。                                                              |
 | [resolution (en-US)](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/resolution)                   | 输出设备的像素密度（分辨率）                                                                                                   |                                                                                                  |
-| `scan`                                                                                                     | 输出设备的扫描过程（适用于电视等）                                                                                             |                                                                                                  |  | [scripting (en-US)](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/scripting) | 探测脚本（例如 JavaScript）是否可用 | 在 Media Queries Level 5 中被添加。 |  | [update (en-US)](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/update-frequency) | 输出设备更新内容的渲染结果的频率 | 在 Media Queries Level 4 中被添加。 |
+| `scan`                                                                                                     | 输出设备的扫描过程（适用于电视等）                                                                                             |                                                                                                  |     | [scripting (en-US)](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/scripting) | 探测脚本（例如 JavaScript）是否可用 | 在 Media Queries Level 5 中被添加。 |     | [update (en-US)](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/update-frequency) | 输出设备更新内容的渲染结果的频率 | 在 Media Queries Level 4 中被添加。 |
 | [width](https://developer.mozilla.org/zh-CN/docs/Web/CSS/@media/width)                                     | 视窗（viewport）的宽度，包括纵向滚动条的宽度                                                                                   |                                                                                                  |
 
 ## [示例](https://developer.mozilla.org/zh-CN/docs/Web/CSS/@media#示例)
 
 ```css
 @media print {
-  body { font-size: 10pt; }
+  body {
+    font-size: 10pt;
+  }
 }
 
 @media screen {
-  body { font-size: 13px; }
+  body {
+    font-size: 13px;
+  }
 }
 
 @media screen, print {
-  body { line-height: 1.2; }
+  body {
+    line-height: 1.2;
+  }
 }
 
-@media only screen
-  and (min-width: 320px)
-  and (max-width: 480px)
-  and (resolution: 150dpi) {
-    body { line-height: 1.4; }
+@media only screen and (min-width: 320px) and (max-width: 480px) and (resolution: 150dpi) {
+  body {
+    line-height: 1.4;
+  }
 }
 ```
 
@@ -110,11 +115,15 @@ where <mf-name> = <ident> (en-US)<mf-value> = <number> | <dimension> | <ident> (
 
 ```css
 @media (height > 600px) {
-    body { line-height: 1.4; }
+  body {
+    line-height: 1.4;
+  }
 }
 
 @media (400px <= width <= 700px) {
-    body { line-height: 1.4; }
+  body {
+    line-height: 1.4;
+  }
 }
 ```
 

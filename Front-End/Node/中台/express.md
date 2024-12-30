@@ -69,14 +69,15 @@ DEBUG=app:* npm start
 ## 第一个Express应用
 
 ```js
-const express = require('express');     //引入express模块
-var app= express();     //express()是express模块顶级函数
+const express = require('express') //引入express模块
+var app = express() //express()是express模块顶级函数
 
-app.get('/',function(req,res){      //访问根路径时输出hello world
-    res.send(`<h1 style='color: blue'>hello world</h1>`);
-});
+app.get('/', function (req, res) {
+  //访问根路径时输出hello world
+  res.send(`<h1 style='color: blue'>hello world</h1>`)
+})
 
-app.listen(8080);       //设置访问端口号
+app.listen(8080) //设置访问端口号
 ```
 
 ## get请求
@@ -121,31 +122,36 @@ HTML:
 ```html
 <form action="http://localhost:8080/login" method="get">
   用户：
-  <input type="text" name="user" id="user" placeholder="用户名"/>
-  <br>
+  <input type="text" name="user" id="user" placeholder="用户名" />
+  <br />
   密码：
-  <input type="password" name="password" id="password" placeholder="密码"/>
-  <br>
-  <input type="submit" value="提交"/>
+  <input type="password" name="password" id="password" placeholder="密码" />
+  <br />
+  <input type="submit" value="提交" />
 </form>
 ```
 
 NODE:
 
 ```javascript
-const express = require("express");
-var app = express();
+const express = require('express')
+var app = express()
 
-app.get("/",function(req,res){
-    res.send("主页");
-});
+app.get('/', function (req, res) {
+  res.send('主页')
+})
 
-app.get("/login",function(req,res){
-    console.log(req.query);
-    res.send("登录路由，user为："+req.query.user+"==>   password为："+req.query.password);
-});
+app.get('/login', function (req, res) {
+  console.log(req.query)
+  res.send(
+    '登录路由，user为：' +
+      req.query.user +
+      '==>   password为：' +
+      req.query.password,
+  )
+})
 
-app.listen(8080);
+app.listen(8080)
 ```
 
 当在html页面中输入用户和密码提交后：
@@ -161,8 +167,10 @@ post方法作为http请求很重要的一部分，几乎所有的网站都有用
 1.我们的知道，首先我们得知道在form表单进行post请求，enctype属性一般设置为“application/x-www-form-urlencoded”，如果设置成multipart/form-data，则多用于文件上传，如下：
 
 ```html
-<form action="#" method="post" enctype="application/x-www-form-urlencoded">
-</form>
+<form
+  action="#"
+  method="post"
+  enctype="application/x-www-form-urlencoded"></form>
 ```
 
 2设置解析body中间件
@@ -174,7 +182,7 @@ app.use(express.urlencoded())
 3获取body数据
 
 ```javascript
-req.body.username 
+req.body.username
 ```
 
 登陆案例：
@@ -184,61 +192,59 @@ HTML:
 ```html
 <h1>登陆</h1>
 <form action="/login" method="POST">
-    <div>
-        用户名：<input type="text" name="username">
-    </div>
-    <div>
-        密码：<input type="password" name="password">
-    </div>
-    <button>登陆</button>
+  <div>
+    用户名：
+    <input type="text" name="username" />
+  </div>
+  <div>
+    密码：
+    <input type="password" name="password" />
+  </div>
+  <button>登陆</button>
 </form>
 ```
 
 APP.JS
 
 ```javascript
-var express = require('express');
+var express = require('express')
 var path = require('path')
-var app = express();
+var app = express()
 var sqlQuery = require('./lcMysql')
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
+app.use(express.static(path.join(__dirname, 'public')))
 //解析post提交的数据
 app.use(express.urlencoded())
 
 //搜索首页
-app.get('/',(req,res)=>{
+app.get('/', (req, res) => {
   res.render('index.ejs')
 })
 
 //登陆页
-app.get('/login',(req,res)=>{
+app.get('/login', (req, res) => {
   res.render('login')
 })
 //处理登陆请求
-app.post('/login',async (req,res)=>{
+app.post('/login', async (req, res) => {
   //获取用户名和密码
-  let username = req.body.username 
+  let username = req.body.username
   let password = req.body.password
   //查询数据库是否由此用户名和密码
-  let sqlStr = 'select * from user where username = ? and password = ?';
-  let arr = [username,password];
-  let result = await sqlQuery(sqlStr,arr)
-  if(result.length == 0 ){
-    res.send("登陆失败")
-  }else{
-    res.send("登陆成功")
+  let sqlStr = 'select * from user where username = ? and password = ?'
+  let arr = [username, password]
+  let result = await sqlQuery(sqlStr, arr)
+  if (result.length == 0) {
+    res.send('登陆失败')
+  } else {
+    res.send('登陆成功')
   }
-
 })
 
-
-
-module.exports = app;
-
+module.exports = app
 ```
 
 ## 中间件
@@ -288,38 +294,41 @@ app.listen(8080);
 这时我们会发现<http://localhost:8080/地址一直在加载，但命令行里显示了“访问之前”，说明程序并不会同步执行，如果使用next>来是路由继续向下匹配，那么就能又得到主页数据了：
 
 ```js
-const express=require("express");
+const express = require('express')
 
-var app=express();
+var app = express()
 
 //匹配路由之前的操作
-app.use(function(req,res,next){
-    console.log("访问之前");
-    next();
-});
+app.use(function (req, res, next) {
+  console.log('访问之前')
+  next()
+})
 
-app.get("/",function(req,res){
-    res.send("主页");
-});
+app.get('/', function (req, res) {
+  res.send('主页')
+})
 
-app.listen(8080);
+app.listen(8080)
 ```
 
 当然也可以简化写法：
 
 ```js
-const express=require("express");
+const express = require('express')
 
-var app=express();
+var app = express()
 
-app.use(function(req,res,next){
-    console.log("访问之前");
-    next();
-},function(req,res){
-    res.send("主页");
-});
+app.use(
+  function (req, res, next) {
+    console.log('访问之前')
+    next()
+  },
+  function (req, res) {
+    res.send('主页')
+  },
+)
 
-app.listen(8080);
+app.listen(8080)
 ```
 
 因此，在进行路由匹配之前或再录又要继续向下执行时想做个操作，那么应用层中间件无疑是好的选择。
@@ -335,25 +344,29 @@ var router = express.Router()
 在匹配路由时，我们使用 router.use() 或 router.VERB() ,路由中间件结合多次callback可用于用户登录及用户状态检测。
 
 ```js
-const express = require("express");
-var app = express();
-var router=express.Router();
+const express = require('express')
+var app = express()
+var router = express.Router()
 
-router.use("/",function(req,res,next){
-    console.log("匹配前");
-    next();
-});
+router.use('/', function (req, res, next) {
+  console.log('匹配前')
+  next()
+})
 
-router.use("/user",function(req,res,next){
-    console.log("匹配地址：",req.originalUrl);
-    next();
-},function(req,res){
-    res.send("用户登录");
-});
+router.use(
+  '/user',
+  function (req, res, next) {
+    console.log('匹配地址：', req.originalUrl)
+    next()
+  },
+  function (req, res) {
+    res.send('用户登录')
+  },
+)
 
-app.use("/",router);
+app.use('/', router)
 
-app.listen(8080);
+app.listen(8080)
 ```
 
 总之在检测用户登录和引导用户应该访问哪个页面是，路由中间件绝对好用。
@@ -364,36 +377,40 @@ app.listen(8080);
 
 ```js
 app.use((err, req, res, next) => {
-        res.sendStatus(err.httpStatusCode).json(err);
-});
+  res.sendStatus(err.httpStatusCode).json(err)
+})
 ```
 
 一般情况下，我们把错误处理放在最下面，这样我们即可对错误进行集中处理。
 
 ```js
-const express=require("express");
+const express = require('express')
 
-var app=express();
+var app = express()
 
-app.get("/",function(req,res,next){
-    const err=new Error('Not Found');
-    res.send("主页");
-    next(err);
-});
+app.get('/', function (req, res, next) {
+  const err = new Error('Not Found')
+  res.send('主页')
+  next(err)
+})
 
-app.use("/user",function(err,req,res,next){
-    console.log("用户登录");
-    next(err);
-},function(req,res,next){
-    res.send("用户登录");
-    next();
-});
+app.use(
+  '/user',
+  function (err, req, res, next) {
+    console.log('用户登录')
+    next(err)
+  },
+  function (req, res, next) {
+    res.send('用户登录')
+    next()
+  },
+)
 
-app.use(function(req,res){
-    res.status(404).send("未找到指定页面");
-});
+app.use(function (req, res) {
+  res.status(404).send('未找到指定页面')
+})
 
-app.listen(8080);
+app.listen(8080)
 ```
 
 ### 4.内置中间件
@@ -401,7 +418,7 @@ app.listen(8080);
 从版本4.x开始，Express不再依赖Content，也就是说Express以前的内置中间件作为单独模块，express.static是Express的唯一内置中间件。
 
 ```js
-express.static(root, [options]);
+express.static(root, [options])
 ```
 
 通过express.static我们可以指定要加载的静态资源。
@@ -411,9 +428,9 @@ express.static(root, [options]);
 形如之前我们的body-parser，采用引入外部模块的方式来获得更多的应用操作。如后期的cookie和session。
 
 ```js
-var express = require('express');
-var app = express();
-var cookieParser = require('cookie-parser');
+var express = require('express')
+var app = express()
+var cookieParser = require('cookie-parser')
 ```
 
 以上就是关于express中间件类型，在实际项目中，中间件都是必不可少的，因此熟悉使用各种中间件会加快项目的开发效率。
@@ -445,7 +462,7 @@ cnpm install cookie-parser --save
 #### 2.引入
 
 ```
-const cookieParser=require("cookie-parser"); 
+const cookieParser=require("cookie-parser");
 ```
 
 #### 3.设置中间件
@@ -457,13 +474,13 @@ app.use(cookieParser());
 #### 4.设置cookie
 
 ```js
-res.cookie("name",'zhangsan',{maxAge: 900000, httpOnly: true});
+res.cookie('name', 'zhangsan', { maxAge: 900000, httpOnly: true })
 //res.cookie(名称,值,{配置信息})
 ```
 
 关于设置cookie的参数说明：
 
-1. domain: 域名  
+1. domain: 域名
 2. name=value：键值对，可以设置要保存的 Key/Value，注意这里的 name 不能和其他属性项的名字一样
 3. Expires： 过期时间（秒），在设置的某个时间点后该 Cookie 就会失效，如 expires=Wednesday, 09-Nov-99 23:12:40 GMT。
 4. maxAge： 最大失效时间（毫秒），设置在多少后失效 。
@@ -481,31 +498,31 @@ req.cookies.name;
 下面是一个基础实例：
 
 ```js
-const express=require("express");
-const cookieParser=require("cookie-parser");
+const express = require('express')
+const cookieParser = require('cookie-parser')
 
-var app=express();
+var app = express()
 
 //设置中间件
-app.use(cookieParser());
+app.use(cookieParser())
 
-app.get("/",function(req,res){
- res.send("首页");
-});
+app.get('/', function (req, res) {
+  res.send('首页')
+})
 
 //设置cookie
-app.get("/set",function(req,res){
- res.cookie("userName",'张三',{maxAge: 20000, httpOnly: true});
- res.send("设置cookie成功");
-});
+app.get('/set', function (req, res) {
+  res.cookie('userName', '张三', { maxAge: 20000, httpOnly: true })
+  res.send('设置cookie成功')
+})
 
 //获取cookie
-app.get("/get",function(req,res){
- console.log(req.cookies.userName);
- res.send("获取cookie成功，cookie为："+ req.cookies.userName);
-});
+app.get('/get', function (req, res) {
+  console.log(req.cookies.userName)
+  res.send('获取cookie成功，cookie为：' + req.cookies.userName)
+})
 
-app.listen(8080);
+app.listen(8080)
 ```
 
 当访问set路由后会设置cookie，当访问get路由后会获取到设置的cookie值。当然你也可以在其他页面继续获取当前cookie，以实现cookie共享。
@@ -515,31 +532,35 @@ app.listen(8080);
 只需要增加res.cookie中option对象的值，即可实现对相应路由下多个二级路由的cookie进行共享，代码如下：
 
 ```js
-const express=require("express");
-const cookieParser=require("cookie-parser");
+const express = require('express')
+const cookieParser = require('cookie-parser')
 
-var app=express();
+var app = express()
 
 //设置中间件
-app.use(cookieParser());
+app.use(cookieParser())
 
-app.get("/",function(req,res){
- res.send("首页");
-});
+app.get('/', function (req, res) {
+  res.send('首页')
+})
 
 //设置cookie
-app.get("/set",function(req,res){
- res.cookie("userName",'张三',{maxAge: 200000, httpOnly: true,domain: "ccc.com"});
- res.send("设置cookie成功");
-});
+app.get('/set', function (req, res) {
+  res.cookie('userName', '张三', {
+    maxAge: 200000,
+    httpOnly: true,
+    domain: 'ccc.com',
+  })
+  res.send('设置cookie成功')
+})
 
 //获取cookie
-app.get("/get",function(req,res){
- console.log(req.cookies.userName);
- res.send("获取cookie成功，cookie为："+ req.cookies.userName);
-});
+app.get('/get', function (req, res) {
+  console.log(req.cookies.userName)
+  res.send('获取cookie成功，cookie为：' + req.cookies.userName)
+})
 
-app.listen(8080);
+app.listen(8080)
 ```
 
 我们可以看到
@@ -555,29 +576,35 @@ cookie加密是让客户端用户无法的获取cookie明文信息，是数据�
 如下列代码：
 
 ```js
-const express = require("express");
-const cookieParser = require("cookie-parser");
+const express = require('express')
+const cookieParser = require('cookie-parser')
 
-var app = express();
-app.use(cookieParser('secret'));
+var app = express()
+app.use(cookieParser('secret'))
 
-app.get("/",function(req,res){
- res.send("主页");
-});
+app.get('/', function (req, res) {
+  res.send('主页')
+})
 
 //获取cookie
-app.use(function(req,res,next){
- console.log(req.signedCookies.name);
- next();
-});
+app.use(function (req, res, next) {
+  console.log(req.signedCookies.name)
+  next()
+})
 
 //设置cookie
-app.use(function(req,res,next){
- console.log(res.cookie("name","zhangsan",{httpOnly: true,maxAge: 200000,signed: true}));
- res.end("cookie为："+req.signedCookies.name);
-});
+app.use(function (req, res, next) {
+  console.log(
+    res.cookie('name', 'zhangsan', {
+      httpOnly: true,
+      maxAge: 200000,
+      signed: true,
+    }),
+  )
+  res.end('cookie为：' + req.signedCookies.name)
+})
 
-app.listen(8080);
+app.listen(8080)
 ```
 
 **签名原理**
@@ -596,57 +623,57 @@ node为我们提供了一个核心安全模块“crypto”，它提供了很多�
 这是，我们便可很轻易的封装一个加密模块：
 
 ```js
-const crypto=require('crypto');
+const crypto = require('crypto')
 
-module.exports={
- //MD5封装
- MD5_SUFFIX:'s5w84&&d4d473885s2025s5*4s2',
- md5:function(str){
-  var obj=crypto.createHash('md5');
-  obj.update(str);  
-  return obj.digest('hex');
- }
+module.exports = {
+  //MD5封装
+  MD5_SUFFIX: 's5w84&&d4d473885s2025s5*4s2',
+  md5: function (str) {
+    var obj = crypto.createHash('md5')
+    obj.update(str)
+    return obj.digest('hex')
+  },
 }
 ```
 
 之后只需要进行相应导入即可
 
 ```js
-const common=require('./MD5');
+const common = require('./MD5')
 
-var str='123456';
-var str=common.md5(str+'s5w84&&d4d473885s2025s5*4s2');
-console.log(str);
+var str = '123456'
+var str = common.md5(str + 's5w84&&d4d473885s2025s5*4s2')
+console.log(str)
 ```
 
 设置cookie代码如下：
 
 ```js
-const express=require("express");
-const cookieParser=require("cookie-parser");
-var cry = require('./md5');
+const express = require('express')
+const cookieParser = require('cookie-parser')
+var cry = require('./md5')
 
-var app=express();
+var app = express()
 
-var str='hello-123';
-var str=cry.md5(str+'s5w84&&d4d473885s2025s5*4s2');
+var str = 'hello-123'
+var str = cry.md5(str + 's5w84&&d4d473885s2025s5*4s2')
 
 //设置中间件
-app.use(cookieParser());
+app.use(cookieParser())
 
 //获取加密cookie
-app.use(function(req,res,next){
- console.log(req.cookies.userName);
- next();
-});
+app.use(function (req, res, next) {
+  console.log(req.cookies.userName)
+  next()
+})
 
 //设置并加密cookie
-app.use(function(req,res,next){
- res.cookie("userName", str, {maxAge: 5*60*1000, httpOnly: true});
- res.end("set ok");
-});
+app.use(function (req, res, next) {
+  res.cookie('userName', str, { maxAge: 5 * 60 * 1000, httpOnly: true })
+  res.end('set ok')
+})
 
-app.listen(8080);
+app.listen(8080)
 ```
 
 如果是在判断登录时，只需将用户输入的账号进行同样加密操作在进行比较即可知道账户是否正确。
@@ -685,35 +712,37 @@ session(options);
 如下列代码：
 
 ```js
-const express=require("express");
-const session=require("express-session");
+const express = require('express')
+const session = require('express-session')
 
-var app=express();
+var app = express()
 
 //配置中间件
-app.use(session({
- secret: "keyboard cat",
-  resave: false,
-  saveUninitialized: true,
-  cookie: ('name', 'value',{maxAge:  5*60*1000,secure: false})
-}));
+app.use(
+  session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: ('name', 'value', { maxAge: 5 * 60 * 1000, secure: false }),
+  }),
+)
 
-app.use('/login',function(req,res){
- //设置session
- req.session.userinfo='张三';
- res.send("登陆成功！");
-});
+app.use('/login', function (req, res) {
+  //设置session
+  req.session.userinfo = '张三'
+  res.send('登陆成功！')
+})
 
-app.use('/',function(req,res){
- //获取session
- if(req.session.userinfo){
-  res.send("hello "+req.session.userinfo+"，welcome");
- }else{
-  res.send("未登陆");
- }
-});
+app.use('/', function (req, res) {
+  //获取session
+  if (req.session.userinfo) {
+    res.send('hello ' + req.session.userinfo + '，welcome')
+  } else {
+    res.send('未登陆')
+  }
+})
 
-app.listen(8080);
+app.listen(8080)
 ```
 
 在session(option)中对session进行设置
@@ -722,62 +751,62 @@ app.listen(8080);
 
 ```js
 //设置session
-req.session.username="张三"
+req.session.username = '张三'
 
 //获取session
 req.session.username
 
 //重新设置cookie的过期时间
-req.session.cookie.maxAge=1000;
+req.session.cookie.maxAge = 1000
 
 //销毁session
-req.session.destroy(function(err){
- 
-})
+req.session.destroy(function (err) {})
 ```
 
 以下演示通过销毁session的方式来退出登录
 
 ```js
-const express=require("express");
-const session=require("express-session");
+const express = require('express')
+const session = require('express-session')
 
-var app=express();
+var app = express()
 
 //配置中间件
-app.use(session({
- secret: "keyboard cat",
-  resave: false,
-  saveUninitialized: true,
-  cookie: ('name', 'value',{ maxAge:  5*60*1000,
-        secure: false,
-        name: "seName",
-        resave: false})
-}));
+app.use(
+  session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie:
+      ('name',
+      'value',
+      { maxAge: 5 * 60 * 1000, secure: false, name: 'seName', resave: false }),
+  }),
+)
 
-app.use('/login',function(req,res){
- //设置session
- req.session.userinfo='张三';
- res.send("登陆成功！");
-});
+app.use('/login', function (req, res) {
+  //设置session
+  req.session.userinfo = '张三'
+  res.send('登陆成功！')
+})
 
-app.use('/loginOut',function(req,res){
- //注销session
- req.session.destroy(function(err){
-  res.send("退出登录！"+err);
- });
-});
+app.use('/loginOut', function (req, res) {
+  //注销session
+  req.session.destroy(function (err) {
+    res.send('退出登录！' + err)
+  })
+})
 
-app.use('/',function(req,res){
- //获取session
- if(req.session.userinfo){
-  res.send("hello "+req.session.userinfo+"，welcome to index");
- }else{
-  res.send("未登陆");
- }
-});
+app.use('/', function (req, res) {
+  //获取session
+  if (req.session.userinfo) {
+    res.send('hello ' + req.session.userinfo + '，welcome to index')
+  } else {
+    res.send('未登陆')
+  }
+})
 
-app.listen(8080);
+app.listen(8080)
 ```
 
 当我们进入到主页时，未显示任何信息，进入login路由后，自动设置session，这是回到主页则显示session信息，之后进入loginOut路由已注销session信息，再回到首页显示为登陆。
@@ -787,22 +816,24 @@ app.listen(8080);
 ### 1-引入session和cookie相关模块
 
 ```js
-var cookieParser = require('cookie-parser');
+var cookieParser = require('cookie-parser')
 //引入session模块
-let session = require('express-session');
+let session = require('express-session')
 ```
 
 ### 2-引入session
 
 ```js
-app.use(session({
-  secret: "xzsagjasoigjasoi",
-  resave:true,//强制保存session
-  cookie:{
-    maxAge:7*24*60*60*1000,//设置session的有效期为1周
-  },
-  saveUninitialized:true//是否保存初始化的session
-}))
+app.use(
+  session({
+    secret: 'xzsagjasoigjasoi',
+    resave: true, //强制保存session
+    cookie: {
+      maxAge: 7 * 24 * 60 * 60 * 1000, //设置session的有效期为1周
+    },
+    saveUninitialized: true, //是否保存初始化的session
+  }),
+)
 ```
 
 ### 3-引入cookie中间件
@@ -814,18 +845,18 @@ app.use(cookieParser('secret'));
 ### 4-写判断是否登陆的中间件
 
 ```js
-function isLoginMid(req,res,next){
-    if(req.session.username==undefined){
-        res.render('info',{
-            title:"未登录",
-            content:"尚未登陆，请进入登陆页面登陆",
-            href:"/login",
-            hrefTxt:"登录页"
-        })
-    }else{
-        //一登录进入正常页面
-        next()
-    }
+function isLoginMid(req, res, next) {
+  if (req.session.username == undefined) {
+    res.render('info', {
+      title: '未登录',
+      content: '尚未登陆，请进入登陆页面登陆',
+      href: '/login',
+      hrefTxt: '登录页',
+    })
+  } else {
+    //一登录进入正常页面
+    next()
+  }
 }
 ```
 
@@ -864,15 +895,29 @@ function isLoginMid(req,res,next){
 ### 6-登陆页面
 
 ```javascript
-<form action="/login" method="POST">
-    <div class="form-group">
-        <input class="form-control" type="email" name="mail" placeholder="邮箱" required="required"/>
-            </div>
-<div class="form-group">
-    <input class="form-control" type="password" name="password" placeholder="密码" required="required"/>
-        </div>
-<p><a href="#">忘记密码?</a></p>
-    <button class="btn btn-lg">登录</button>
+<form action='/login' method='POST'>
+  <div class='form-group'>
+    <input
+      class='form-control'
+      type='email'
+      name='mail'
+      placeholder='邮箱'
+      required='required'
+    />
+  </div>
+  <div class='form-group'>
+    <input
+      class='form-control'
+      type='password'
+      name='password'
+      placeholder='密码'
+      required='required'
+    />
+  </div>
+  <p>
+    <a href='#'>忘记密码?</a>
+  </p>
+  <button class='btn btn-lg'>登录</button>
 </form>
 ```
 
@@ -887,30 +932,30 @@ function isLoginMid(req,res,next){
 4-显示登陆是否成功信息
 
 ```js
-router.post('/',async function(req,res){
-    console.log(req.body)
-    //根据提交的邮箱和密码判断是否是正确的账号密码
-    let strSql = "select * from user where mail=? and password = ?"
-    let arr = [req.body.mail,req.body.password]
-    let result = await sqlQuery(strSql,arr)
-    if(result.length!=0){
-        //登陆成功
-        user = result[0];
-        req.session.username = user.username;
-        res.render('info',{
-            title:"登陆成功",
-            content:"账号密码正确，即将进入首页",
-            href:"/",
-            hrefTxt:"首页"
-        })
-    }else{
-        res.render('info',{
-            title:"登陆失败",
-            content:"账号或密码不正确，即将进入登录页",
-            href:"/login",
-            hrefTxt:"登录页"
-        })
-    }
+router.post('/', async function (req, res) {
+  console.log(req.body)
+  //根据提交的邮箱和密码判断是否是正确的账号密码
+  let strSql = 'select * from user where mail=? and password = ?'
+  let arr = [req.body.mail, req.body.password]
+  let result = await sqlQuery(strSql, arr)
+  if (result.length != 0) {
+    //登陆成功
+    user = result[0]
+    req.session.username = user.username
+    res.render('info', {
+      title: '登陆成功',
+      content: '账号密码正确，即将进入首页',
+      href: '/',
+      hrefTxt: '首页',
+    })
+  } else {
+    res.render('info', {
+      title: '登陆失败',
+      content: '账号或密码不正确，即将进入登录页',
+      href: '/login',
+      hrefTxt: '登录页',
+    })
+  }
 })
 ```
 
@@ -943,28 +988,32 @@ router.post('/',async function(req,res){
 2-前端校验表单数据
 
 ```javascript
-var formDiv = document.querySelector('form');
- var inputs =  document.querySelectorAll('form input');
- var btn = document.querySelector('#registerBtn');
- formDiv.oninput = function(){
+var formDiv = document.querySelector('form')
+var inputs = document.querySelectorAll('form input')
+var btn = document.querySelector('#registerBtn')
+formDiv.oninput = function () {
   //判断是否有内容为空
-  isAble = true;
-  inputs.forEach((item,i)=>{
-   if(item.value==""){
-    isAble = false;
-   }
+  isAble = true
+  inputs.forEach((item, i) => {
+    if (item.value == '') {
+      isAble = false
+    }
   })
   //正则匹配邮箱地址
   let reg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
   //密码与再次输入的密码是否匹配
-  if(inputs[2].value==inputs[3].value&&isAble&&reg.test(inputs[0].value)){
-   btn.disabled = false;
-   btn.style.cursor = 'pointer'
-  }else{
-   btn.disabled = true;
-   btn.style.cursor = 'not-allow'
+  if (
+    inputs[2].value == inputs[3].value &&
+    isAble &&
+    reg.test(inputs[0].value)
+  ) {
+    btn.disabled = false
+    btn.style.cursor = 'pointer'
+  } else {
+    btn.disabled = true
+    btn.style.cursor = 'not-allow'
   }
- }
+}
 ```
 
 ### 2-注册页的路由
@@ -980,35 +1029,34 @@ router.get('/', function(req, res, next) {
 2-表单提交的POST请求路由，先判断是否已注册，没有注册即将数据插入到数据库
 
 ```javascript
-router.post('/',async function(req,res){
-    //获取表单提交的邮箱，密码，用户名
-    console.log(req.body)
-    let mail = req.body.mail;
-    let password = jiami(req.body.password);
-    let username = req.body.username;
-    //判断邮箱是否已注册，如果已注册，将不在注册；
-    let strSql = "select * from user where mail=?"
-    let result = await sqlQuery(strSql,[mail])
-    if(result.length!=0){
-        //邮箱已注册
-        res.render('info',{
-            title:"注册失败",
-            content:"此邮箱已注册过，可直接登陆，或找寻密码",
-            href:"/register",
-            hrefTxt:"注册页"
-        })
-        
-    }else{
-       //此邮箱尚未注册，可注册
-       strSql = "insert into user (mail,username,password) values (?,?,?)"
-       await sqlQuery(strSql,[mail,username,password])
-       res.render('info',{
-        title:"注册成功",
-        content:"注册成功请登陆，即将进入登陆页面",
-        href:"/login",
-        hrefTxt:"登录页"
+router.post('/', async function (req, res) {
+  //获取表单提交的邮箱，密码，用户名
+  console.log(req.body)
+  let mail = req.body.mail
+  let password = jiami(req.body.password)
+  let username = req.body.username
+  //判断邮箱是否已注册，如果已注册，将不在注册；
+  let strSql = 'select * from user where mail=?'
+  let result = await sqlQuery(strSql, [mail])
+  if (result.length != 0) {
+    //邮箱已注册
+    res.render('info', {
+      title: '注册失败',
+      content: '此邮箱已注册过，可直接登陆，或找寻密码',
+      href: '/register',
+      hrefTxt: '注册页',
     })
-    }
+  } else {
+    //此邮箱尚未注册，可注册
+    strSql = 'insert into user (mail,username,password) values (?,?,?)'
+    await sqlQuery(strSql, [mail, username, password])
+    res.render('info', {
+      title: '注册成功',
+      content: '注册成功请登陆，即将进入登陆页面',
+      href: '/login',
+      hrefTxt: '登录页',
+    })
+  }
 })
 ```
 
@@ -1029,39 +1077,38 @@ function jiami(str){
 ### 4-修改登陆也为加密操作
 
 ```javascript
-function jiami(str){
-    let salt = "fjdsoigijasoigjasdiodgjasdiogjoasid"
-    let obj = crypto.createHash('md5')
-    str = salt+str;
-    obj.update(str)
-    return obj.digest('hex')
+function jiami(str) {
+  let salt = 'fjdsoigijasoigjasdiodgjasdiogjoasid'
+  let obj = crypto.createHash('md5')
+  str = salt + str
+  obj.update(str)
+  return obj.digest('hex')
 }
 
-router.post('/',async function(req,res){
-    console.log(req.body)
-    //根据提交的邮箱和密码判断是否是正确的账号密码
-    let strSql = "select * from user where mail=? and password = ?"
-    let arr = [req.body.mail,jiami(req.body.password)]
-    let result = await sqlQuery(strSql,arr)
-    if(result.length!=0){
-        //登陆成功
-        user = result[0];
-        req.session.username = user.username;
-        res.render('info',{
-            title:"登陆成功",
-            content:"账号密码正确，即将进入首页",
-            href:"/",
-            hrefTxt:"首页"
-        })
-    }else{
-        res.render('info',{
-            title:"登陆失败",
-            content:"账号或密码不正确，即将进入登录页",
-            href:"/login",
-            hrefTxt:"登录页"
-        })
-    }
-    
+router.post('/', async function (req, res) {
+  console.log(req.body)
+  //根据提交的邮箱和密码判断是否是正确的账号密码
+  let strSql = 'select * from user where mail=? and password = ?'
+  let arr = [req.body.mail, jiami(req.body.password)]
+  let result = await sqlQuery(strSql, arr)
+  if (result.length != 0) {
+    //登陆成功
+    user = result[0]
+    req.session.username = user.username
+    res.render('info', {
+      title: '登陆成功',
+      content: '账号密码正确，即将进入首页',
+      href: '/',
+      hrefTxt: '首页',
+    })
+  } else {
+    res.render('info', {
+      title: '登陆失败',
+      content: '账号或密码不正确，即将进入登录页',
+      href: '/login',
+      hrefTxt: '登录页',
+    })
+  }
 })
 ```
 
@@ -1352,7 +1399,7 @@ function getObjectURL(file) {
 #### 控制上传图片大小、格式以及上传数量
 
 ```
-    $('#upload').on('change',function(){        
+    $('#upload').on('change',function(){
           if(imgSrc.length==4){
             return alert("最多只能上传4张图片");
         }
@@ -1433,9 +1480,9 @@ var formFile = new FormData();
 添加其他参数
 
 ```
-    formFile.append("type", type); 
-        formFile.append("content", content); 
-        formFile.append("mobile", mobile); 
+    formFile.append("type", type);
+        formFile.append("content", content);
+        formFile.append("mobile", mobile);
 ```
 
 最后使用ajax提交内容
@@ -1445,10 +1492,10 @@ var formFile = new FormData();
             url: 'http://zhangykwww.yind123.com/webapi/feedback',
             type: 'POST',
             data: formFile,
-            async: true,  
-            cache: false,  
-            contentType: false, 
-            processData: false, 
+            async: true,
+            cache: false,
+            contentType: false,
+            processData: false,
             // traditional:true,
             dataType:'json',
             success: function(res) {
