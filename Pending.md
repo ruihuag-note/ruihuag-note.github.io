@@ -2,7 +2,14 @@
 
 ## 待完成
 
- [linear-gradient](https://developer.mozilla.org/zh-CN/docs/Web/CSS/gradient/linear-gradient)
+```js
+for await (const chunk of chat.body) {
+  console.log({ chunk })
+  res.write(chunk)
+}
+```
+
+[linear-gradient](https://developer.mozilla.org/zh-CN/docs/Web/CSS/gradient/linear-gradient)
 
 echart
 
@@ -22,19 +29,21 @@ echart
 
 ## 待开始
 
-seo优化 学习, 结合多语言优化
+seo 优化 学习, 结合多语言优化
 判断元素出现在可视区域中的方案
 getBoundingClientRect
 IntersectionObserve
-> [Cookie](https://juejin.cn/post/6844904102544031757)
-> [大文件断点切片](juejin.cn/post/7080527713399750692)
-><https://juejin.cn/post/7085654890671767559#heading-9>
->navigator.geolocation.getCurrentPosition
->
 
- ```js
-data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJAAAACQAQMAAADdiHD7AAAABlBMVEUAAABTU1OoaSf/AAAAAXRSTlMAQObYZgAAAFJJREFUeF7t0cENgDAMQ9FwYgxG6WjpaIzCCAxQxVggFuDiCvlLOeRdHR9yzjncHVoq3npu+wQUrUuJHylSTmBaespJyJQoObUeyxDQb3bEm5Au81c0pSCD8HYAAAAASUVORK5CYII
- ```
+> [Cookie](https://juejin.cn/post/6844904102544031757) > [大文件断点切片](juejin.cn/post/7080527713399750692) ><https://juejin.cn/post/7085654890671767559#heading-9>
+> navigator.geolocation.getCurrentPosition
+
+```js
+data: image / png
+base64,
+  iVBORw0KGgoAAAANSUhEUgAAAJAAAACQAQMAAADdiHD7AAAABlBMVEUAAABTU1OoaSf /
+    AAAAAXRSTlMAQObYZgAAAFJJREFUeF7t0cENgDAMQ9FwYgxG6WjpaIzCCAxQxVggFuDiCvlLOeRdHR9yzjncHVoq3npu +
+    wQUrUuJHylSTmBaespJyJQoObUeyxDQb3bEm5Au81c0pSCD8HYAAAAASUVORK5CYII
+```
 
 ```
 "ts-node": "^10.9.1",

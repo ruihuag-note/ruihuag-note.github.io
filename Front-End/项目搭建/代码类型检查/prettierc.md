@@ -14,7 +14,7 @@
  "jsxSingleQuote": true, // jsx使用单引号
  "htmlWhitespaceSensitivity": "ignore", // 忽略无效的空格
  "endOfLine": "auto", // 保持现有换行
- "trailingComma": "none", // key和value到花括号之间有空格
+ "trailingComma": "all", // key和value到花括号之间有空格
  "arrowParens": "avoid" // 箭头函数括号可以省略的, 都省略
 }
 ```

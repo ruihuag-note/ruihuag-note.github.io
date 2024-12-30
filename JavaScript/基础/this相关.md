@@ -48,13 +48,13 @@ fun(); // 弹出undefined
 obj.b(); // 弹出 1
 ```
 
-> this的行为有时候会显得极其诡异，让人感到困惑，但只需要记住 **this的值要等到代码真正执行时才能确定**
-> 同时this的值具体有以下几种情况：
->
-> 1. new 调用时指的是被构造的对象
-> 2. call、apply调用，指向我们指定的对象
-> 3. 对象调用，如执行obj.b()，this指向obj
-> 4. 默认的，指向全局变量window(相当于执行window.fun())
->
-> 这样看来，当你执行fun()的时候，以上1,2点均不满足。
-> 第3点,因为this是运行时确定的，而我们执行fun()，等同于windown.fun()(**与obj没有任何关系**)，自然的this指向window，而window没有定义变量a，结果是undefined。
+- this的行为有时候会显得极其诡异，让人感到困惑，但只需要记住 **this的值要等到代码真正执行时才能确定**
+同时this的值具体有以下几种情况：
+
+1. new 调用时指的是被构造的对象
+2. call、apply调用，指向我们指定的对象
+3. 对象调用，如执行obj.b()，this指向obj
+4. 默认的，指向全局变量window(相当于执行window.fun())
+
+- 这样看来，当你执行fun()的时候，以上1,2点均不满足。
+第3点,因为this是运行时确定的，而我们执行fun()，等同于windown.fun()(**与obj没有任何关系**)，自然的this指向window，而window没有定义变量a，结果是undefined。

@@ -2,9 +2,9 @@
 
 ## **定义方法**
 
-> 静态方法	function 函数名([参数]){}
+> 静态方法 function 函数名([参数]){}
 >
-> 动态匿名	var 函数名 = new Function(["虚参列表"], "函数体");
+> 动态匿名 var 函数名 = new Function(["虚参列表"], "函数体");
 >
 > **直接变量** 函数名 = function([虚参列表]){函数体;}
 
@@ -35,7 +35,7 @@ const sum = new Function('a', 'b', 'return a + b');
 
 ### 三种方法对比
 
-> 1. 函数声明有预解析,而且函数声明的优先级高于变量; 
+> 1. 函数声明有预解析,而且函数声明的优先级高于变量;
 > 2. 使用Function构造函数定义函数的方式是一个函数表达式,这种方式会导致解析两次代码，影响性能。
 >    1. 第一次解析常规的JavaScript代码
 >    2. 第二次解析传入构造函数的字符串
@@ -67,11 +67,9 @@ function foo(){}
 foo.name // "foo"s
 ```
 
-
-
 ## 调用
 
-> - 直接调用 :	函数名(实参列表)
+> - 直接调用 : 函数名(实参列表)
 > - 在连接中调用: `<a href = "javascript: 函数名()">tap</a>`
 > - 在事件中调用 : 事件类型 = "函数名()"
 > - 递归调用
@@ -114,8 +112,6 @@ var obj = {
 obj.getSum()
 ```
 
-
-
 #### 构造器调用
 
 > new关键词 , this 指向实例化的对象;
@@ -126,8 +122,6 @@ function Person() {
 }
 var personOne = new Person();
 ```
-
-
 
 #### 间接调用
 
@@ -140,8 +134,6 @@ function foo() {
 foo.apply('我是apply改变的this值');//我是apply改变的this值
 foo.call('我是call改变的this值');//我是call改变的this值
 ```
-
-
 
 ### ES6箭头函数
 
@@ -173,31 +165,29 @@ let arrowObj = {
 
 ## 方法
 
-> - IE5之前不支持call和apply,bind是ES5出来的; 
->   
+> - IE5之前不支持call和apply,bind是ES5出来的;
+>
 > - call和apply可以调用函数,改变this,实现继承和借用别的对象的方法;
->   
-> - apply  : 
->   
+>
+> - apply  :
+>
 >   - 将函数作为对象的方法来调用
 >   - 将参数以数组形式传递给改方法(多个参)
->   
-> - ##### call : 
->   
+>
+> - ##### call
+>
 >   - 将函数作为对象的方法来调用
 >   - 将指定参数传递给该方法(一个参)
->   
+>
 > - toString
-
-
 
 ### call 和 apply
 
 > 1. 间接调用函数, 改变作用域的this的值
 > 2. 劫持其他对象方法
-> 3. 调用方法,用一个对象替换掉另一个对象(this) 
->    1. `对象.call(新this对象,实参1,实参2,实参3.....)  `
->    2. `对象.apply(新this对象,[实参1,实参2,实参3.....]) `
+> 3. 调用方法,用一个对象替换掉另一个对象(this)
+>    1. `对象.call(新this对象,实参1,实参2,实参3.....)`
+>    2. `对象.apply(新this对象,[实参1,实参2,实参3.....])`
 
 ```js
 var foo = {
@@ -229,8 +219,6 @@ var cat = new Cat("Black Cat");
 cat.showName(); //Black Cat
 ```
 
-
-
 ### 其他运用
 
 ```js
@@ -242,8 +230,6 @@ console.log('arr1:', arr1); //arr1:  [1,2,3,4,5,6]
 console.log('type:', Object.prototype.toString.call({}));// type: [Object Object]
 console.log('type:', Object.prototype.toString.call(arr1)); // type: [Object arrary]
 ```
-
-
 
 ### bind
 
@@ -290,8 +276,6 @@ function sayHi(age, sex) {
 sayHi.newCall(person, 25, '男'); // Abiel 25 男
 ```
 
-
-
 #### apply
 
 ```js
@@ -317,8 +301,6 @@ function sayHi(age, sex) {
 sayHi.newApply(person, [25, '男']) //Abiel 25 男
 ```
 
-
-
 #### bind
 
 ```js
@@ -339,16 +321,14 @@ let personSayHi = sayHi.bind(person, 25)
 personSayHi('男')
 ```
 
-
-
 ## arguments对象
 
 > - 功能: 存放实参的参数列表
-> - 特性: 
+> - 特性:
 >   - 仅能在函数体内使用
 >   - 带有下标属性, 当并非数组
 >   - 函数声明自动初始化
-> - 属性: 
+> - 属性:
 >   - length
 >   - callee   当前正指向的函数
 >   - caler    抵用当前正在执行函数的函数名
@@ -359,4 +339,3 @@ personSayHi('男')
 > - callee             指向参数集合所处函数
 > - prototype      指向函数附带的原型对象
 > - constructor   指向创建该对象的构造函数
-
