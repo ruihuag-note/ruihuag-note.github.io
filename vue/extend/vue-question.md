@@ -1,6 +1,6 @@
 # VUE-QUESTION
 
-## Vue提示报错警告"TypeError: handler.call is not a function"
+## Vue 提示报错警告"TypeError: handler.call is not a function"
 
 > 组件中声明了未定义的方法，或者只声明了钩子函数，并未使用。
 
@@ -22,10 +22,10 @@ get http://localhost:8080/sockjs-node/info?t=1462183700002 net::ERR_CONNECTION_R
 
 #### 1. 注释法
 
-  顾名思义，找到依赖包中的源码，将其注释：
+顾名思义，找到依赖包中的源码，将其注释：
 
 1. 进入路径 `/node_modules/sockjs-client/dist/sockjs.js`
-2. 代码1605行注释掉：
+2. 代码 1605 行注释掉：
 
 ```javascript
 try {
@@ -40,7 +40,7 @@ try {
 
 #### 2. 配置`vue.config`
 
-  `vue.config.js`中的`module.xports`中添加如下，然后重启：
+`vue.config.js`中的`module.exports`中添加如下，然后重启：
 
 ```javascript
 devServer: {

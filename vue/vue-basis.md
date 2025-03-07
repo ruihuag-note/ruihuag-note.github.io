@@ -6,7 +6,7 @@
 
 ## 生命周期
 
-<img src="vue-basis.assets/lifecycle.png" style="zoom: 50%;" />
+<img src=".assets/lifecycle.png" style="zoom: 50%;" />
 
 ### 创建阶段
 
@@ -113,7 +113,7 @@ watch: {
 
 优化：我们可以使用字符串的形式监听
 
-```
+```js
 watch: {
   'obj.a': {
     handler(newName, oldName) {
@@ -396,6 +396,7 @@ var vm = new Vue({
 ### 全局过滤器
 
 > - 所有VM对象都能共此案使用的过滤器
+>
 > - ```js
 >   单个过滤器的使用
 >   <p>{{str | myfilter}}</p>
@@ -421,6 +422,7 @@ var vm = new Vue({
 
 > - 在VM对象定义过滤器
 > - 只能在vm对象中作用
+>
 > - ```js
 >   <p>{{str | myfilter}}</p>
 >   <script>
@@ -519,7 +521,7 @@ this.$http
 
 ## Vue动画
 
-<img src="vue-basis.assets/transition.png" style="zoom:50%;" />
+<img src=".assets/transition.png" style="zoom:50%;" />
 
 Enter(信息进入阶段)
 

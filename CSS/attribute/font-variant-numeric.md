@@ -42,4 +42,4 @@ font-variant-numeric: unset;
 
 ## 兼容性
 
-![](./__assets__/font-variant-numeric-2022-07-14-15-43-50.png)
+![](./.assets/font-variant-numeric-2022-07-14-15-43-50.png)

@@ -1,4 +1,4 @@
-# 判断JS数据类型的四种方法
+# 判断 JS 数据类型的四种方法
 
 在 ECMAScript 规范中，共定义了 7 种数据类型，分为 `基本类型` 和 `引用类型` 两大类，如下所示：
 
@@ -62,15 +62,15 @@ newDate() instanceof Object;// true
 newPerson instanceof Object;// true
 ```
 
-我们发现，虽然 instanceof 能够判断出 [ ] 是Array的实例，但它认为 [ ] 也是Object的实例，为什么呢？
+我们发现，虽然 instanceof 能够判断出 [ ] 是 Array 的实例，但它认为 [ ] 也是 Object 的实例，为什么呢？
 
 我们来分析一下 [ ]、Array、Object 三者之间的关系：
 
-从 instanceof 能够判断出 [ ].**proto** 指向 `Array.prototype`，而 `Array.prototype.**proto**` 又指向了`Object.prototype`，最终 `Object.prototype.__proto__` 指向了null，标志着原型链的结束。因此，[]、Array、Object 就在内部形成了一条原型链：
+从 instanceof 能够判断出 [ ].**proto** 指向 `Array.prototype`，而 `Array.prototype.**proto**` 又指向了`Object.prototype`，最终 `Object.prototype.__proto__` 指向了 null，标志着原型链的结束。因此，[]、Array、Object 就在内部形成了一条原型链：
 
-![img](index.assets/849589-20160112232510850-2003340583.png)
+![img](.assets/849589-20160112232510850-2003340583.png)
 
-从原型链可以看出，[] 的 **proto** 直接指向Array.prototype，间接指向 Object.prototype，所以按照 instanceof 的判断规则，[] 就是Object的实例。依次类推，类似的 new Date()、new Person() 也会形成一条对应的原型链 。因此，**instanceof 只能用来判断两个对象是否属于实例关系\*\***， 而不能判断一个对象实例具体属于哪种类型。\*\*
+从原型链可以看出，[] 的 **proto** 直接指向 Array.prototype，间接指向 Object.prototype，所以按照 instanceof 的判断规则，[] 就是 Object 的实例。依次类推，类似的 new Date()、new Person() 也会形成一条对应的原型链 。因此，**instanceof 只能用来判断两个对象是否属于实例关系\*\***， 而不能判断一个对象实例具体属于哪种类型。\*\*
 
 instanceof 操作符的问题在于，它假定只有一个全局执行环境。如果网页中包含多个框架，那实际上就存在两个以上不同的全局执行环境，从而存在两个以上不同版本的构造函数。如果你从一个框架向另一个框架传入一个数组，那么传入的数组与在第二个框架中原生创建的数组分别具有各自不同的构造函数。
 
@@ -94,26 +94,26 @@ Array.isArray() 本质上检测的是对象的 [[Class]] 值，[[Class]] 是对�
 
 ## **constructor**
 
-当一个函数 F被定义时，JS引擎会为F添加 prototype 原型，然后再在 prototype上添加一个 constructor 属性，并让其指向 F 的引用。如下所示：
+当一个函数 F 被定义时，JS 引擎会为 F 添加 prototype 原型，然后再在 prototype 上添加一个 constructor 属性，并让其指向 F 的引用。如下所示：
 
-![img](index.assets/849589-20170508125250566-1896556617.png)
+![img](.assets/849589-20170508125250566-1896556617.png)
 
-当执行 var f = new F() 时，F 被当成了构造函数，f 是F的实例对象，此时 F 原型上的 constructor 传递到了 f 上，因此 f.constructor == F
+当执行 var f = new F() 时，F 被当成了构造函数，f 是 F 的实例对象，此时 F 原型上的 constructor 传递到了 f 上，因此 f.constructor == F
 
-![img](index.assets/849589-20170508125714941-1649387639.png)
+![img](.assets/849589-20170508125714941-1649387639.png)
 
 可以看出，F 利用原型对象上的 constructor 引用了自身，当 F 作为构造函数来创建对象时，原型上的 constructor 就被遗传到了新创建的对象上， 从原型链角度讲，构造函数 F 就是新对象的类型。这样做的意义是，让新对象在诞生以后，就具有可追溯的数据类型。
 
 同样，JavaScript 中的内置对象在内部构建时也是这样做的：
 
-![img](index.assets/849589-20170508131800457-2091987664.png)
+![img](.assets/849589-20170508131800457-2091987664.png)
 
 **细节问题：**
 
 1. null 和 undefined 是无效的对象，因此是不会有 constructor 存在的，这两种类型的数据需要通过其他方式来判断。
 2. 函数的 constructor 是不稳定的，这个主要体现在自定义对象上，当开发者重写 prototype 后，原有的 constructor 引用会丢失，constructor 会默认为 Object
 
-![img](index.assets/849589-20170508132757347-1999338357.png)
+![img](.assets/849589-20170508132757347-1999338357.png)
 
 为什么变成了 Object？
 

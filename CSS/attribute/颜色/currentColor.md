@@ -71,4 +71,4 @@ Vivamus rhoncus dignissim diam, id dictum lorem tincidunt sit amet. Cras et eros
 
 ## 兼容性
 
-![](./__assets__/currentColor-2022-07-14-14-43-21.png)
+![](./.assets/currentColor-2022-07-14-14-43-21.png)

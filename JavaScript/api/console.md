@@ -16,43 +16,43 @@ function foo() {
 foo()
 ```
 
-![](./__assets__/console-2022-07-11-16-43-10.png)
+![](./.assets/console-2022-07-11-16-43-10.png)
 
 ## table
 
 - `console.table({ ... })`
 
-![](./__assets__/console-2022-07-15-14-33-25.png)
+![](./.assets/console-2022-07-15-14-33-25.png)
 
 ## error
 
 - `console.err(“This is error”)`
-  ![](./__assets__/console-2022-07-15-14-33-40.png)
+  ![](./.assets/console-2022-07-15-14-33-40.png)
 
 ## warn
 
 - `console.warn()`
 
-![](./__assets__/console-2022-07-15-14-34-00.png)
+![](./.assets/console-2022-07-15-14-34-00.png)
 
 ## Time & timelog & timeEnd
 
 - `console.time()、console.timeLog()、console.timeEnd()`: 用来进行程序计时
-  ![](./__assets__/console-2022-07-15-14-34-11.png)
+  ![](./.assets/console-2022-07-15-14-34-11.png)
 
 ## assert
 
 - `console.assert(assert_statement,message)` : 设定断言, 如果assert_statement 为false 显示message消息
 - 只有`assert_statement` 为true 的时候才会打印出来
 
-![](./__assets__/console-2022-07-15-14-34-19.png)
+![](./.assets/console-2022-07-15-14-34-19.png)
 
 ## count & countReset
 
 - `console.count()` : 统计参数标签计数
 - `console.countReset()`: 重置对应标签的计数
 
-![](./__assets__/console-2022-07-15-14-34-27.png)
+![](./.assets/console-2022-07-15-14-34-27.png)
 
 ### group & groupEnd
 
@@ -70,7 +70,7 @@ while (i--) {
 }
 ```
 
-![](./__assets__/console-2022-07-11-16-47-56.png)
+![](./.assets/console-2022-07-11-16-47-56.png)
 
 ## groupCollapsed & groupEnd
 
@@ -88,7 +88,7 @@ while (i--) {
 }
 ```
 
-![](./__assets__/console-2022-07-11-16-52-39.png)
+![](./.assets/console-2022-07-11-16-52-39.png)
 
 ## info &log
 
@@ -102,7 +102,7 @@ while (i--) {
 
 - 仅浏览器支持
   `console.log('123 %c 456','font-size:36px;color:red;');`
-  ![](./__assets__/console-2022-07-11-16-41-28.png)
+  ![](./.assets/console-2022-07-11-16-41-28.png)
 
 ### 编码指定样式打印
 
@@ -113,7 +113,7 @@ while (i--) {
   `console.log('\033[42;30m DONE \033[40;32m Compiled successfully in 19987ms\033[0m')`
 - 输出结果
 
-  ![](./__assets__/console-2022-07-11-16-55-55.png)
+  ![](./.assets/console-2022-07-11-16-55-55.png)
 
 - 解释
   - 用绿底（42）黑字（30）显示“DONE”
@@ -126,7 +126,7 @@ while (i--) {
 - `console.log('\033[42;30m DONE \033[44;33m Compiled successfully in 19987ms\033[0m')`
 - 等同: `console.log('\033[42;30m DONE \033[44;37m Compiled successfully in %dms\033[0m',19987)`
 
-![](./__assets__/console-2022-07-13-10-23-47.png)
+![](./.assets/console-2022-07-13-10-23-47.png)
 
 ### 常用属性
 

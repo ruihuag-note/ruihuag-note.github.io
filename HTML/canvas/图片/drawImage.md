@@ -17,6 +17,6 @@ context.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
 > `sHeight { Number }`: 表示图片元素从坐标点开始算，多大的高度内容绘制Canvas画布上
 
 `context.drawImage(image, 0, 0, 300, 150);`
-![](/__assets__/img/2022-02-15-14-17-29.png)
+![](/.assets/img/2022-02-15-14-17-29.png)
 
 > 原图: 500 \* 333, 这样子设置会被压扁了些

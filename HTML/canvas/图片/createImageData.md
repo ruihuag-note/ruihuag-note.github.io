@@ -36,6 +36,6 @@ for (var x = 1; x <= 300; x += 5) {
 context.putImageData(imagedata, 0, 0)
 ```
 
-![](/__assets__/img/2022-02-15-11-09-10.png)
+![](/.assets/img/2022-02-15-11-09-10.png)
 
 > 直接使用createImageData()方法创建一个图像，例如，所有位置是5的倍数的地方我们塞入一个绿色颜色值，这样可以得到一个点阵图效果

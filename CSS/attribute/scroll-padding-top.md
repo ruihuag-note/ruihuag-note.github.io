@@ -197,4 +197,4 @@ footer {
 
 ## 兼容性
 
-![](./__assets__/scroll-padding-top-2022-07-14-15-38-52.png)
+![](./.assets/scroll-padding-top-2022-07-14-15-38-52.png)

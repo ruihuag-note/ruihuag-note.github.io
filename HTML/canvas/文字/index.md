@@ -14,7 +14,7 @@ context.font = '24px STheiti, SimHei'
 context.fillText('Canvas API中文网', 24, 66)
 ```
 
-![](./__assets__/index-2022-03-29-14-54-54.png)
+![](./.assets/index-2022-03-29-14-54-54.png)
 
 ## measureText 文字宽度
 
@@ -41,4 +41,4 @@ context.fillText('宽' + textZh.width, 62 + textZh.width, 40)
 context.fillText('宽' + textEn.width, 62 + textEn.width, 80)
 ```
 
-![](./__assets__/index-2022-03-29-16-45-12.png)
+![](./.assets/index-2022-03-29-16-45-12.png)

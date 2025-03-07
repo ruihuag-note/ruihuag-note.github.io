@@ -65,8 +65,8 @@ contain-intrinsic-size: auto 300px auto 4rem;
 
 > `content-visibility`
 
-![](./__assets__/content-visibility-2022-11-23-14-11-44.png)
+![](./.assets/content-visibility-2022-11-23-14-11-44.png)
 
 > `contain-intrinsic-size`
 
-![](./__assets__/content-visibility-2022-11-23-14-27-26.png)
+![](./.assets/content-visibility-2022-11-23-14-27-26.png)

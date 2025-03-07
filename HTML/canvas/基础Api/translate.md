@@ -32,4 +32,4 @@ img.onload = function () {
 img.src = './1.jpg'
 ```
 
-![](./__assets__/translate-2022-04-01-16-30-05.png)
+![](./.assets/translate-2022-04-01-16-30-05.png)

@@ -3,7 +3,7 @@
 - 控制背景 图片/ 颜色 填充范围
 - 默认: `background`: 会填充盒模型`content` + `padding` + `border`
 
-![](./__assets__/background-clip-2024-02-28-16-42-08.png)
+![](./.assets/background-clip-2024-02-28-16-42-08.png)
 
 - `background-clip`: `border-box` | `padding-box` | `content-box` | `text`
   - `border-box` : 填充到`border` (default)
@@ -13,4 +13,4 @@
     - `webkit`需要 使用 `-webkit-background-clip: text`
 - [demo](https://ruihuag-demo.github.io/eg/background-clip.html)
 
-[![](./__assets__/background-clip-2024-02-28-17-02-06.png)](https://ruihuag-demo.github.io/eg/background-clip.html)
+[![](./.assets/background-clip-2024-02-28-17-02-06.png)](https://ruihuag-demo.github.io/eg/background-clip.html)

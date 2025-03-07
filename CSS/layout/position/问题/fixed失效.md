@@ -30,7 +30,7 @@
 </html>
 ```
 
-![](./__assets__/fixed-error.gif)
+![](./.assets/fixed-error.gif)
 
 ### 解决方案
 

@@ -1,6 +1,6 @@
 # VScode问题
 
-## Problems loading reference 'https://json.schemastore.org/package': Unable to load schema from 'https://json.schemastore.org/package': connect ECONNREFUSED 127.0.0.1:8890
+## Problems loading reference '<https://json.schemastore.org/package>': Unable to load schema from '<https://json.schemastore.org/package>': connect ECONNREFUSED 127.0.0.1:8890
 
 > 由于本机的同源策略安全设置，不允许跨域访问资源，所有会将该请求的响应数据拦截
 > setting.json 设置
@@ -20,12 +20,12 @@
 
 > 1. 点击vscode 右下角的 ==JSON==
 >
->    ![img](question.assets/20201226182440237.png)
+>    ![img](.assets/20201226182440237.png)
 >
 > 2. 选择Configure File Association for '.json'
 >
-> ![img](question.assets/20201226182903753.png)
+> ![img](.assets/20201226182903753.png)
 >
 > 3. 输入json, 选择JSON with Comments
 >
->    ![img](question.assets/20201226182923589.png)
+>    ![img](.assets/20201226182923589.png)

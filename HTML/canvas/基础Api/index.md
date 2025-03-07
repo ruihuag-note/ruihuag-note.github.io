@@ -46,7 +46,7 @@ img.onload = function () {
 img.src = './1.jpg'
 ```
 
-![](/__assets__/img/2022-02-15-11-23-51.png)
+![](/.assets/img/2022-02-15-11-23-51.png)
 
 > 图片缩小，并作为纹理显示。我们直接把`<img>`元素作为纹理图案是无法控制其尺寸的，我们可以将`<img>`元素绘制在大小可控的Canvas元素上，然后把这个Canvas元素作为图案进行平铺即可
 
@@ -85,7 +85,7 @@ img.onload = function () {
 img.src = './1.jpg'
 ```
 
-![](/__assets__/img/2022-02-15-10-50-54.png)
+![](/.assets/img/2022-02-15-10-50-54.png)
 
 > 利用剪裁实现一个图案填充效果。实现图案填充，标准用法是创建一个Pattern对象，然后作为fillStyle进行路径填充。这里，我们还可以使用clip()剪裁实现，这样就不用new一个Pattern对象了。例如，实现一个三角形，里面是人物照片图案。
 
@@ -107,7 +107,7 @@ img.onload = function () {
 img.src = './1.jpg'
 ```
 
-![](/__assets__/img/2022-02-15-10-41-05.png)
+![](/.assets/img/2022-02-15-10-41-05.png)
 
 > 先把一张图片绘制在Canvas画布上，然后再把中间一块矩形区域的像素信息清除
 
@@ -135,7 +135,7 @@ context.fillRect(10, 10, 160, 60)
 context.fillRect(120, 80, 160, 60)
 ```
 
-![](/__assets__/img/2022-02-15-11-15-04.png)
+![](/.assets/img/2022-02-15-11-15-04.png)
 
 ### 径向渐变
 
@@ -168,7 +168,7 @@ context.fillStyle = gradient
 context.fillRect(0, 0, 240, 120)
 ```
 
-![](/__assets__/img/2022-02-15-11-32-48.png)
+![](/.assets/img/2022-02-15-11-32-48.png)
 
 #### 色带分隔明显的色环
 
@@ -199,7 +199,7 @@ context.fillStyle = gradient
 context.fillRect(0, 0, 150, 150)
 ```
 
-![](/__assets__/img/2022-02-15-11-36-09.png)
+![](/.assets/img/2022-02-15-11-36-09.png)
 
 > 不同浏览器还是有差异的，Chrome浏览器下的锯齿比较明显
 > 实际上，如果起始渐变圆的半径如果不是0，则在Firefox浏览器下，第5环会无法呈现，且也会出现明显锯齿，这个案例可参见CanvasGradient.addColorStop

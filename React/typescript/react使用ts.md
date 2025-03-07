@@ -161,7 +161,7 @@ export default Child1
 
 我们在Child1组件中打印了children属性，它的值是一个数组，包含Child2对象和后面的文本：
 
-![](/__assets__/img/2022-02-08-17-20-14.png)
+![](/.assets/img/2022-02-08-17-20-14.png)
 
 使用 React.FC 声明函数组件和普通声明的区别如下：
 
@@ -358,7 +358,7 @@ const divStyle: React.CSSProperties = {
 
 默认情况下，React会为根据设置的state的初始值来自动推导state以及更新函数的类型：
 
-![](/__assets__/img/2022-02-08-17-48-31.png)
+![](/.assets/img/2022-02-08-17-48-31.png)
 
 如果已知state 的类型，可以通过以下形式来自定义state的类型：
 
@@ -436,7 +436,7 @@ useEffect(() => {
 
 TypeScript就会报错：
 
-![](/__assets__/img/2022-02-08-17-54-57.png)
+![](/.assets/img/2022-02-08-17-54-57.png)
 
 来看看useEffect在类型声明文件中的定义：
 
@@ -603,7 +603,7 @@ const memoizedCallback = useCallback(
 
 这时候如果再给回调函数传入字符串就会报错了：
 
-![](/__assets__/img/2022-02-09-09-58-19.png)
+![](/.assets/img/2022-02-09-09-58-19.png)
 
 所有，需要注意，在使用useCallback时需要给回调函数的参数指定类型。
 
@@ -748,7 +748,7 @@ const reducer: React.Reducer<State, ActionType> = (state, action) => {
 
 其实dispatch方法也是有类型的：
 
-![](/__assets__/img/2022-02-09-10-09-36.png)
+![](/.assets/img/2022-02-09-10-09-36.png)
 
 可以看到，dispatch的类型是：React.Dispatch，上面示例的完整代码如下：
 
@@ -909,7 +909,7 @@ const onSourceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
 这里定义了一个`input`输入框，当触发`onChange`事件时，会调用`onSourceChange`方法，该方法的参数e的类型就是：`React.ChangeEvent`，而`e.target`的类型就是`EventTarget`：
 
-![](/__assets__/img/2022-02-09-10-26-49.png)
+![](/.assets/img/2022-02-09-10-26-49.png)
 
 在来看一个例子：
 
@@ -1046,7 +1046,7 @@ const App: React.FC = () => {
 
 在项目的依赖文件中可以找到HTML标签相关的类型声明文件：
 
-![](/__assets__/img/2022-02-09-10-39-01.png)
+![](/.assets/img/2022-02-09-10-39-01.png)
 
 所有的HTML标签的类型都被定义在 `intrinsicElements` 接口中，常见的标签及其类型如下：
 
@@ -1807,7 +1807,7 @@ const getStrLength = (target: string | number): number => {
 需要注意，类型断言并不是类型转换，断言成一个联合类型中不存在的类型是不允许的。​
 
 再来看一个例子，在调用一个方法时传入参数：
-![](/__assets__/img/2022-02-09-11-20-44.png)
+![](/.assets/img/2022-02-09-11-20-44.png)
 这里就提示我们这个参数可能是undefined，而通过业务知道这个值是一定存在的，所以就可以将它断言成数字：data?.subjectId as number​
 
 除此之外，上面所说的标签类型、组件类型、时间类型都可以使用断言来指定给一些数据，还是要根据实际的业务场景来使用。​

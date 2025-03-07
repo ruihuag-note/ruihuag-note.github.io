@@ -44,4 +44,4 @@ img.onload = function () {
 img.src = './1.jpg'
 ```
 
-![](./__assets__/index-2022-03-29-15-49-12.png)
+![](./.assets/index-2022-03-29-15-49-12.png)

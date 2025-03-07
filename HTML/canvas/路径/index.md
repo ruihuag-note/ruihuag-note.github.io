@@ -20,7 +20,7 @@ context.lineTo(160, 120)
 context.stroke()
 ```
 
-![](/__assets__/img/2022-02-15-10-18-29.png)
+![](/.assets/img/2022-02-15-10-18-29.png)
 
 > 执行两次`beginPath()`
 
@@ -48,7 +48,7 @@ context.closePath()
 context.stroke()
 ```
 
-![](/__assets__/img/2022-02-15-10-55-38.png)
+![](/.assets/img/2022-02-15-10-55-38.png)
 
 > 左侧图形没有执行`closePath()`，右侧执行了`closePath()`
 
@@ -103,7 +103,7 @@ var canvases = document.querySelectorAll('canvas')
 })
 ```
 
-![](/__assets__/img/2022-02-15-14-44-30.png)
+![](/.assets/img/2022-02-15-14-44-30.png)
 
 ## lineTo 连接
 
@@ -123,7 +123,7 @@ context.lineTo(50, 120)
 context.stroke()
 ```
 
-![](./__assets__/线-2022-03-29-16-41-16.png)
+![](./.assets/线-2022-03-29-16-41-16.png)
 
 ## moveTo 绘制点移动
 
@@ -141,7 +141,7 @@ context.lineTo(200, 100)
 context.stroke()
 ```
 
-![](./__assets__/index-2022-03-29-16-53-29.png)
+![](./.assets/index-2022-03-29-16-53-29.png)
 
 ## drawFocusIfNeeded 路径高亮
 
@@ -220,7 +220,7 @@ canvas.addEventListener('click', function (event) {
 })
 ```
 
-![](/__assets__/img/2022-02-15-11-41-32.png)
+![](/.assets/img/2022-02-15-11-41-32.png)
 
 ```js
 beginPath() //新建一条路径一旦创建成功 绘制命令将转移到新建的路径上

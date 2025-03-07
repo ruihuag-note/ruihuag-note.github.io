@@ -59,4 +59,4 @@ obj.b() // 弹出 1
 4. 默认的，指向全局变量window(相当于执行window.fun())
 
 - 这样看来，当你执行fun()的时候，以上1,2点均不满足。
-  第3点,因为this是运行时确定的，而我们执行fun()，等同于windown.fun()(**与obj没有任何关系**)，自然的this指向window，而window没有定义变量a，结果是undefined。
+  第3点,因为this是运行时确定的，而我们执行fun()，等同于window.fun()(**与obj没有任何关系**)，自然的this指向window，而window没有定义变量a，结果是undefined。

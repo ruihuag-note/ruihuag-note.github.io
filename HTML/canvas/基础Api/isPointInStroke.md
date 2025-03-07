@@ -51,6 +51,6 @@ arrPoints.forEach(function (point) {
 })
 ```
 
-![](./__assets__/isPointInStroke-2022-03-29-16-29-43.png)
+![](./.assets/isPointInStroke-2022-03-29-16-29-43.png)
 
 > 只有检测点在描边路径上，才返回true，在描边路径外和描边路径内部都返回false

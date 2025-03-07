@@ -13,7 +13,7 @@ console.log(selObj)
 let selRange = selObj.getRangeAt(0)
 ```
 
-![](./__assets__/getSelection-2022-10-24-16-34-36.png)
+![](./.assets/getSelection-2022-10-24-16-34-36.png)
 
 ## 术语
 

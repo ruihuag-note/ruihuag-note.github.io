@@ -57,7 +57,7 @@ var textString = 'I love MDN'
 ctx.fillText(textString, x, y)
 ```
 
-![](./__assets__/devicePixelRatio-2022-12-09-10-46-05.png)
+![](./.assets/devicePixelRatio-2022-12-09-10-46-05.png)
 
 ## 监视屏幕分辨率或缩放级别的更改
 
@@ -137,6 +137,6 @@ body {
 }
 ```
 
-![](./__assets__/devicePixelRatio-2022-12-09-10-52-02.png)
+![](./.assets/devicePixelRatio-2022-12-09-10-52-02.png)
 
 > > `devicePixelRatio`=1 时候

@@ -20,4 +20,4 @@ context.rect(100, 25, 100, 100)
 context.stroke()
 ```
 
-![](./__assets__/rect-2022-03-29-17-29-25.png)
+![](./.assets/rect-2022-03-29-17-29-25.png)

@@ -54,6 +54,6 @@ arrPoints.forEach(function (point) {
 })
 ```
 
-![](./__assets__/isPointInPath-2022-03-29-16-21-20.png)
+![](./.assets/isPointInPath-2022-03-29-16-21-20.png)
 
 > 在路径范围内和正好压在路径上，返回值都是true，在路径外返回值是false

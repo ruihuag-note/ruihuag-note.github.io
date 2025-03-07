@@ -18,7 +18,7 @@ context.lineTo(250, 100)
 context.stroke()
 ```
 
-![](./__assets__/index-2022-04-01-16-07-27.png)
+![](./.assets/index-2022-04-01-16-07-27.png)
 
 ## strokeRect
 
@@ -41,7 +41,7 @@ context.lineWidth = 2
 context.strokeRect(75, 25, 150, 100)
 ```
 
-![](./__assets__/stroke_-2022-04-01-16-11-44.png)
+![](./.assets/stroke_-2022-04-01-16-11-44.png)
 
 ## strokeText
 
@@ -64,4 +64,4 @@ context.font = '50px STHeiti, SimHei'
 context.strokeText('文字描边', 50, 90)
 ```
 
-![](./__assets__/stroke_-2022-04-01-16-17-12.png)
+![](./.assets/stroke_-2022-04-01-16-17-12.png)

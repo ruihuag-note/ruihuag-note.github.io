@@ -22,4 +22,4 @@ context.fillRect(10, 10, 10, 10)
 context.setTransform(1, 0, 0, 1, 0, 0)
 ```
 
-![](./__assets__/scale-2022-03-29-17-40-58.png)
+![](./.assets/scale-2022-03-29-17-40-58.png)

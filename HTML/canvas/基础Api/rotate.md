@@ -14,4 +14,4 @@ context.fillText('旋转，跳跃，我闭着眼', 60, -40, 188)
 context.setTransform(1, 0, 0, 1, 0, 0)
 ```
 
-![](./__assets__/rotate-2022-03-29-17-36-28.png)
+![](./.assets/rotate-2022-03-29-17-36-28.png)

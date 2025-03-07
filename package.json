@@ -1,6 +1,6 @@
 {
   "name": "ruihuag-note",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "note",
   "author": "ruihuag",
   "main": "/",
@@ -21,7 +21,8 @@
     "update": "node config/update-module.js",
     "pub": "npm publish",
     "pretest": "node config/build/pretest.js",
-    "dev": "nodemon config/build/build-sidebar-lv2.js"
+    "dev": "nodemon config/build/build-sidebar-lv2.js",
+    "format": "prettier --write **/*.md"
   },
   "repository": {
     "type": "git",

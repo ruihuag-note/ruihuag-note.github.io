@@ -20,7 +20,7 @@ context.arc(150, 75, 50, 0, Math.PI / 2)
 context.stroke()
 ```
 
-![](/__assets__/img/2022-02-15-10-04-26.png)
+![](/.assets/img/2022-02-15-10-04-26.png)
 
 ### arcTo
 
@@ -42,7 +42,7 @@ context.lineTo(200, 40)
 context.stroke()
 ```
 
-![](/__assets__/img/2022-02-15-10-11-03.png)
+![](/.assets/img/2022-02-15-10-11-03.png)
 
 ## 椭圆
 
@@ -63,4 +63,4 @@ context.ellipse(150, 75, 80, 40, Math.PI / 4, 0, 2 * Math.PI)
 context.stroke()
 ```
 
-![](/__assets__/img/2022-02-15-14-35-03.png)
+![](/.assets/img/2022-02-15-14-35-03.png)
