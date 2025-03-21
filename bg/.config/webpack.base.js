@@ -13,7 +13,7 @@ export default {
   mode: 'development',
   target: 'web',
   output: {
-    filename: '[name].[hash:8].js', // 打包的文件名
+    filename: '.docs/js/[name].[hash:8].js', // 打包的文件名
     path: path.resolve(__dirname, '../../docs'),
   },
   // stats: 'errors-only',
@@ -32,23 +32,22 @@ export default {
       '.css',
       '.module.less',
       '.d.ts',
-      '.md',
     ],
   },
   module: {
     rules,
   },
   plugins: [
-    new CopyPlugin({
-      // patterns:
-      patterns: [
-        {
-          from: '../note',
-          // from: 'public/note',
-          to: 'note',
-        },
-      ],
-    }),
+    // new CopyPlugin({
+    //   // patterns:
+    //   patterns: [
+    //     {
+    //       from: '../note',
+    //       // from: 'public/note',
+    //       to: 'note',
+    //     },
+    //   ],
+    // }),
     // new ESBuildPlugin(),
     //数组 放着所有的webpack插件
     new HtmlWebpackPlugin({

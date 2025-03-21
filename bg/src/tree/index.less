@@ -1,0 +1,34 @@
+.tree {
+  max-height: 100vh;
+
+  .name {
+    line-height: 32px;
+    cursor: pointer;
+
+  }
+
+  .file>.name:hover {
+    color: #71C399;
+  }
+
+  .children {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-left: 12px;
+    border: 3px solid rgba(255, 255, 255, .3);
+    padding: 4px 8px;
+    border-radius: 12px;
+  }
+
+  .depth-0 {
+    &>.name {
+      display: none;
+    }
+
+    &>.children {
+      margin-left: 0;
+    }
+  }
+}

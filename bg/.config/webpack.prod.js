@@ -11,6 +11,12 @@ config.optimization = {
     }),
   ],
 }
-config.plugins.unshift(new CleanWebpackPlugin())
+config.plugins.unshift(
+  new CleanWebpackPlugin({
+    cleanOnceBeforeBuildPatterns: [
+      '.docs/**/*',
+    ],
+  }),
+)
 
 export default config

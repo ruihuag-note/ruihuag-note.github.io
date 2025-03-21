@@ -81,22 +81,16 @@ export default [
     test: /\.(jpe?g|png|gif|)$/i,
     type: 'asset/resource',
     generator: {
-      filename: 'img/[name][ext]',
+      filename: '.docs/img/[name][ext]',
     },
   },
-  // {
-  //   test: /\.md$/i,
-  //   // resouceQuery: /raw/,
-  //   // type: 'asset/resource',
-  //   type: 'asset',
-  //   generator: {
-  //     filename: 'md/[name][ext]',
-  //   },
-  // },
   {
     test: /\.(svg|woff|woff2|eot|ttf|otf|ico)$/i,
     // test: /\.(jpe?g|png|gif|svg|woff|woff2|eot|ttf|otf|ico)$/i,
     type: 'asset/resource',
     exclude: /node_modules/,
+    generator: {
+      filename: '.docs/assets/[name][ext]',
+    },
   },
 ]
