@@ -37,6 +37,24 @@ export default {
   module: {
     rules,
   },
+  optimization: {
+    // runtimeChunk: 'single',
+    splitChunks: {
+      // chunks: 'all', // all, async, initial
+      // minSize: 20000, // 最小尺寸，默认0
+      // maxSize: 0, // 最大尺寸，默认0
+      // minChunks: 1, // 最小分割次数
+      // maxAsyncRequests: 30, // 按需加载时并行请求的最大数目
+      // maxInitialRequests: 30, // 一个入口点初始并行请求的最大数目
+      //   cacheGroups: {
+      //     vendor: {
+      //       test: /[\\/]node_modules[\\/]/,
+      //       name: 'vendors',
+      //       chunks: 'all',
+      //     },
+      //   },
+    },
+  },
   plugins: [
     // new CopyPlugin({
     //   // patterns:
@@ -51,7 +69,6 @@ export default {
     // new ESBuildPlugin(),
     //数组 放着所有的webpack插件
     new HtmlWebpackPlugin({
-      // title: '0Design',
       template: path.resolve(__dirname, '../public/index.html'),
       filename: 'index.html', //打包后的文件名
       hash: true,
@@ -59,11 +76,11 @@ export default {
       cache: true,
       // favicon: './src/assets/images/favicon.ico',
       minify: {
-        // removeComments: true,
+        removeComments: true,
         // removeAttributeQuotes: true,
         // collapseWhitespace: true,
-        // minifyJS: true, // 在脚本元素和事件属性中缩小JavaScript(使用UglifyJS)
-        // minifyCSS: true // 缩小CSS样式元素和样式属性
+        minifyJS: true, // 在脚本元素和事件属性中缩小JavaScript(使用UglifyJS)
+        minifyCSS: true, // 缩小CSS样式元素和样式属性
       },
     }),
   ],

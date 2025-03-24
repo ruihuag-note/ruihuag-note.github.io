@@ -9,21 +9,27 @@
   h6 {
     margin-bottom: var(--gap);
   }
-  
-  a{
+
+  a {
     color: #8ef16e;
     text-decoration: none;
   }
 
   p,
   ul,
+  ol,
   pre {
     margin-bottom: var(--gap);
   }
 
+  ol,
   ul {
     list-style: auto;
     margin-left: 16px;
+  }
+  
+  ul {
+    list-style: circle;
   }
 
   li {
@@ -45,7 +51,7 @@
 
   .code-lang {
     margin: 0 !important;
-    padding: 0.5em !important;
+    padding: 0.5em 1em !important;
     border-radius: var(--radius) !important;
   }
 
@@ -53,12 +59,12 @@
     line-height: var(--height);
     background: #313337;
     border-left: 4px solid #44484C;
-    padding-left: 12px;
+    padding-left: 1em;
     margin-bottom: var(--gap);
+    border-radius: var(--sm-radius);
   }
 
   table {
-
     border: var(--border);
     // border-collapse: collapse;
     border-collapse: separate;

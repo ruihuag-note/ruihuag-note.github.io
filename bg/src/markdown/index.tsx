@@ -15,6 +15,8 @@ export function Markdown() {
   const location = useLocation()
   const [searchParams] = useSearchParams()
   const url = location.state?.url ?? searchParams.get('url')
+  
+  // console.log(url, location.state, searchParams.get('url'))
 
   const getDir = () => {
     const parts = url.split('\\')
