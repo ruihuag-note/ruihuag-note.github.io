@@ -22,3 +22,7 @@ pnpm-debug.log*
 *.sln
 *.sw?
 push.bat
+
+*.1
+*.2
+*.3

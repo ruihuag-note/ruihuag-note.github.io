@@ -1,0 +1,74 @@
+.tree {
+  max-height: 100vh;
+
+  .item {
+    .dir {
+      width: 100%;
+    }
+
+    .content {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: -6.5px;
+
+      .logo {
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+      }
+
+      .name {
+        font-size: 14px;
+        line-height: 28px;
+        overflow: hidden;
+        max-width: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+
+    // &.file>.content>.name {
+    &>.content>.name {
+      cursor: pointer;
+
+      &:hover {
+        color: #71C399;
+      }
+    }
+
+    .layout-col {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-self: center;
+      gap: 10px;
+
+      &>div {
+        min-width: 250px;
+        max-width: 250px;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+    }
+
+    .children {
+      gap: 10px;
+      padding-left: 12px;
+      border-left: 3px solid rgba(255, 255, 255, .1);
+    }
+
+    &.depth-0 {
+      padding: 24px;
+
+      &>.content {
+        display: none;
+      }
+
+      &>.children {
+        margin-left: 0;
+        border-left: none;
+      }
+    }
+  }
+}
