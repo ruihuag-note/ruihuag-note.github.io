@@ -23,5 +23,6 @@ pnpm-debug.log*
 *.sw?
 push.bat
 
-docs.1
-note
+*.1
+*.2
+*.3

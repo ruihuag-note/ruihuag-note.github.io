@@ -38,7 +38,8 @@
           "name": "open-webui.md",
           "path": "ai\\open-webui.md"
         }
-      ]
+      ],
+      "count": 6
     },
     {
       "name": "Back-End",
@@ -215,7 +216,8 @@
             }
           ]
         }
-      ]
+      ],
+      "count": 5
     },
     {
       "name": "CSS",
@@ -977,7 +979,8 @@
             }
           ]
         }
-      ]
+      ],
+      "count": 20
     },
     {
       "name": "Data",
@@ -1186,7 +1189,8 @@
           "name": "镜像.md",
           "path": "Data\\镜像.md"
         }
-      ]
+      ],
+      "count": 23
     },
     {
       "name": "Database",
@@ -1292,7 +1296,8 @@
           "name": "mysql.md",
           "path": "Database\\mysql.md"
         }
-      ]
+      ],
+      "count": 5
     },
     {
       "name": "Front-End",
@@ -3583,7 +3588,8 @@
             }
           ]
         }
-      ]
+      ],
+      "count": 18
     },
     {
       "name": "HTML",
@@ -3636,12 +3642,6 @@
         {
           "dir": false,
           "file": true,
-          "name": "README.md",
-          "path": "HTML\\README.md"
-        },
-        {
-          "dir": false,
-          "file": true,
           "name": "script.md",
           "path": "HTML\\script.md"
         },
@@ -3688,7 +3688,8 @@
             }
           ]
         }
-      ]
+      ],
+      "count": 12
     },
     {
       "name": "JavaScript",
@@ -3833,12 +3834,6 @@
               ]
             }
           ]
-        },
-        {
-          "dir": false,
-          "file": true,
-          "name": "_sidebar.md",
-          "path": "JavaScript\\_sidebar.md"
         },
         {
           "name": "函数",
@@ -4270,7 +4265,8 @@
             }
           ]
         }
-      ]
+      ],
+      "count": 22
     },
     {
       "name": "Knowledge",
@@ -5100,7 +5096,8 @@
             }
           ]
         }
-      ]
+      ],
+      "count": 10
     },
     {
       "name": "question",
@@ -5113,7 +5110,8 @@
           "name": "react 点击滚动会重置.md",
           "path": "question\\react 点击滚动会重置.md"
         }
-      ]
+      ],
+      "count": 2
     },
     {
       "name": "React",
@@ -5302,12 +5300,6 @@
         {
           "dir": false,
           "file": true,
-          "name": "_sidebar.md",
-          "path": "React\\_sidebar.md"
-        },
-        {
-          "dir": false,
-          "file": true,
           "name": "使用css_var.md",
           "path": "React\\使用css_var.md"
         },
@@ -5455,7 +5447,8 @@
             }
           ]
         }
-      ]
+      ],
+      "count": 22
     },
     {
       "name": "test",
@@ -5468,7 +5461,8 @@
           "name": "index.md",
           "path": "test\\index.md"
         }
-      ]
+      ],
+      "count": 2
     },
     {
       "name": "Tool",
@@ -5860,7 +5854,8 @@
           "name": "windows_Terminal.md",
           "path": "Tool\\windows_Terminal.md"
         }
-      ]
+      ],
+      "count": 12
     },
     {
       "name": "TypeScript",
@@ -5884,12 +5879,6 @@
           "file": true,
           "name": "typescript.md",
           "path": "TypeScript\\typescript.md"
-        },
-        {
-          "dir": false,
-          "file": true,
-          "name": "_sidebar.md",
-          "path": "TypeScript\\_sidebar.md"
         },
         {
           "dir": false,
@@ -5977,7 +5966,8 @@
             }
           ]
         }
-      ]
+      ],
+      "count": 13
     },
     {
       "name": "vue",
@@ -6234,7 +6224,8 @@
             }
           ]
         }
-      ]
+      ],
+      "count": 17
     }
   ]
 }

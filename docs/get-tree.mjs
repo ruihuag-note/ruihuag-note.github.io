@@ -35,11 +35,26 @@ async function readDirectory(dir) {
     return results
   }
 
+  const count = (tree) => {
+    let total = 1
+    if (Array.isArray(tree)) {
+      for (let i = 0; i < tree.length; i++) {
+        total = total + count(tree.children)
+      }
+    }
+    return total
+  }
+
+  const depth1 = await traverse(dir)
+
   return {
     name: dir,
     dir: true,
     file: false,
-    children: await traverse(dir),
+    children: depth1.map((item) => {
+      item.count = count(item.children)
+      return item
+    }),
   }
 }
 
