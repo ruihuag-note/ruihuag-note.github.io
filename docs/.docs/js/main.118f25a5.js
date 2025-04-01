@@ -12173,12 +12173,17 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.markdown {
 }
 .markdown p,
 .markdown ul,
+.markdown ol,
 .markdown pre {
   margin-bottom: var(--gap);
 }
+.markdown ol,
 .markdown ul {
   list-style: auto;
   margin-left: 16px;
+}
+.markdown ul {
+  list-style: circle;
 }
 .markdown li {
   line-height: 32px;
@@ -12195,15 +12200,16 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.markdown {
 }
 .markdown .code-lang {
   margin: 0 !important;
-  padding: 0.5em !important;
+  padding: 0.5em 1em !important;
   border-radius: var(--radius) !important;
 }
 .markdown blockquote {
   line-height: var(--height);
   background: #313337;
   border-left: 4px solid #44484C;
-  padding-left: 12px;
+  padding-left: 1em;
   margin-bottom: var(--gap);
+  border-radius: var(--sm-radius);
 }
 .markdown table {
   border: var(--border);
@@ -16657,13 +16663,32 @@ ___CSS_LOADER_EXPORT___.push([module.id, `* {
 :root {
   --height: 32px;
   --border: 2px solid #44484C;
-  --radius: 16px;
+  --radius: 12px;
+  --sm-radius: 8px;
   --gap: 12px;
 }
 body {
   color: #fff;
   background: #000;
   font-size: 16px;
+}
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+  width: 6px;
+  height: 16px;
+  background-color: #000;
+}
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #000;
+}
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #555;
 }
 `, ""]);
 // Exports
@@ -28234,30 +28259,94 @@ function javascript(Prism) {
 var ___CSS_LOADER_EXPORT___ = _node_modules_store_css_loader_6_11_0_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_store_css_loader_6_11_0_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `.tree {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 10px;
+  height: 100vh;
   max-height: 100vh;
+  padding: 12px;
 }
-.tree .name {
-  line-height: 32px;
+.tree > div {
+  height: 100%;
+  max-height: 100vh;
+  overflow: hidden;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.5);
+  border-radius: 16px;
+}
+.tree > div > .render {
+  max-height: calc(100vh - 48px);
+  height: 100%;
+  margin: 12px 0;
+  padding: 0 12px;
+  overflow-y: auto;
+}
+.tree > .left > .render {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.tree > .left > .render > .module-name {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  font-size: 15px;
+  line-height: 1.7;
+  text-transform: capitalize;
+  font-weight: bold;
+  background-color: #272727;
+}
+.tree > .left > .render > .module-name.select {
+  background-color: #575757;
+}
+.tree > .right > .render .item .dir {
+  width: 100%;
+}
+.tree > .right > .render .item .content {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: -6.5px;
+}
+.tree > .right > .render .item .content .logo {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+.tree > .right > .render .item .content .name {
+  font-size: 14px;
+  line-height: 28px;
+  overflow: hidden;
+  max-width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.tree > .right > .render .item > .content > .name {
   cursor: pointer;
 }
-.tree .file > .name:hover {
+.tree > .right > .render .item > .content > .name:hover {
   color: #71C399;
 }
-.tree .children {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+.tree > .right > .render .item .child {
   gap: 10px;
-  margin-left: 12px;
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  padding: 4px 8px;
-  border-radius: 12px;
+  padding-left: 12px;
+  border-left: 3px solid rgba(255, 255, 255, 0.1);
 }
-.tree .depth-0 > .name {
+.tree > .right > .render .depth-0 {
+  border-radius: 24px;
+  overflow: hidden;
+}
+.tree > .right > .render .depth-0 > .content {
   display: none;
 }
-.tree .depth-0 > .children {
+.tree > .right > .render .depth-0 > .child {
   margin-left: 0;
+  border-left: none;
+  column-count: 5;
+}
+.tree > .right > .render .depth-0 > .child > div {
+  page-break-inside: avoid;
+  -webkit-column-break-inside: avoid;
 }
 `, ""]);
 // Exports
@@ -41731,19 +41820,105 @@ var tree_update = injectStylesIntoStyleTag_default()(tree/* default */.A, tree_o
 
        /* harmony default export */ const src_tree = (tree/* default */.A && tree/* default */.A.locals ? tree/* default */.A.locals : undefined);
 
+;// ./src/tree/icon.tsx
+
+const Folder = /* @__PURE__ */ react.createElement(
+  "svg",
+  {
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "1em",
+    height: "1em",
+    viewBox: "0 0 48 48"
+  },
+  /* @__PURE__ */ react.createElement(
+    "path",
+    {
+      fill: "#ffa000",
+      d: "M40 12H22l-4-4H8c-2.2 0-4 1.8-4 4v8h40v-4c0-2.2-1.8-4-4-4"
+    }
+  ),
+  /* @__PURE__ */ react.createElement(
+    "path",
+    {
+      fill: "#ffca28",
+      d: "M40 12H8c-2.2 0-4 1.8-4 4v20c0 2.2 1.8 4 4 4h32c2.2 0 4-1.8 4-4V16c0-2.2-1.8-4-4-4"
+    }
+  )
+);
+const HTML = /* @__PURE__ */ react.createElement(
+  "svg",
+  {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    width: "1em",
+    height: "1em"
+  },
+  /* @__PURE__ */ react.createElement(
+    "path",
+    {
+      fill: "#E65100",
+      d: "m4 4 2 22 10 2 10-2 2-22Zm19.72 7H11.28l.29 3h11.86l-.802 9.335L15.99 25l-6.635-1.646L8.93 19h3.02l.19 2 3.86.77 3.84-.77.29-4H8.84L8 8h16Z"
+    }
+  )
+);
+const MD = /* @__PURE__ */ react.createElement(
+  "svg",
+  {
+    style: { fontSize: 20 },
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    width: "1em",
+    height: "1em"
+  },
+  /* @__PURE__ */ react.createElement(
+    "path",
+    {
+      fill: "#42a5f5",
+      d: "m14 10-4 3.5L6 10H4v12h4v-6l2 2 2-2v6h4V10zm12 6v-6h-4v6h-4l6 8 6-8z"
+    }
+  )
+);
+const Icon = {
+  Folder,
+  HTML,
+  MD
+};
+
 ;// ./src/tree/index.tsx
 
 
 
 
 
+
 function Tree(props) {
+  var _a, _b;
   const { tree } = props;
   const navigate = dist_useNavigate();
-  const onSelect = (url) => navigate(`/md?url=${url}`);
+  const onSelect = (url) => navigate(`/md?url=${encodeURIComponent(url)}`);
+  const [fold, _setFold] = react.useState([]);
+  const setFold = (list = []) => {
+    _setFold(list);
+    localStorage.setItem("fold", JSON.stringify(list));
+  };
+  const init = () => {
+    const cache_fold = localStorage.getItem("fold");
+    if (!cache_fold)
+      return;
+    try {
+      const cache_fold_val = JSON.parse(cache_fold);
+      isEffectArray(cache_fold_val) && _setFold(cache_fold_val);
+    } catch (error) {
+      console.info(error);
+    }
+  };
+  react.useEffect(() => {
+    init();
+  }, []);
   const Item = (props2) => {
     const { depth = 0, tree: tree2, dirName } = props2;
     const { name, dir, file, children, path } = tree2 || {};
+    const uid = path != null ? path : name;
     const getName = () => {
       if (!index_esm_isString(name))
         return "<Empty>";
@@ -41752,26 +41927,65 @@ function Tree(props) {
       return name.replace(/\.md$/gi, "");
     };
     const render_name = getName();
+    const getLogo = () => {
+      if (dir)
+        return Icon.Folder;
+      if (tree2.html)
+        return Icon.HTML;
+      return Icon.MD;
+    };
+    const handleClick = () => {
+      if (dir) {
+        let newFold = [...fold];
+        if (fold.includes(uid)) {
+          newFold = newFold.filter((id) => id !== uid);
+        } else {
+          newFold.push(uid);
+        }
+        setFold(newFold);
+        return;
+      }
+      if (file)
+        return onSelect(path);
+    };
     return /* @__PURE__ */ react.createElement(
       "div",
       {
         key: name,
-        className: A("item", { dir, file }, "depth-" + depth)
+        className: A(
+          "item",
+          {
+            dir,
+            file,
+            fold: fold.includes(uid),
+            "no-having-grandson": true
+          },
+          "depth-" + depth
+        )
       },
-      /* @__PURE__ */ react.createElement(
-        "div",
-        {
-          className: "name",
-          onClick: () => {
-            file && onSelect(path);
-          }
-        },
-        render_name
-      ),
-      isEffectArray(children) && /* @__PURE__ */ react.createElement("div", { className: "children" }, children.map((item, i) => /* @__PURE__ */ react.createElement(Item, { key: i, dirName: name, tree: item, depth: depth + 1 })))
+      /* @__PURE__ */ react.createElement("div", { className: "content", onClick: handleClick }, /* @__PURE__ */ react.createElement("div", { className: "logo" }, getLogo()), /* @__PURE__ */ react.createElement("div", { className: "name", title: render_name }, render_name)),
+      !fold.includes(uid) && isEffectArray(children) && /* @__PURE__ */ react.createElement("div", { className: "child" }, children.map((item, i) => /* @__PURE__ */ react.createElement(Item, { key: i, dirName: name, tree: item, depth: depth + 1 })))
     );
   };
-  return /* @__PURE__ */ react.createElement("div", { className: "tree" }, /* @__PURE__ */ react.createElement(Item, { tree }));
+  const [selectTreeNode, setSelectTreeNode] = react.useState({});
+  react.useEffect(() => {
+    var _a2;
+    setSelectTreeNode(((_a2 = tree == null ? void 0 : tree.children) == null ? void 0 : _a2[8]) || {});
+  }, [tree]);
+  return /* @__PURE__ */ react.createElement("div", { className: "tree" }, /* @__PURE__ */ react.createElement("div", { className: "left" }, /* @__PURE__ */ react.createElement("div", { className: "render" }, (_b = (_a = tree == null ? void 0 : tree.children) == null ? void 0 : _a.map) == null ? void 0 : _b.call(_a, (_, i) => {
+    const { name } = _;
+    return /* @__PURE__ */ react.createElement(
+      "div",
+      {
+        key: i,
+        className: A("module-name", {
+          select: name === (selectTreeNode == null ? void 0 : selectTreeNode.name)
+        }),
+        onClick: () => setSelectTreeNode(_)
+      },
+      name
+    );
+  }))), /* @__PURE__ */ react.createElement("div", { className: "right" }, /* @__PURE__ */ react.createElement("div", { className: "render" }, /* @__PURE__ */ react.createElement(Item, { tree: selectTreeNode }))));
 }
 
 ;// ./src/home.tsx
@@ -68089,7 +68303,7 @@ function remarkGfm(options) {
   toMarkdownExtensions.push(gfmToMarkdown(settings))
 }
 
-;// ./node_modules/.store/@babel+runtime@7.26.10/node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
+;// ./node_modules/.store/@babel+runtime@7.27.0/node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
 function objectWithoutPropertiesLoose_objectWithoutPropertiesLoose(r, e) {
   if (null == r) return {};
   var t = {};
@@ -68100,7 +68314,7 @@ function objectWithoutPropertiesLoose_objectWithoutPropertiesLoose(r, e) {
   return t;
 }
 
-;// ./node_modules/.store/@babel+runtime@7.26.10/node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js
+;// ./node_modules/.store/@babel+runtime@7.27.0/node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js
 
 function _objectWithoutProperties(e, t) {
   if (null == e) return {};
@@ -68114,25 +68328,25 @@ function _objectWithoutProperties(e, t) {
   return i;
 }
 
-;// ./node_modules/.store/@babel+runtime@7.26.10/node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
+;// ./node_modules/.store/@babel+runtime@7.27.0/node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
 function _arrayLikeToArray(r, a) {
   (null == a || a > r.length) && (a = r.length);
   for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
   return n;
 }
 
-;// ./node_modules/.store/@babel+runtime@7.26.10/node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js
+;// ./node_modules/.store/@babel+runtime@7.27.0/node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js
 
 function _arrayWithoutHoles(r) {
   if (Array.isArray(r)) return _arrayLikeToArray(r);
 }
 
-;// ./node_modules/.store/@babel+runtime@7.26.10/node_modules/@babel/runtime/helpers/esm/iterableToArray.js
+;// ./node_modules/.store/@babel+runtime@7.27.0/node_modules/@babel/runtime/helpers/esm/iterableToArray.js
 function _iterableToArray(r) {
   if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r);
 }
 
-;// ./node_modules/.store/@babel+runtime@7.26.10/node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js
+;// ./node_modules/.store/@babel+runtime@7.27.0/node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js
 
 function _unsupportedIterableToArray(r, a) {
   if (r) {
@@ -68142,12 +68356,12 @@ function _unsupportedIterableToArray(r, a) {
   }
 }
 
-;// ./node_modules/.store/@babel+runtime@7.26.10/node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js
+;// ./node_modules/.store/@babel+runtime@7.27.0/node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js
 function _nonIterableSpread() {
   throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 
-;// ./node_modules/.store/@babel+runtime@7.26.10/node_modules/@babel/runtime/helpers/esm/toConsumableArray.js
+;// ./node_modules/.store/@babel+runtime@7.27.0/node_modules/@babel/runtime/helpers/esm/toConsumableArray.js
 
 
 
@@ -68156,7 +68370,7 @@ function _toConsumableArray(r) {
   return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread();
 }
 
-;// ./node_modules/.store/@babel+runtime@7.26.10/node_modules/@babel/runtime/helpers/esm/typeof.js
+;// ./node_modules/.store/@babel+runtime@7.27.0/node_modules/@babel/runtime/helpers/esm/typeof.js
 function _typeof(o) {
   "@babel/helpers - typeof";
 
@@ -68167,7 +68381,7 @@ function _typeof(o) {
   }, _typeof(o);
 }
 
-;// ./node_modules/.store/@babel+runtime@7.26.10/node_modules/@babel/runtime/helpers/esm/toPrimitive.js
+;// ./node_modules/.store/@babel+runtime@7.27.0/node_modules/@babel/runtime/helpers/esm/toPrimitive.js
 
 function toPrimitive(t, r) {
   if ("object" != _typeof(t) || !t) return t;
@@ -68180,7 +68394,7 @@ function toPrimitive(t, r) {
   return ("string" === r ? String : Number)(t);
 }
 
-;// ./node_modules/.store/@babel+runtime@7.26.10/node_modules/@babel/runtime/helpers/esm/toPropertyKey.js
+;// ./node_modules/.store/@babel+runtime@7.27.0/node_modules/@babel/runtime/helpers/esm/toPropertyKey.js
 
 
 function toPropertyKey(t) {
@@ -68188,7 +68402,7 @@ function toPropertyKey(t) {
   return "symbol" == _typeof(i) ? i : i + "";
 }
 
-;// ./node_modules/.store/@babel+runtime@7.26.10/node_modules/@babel/runtime/helpers/esm/defineProperty.js
+;// ./node_modules/.store/@babel+runtime@7.27.0/node_modules/@babel/runtime/helpers/esm/defineProperty.js
 
 function _defineProperty(e, r, t) {
   return (r = toPropertyKey(r)) in e ? Object.defineProperty(e, r, {
@@ -68199,7 +68413,7 @@ function _defineProperty(e, r, t) {
   }) : e[r] = t, e;
 }
 
-;// ./node_modules/.store/@babel+runtime@7.26.10/node_modules/@babel/runtime/helpers/esm/extends.js
+;// ./node_modules/.store/@babel+runtime@7.27.0/node_modules/@babel/runtime/helpers/esm/extends.js
 function extends_extends() {
   return extends_extends = Object.assign ? Object.assign.bind() : function (n) {
     for (var e = 1; e < arguments.length; e++) {

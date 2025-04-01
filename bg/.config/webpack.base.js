@@ -74,7 +74,7 @@ export default {
       hash: true,
       // cache: false,
       cache: true,
-      // favicon: './src/assets/images/favicon.ico',
+      favicon: path.resolve(__dirname, '../public/logo.ico'),
       minify: {
         removeComments: true,
         // removeAttributeQuotes: true,

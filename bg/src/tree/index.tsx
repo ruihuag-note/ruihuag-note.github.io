@@ -5,7 +5,6 @@ import { isEffectArray, isString } from 'asura-eye'
 import './index.less'
 import { useNavigate } from 'react-router-dom'
 import { Icon } from './icon'
-import { getRenderList } from './util'
 
 export interface TreeProps {
   tree: ObjectType<any>
@@ -38,7 +37,7 @@ export function Tree(props: TreeProps) {
   React.useEffect(() => {
     init()
   }, [])
-  
+
   const Item = (props: TreeProps) => {
     const { depth = 0, tree, dirName } = props
     const { name, dir, file, children, path } = tree || {}
@@ -49,23 +48,6 @@ export function Tree(props: TreeProps) {
       return name.replace(/\.md$/gi, '')
     }
     const render_name = getName()
-
-    const LayoutCol = () => {
-      const list = getRenderList(children)
-      return (
-        <div className='layout-col'>
-          {list.map((item, index) => {
-            return (
-              <div key={index}>
-                {item.map((item: any, i: number) => (
-                  <Item key={i} dirName={name} tree={item} depth={depth + 1} />
-                ))}
-              </div>
-            )
-          })}
-        </div>
-      )
-    }
 
     const getLogo = () => {
       if (dir) return Icon.Folder
@@ -107,23 +89,45 @@ export function Tree(props: TreeProps) {
           </div>
         </div>
         {!fold.includes(uid) && isEffectArray(children) && (
-          <div className='children'>
-            {depth === 0 ? (
-              <LayoutCol />
-            ) : (
-              children.map((item: any, i: number) => (
-                <Item key={i} dirName={name} tree={item} depth={depth + 1} />
-              ))
-            )}
+          <div className='child'>
+            {children.map((item: any, i: number) => (
+              <Item key={i} dirName={name} tree={item} depth={depth + 1} />
+            ))}
           </div>
         )}
       </div>
     )
   }
+  const [selectTreeNode, setSelectTreeNode] = React.useState<ObjectType>({})
+
+  React.useEffect(() => {
+    setSelectTreeNode(tree?.children?.[8] || {})
+  }, [tree])
 
   return (
     <div className='tree'>
-      <Item tree={tree} />
+      <div className='left '>
+        <div className='render'>
+          {tree?.children?.map?.((_: any, i: number) => {
+            const { name } = _
+            return (
+              <div
+                key={i}
+                className={classNames('module-name', {
+                  select: name === selectTreeNode?.name,
+                })}
+                onClick={() => setSelectTreeNode(_)}>
+                {name}
+              </div>
+            )
+          })}
+        </div>
+      </div>
+      <div className='right'>
+        <div className='render'>
+          <Item tree={selectTreeNode} />
+        </div>
+      </div>
     </div>
   )
 }
