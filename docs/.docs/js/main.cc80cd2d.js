@@ -16661,6 +16661,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `* {
   box-sizing: border-box;
 }
 :root {
+  interpolate-size: allow-keywords;
   --height: 32px;
   --border: 2px solid #44484C;
   --radius: 12px;
@@ -28261,6 +28262,7 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_store_css_loader_6_11_0_node_modules
 ___CSS_LOADER_EXPORT___.push([module.id, `.tree {
   display: grid;
   grid-template-columns: 250px 1fr;
+  grid-template-rows: 42px 1fr;
   gap: 10px;
   height: 100vh;
   max-height: 100vh;
@@ -28275,11 +28277,29 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.tree {
   border-radius: 16px;
 }
 .tree > div > .render {
-  max-height: calc(100vh - 48px);
+  max-height: calc(100% - 24px);
   height: 100%;
-  margin: 12px 0;
+  margin: 12px 1px;
   padding: 0 12px;
   overflow-y: auto;
+}
+.tree > .search {
+  height: 42px;
+  grid-column: 1 / 3;
+}
+.tree > .search input {
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  color: #fff;
+  padding: 6px 12px;
+  line-height: 1.7;
+  font-size: 16px;
+  text-align: center;
+  font-weight: bold;
+  word-spacing: 0.5px;
+  letter-spacing: 0.5px;
 }
 .tree > .left > .render {
   display: flex;
@@ -41833,14 +41853,14 @@ const Folder = /* @__PURE__ */ react.createElement(
   /* @__PURE__ */ react.createElement(
     "path",
     {
-      fill: "#ffa000",
+      fill: "#575757",
       d: "M40 12H22l-4-4H8c-2.2 0-4 1.8-4 4v8h40v-4c0-2.2-1.8-4-4-4"
     }
   ),
   /* @__PURE__ */ react.createElement(
     "path",
     {
-      fill: "#ffca28",
+      fill: "#575757",
       d: "M40 12H8c-2.2 0-4 1.8-4 4v20c0 2.2 1.8 4 4 4h32c2.2 0 4-1.8 4-4V16c0-2.2-1.8-4-4-4"
     }
   )
@@ -41873,7 +41893,7 @@ const MD = /* @__PURE__ */ react.createElement(
   /* @__PURE__ */ react.createElement(
     "path",
     {
-      fill: "#42a5f5",
+      fill: "rgba(255,255,255,.7)",
       d: "m14 10-4 3.5L6 10H4v12h4v-6l2 2 2-2v6h4V10zm12 6v-6h-4v6h-4l6 8 6-8z"
     }
   )
@@ -41884,7 +41904,717 @@ const Icon = {
   MD
 };
 
+;// ./src/tree/item.tsx
+
+
+
+
+
+const Item = (props) => {
+  const { depth = 0, tree, dirName, action } = props;
+  const { onSelect, setFold } = action;
+  const fold = JSON.parse(action.fold || "[]") || [];
+  const { name, dir, file, child, path } = tree || {};
+  const uid = path != null ? path : name;
+  const getName = () => {
+    if (!index_esm_isString(name))
+      return "<Empty>";
+    if (name === "index.md" && dirName)
+      return dirName;
+    return name.replace(/\.md$/gi, "");
+  };
+  const render_name = getName();
+  const getLogo = () => {
+    if (dir)
+      return Icon.Folder;
+    return Icon.MD;
+  };
+  const handleClick = () => {
+    if (dir) {
+      let newFold = [...fold];
+      if (fold.includes(uid)) {
+        newFold = newFold.filter((id) => id !== uid);
+      } else {
+        newFold.push(uid);
+      }
+      setFold(JSON.stringify(newFold));
+      return;
+    }
+    if (file)
+      return onSelect(path);
+  };
+  return /* @__PURE__ */ react.createElement(
+    "div",
+    {
+      key: name,
+      className: A("item", "depth-" + depth, {
+        dir,
+        file,
+        fold: fold.includes(uid)
+      })
+    },
+    /* @__PURE__ */ react.createElement("div", { className: "content", title: render_name, onClick: handleClick }, /* @__PURE__ */ react.createElement("div", { className: "logo" }, getLogo()), /* @__PURE__ */ react.createElement("div", { className: "name" }, render_name)),
+    !fold.includes(uid) && isEffectArray(child) && /* @__PURE__ */ react.createElement("div", { className: "child" }, child.map((item, i) => /* @__PURE__ */ react.createElement(
+      Item,
+      {
+        key: i,
+        dirName: name,
+        tree: item,
+        depth: depth + 1,
+        action
+      }
+    )))
+  );
+};
+
+;// ./node_modules/.store/0hook@1.5.0/node_modules/0hook/lib/index.esm.js
+
+
+/**
+ * @title isEmpty
+ * @description 是无效值 undefined , null, NaN
+ * @param value {unknown} 待值
+ * @returns {boolean}
+ */
+function isEmpty$1(value) {
+    return value === undefined || value === null || value !== value;
+}
+
+/**
+ * @title isIterator
+ * @description 是iterator
+ * @param {unknown} value
+ * @returns {boolean}
+ */
+function isIterator$1(value) {
+    if (typeof value !== 'object' || isEmpty$1(value))
+        return false;
+    return /Iterator\]$/.test(value.toString());
+}
+
+function type$1(param) {
+    try {
+        if (isIterator$1(param))
+            return 'Iterator';
+        const result = Object.prototype.toString
+            .call(param)
+            .match(/\[object (\w+)\]/)[1];
+        if (result === 'Number' && isNaN(param))
+            return 'NaN';
+        return result;
+    }
+    catch (error) {
+        return 'Undefined';
+    }
+}
+
+/**
+ * @title isString
+ * @description 是字符串
+ * @param {unknown} value
+ * @returns {boolean}
+ */
+function lib_index_esm_isString(value) {
+    return typeof value === 'string';
+}
+
+/**
+ * @title isNumber
+ * @description 是数字
+ * @param {unknown} value
+ * @returns {boolean}
+ */
+const lib_index_esm_isNumber = (value) => {
+    return typeof value === 'number' && type$1(value) === 'Number';
+};
+
+/**
+ * @title isArray
+ * @description 是数组
+ * @param {unknown} list
+ * @returns {boolean}
+ */
+function isArray$1(list) {
+    return Array.isArray(list);
+}
+/**
+ * @title isEffectArray
+ * @description 是有效数组
+ * @param {unknown} list
+ * @returns {boolean}
+ */
+function index_esm_isEffectArray(list) {
+    if (isEmpty$1(list))
+        return false;
+    return isArray$1(list) && list.length > 0;
+}
+/**
+ * @title isClient
+ * @description 是否为客户端
+ */
+const index_esm_isClient = typeof window !== 'undefined';
+/**
+ * @title isBoolean
+ * @description 是布尔值
+ * @param {unknown} val
+ * @returns {boolean}
+ */
+const lib_index_esm_isBoolean = (val) => typeof val === 'boolean';
+/**
+ * @title isIOS
+ * @returns {boolean}
+ */
+index_esm_isClient &&
+    window?.navigator?.userAgent &&
+    /iP(ad|hone|od)/.test(window.navigator.userAgent);
+
+/**
+ * @title useBoolean
+ * @description 布尔值切换
+ * @param initialState {boolean=true}
+ * @returns [boolean, ()=>void]
+ */
+function useBoolean(initialState = true) {
+    const [state, setState] = useState(initialState);
+    return [
+        state,
+        useCallback((value) => setState(state => lib_index_esm_isBoolean(value) ? value : !state), [])
+    ];
+}
+
+function getTargetValue(val, options = {}) {
+    const { min = 0, max = Infinity } = options;
+    let target = val;
+    if (lib_index_esm_isNumber(max)) {
+        target = Math.min(max, target);
+    }
+    if (lib_index_esm_isNumber(min)) {
+        target = Math.max(min, target);
+    }
+    return target;
+}
+/**
+ * @title useCount
+ * @description 计数
+ * @param initialState {number=0}
+ * @param options {min?:number,max?:number}
+ * @returns [number, (value?:number)=>void]
+ */
+function useCount(initialState = 0, options = {}) {
+    const [state, setStateTemp] = useState(getTargetValue(initialState, options));
+    const setState = (value) => {
+        if (isEmpty$1(value)) {
+            const result = getTargetValue(state + 1, options);
+            if (result !== state)
+                setStateTemp(result);
+            return;
+        }
+        setStateTemp(getTargetValue(value, options));
+        return;
+    };
+    return [state, setState];
+}
+
+/**
+ * @title isEmpty
+ * @description 是无效值 undefined , null, NaN
+ * @param value {unknown} 待值
+ * @returns {boolean}
+ */
+function index_esm_isEmpty(value) {
+    return value === undefined || value === null || value !== value;
+}
+
+/**
+ * @title isArray
+ * @description 是数组
+ * @param value {unknown}
+ * @returns {boolean}
+ */
+function lib_index_esm_isArray(list) {
+    return Array.isArray(list);
+}
+
+/**
+ * @title isIterator
+ * @description 是iterator
+ * @param {unknown} value
+ * @returns {boolean}
+ */
+function index_esm_isIterator(value) {
+    if (typeof value !== 'object' || index_esm_isEmpty(value))
+        return false;
+    return /Iterator\]$/.test(value.toString());
+}
+
+function index_esm_type(param) {
+    try {
+        if (index_esm_isIterator(param))
+            return 'Iterator';
+        const result = Object.prototype.toString
+            .call(param)
+            .match(/\[object (\w+)\]/)[1];
+        if (result === 'Number' && isNaN(param))
+            return 'NaN';
+        return result;
+    }
+    catch (error) {
+        return 'Undefined';
+    }
+}
+
+/**
+ * @title isObject
+ * @description 是Object
+ * @param {unknown} value
+ * @returns {boolean}
+ */
+function lib_index_esm_isObject(value) {
+    return value !== null && typeof value === 'object' && index_esm_type(value) === 'Object';
+}
+
+/**
+ * @title isDate
+ * @description 检查日期是否有效
+ * @param {unknown} date 待判断日期
+ * @returns {boolean}
+ * @version 0.1.0
+ */
+function lib_index_esm_isDate(date) {
+    return index_esm_type(date) === 'Date';
+}
+
+/**
+ * @title isSet
+ * @param {unknown} value
+ * @returns {boolean}
+ */
+function index_esm_isSet(value) {
+    return index_esm_type(value) === 'Set';
+}
+
+/**
+ * @title isMap
+ * @param {unknown} value
+ * @returns {boolean}
+ */
+function index_esm_isMap(value) {
+    return index_esm_type(value) === 'Map';
+}
+
+/**
+ * @title equalHelper
+ * @description 比较是否值和类型是否相等, 不支持WeakMap, WeakSet
+ * @param {unknown} compareValue
+ * @param {unknown} beCompareValue
+ * @returns {boolean}
+ */
+function equalHelper(compareValue, beCompareValue) {
+    const compareValueType = index_esm_type(compareValue);
+    const beCompareValueType = index_esm_type(beCompareValue);
+    if (compareValue !== beCompareValueType || compareValueType === 'Symbol')
+        return false;
+    return compareValue === beCompareValue;
+}
+
+/**
+ * @title equalMap
+ * @param {MapType} compareMap
+ * @param {MapType} beCompareMap
+ * @returns {boolean}
+ */
+function equalMap(compareMap, beCompareMap, equal = equalHelper) {
+    if (!index_esm_isMap(compareMap) ||
+        !index_esm_isMap(beCompareMap) ||
+        compareMap.size !== beCompareMap.size)
+        return false;
+    for (const [key, value] of compareMap) {
+        const beCompareMapTempValue = beCompareMap.get(key);
+        if (equal(value, beCompareMapTempValue)) {
+            continue;
+        }
+        return false;
+    }
+    return true;
+}
+
+/**
+ * @title equalSet
+ * @param {SetType} compareSet
+ * @param {SetType} beCompareSet
+ * @returns {boolean}
+ */
+function equalSet(compareSet, beCompareSet, equal = equalHelper) {
+    if (!index_esm_isSet(compareSet) ||
+        !index_esm_isSet(beCompareSet) ||
+        compareSet.size !== beCompareSet.size)
+        return false;
+    const list = [...compareSet];
+    const beList = [...beCompareSet];
+    for (let i = 0; i < list.length; i++) {
+        if (equal(list[i], beList[i])) {
+            continue;
+        }
+        return false;
+    }
+    // for (const value of compareSet) {
+    //   if (beCompareSet.has(value)) continue
+    //   return false
+    // }
+    return true;
+}
+
+/**
+ * @title equalArray
+ * @param {unknown|any[]} compare
+ * @param {unknown|any[]} beCompare
+ * @returns {boolean}
+ */
+function equalArray(compare, beCompare, equal = equalHelper) {
+    if (lib_index_esm_isArray(compare) &&
+        lib_index_esm_isArray(beCompare) &&
+        compare.length === beCompare.length) {
+        for (let i = 0; i < compare.length; i++) {
+            const item = compare[i];
+            if (equal(item, beCompare[i])) {
+                continue;
+            }
+            return false;
+        }
+        return true;
+    }
+    return false;
+}
+
+function equalObject(compare, beCompare, equal = equalHelper) {
+    if (!lib_index_esm_isObject(compare) || !lib_index_esm_isObject(beCompare))
+        return false;
+    const compareValueKeys = Object.keys(compare);
+    const beCompareValueKeys = Object.keys(beCompare);
+    if (compareValueKeys.length !== beCompareValueKeys.length)
+        return false;
+    for (let i = 0; i < compareValueKeys.length; i++) {
+        const key = compareValueKeys[i];
+        if (equal(compare[key], beCompare[key]))
+            continue;
+        return false;
+    }
+    return true;
+}
+
+/**
+ * @title equal
+ * @description 比较是否值和类型是否相等/相同, 不支持类型由`===`来比较
+ * @supported 基础数据类型, Object, Array, Map, Set, Date
+ * @notSupported WeakMap, WeakSet
+ * @param {unknown} compareValue
+ * @param {unknown} beCompareValue
+ * @returns {boolean}
+ * @version 2.4.4
+ * @lastUpdate 3.8.0
+ */
+function equal(compareValue, beCompareValue) {
+    const compareValueType = index_esm_type(compareValue);
+    const beCompareValueType = index_esm_type(beCompareValue);
+    if (compareValueType !== beCompareValueType)
+        return false;
+    if (compareValueType === 'Object')
+        return equalObject(compareValue, beCompareValue, equal);
+    if (compareValueType === 'Array')
+        return equalArray(compareValue, beCompareValue, equal);
+    if (compareValueType === 'Map')
+        return equalMap(compareValue, beCompareValue, equal);
+    if (compareValueType === 'Set')
+        return equalSet(compareValue, beCompareValue, equal);
+    if (Number.isNaN(compareValue))
+        return Number.isNaN(beCompareValue);
+    if (lib_index_esm_isDate(compareValue) && lib_index_esm_isDate(beCompareValue))
+        return compareValue.getTime() === beCompareValue.getTime();
+    return compareValue === beCompareValue;
+}
+
+/**
+ * @title useMap<Key,Value>
+ * @description Map数据管理
+ * @param initialValue {Map}
+ * @returns {[Map, Actions]}
+ */
+function useMap(initialValue) {
+    const getInitialValue = () => initialValue === undefined ? new Map() : new Map(initialValue);
+    const [map, setMap] = useState(() => getInitialValue());
+    const set = (key, value, force = false) => {
+        if (equal(map.get(key), value) && !force) {
+            return;
+        }
+        setMap((prev) => {
+            const temp = new Map(prev);
+            temp.set(key, value);
+            return temp;
+        });
+    };
+    const setAll = (newMap) => {
+        setMap(new Map(newMap));
+    };
+    const remove = (key) => {
+        setMap((prev) => {
+            const temp = new Map(prev);
+            temp.delete(key);
+            return temp;
+        });
+    };
+    const reset = () => setMap(getInitialValue());
+    const get = (key) => map.get(key);
+    const keys = () => Array.from(map.keys());
+    return [map, {
+            keys,
+            set,
+            setAll,
+            remove,
+            reset,
+            get,
+        }];
+}
+
+/**
+ * @title useObject<Object>
+ * @description 管理对象状态
+ * @param initialValue {?Object}
+ * @returns [object, Actions<Object>]
+ */
+function useObject(initialValue) {
+    const getInitialValue = () => initialValue || {};
+    const [state, setState] = useState(() => getInitialValue());
+    const setObject = (record) => {
+        if (!equal(record, state))
+            setState(record);
+    };
+    const set = (key, value, force = false) => {
+        if (!force && equal(value, state[key]))
+            return;
+        const tempState = { ...state };
+        tempState[key] = value;
+        setState(tempState);
+    };
+    const remove = (key) => {
+        if (Object.keys(state).includes(key)) {
+            const tempState = { ...state };
+            delete tempState[key];
+            setState(tempState);
+        }
+    };
+    const reset = (force = false) => {
+        if (!force && equal(state, getInitialValue()))
+            return;
+        setState(getInitialValue());
+    };
+    return [state,
+        {
+            set,
+            remove,
+            reset,
+            setObject
+        }
+    ];
+}
+
+/**
+ * @title useSetState<T>
+ * @description 类似 setState 的使用
+ * @param initialState {T} 默认值
+ * @returns {UseSetState}
+ */
+function useSetState(initialState = {}) {
+    const [state, setState] = useState(initialState);
+    return [
+        state,
+        (patch, cover = false) => {
+            const coverState = typeof patch === 'function' ? patch(state) : patch;
+            if (cover) {
+                setState(coverState);
+            }
+            else {
+                setState({ ...state, ...coverState });
+            }
+        },
+        (props) => {
+            if (index_esm_isEffectArray(props)) {
+                const newState = { ...state };
+                props.forEach((prop) => {
+                    if (lib_index_esm_isString(prop) || lib_index_esm_isNumber(prop))
+                        newState[prop] = initialState[prop];
+                });
+                setState(newState);
+                return;
+            }
+            setState(initialState);
+        }
+    ];
+}
+
+function useStorage(key, initialValue, options = {}) {
+    const { storage = sessionStorage } = options;
+    const getDefaultValue = () => isEmpty$1(storage.getItem(key)) ? initialValue : storage.getItem(key);
+    const [value, _setValue] = react.useState(getDefaultValue() || null);
+    const setValue = (value) => {
+        _setValue(value);
+        if (lib_index_esm_isString(value)) {
+            storage.setItem(key, value);
+        }
+        else {
+            storage.setItem(key, JSON.stringify(value));
+        }
+    };
+    react.useEffect(() => {
+        const tmpValue = storage.getItem(key);
+        if (isEmpty$1(tmpValue))
+            return;
+        if (tmpValue !== value) {
+            setValue(tmpValue);
+        }
+    }, [key, setValue, storage]);
+    return [value, setValue];
+}
+const useLocalStorage = (key, initialValue) => useStorage(key, initialValue, { storage: localStorage });
+const useSessionStorage = (key, initialValue) => useStorage(key, initialValue, { storage: sessionStorage });
+
+/**
+ * @title useUpdate
+ * @description 通过 点击事件刷新组件
+ * @returns {()=>void}
+ */
+const useUpdate = () => {
+    const [, setState] = useState(1);
+    return useCallback(() => setState(1), []);
+};
+
+/**
+ * @title useInterval
+ * @description useEffect 和 setInterval 的使用, 主要解决React this指向问题
+ * @param callback {()=>void}
+ * @param delay {number|null}
+ * @returns {NodeJS.Timer|null}
+ */
+function useInterval(callback, delay) {
+    const savedCallback = React.useRef(() => {
+        return;
+    });
+    savedCallback.current = callback;
+    const [myTimer, setMyTimer] = React.useState(null);
+    React.useEffect(() => {
+        if (delay !== null) {
+            const handler = () => savedCallback.current();
+            const timer = setInterval(handler, delay);
+            setMyTimer(timer);
+            return () => timer && clearInterval(timer);
+        }
+    }, [delay]);
+    return myTimer;
+}
+
+/**
+ * @title useSetTimeout
+ * @description useEffect 和 setTimeout 的使用, 主要解决React this指向问题
+ * @param callback {()=>void}
+ * @param delay {number|null}
+ */
+function useSetTimeout(callback, delay) {
+    const savedCallback = React.useRef(() => { return; });
+    savedCallback.current = callback;
+    React.useEffect(() => {
+        if (delay !== null) {
+            const handler = () => savedCallback.current();
+            const timer = setTimeout(handler, delay);
+            return () => clearInterval(timer);
+        }
+    }, [delay]);
+}
+
+function useDebounceEffect(fn, waitTime, deps) {
+    useEffect(() => {
+        let cb = null;
+        const t = setTimeout(async () => {
+            const result = fn && (await fn());
+            if (result)
+                cb = result;
+        }, waitTime);
+        return () => {
+            clearTimeout(t);
+            cb && cb();
+        };
+    }, deps);
+}
+
+
+//# sourceMappingURL=index.esm.js.map
+
+;// ./src/tree/util.tsx
+
+const having = (item, searchVal = "", data = {}) => {
+  if (index_esm_isString(searchVal) && searchVal.length < 1)
+    return true;
+  const is = (val) => {
+    if (index_esm_isString(val) && searchVal) {
+      const list = searchVal.split(" ");
+      for (let i = 0; i < list.length; i++) {
+        const mm = list[i];
+        if (!mm)
+          continue;
+        if (val.indexOf(mm) > -1)
+          return true;
+        if (val.search(new RegExp(mm, "i")) > -1)
+          return true;
+      }
+      return false;
+    }
+    return true;
+  };
+  const cb = (item2) => {
+    const { name, path, file, child } = item2;
+    if (name && is(name))
+      return true;
+    if (path && file && is(data[path]))
+      return true;
+    if (isEffectArray(child))
+      for (let i = 0; i < child.length; i++) {
+        if (cb(child[i]))
+          return true;
+      }
+    return false;
+  };
+  return cb(item);
+};
+const getTreeNode = (tree, searchVal = "", data = {}) => {
+  const cb = (obj) => {
+    if (having(obj, searchVal, data)) {
+      if (isEffectArray(obj.child))
+        obj.child = obj.child.filter(
+          (item) => having(item, searchVal, data)
+        );
+      return obj;
+    }
+    return void 0;
+  };
+  return cb(tree);
+};
+
 ;// ./src/tree/index.tsx
+var __defProp = Object.defineProperty;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
+
 
 
 
@@ -41893,99 +42623,51 @@ const Icon = {
 
 function Tree(props) {
   var _a, _b;
-  const { tree } = props;
+  const { tree = {}, data = {} } = props;
   const navigate = dist_useNavigate();
-  const onSelect = (url) => navigate(`/md?url=${encodeURIComponent(url)}`);
-  const [fold, _setFold] = react.useState([]);
-  const setFold = (list = []) => {
-    _setFold(list);
-    localStorage.setItem("fold", JSON.stringify(list));
-  };
-  const init = () => {
-    const cache_fold = localStorage.getItem("fold");
-    if (!cache_fold)
-      return;
-    try {
-      const cache_fold_val = JSON.parse(cache_fold);
-      isEffectArray(cache_fold_val) && _setFold(cache_fold_val);
-    } catch (error) {
-      console.info(error);
-    }
-  };
-  react.useEffect(() => {
-    init();
-  }, []);
-  const Item = (props2) => {
-    const { depth = 0, tree: tree2, dirName } = props2;
-    const { name, dir, file, children, path } = tree2 || {};
-    const uid = path != null ? path : name;
-    const getName = () => {
-      if (!index_esm_isString(name))
-        return "<Empty>";
-      if (name === "index.md" && dirName)
-        return dirName;
-      return name.replace(/\.md$/gi, "");
-    };
-    const render_name = getName();
-    const getLogo = () => {
-      if (dir)
-        return Icon.Folder;
-      if (tree2.html)
-        return Icon.HTML;
-      return Icon.MD;
-    };
-    const handleClick = () => {
-      if (dir) {
-        let newFold = [...fold];
-        if (fold.includes(uid)) {
-          newFold = newFold.filter((id) => id !== uid);
-        } else {
-          newFold.push(uid);
-        }
-        setFold(newFold);
-        return;
+  const [selectName, setSelectName] = useLocalStorage("tree-select-name", "");
+  const [searchVal, setSearchVal] = useLocalStorage("tree-searchVal", "");
+  const [fold, setFold] = useLocalStorage("tree-fold", "[]");
+  const nodes = ((_a = getTreeNode(__spreadValues({}, tree), searchVal, data)) == null ? void 0 : _a.child) || [];
+  const getList = () => {
+    if (selectName) {
+      for (let i = 0; i < nodes.length; i++) {
+        const node = nodes[i];
+        if (node.name === selectName)
+          return node;
       }
-      if (file)
-        return onSelect(path);
-    };
-    return /* @__PURE__ */ react.createElement(
-      "div",
-      {
-        key: name,
-        className: A(
-          "item",
-          {
-            dir,
-            file,
-            fold: fold.includes(uid),
-            "no-having-grandson": true
-          },
-          "depth-" + depth
-        )
-      },
-      /* @__PURE__ */ react.createElement("div", { className: "content", onClick: handleClick }, /* @__PURE__ */ react.createElement("div", { className: "logo" }, getLogo()), /* @__PURE__ */ react.createElement("div", { className: "name", title: render_name }, render_name)),
-      !fold.includes(uid) && isEffectArray(children) && /* @__PURE__ */ react.createElement("div", { className: "child" }, children.map((item, i) => /* @__PURE__ */ react.createElement(Item, { key: i, dirName: name, tree: item, depth: depth + 1 })))
-    );
+    }
+    return (nodes == null ? void 0 : nodes[0]) || {};
   };
-  const [selectTreeNode, setSelectTreeNode] = react.useState({});
-  react.useEffect(() => {
-    var _a2;
-    setSelectTreeNode(((_a2 = tree == null ? void 0 : tree.children) == null ? void 0 : _a2[8]) || {});
-  }, [tree]);
-  return /* @__PURE__ */ react.createElement("div", { className: "tree" }, /* @__PURE__ */ react.createElement("div", { className: "left" }, /* @__PURE__ */ react.createElement("div", { className: "render" }, (_b = (_a = tree == null ? void 0 : tree.children) == null ? void 0 : _a.map) == null ? void 0 : _b.call(_a, (_, i) => {
-    const { name } = _;
+  const onSelect = (url) => navigate(`/md?url=${encodeURIComponent(url)}`);
+  const action = {
+    searchVal,
+    onSelect,
+    fold,
+    setFold
+  };
+  return /* @__PURE__ */ react.createElement("div", { className: "tree" }, /* @__PURE__ */ react.createElement("div", { className: "search" }, /* @__PURE__ */ react.createElement(
+    "input",
+    {
+      value: searchVal || "",
+      type: "text",
+      placeholder: "Search...",
+      onChange: (e) => setSearchVal(e.target.value)
+    }
+  )), /* @__PURE__ */ react.createElement("div", { className: "left " }, /* @__PURE__ */ react.createElement("div", { className: "render" }, (_b = nodes == null ? void 0 : nodes.map) == null ? void 0 : _b.call(nodes, (item, i) => {
+    const { name } = item;
     return /* @__PURE__ */ react.createElement(
       "div",
       {
         key: i,
         className: A("module-name", {
-          select: name === (selectTreeNode == null ? void 0 : selectTreeNode.name)
+          select: selectName === name
         }),
-        onClick: () => setSelectTreeNode(_)
+        onClick: () => setSelectName(name)
       },
       name
     );
-  }))), /* @__PURE__ */ react.createElement("div", { className: "right" }, /* @__PURE__ */ react.createElement("div", { className: "render" }, /* @__PURE__ */ react.createElement(Item, { tree: selectTreeNode }))));
+  }))), /* @__PURE__ */ react.createElement("div", { className: "right" }, /* @__PURE__ */ react.createElement("div", { className: "render" }, /* @__PURE__ */ react.createElement(Item, { tree: getList(), action }))));
 }
 
 ;// ./src/home.tsx
@@ -42014,21 +42696,19 @@ var __async = (__this, __arguments, generator) => {
 
 function Home() {
   const [tree, setTree] = react.useState({});
+  const [data, setData] = react.useState({});
   const init = () => __async(this, null, function* () {
-    try {
-      const url = "tree.json";
-      const res = yield lib_axios.get(url);
-      if (res.status === 200) {
-        setTree(res.data);
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    lib_axios.get("tree.json").then((res) => setTree(res.data)).catch((error) => {
+      console.error(error);
+    });
+    lib_axios.get("db.json").then((res) => setData(res.data)).catch((error) => {
+      console.error(error);
+    });
   });
   react.useEffect(() => {
     init();
   }, []);
-  return /* @__PURE__ */ react.createElement("div", { className: "home" }, /* @__PURE__ */ react.createElement(Tree, { tree }));
+  return /* @__PURE__ */ react.createElement("div", { className: "home" }, /* @__PURE__ */ react.createElement(Tree, { tree, data }));
 }
 
 ;// ./node_modules/.store/devlop@1.1.0/node_modules/devlop/lib/default.js
@@ -42036,7 +42716,7 @@ function deprecate(fn) {
   return fn
 }
 
-function equal() {}
+function default_equal() {}
 
 function ok() {}
 
@@ -102821,21 +103501,21 @@ var markdown_update = injectStylesIntoStyleTag_default()(markdown/* default */.A
        /* harmony default export */ const src_markdown = (markdown/* default */.A && markdown/* default */.A.locals ? markdown/* default */.A.locals : undefined);
 
 ;// ./src/markdown/index.tsx
-var __defProp = Object.defineProperty;
+var markdown_defProp = Object.defineProperty;
 var __defProps = Object.defineProperties;
 var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
-var __getOwnPropSymbols = Object.getOwnPropertySymbols;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __propIsEnum = Object.prototype.propertyIsEnumerable;
-var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __spreadValues = (a, b) => {
+var markdown_getOwnPropSymbols = Object.getOwnPropertySymbols;
+var markdown_hasOwnProp = Object.prototype.hasOwnProperty;
+var markdown_propIsEnum = Object.prototype.propertyIsEnumerable;
+var markdown_defNormalProp = (obj, key, value) => key in obj ? markdown_defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var markdown_spreadValues = (a, b) => {
   for (var prop in b || (b = {}))
-    if (__hasOwnProp.call(b, prop))
-      __defNormalProp(a, prop, b[prop]);
-  if (__getOwnPropSymbols)
-    for (var prop of __getOwnPropSymbols(b)) {
-      if (__propIsEnum.call(b, prop))
-        __defNormalProp(a, prop, b[prop]);
+    if (markdown_hasOwnProp.call(b, prop))
+      markdown_defNormalProp(a, prop, b[prop]);
+  if (markdown_getOwnPropSymbols)
+    for (var prop of markdown_getOwnPropSymbols(b)) {
+      if (markdown_propIsEnum.call(b, prop))
+        markdown_defNormalProp(a, prop, b[prop]);
     }
   return a;
 };
@@ -102843,11 +103523,11 @@ var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 var __objRest = (source, exclude) => {
   var target = {};
   for (var prop in source)
-    if (__hasOwnProp.call(source, prop) && exclude.indexOf(prop) < 0)
+    if (markdown_hasOwnProp.call(source, prop) && exclude.indexOf(prop) < 0)
       target[prop] = source[prop];
-  if (source != null && __getOwnPropSymbols)
-    for (var prop of __getOwnPropSymbols(source)) {
-      if (exclude.indexOf(prop) < 0 && __propIsEnum.call(source, prop))
+  if (source != null && markdown_getOwnPropSymbols)
+    for (var prop of markdown_getOwnPropSymbols(source)) {
+      if (exclude.indexOf(prop) < 0 && markdown_propIsEnum.call(source, prop))
         target[prop] = source[prop];
     }
   return target;
@@ -102926,21 +103606,21 @@ function markdown_Markdown() {
             }
             return src;
           };
-          return /* @__PURE__ */ react.createElement("img", __spreadValues({ src: getSrc() }, rest));
+          return /* @__PURE__ */ react.createElement("img", markdown_spreadValues({ src: getSrc() }, rest));
         },
         code(_c) {
           var _d = _c, { children, className, node } = _d, rest = __objRest(_d, ["children", "className", "node"]);
           const match = /language-(\w+)/.exec(className || "");
           return match ? /* @__PURE__ */ react.createElement(
             esm_prism,
-            __spreadProps(__spreadValues({}, rest), {
+            __spreadProps(markdown_spreadValues({}, rest), {
               className: "code-lang " + className,
               PreTag: "div",
               children: String(children).replace(/\n$/, ""),
               language: match[1],
               style: one_dark
             })
-          ) : /* @__PURE__ */ react.createElement("code", __spreadProps(__spreadValues({}, rest), { className: "code-no-lang " + (className || "") }), children);
+          ) : /* @__PURE__ */ react.createElement("code", __spreadProps(markdown_spreadValues({}, rest), { className: "code-no-lang " + (className || "") }), children);
         }
       }
     }

@@ -5,17 +5,20 @@ import { ObjectType } from '0type'
 
 export function Home() {
   const [tree, setTree] = React.useState<ObjectType>({})
-
+  const [data, setData] = React.useState<ObjectType<string>>({})
   const init = async () => {
-    try {
-      const url = 'tree.json'
-      const res = await axios.get(url)
-      if (res.status === 200) {
-        setTree(res.data)
-      }
-    } catch (error) {
-      console.log(error)
-    }
+    axios
+      .get('tree.json')
+      .then((res) => setTree(res.data))
+      .catch((error) => {
+        console.error(error)
+      })
+    axios
+      .get('db.json')
+      .then((res) => setData(res.data))
+      .catch((error) => {
+        console.error(error)
+      })
   }
   React.useEffect(() => {
     init()
@@ -23,7 +26,7 @@ export function Home() {
 
   return (
     <div className='home'>
-      <Tree tree={tree} />
+      <Tree tree={tree} data={data} />
     </div>
   )
 }

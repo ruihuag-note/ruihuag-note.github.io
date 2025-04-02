@@ -7,11 +7,15 @@ const Folder = (
     height='1em'
     viewBox='0 0 48 48'>
     <path
-      fill='#ffa000'
+      // fill='#ffa000'
+      fill='#575757'
+      // fill='rgba(255,255,255,0.2)'
       d='M40 12H22l-4-4H8c-2.2 0-4 1.8-4 4v8h40v-4c0-2.2-1.8-4-4-4'
     />
     <path
-      fill='#ffca28'
+      // fill='#ffca28'
+      fill='#575757'
+      // fill='rgba(255,255,255,0.2)'
       d='M40 12H8c-2.2 0-4 1.8-4 4v20c0 2.2 1.8 4 4 4h32c2.2 0 4-1.8 4-4V16c0-2.2-1.8-4-4-4'
     />
   </svg>
@@ -38,7 +42,9 @@ const MD = (
     width='1em'
     height='1em'>
     <path
-      fill='#42a5f5'
+      // fill='#42a5f5'
+      // fill='#575757'
+      fill='rgba(255,255,255,.7)'
       d='m14 10-4 3.5L6 10H4v12h4v-6l2 2 2-2v6h4V10zm12 6v-6h-4v6h-4l6 8 6-8z'
     />
   </svg>
