@@ -12,7 +12,7 @@ export default {
   mode: 'development',
   target: 'web',
   output: {
-    filename: '.docs/js/[name].[fullhash].js', // 打包的文件名
+    filename: '.docs/js/[name].[contenthash:8].js', // 打包的文件名
     path: path.resolve(__dirname, '../../docs'),
   },
   experiments: {
