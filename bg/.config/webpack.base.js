@@ -1,5 +1,4 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import CopyPlugin from 'copy-webpack-plugin'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import rules from './webpack.rules.js'
@@ -16,7 +15,7 @@ export default {
     path: path.resolve(__dirname, '../../docs'),
   },
   experiments: {
-    outputModule: true,
+    outputModule: false,
   },
   resolve: {
     alias: {
