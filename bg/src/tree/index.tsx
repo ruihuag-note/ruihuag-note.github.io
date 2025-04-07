@@ -1,6 +1,5 @@
 import React from 'react'
 import { classNames } from 'harpe'
-import { useNavigate } from 'react-router-dom'
 import { TreeProps } from './type'
 import { Item } from './item'
 import { useLocalStorage } from '0hook'
@@ -9,7 +8,6 @@ import './index.less'
 
 export function Tree(props: TreeProps) {
   const { tree = {}, data = {} } = props
-  const navigate = useNavigate()
   const [selectName, setSelectName] = useLocalStorage('tree-select-name', '')
   const [searchVal, setSearchVal] = useLocalStorage('tree-searchVal', '')
   const [fold, setFold] = useLocalStorage('tree-fold', '[]')
@@ -28,8 +26,9 @@ export function Tree(props: TreeProps) {
     return nodes?.[0] || {}
   }
 
-  const onSelect = (url: string) =>
-    navigate(`/md?url=${encodeURIComponent(url)}`)
+  const onSelect = (url: string) => { 
+    window.open(`/md?url=${encodeURIComponent(url)}`, '_blank')
+  }
 
   const action = {
     searchVal,
