@@ -1,12 +1,12 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { RouterProvider, createHashRouter } from 'react-router-dom'
 import './index.less'
 
 import { Home } from './home'
 import { Markdown } from './markdown'
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: '/',
     element: <Home />,

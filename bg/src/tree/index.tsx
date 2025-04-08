@@ -7,6 +7,7 @@ import { getTreeNode } from './util'
 import './index.less'
 import { Icon } from './icon'
 import { isString } from 'asura-eye'
+// import { useNavigate } from 'react-router'
 
 const parse = (value: any, defaultValue: any) => {
   if (!isString(value)) return defaultValue
@@ -18,6 +19,7 @@ const parse = (value: any, defaultValue: any) => {
 }
 
 export function Tree(props: TreeProps) {
+  // const navigate = useNavigate()
   const { tree = {}, data = {} } = props
   const [selectName, setSelectName] = useLocalStorage('tree-select-name', '')
   const [searchVal, setSearchVal] = useLocalStorage('tree-searchVal', '')
@@ -29,7 +31,10 @@ export function Tree(props: TreeProps) {
   // console.log('🚀 ~ Tree ~ nodes:', nodes)
 
   const onSelect = (url: string) => {
-    window.open(`/md?url=${encodeURIComponent(url)}`, '_blank')
+    // window.open(`/md?url=${encodeURIComponent(url)}`, '_blank')
+    const path = `/md?url=${encodeURIComponent(url)}`
+    // navigate(path)
+    window.open(`${window.location.href}#${path}`, '_blank');
   }
 
   const action = {

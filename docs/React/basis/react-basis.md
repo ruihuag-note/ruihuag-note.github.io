@@ -1,36 +1,36 @@
 # React-basis
 
-> 1. Facebook开源的一个js库
-> 2. 一个用来动态构建用户界面的js库
-> 3. 特点:
->    1. Declarative( 声明式编码) - 采用声明式范式, 可以轻松描述应用
->    2. Component-based(组件化编码) - 是代码更加容易得到复用
->    3. 支持客户端与服务器渲染
->    4. 高效 - 通过对DOM的模拟, 最大限度减少与DOM的交互
->    5. 单向数据流 - 减少重复代码
-> 4. 高效的原因:
->    1. 虚拟( virtual ) DOM, 不直接操作DOM
->    2. 高效的DOM Diff算法, 最小化重绘(减少页面更新的区域)
+1. Facebook 开源的一个 js 库
+2. 一个用来动态构建用户界面的 js 库
+3. 特点:
+   1. Declarative( 声明式编码) - 采用声明式范式, 可以轻松描述应用
+   2. Component-based(组件化编码) - 是代码更加容易得到复用
+   3. 支持客户端与服务器渲染
+   4. 高效 - 通过对 DOM 的模拟, 最大限度减少与 DOM 的交互
+   5. 单向数据流 - 减少重复代码
+4. 高效的原因:
+   1. 虚拟( virtual ) DOM, 不直接操作 DOM
+   2. 高效的 DOM Diff 算法, 最小化重绘(减少页面更新的区域)
 
 ## JSX
 
-> 1. 全称: JavaScript XML
-> 2. react定义的一种类似XML的JS拓展语法: XML + JS
-> 3. 作用 : 用来创建react虚拟DOM( 元素 )对象
-> 4. 编码相关:
->    1. js中直接可以套标签, 标签套js需要放在{}中
->    2. 解析显示js数组时, 会中东遍历显示
-> 5. 注意:
->    1. 标签必须要有结束
->    2. class属性必须改成className
->    3. 标签的style属性值必须为: `{{color:'red', width: 12}}`
+1. 全称: JavaScript XML
+2. react 定义的一种类似 XML 的 JS 拓展语法: XML + JS
+3. 作用 : 用来创建 react 虚拟 DOM( 元素 )对象
+4. 编码相关:
+    1. js 中直接可以套标签, 标签套 js 需要放在{}中
+    2. 解析显示 js 数组时, 会中东遍历显示
+5. 注意:
+    1. 标签必须要有结束
+    2. class 属性必须改成 className
+    3. 标签的 style 属性值必须为: `{{color:'red', width: 12}}`
 
 ## 组件化与组件化
 
 1. 组件化
-   1. 当应用的js都是以模块来编写的, 这个应用就是一个模块化的应用
+   1. 当应用的 js 都是以模块来编写的, 这个应用就是一个模块化的应用
    2. 就是把重负的部分提炼出来, 一个一个能使用
-   3. 例如Dialog, 各种自定义UI组件, 能在项目或不同项目重复使用等
+   3. 例如 Dialog, 各种自定义 UI 组件, 能在项目或不同项目重复使用等
    4. 目的:复用, 解耦
    5. 依赖:组件之间低依赖, 比较独立
    6. 架构定位:纵向分层 (位于架构底层, 被其他成所依赖)
@@ -46,7 +46,7 @@
 
 ## 环境搭建
 
-- 引用ReactCDN资源
+- 引用 ReactCDN 资源
 
 ```html
 <script
@@ -57,13 +57,13 @@
   src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 ```
 
-- 通过npm(包管理),安装React
+- 通过 npm(包管理),安装 React
 
 `$npm install --save react react`
 
 `$npm install --save react react-dom`
 
-- 利用脚手架create-react-app
+- 利用脚手架 create-react-app
 
 `$ npm install -g create-react-app`
 
@@ -71,21 +71,21 @@
 
 `$ cd my-app/ $ npm start`
 
-- 启动IP和端口号
+- 启动 IP 和端口号
 
 `在node_modules/react-script/scripts/start.js中设置(60和61行) const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3000; const HOST = process.env.HOST || '0.0.0.0';`
 
 ## 项目根目录中的文件介绍
 
-- **README.md** :这个文件主要作用就是对项目的说明，已经默认写好了一些东西，你可以简单看看。如果是工作中，你可以把文件中的内容删除，自己来写这个文件，编写这个文件可以使用Markdown的语法来编写。
-- **package.json**: 这个文件是webpack配置和项目包管理文件，项目中依赖的第三方包（包的版本）和一些常用命令配置都在这个里边进行配置，当然脚手架已经为我们配置了一些了，目前位置，我们不需要改动。如果你对webpack了解，对这个一定也很熟悉。
-- **package-lock.json**：这个文件用一句话来解释，就是锁定安装时的版本号，并且需要上传到git，以保证其他人再npm install 时大家的依赖能保证一致。
-- **gitignore**: 这个是git的选择性上传的配置文件，比如一会要介绍的node_modules文件夹，就需要配置不上传。
+- **README.md** :这个文件主要作用就是对项目的说明，已经默认写好了一些东西，你可以简单看看。如果是工作中，你可以把文件中的内容删除，自己来写这个文件，编写这个文件可以使用 Markdown 的语法来编写。
+- **package.json**: 这个文件是 webpack 配置和项目包管理文件，项目中依赖的第三方包（包的版本）和一些常用命令配置都在这个里边进行配置，当然脚手架已经为我们配置了一些了，目前位置，我们不需要改动。如果你对 webpack 了解，对这个一定也很熟悉。
+- **package-lock.json**：这个文件用一句话来解释，就是锁定安装时的版本号，并且需要上传到 git，以保证其他人再 npm install 时大家的依赖能保证一致。
+- **gitignore**: 这个是 git 的选择性上传的配置文件，比如一会要介绍的 node_modules 文件夹，就需要配置不上传。
 - **node_modules**:这个文件夹就是我们项目的依赖包，到目前位置，脚手架已经都给我们下载好了，你不需要单独安装什么。
 - **public**：公共文件，里边有公用模板和图标等一些东西。
 - **src**： 主要代码编写文件，这个文件夹里的文件对我们来说最重要，都需要我们掌握。
 
-### public文件夹介绍
+### public 文件夹介绍
 
 这个文件都是一些项目使用的公共文件，也就是说都是共用的
 
@@ -93,20 +93,20 @@
 - **index.html**: 首页的模板文件
 - **mainifest.json**：移动端配置文件
 
-### src文件夹介绍
+### src 文件夹介绍
 
 这个目录里边放的是我们开放的源代码，我们平时操作做最多的目录。
 
 - **index.js**: 这个就是项目的入口文件
-- **index.css**：这个是index.js里的CSS文件。
+- **index.css**：这个是 index.js 里的 CSS 文件。
 - **app.js**: 这个文件相当于一个方法模块，也是一个简单的模块化编程。
-- **serviceWorker.js**:这个是用于写移动端开发的，PWA必须用到这个文件，有了这个文件，就相当于有了离线浏览的功能。
+- **serviceWorker.js**:这个是用于写移动端开发的，PWA 必须用到这个文件，有了这个文件，就相当于有了离线浏览的功能。
 
 ## 组件的介绍
 
 ### 入口文件的编写
 
-写一个项目的时候一般要从入口文件进行编写的，在src目录下，index.js文件就是入口文件
+写一个项目的时候一般要从入口文件进行编写的，在 src 目录下，index.js 文件就是入口文件
 
 ```
 import React from 'react' // 引入react
@@ -116,7 +116,7 @@ ReactDOM.render(<App />,document.getElementById('root')) // 将App模块渲染�
 
 ```
 
-### App组件的编写
+### App 组件的编写
 
 ```jsx
 import React from 'react'
@@ -129,7 +129,7 @@ class App extends React.Component {
 export default App
 ```
 
-### React中JSX语法简介
+### React 中 JSX 语法简介
 
 ```
 JSX就是Javascript和XML结合的一种格式。React发明了JSX，
@@ -137,13 +137,13 @@ JSX就是Javascript和XML结合的一种格式。React发明了JSX，
 遇到{就当JavaScript解析.
 ```
 
-### 组件和普通JSX语法区别
+### 组件和普通 JSX 语法区别
 
-这个说起来也只有简单的一句话，就是你自定义的组件必须首写字母要进行大写，而JSX是小写字母开头的。
+这个说起来也只有简单的一句话，就是你自定义的组件必须首写字母要进行大写，而 JSX 是小写字母开头的。
 
-### JSX中使用三元运算符
+### JSX 中使用三元运算符
 
-在JSX中也是可以使用js语法的
+在 JSX 中也是可以使用 js 语法的
 
 ```jsx
 import React from 'react'
@@ -163,28 +163,28 @@ export default App
 
 ### 组件外层包裹原则
 
-1. react和vue组件模板最外层必须有且只有一个元素
+1. react 和 vue 组件模板最外层必须有且只有一个元素
 2. 去除这个最外层包裹的标签, 使用
    - `<React.Fragment> </React.Fragment>`
    - `<></>`
 
 ## 响应式设计和数据绑定
 
-> react不建议你直接操作DOM元素, 而是通过数据进行驱动, 改变界面中的效果
+> react 不建议你直接操作 DOM 元素, 而是通过数据进行驱动, 改变界面中的效果
 
-## react基础
+## react 基础
 
 ### 创建组件方法
 
 #### 函数式定义的**无状态组件**
 
-> 主要负责根据props来展示, 不涉及到要state状态的操作
+> 主要负责根据 props 来展示, 不涉及到要 state 状态的操作
 >
 > 1. 组件不会被实例化, 整体渲染性能得到提升
->    - 精简到成一个render方法的函数来实现, 无实例化过程, 就不需要分配多余的内存, 从而性能得到一定的提升
-> 2. 组件不能访问this对象
+>    - 精简到成一个 render 方法的函数来实现, 无实例化过程, 就不需要分配多余的内存, 从而性能得到一定的提升
+> 2. 组件不能访问 this 对象
 > 3. 组件无法访问生命周期的方法
-> 4. 无状态组件只能访问输入端饿props, 同样的props会得到同样的渲染结果, 不会有副作用
+> 4. 无状态组件只能访问输入端饿 props, 同样的 props 会得到同样的渲染结果, 不会有副作用
 
 ```jsx
 function HelloComponent(props /* context */) {
@@ -193,7 +193,7 @@ function HelloComponent(props /* context */) {
 ReactDOM.render(<HelloComponent name='Sebastian' />, mountNode)
 ```
 
-#### es5原生方式`React.createClass`定义的组件
+#### es5 原生方式`React.createClass`定义的组件
 
 > - 会自绑定函数导致不必要的性能开销, 增加代码过时的肯能性
 > - 基本弃用
@@ -238,7 +238,7 @@ InputControlES6.defaultProps = {
 }
 ```
 
-#### es6形式的`extends React.Component`定义的组件
+#### es6 形式的`extends React.Component`定义的组件
 
 > - 目前最推荐的有状态的组件, 最终会取代`React.createClass`形式, 相对于`React.createClass`可以更好实现代码复用
 > - 定义方法的命名规则: `handle+方法名`, 可以省略`function`关键字
@@ -278,13 +278,13 @@ InputControlES6.defaultProps = {
 }
 ```
 
-#### React.ceateClass 和 React.Component区别
+#### React.ceateClass 和 React.Component 区别
 
-##### 函数this自绑定
+##### 函数 this 自绑定
 
-> React.ceateClass : 每一成员函数的this都有React自动绑定, 任何时候使用, 直接使用this.method即可, 函数中的this会被成功设置
+> React.ceateClass : 每一成员函数的 this 都有 React 自动绑定, 任何时候使用, 直接使用 this.method 即可, 函数中的 this 会被成功设置
 >
-> React.Component : 创建组件, 其成员函数不会自动绑定this, 需要开发者手动绑定, 否则this不嗯呢获取当前组件实例对象, 需要绑定
+> React.Component : 创建组件, 其成员函数不会自动绑定 this, 需要开发者手动绑定, 否则 this 不嗯呢获取当前组件实例对象, 需要绑定
 
 ```jsx
 const Contacts = React.createClass({
@@ -320,9 +320,9 @@ class Contacts extends React.Component {
   <div onClick={()=>this.handleClick()}></div> //使用arrow function来绑定
 ```
 
-##### 组件属性类型propTypes及其默认props属性defaultProps配置不同
+##### 组件属性类型 propTypes 及其默认 props 属性 defaultProps 配置不同
 
-> - `React.createClass`在创建组件时，有关组件props的属性类型及组件默认的属性会作为**组件实例的属性**来配置，其中defaultProps是使用`getDefaultProps`的方法来获取默认组件属性的
+> - `React.createClass`在创建组件时，有关组件 props 的属性类型及组件默认的属性会作为**组件实例的属性**来配置，其中 defaultProps 是使用`getDefaultProps`的方法来获取默认组件属性的
 > - `React.Component`在创建组件时配置这两个对应信息时，他们是作为**组件类的属性**，不是组件实例的属性，也就是所谓的**类的静态属性**来配置的
 
 ```jsx
@@ -353,10 +353,10 @@ class TodoItem extends React.Component {
 }
 ```
 
-##### 组件初始化状态state的配置不同
+##### 组件初始化状态 state 的配置不同
 
-> `React.createClass`创建的组件，其状态state是通过`getInitialState`方法来配置组件相关的状态；
-> `React.Component`创建的组件，其状态state是在`constructor`中像初始化组件属性一样声明的。
+> `React.createClass`创建的组件，其状态 state 是通过`getInitialState`方法来配置组件相关的状态；
+> `React.Component`创建的组件，其状态 state 是在`constructor`中像初始化组件属性一样声明的。
 
 ```jsx
 const TodoItem = React.createClass({
@@ -383,13 +383,13 @@ class TodoItem extends React.Component{
 }
 ```
 
-##### Mixins的支持不同
+##### Mixins 的支持不同
 
-> [`Mixins`](https://facebook.github.io/react/docs/reusable-components-zh-CN.html#mixins)(混入)是面向对象编程OOP的一种实现，其作用是为了复用共有的代码，将共有的代码通过抽取为一个对象，然后通过`Mixins`进该对象来达到代码复用。具体可以参考[React Mixin的前世今生](http://www.w3ctech.com/topic/1599)。
+> [`Mixins`](https://facebook.github.io/react/docs/reusable-components-zh-CN.html#mixins)(混入)是面向对象编程 OOP 的一种实现，其作用是为了复用共有的代码，将共有的代码通过抽取为一个对象，然后通过`Mixins`进该对象来达到代码复用。具体可以参考[React Mixin 的前世今生](http://www.w3ctech.com/topic/1599)。
 >
 > `React.createClass`在创建组件时可以使用`mixins`属性，以数组的形式来混合类的集合。
 >
-> `React.Component` : 不支持Mixins, React开发者社区提供一个全新的方式来取代`Mixins`,那就是**Higher-Order Components**，具体细节可以参考[这篇文章](https://leozdgao.me/chushi-hoc/)
+> `React.Component` : 不支持 Mixins, React 开发者社区提供一个全新的方式来取代`Mixins`,那就是**Higher-Order Components**，具体细节可以参考[这篇文章](https://leozdgao.me/chushi-hoc/)
 
 ```jsx
 var SomeMixin = {
@@ -406,7 +406,7 @@ const Contacts = React.createClass({
 })
 ```
 
-### jsx代码注释
+### jsx 代码注释
 
 ```jsx
  {/* 正确注释的写法 */}
@@ -436,7 +436,7 @@ const Contacts = React.createClass({
 #### props
 
 > 所有组件标签的属性的集合对象
-> 给标签指定属性, 保存外部数据(可能是一个function)
+> 给标签指定属性, 保存外部数据(可能是一个 function)
 > 在组件内部读取属性: this.props.propertyName
 > 作用: 从目标组件外部向组件内部传递数据
 
@@ -462,8 +462,8 @@ Person.propTypes = {
 
 ##### 子传父
 
-> 1. 先在父组件定义可以改变数据的方法pranentChange(且要注册), 和数据myName
-> 2. 子组件通过`this.props.myName`拿到数据, 且要在constructor注册或绑定一下父组件的方法
+> 1. 先在父组件定义可以改变数据的方法 pranentChange(且要注册), 和数据 myName
+> 2. 子组件通过`this.props.myName`拿到数据, 且要在 constructor 注册或绑定一下父组件的方法
 
 ```jsx
 // 子组件
@@ -517,11 +517,11 @@ class parentItem extends React.Component{
 export default parentItem;
 ```
 
-#### PropTypes检验传递值
+#### PropTypes 检验传递值
 
 > 在传输数据中,最好要加入数据校验
 >
-> 加入校验, 不按照校验以后, 会有warning警告
+> 加入校验, 不按照校验以后, 会有 warning 警告
 
 ```jsx
 // 子组件
@@ -553,7 +553,7 @@ export default childItem;
 
 ##### 必传值的校验---isRequired
 
-> 不传递带有isRequired的数据, 就会报错
+> 不传递带有 isRequired 的数据, 就会报错
 
 ```jsx
 childItem.prorTypes = {
@@ -575,10 +575,10 @@ childItem.defaultProps = {
 
 #### ref
 
-> 组件内包含ref属性的标签元素的集合对象
-> 给操作目标标签指定ref属性, 打一个标识
+> 组件内包含 ref 属性的标签元素的集合对象
+> 给操作目标标签指定 ref 属性, 打一个标识
 > 在组件内部获得标签对象: this.refs.refName(只是得到了标签元素对象)
-> 作用: 找到组件内部的真实dom元素对象, 进而操作它
+> 作用: 找到组件内部的真实 dom 元素对象, 进而操作它
 
 ```jsx
 import React from 'react'
@@ -635,7 +635,7 @@ export default parentItem;
 
 ### 基础
 
-1. react的入口
+1. react 的入口
 
 ```js
 // 无状态函数
@@ -655,15 +655,15 @@ ReactDOM.render(element, document.getElementById('root'))
 */
 ```
 
-element就是通过 ReactDOM.render() 的方法来将其渲染到页面上
+element 就是通过 ReactDOM.render() 的方法来将其渲染到页面上
 
-2. 自己创建element
+2. 自己创建 element
 
 ```js
 const element = <h1>Hello, {formatName(user)}!</h1>
 ```
 
-3. JSX代表Object
+3. JSX 代表 Object
    下面两段代码完全一样
 
 ```js
@@ -810,7 +810,7 @@ App.prototype.col={
 
 ```
 
-## 动画react-transition-group
+## 动画 react-transition-group
 
 ### 安装
 
@@ -824,7 +824,7 @@ npm install react-transition-group -S
 > - CSSTransition
 > - TransitionGroup
 
-### 使用CSSTransition
+### 使用 CSSTransition
 
 ```jsx
 import { CSSTranstion } from 'react-transition-group';
@@ -847,12 +847,12 @@ render() {
 }
 ```
 
-- xxx-enter: 进入（入场）前的CSS样式；
-- xxx-enter-active:进入动画直到完成时之前的CSS样式;
-- xxx-enter-done:进入完成时的CSS样式;
-- xxx-exit:退出（出场）前的CSS样式;
-- xxx-exit-active:退出动画知道完成时之前的的CSS样式。
-- xxx-exit-done:退出完成时的CSS样式。
+- xxx-enter: 进入（入场）前的 CSS 样式；
+- xxx-enter-active:进入动画直到完成时之前的 CSS 样式;
+- xxx-enter-done:进入完成时的 CSS 样式;
+- xxx-exit:退出（出场）前的 CSS 样式;
+- xxx-exit-active:退出动画知道完成时之前的的 CSS 样式。
+- xxx-exit-done:退出完成时的 CSS 样式。
 
 ```css
 .input {
@@ -883,7 +883,7 @@ render() {
 
 #### unmountOnExit 属性
 
-> 加上这个, 元素退场, 会自动吧DOM 也删除
+> 加上这个, 元素退场, 会自动吧 DOM 也删除
 
 ```jsx
 <CSSTransition
@@ -895,7 +895,7 @@ render() {
 </CSSTransition>
 ```
 
-### 使用TransitionGroup
+### 使用 TransitionGroup
 
 ```jsx
 import { CSSTransition , TransitionGroup } from 'react-transition-group'
@@ -938,7 +938,7 @@ import { CSSTransition , TransitionGroup } from 'react-transition-group'
 
 ## 列表& keys
 
-### 使用map()函数可以让数组中每一项翻倍
+### 使用 map()函数可以让数组中每一项翻倍
 
 ```
 const numbers = [1, 2, 3, 4, 5];
@@ -979,7 +979,7 @@ ReactDOM.render(
 //输出一个无序列表
 ```
 
-3. #### Keys(可以在DOM中的某些元素被增加或删除的时候帮助React识别哪些元素发生了变化)
+3. #### Keys(可以在 DOM 中的某些元素被增加或删除的时候帮助 React 识别哪些元素发生了变化)
 
 ```js
 <li key={number.toString()}>
@@ -1001,7 +1001,7 @@ const todoItems = todos.map((todo, index) =>
 );
 ```
 
-4. #### 用Keys提取组件(元素的key只有在它和它的兄弟节点对比时才有意义)
+4. #### 用 Keys 提取组件(元素的 key 只有在它和它的兄弟节点对比时才有意义)
 
 ```js
 function ListItem(props) {
@@ -1025,7 +1025,7 @@ ReactDOM.render(
 )
 ```
 
-5. #### 元素的Key再他的兄弟元素之间应该唯一(不需要是全局唯一的)
+5. #### 元素的 Key 再他的兄弟元素之间应该唯一(不需要是全局唯一的)
 
 ```js
 function Blog(props) {
@@ -1058,7 +1058,7 @@ const posts = [
 ReactDOM.render(<Blog posts={posts} />, document.getElementById('root'))
 ```
 
-6. #### 在jsx中嵌入map()
+6. #### 在 jsx 中嵌入 map()
 
 ```jsx
 //声明了一个单独的listItems变量并将其包含在JSX中
@@ -1133,9 +1133,9 @@ handleChange(event) {
 }
 ```
 
-### textarea标签
+### textarea 标签
 
-#### `<textarea>`会用value属性来代替
+#### `<textarea>`会用 value 属性来代替
 
 ```jsx
 class EssayForm extends React.Component {
@@ -1172,7 +1172,7 @@ class EssayForm extends React.Component {
 }
 ```
 
-### select标签
+### select 标签
 
 ```js
 class FlavorForm extends React.Component {
@@ -1273,17 +1273,17 @@ class Reservation extends React.Component {
 }
 ```
 
-## react-webpack前言
+## react-webpack 前言
 
-### 安装webpack
+### 安装 webpack
 
-1. 在所要安装目录输入npm -v和node -v查看配置是否有问题
-2. 输入npm init -y创建package.json
-3. 输入npm install webpack --save-dev
-4. 安装webpack-cli
+1. 在所要安装目录输入 npm -v 和 node -v 查看配置是否有问题
+2. 输入 npm init -y 创建 package.json
+3. 输入 npm install webpack --save-dev
+4. 安装 webpack-cli
 5. npm install --global webpack
 6. npm install --global webpack-cli
-7. 最后用webpack -v查看版本
+7. 最后用 webpack -v 查看版本
 
 ### 安装插件
 
@@ -1317,15 +1317,15 @@ class Reservation extends React.Component {
 - 组件的挂载
   - constructor:构造函数,初始化状态
   - getInitialState:设置状态机
-  - getDefaultProps:获取默认的props
+  - getDefaultProps:获取默认的 props
   - componentWillMount:首次渲染前执行
   - render:渲染组件
-  - componentDidMount:render渲染后执行的操作
+  - componentDidMount:render 渲染后执行的操作
 - 组件的更新
-  - componentWillRexeiveProps:当父组件更新子组件的state
-  - shouldComponentUpdate:决定组件state或props的改变是否需要重新渲染
-  - componentWillUpdate:重新渲染props或state前
-  - componentDidUpdate:重新渲染props或state后
+  - componentWillRexeiveProps:当父组件更新子组件的 state
+  - shouldComponentUpdate:决定组件 state 或 props 的改变是否需要重新渲染
+  - componentWillUpdate:重新渲染 props 或 state 前
+  - componentDidUpdate:重新渲染 props 或 state 后
 - 错误处理
   - static getDerivedStateFromError() : 在后代组件抛出错误后被调用
   - componentDidCatch() : 会在"提交" 阶段被调用
@@ -1346,7 +1346,7 @@ function tick() {
 setInterval(tick, 1000)
 ```
 
-### 使Clock组件真正可重用和封装
+### 使 Clock 组件真正可重用和封装
 
 ```jsx
 function Clock(props) {
@@ -1415,9 +1415,9 @@ ReactDOM.render(<Clock />, document.getElementById('root'))
 
 ### 将生命周期方法添加到类中
 
-###### 挂载:每当Clock组件第一次加载到DOM中的时候，我们都想生成定时器
+###### 挂载:每当 Clock 组件第一次加载到 DOM 中的时候，我们都想生成定时器
 
-###### 卸载:每当Clock生成的这个DOM被移除的时候，我们也会想要清除定时器
+###### 卸载:每当 Clock 生成的这个 DOM 被移除的时候，我们也会想要清除定时器
 
 ```
 //生命周期钩子
@@ -1437,9 +1437,9 @@ componentWillUnmount() {
 
 #### state
 
-1. 只可以使用setState()来更新state
-2. 状态更新可能是异步的(多个setState()可以调用合并成一个来提高性能)
-3. 状态更新合并,调用setState()可以将你提供的对象合并到当前状态 x
+1. 只可以使用 setState()来更新 state
+2. 状态更新可能是异步的(多个 setState()可以调用合并成一个来提高性能)
+3. 状态更新合并,调用 setState()可以将你提供的对象合并到当前状态 x
 
 ## 事件处理
 
@@ -1448,7 +1448,7 @@ componentWillUnmount() {
 <button onClick={activateLasers}>Activate Lasers</button>
 ```
 
-### preventDefault事件的使用
+### preventDefault 事件的使用
 
 ###### 在 React 中另一个不同是你不能使用返回 false 的方式阻止默认行为
 
@@ -1476,7 +1476,7 @@ function ActionLink() {
 
 1. 上述两种方式是等价的，分别通过 arrow functions 和 Function.prototype.bind 来为事件处理函数传递参数。
 2. 通过箭头函数的方式,事件对象必须显式的传递
-3. 通过bind方式,事件对象以及更加多的参数会被隐式地进行传递
+3. 通过 bind 方式,事件对象以及更加多的参数会被隐式地进行传递
 
 ```jsx
 class Popper extends React.Component {
@@ -1509,7 +1509,7 @@ class Popper extends React.Component {
 
 ## 条件渲染
 
-### 通过if或条件运算符来创建表示当前状态的元素
+### 通过 if 或条件运算符来创建表示当前状态的元素
 
 1. 元素变量:用变量的方式来存储元素,有条件地渲染组件的一部分
 2. 与运算符(&&)
@@ -1523,23 +1523,23 @@ class Popper extends React.Component {
 4. 防止组件渲染(让 render 方法返回 null 而不是它的渲染结果即可实现组件隐藏,即使被其他组件渲染)  
    `if(true) return null;`
 
-## Redux数据管理
+## Redux 数据管理
 
 四个重要的概念
 
-- Dispatcher:处理动作的一个分发器,四Flux引用程序中的数据流的中心枢纽,主要是将收到的行为分发给Store
+- Dispatcher:处理动作的一个分发器,四 Flux 引用程序中的数据流的中心枢纽,主要是将收到的行为分发给 Store
 
   - Store:对数据进行管理
 
-- View:React组件,主要负责View层
+- View:React 组件,主要负责 View 层
 
-- Action:提供给Dispatcher,传递数据给Store
+- Action:提供给 Dispatcher,传递数据给 Store
 
 <img src="https://images.gitee.com/uploads/images/2020/0520/090214_f65ca3e8_6545143.png" style="zoom:50%;" />
 
 ## Babel
 
-### Babel安装
+### Babel 安装
 
 `npm install babel-bli -g`
 
@@ -1562,7 +1562,7 @@ console.log(doubleNumbers)
 
 安装预设`npm install --save-dev babel-preset-es2015`
 
-3. 然后把preset添加到配置文件中
+3. 然后把 preset 添加到配置文件中
 
 ```xml
 .babelrc {
@@ -1571,8 +1571,8 @@ console.log(doubleNumbers)
 }
 ```
 
-- 再次运行，打开compiled.js文件
-- 安装object-rest-spread插件
+- 再次运行，打开 compiled.js 文件
+- 安装 object-rest-spread 插件
 - 1. npm install babel-plugin-transform-object-rest-spraed --save-dev
   2. 添加到配置文件
 
@@ -1584,8 +1584,8 @@ let mike = {name:'mike',age:40}; mike = {..mike, sex, 'male' };
 
 ## 状态提升
 
-> - 主要概念 : 将多个组件需要的共享状态提升到它们最近的父组件上, 在父组件上改变这个状态后, 然后通过props分发给只组件
-> - 实现过程 : 一般是通过将父组件的方法传给子组件, 然后通过子组件来触发, 修改父组件的state, 然后再通过props分发给子组件
+> - 主要概念 : 将多个组件需要的共享状态提升到它们最近的父组件上, 在父组件上改变这个状态后, 然后通过 props 分发给只组件
+> - 实现过程 : 一般是通过将父组件的方法传给子组件, 然后通过子组件来触发, 修改父组件的 state, 然后再通过 props 分发给子组件
 
 ### 温度计算器
 
@@ -1719,7 +1719,7 @@ function FancyBorder(props) {
 }
 ```
 
-2. 通过其他组件来嵌套JSX来传递组件
+2. 通过其他组件来嵌套 JSX 来传递组件
 
 ```jsx
 function WelcomeDialog() {
