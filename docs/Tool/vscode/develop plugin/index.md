@@ -1,5 +1,7 @@
 # VSCode 插件开发
 
+- [学习](https://blog.haoji.me/vscode-plugin-overview.html)
+
 > [Your First Extension | Visual Studio Code Extension API](https://code.visualstudio.com/api/get-started/your-first-extension)
 >
 > `npm install -g yo generator-code`
