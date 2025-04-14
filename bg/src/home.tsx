@@ -8,13 +8,13 @@ export function Home() {
   const [data, setData] = React.useState<ObjectType<string>>({})
   const init = async () => {
     axios
-      .get('tree.json')
+      .get('.assets/tree.json')
       .then((res) => setTree(res.data))
       .catch((error) => {
         console.error(error)
       })
     axios
-      .get('db.json')
+      .get('.assets/db.json')
       .then((res) => setData(res.data))
       .catch((error) => {
         console.error(error)

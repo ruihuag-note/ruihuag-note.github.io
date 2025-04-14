@@ -58,6 +58,6 @@ async function readDirectory(dir) {
 readDirectory('./').then(([files, db]) => {
 
   // fs.writeFile('./tree.json', JSON.stringify(files, null, 2)),
-  fs.writeFile('./tree.json', JSON.stringify(files))
-  fs.writeFile('./db.json', JSON.stringify(db))
+  fs.writeFile('./.assets/tree.json', JSON.stringify(files))
+  fs.writeFile('./.assets/db.json', JSON.stringify(db))
 })
