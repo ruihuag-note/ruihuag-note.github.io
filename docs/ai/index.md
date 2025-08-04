@@ -1,10 +1,12 @@
 # AI
 
-- [魔塔社区·模型库](www.modelscope.cn/models)
-- [Hugging Face](huggingface.co/)
+- [OpenAI](https://platform.openai.com/docs/overview)
+
+---
+
+- [魔塔社区·模型库](https://www.modelscope.cn/models)
+- [Hugging Face](https://huggingface.co/)
 - [Comfy](https://www.comfy.org/zh-cn/)
-- [ollama Models](https://ollama.com/search)
-- [ollama Docs](https://github.com/ollama/ollama/blob/main/docs/api.md)
 
 ## OpenAI Platform
 

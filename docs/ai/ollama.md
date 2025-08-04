@@ -1,6 +1,8 @@
 # ollama
 
-- <https://ollama.com/download/windows>
+- [Models](https://ollama.com/search)
+- [API Docs](https://github.com/ollama/ollama/blob/main/docs/api.md)
+- [Download](https://ollama.com/download/windows)
 
 ## ollama 关闭退出
 
